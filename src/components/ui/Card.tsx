@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 import styles from './Card.module.css'
 
-export interface CardProps extends HTMLAttributes<HTMLElement> {
+export interface CardProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
   title?: ReactNode
   actions?: ReactNode
 }
