@@ -2182,7 +2182,7 @@ body[data-v="5"] .v5add .ph{font-size:20px}
 body.no-tiers4 #v4-drawer .tabs{display:none}
 
 /* ---- V5 Upload: policies read from documents, reviewed and created one by one on a full page ---- */
-body:not([data-v="5"]) #v5-upload,body:not([data-v="5"]) #v5-upLeaveScrim{display:none!important}
+body:not([data-v="5"]) #v5-upload,body:not([data-v="5"]) #v5-upLeaveScrim,body:not([data-v="5"]) #v5-viewScrim{display:none!important}
 /* under the Leave Category list: Add Category and Upload, as blue text buttons */
 body[data-v="5"] .v5catacts{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px;padding:8px 0}
 body[data-v="5"] .v5catact{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:0;border-radius:8px;background:none;cursor:pointer;line-height:normal;
@@ -2310,6 +2310,19 @@ body[data-v="5"] .v5inp.bad{border-color:var(--danger)}
 body[data-v="5"] .v5danger{background:#D92D20;border-color:#D92D20}
 body[data-v="5"] .v5danger:hover{background:#B42318;border-color:#B42318}
 body[data-v="5"] .v5upleave{width:min(480px,100%)}
+/* a policy's summary, opened from its row: read first, Edit from the footer */
+body[data-v="5"] .v5view{width:min(560px,100%)}
+body[data-v="5"] .v5view .emhd{align-items:flex-start;gap:16px}
+body[data-v="5"] .v5view .emhd h2{overflow-wrap:anywhere}
+body[data-v="5"] .v5view .emhd p{margin-top:4px;font-size:14px;color:#667085}
+body[data-v="5"] .v5viewbody{overflow:auto;padding:0 24px 20px}
+body[data-v="5"] .v5viewbody h3{margin-bottom:12px;font-size:14px;font-weight:600;color:#101828}
+body[data-v="5"] .v5viewbody .sumlist{display:flex;flex-direction:column;gap:10px}
+body[data-v="5"] .v5viewbody .sumline{display:grid;grid-template-columns:16px minmax(0,1fr);gap:8px;margin:0;
+  font-size:14px;line-height:1.4;color:#344054}
+body[data-v="5"] .v5viewbody .sumline b{color:#344054;font-weight:600}
+body[data-v="5"] .v5viewbody .sline-ic{display:block;width:16px;height:16px;margin-top:2px}
+body[data-v="5"] .v5view .emft .emcount{flex:1}
 body[data-v="5"] .v5upleave p{padding:0 24px 20px;font-size:14px;color:#475467}
 @media (max-width:960px){
   body[data-v="5"] #v5-upload #v5-drawer .dbody{grid-template-columns:minmax(0,1fr)}
@@ -3402,6 +3415,20 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     </div>
     <p id="v5-upLeaveBody"></p>
     <div class="emft"><span class="emcount"></span><button type="button" class="btn" id="v5-upStay">Keep reviewing</button><button type="button" class="btn primary v5danger" id="v5-upLeave">Discard and leave</button></div>
+  </div>
+</div>
+<!-- a leave policy's summary: opened from its row in Settings, Edit opens the policy editor -->
+<div class="empmodal-scrim" id="v5-viewScrim" hidden>
+  <div class="empmodal v5view" role="dialog" aria-modal="true" aria-labelledby="v5-viewTitle" aria-describedby="v5-viewSub">
+    <div class="emhd">
+      <div><h2 id="v5-viewTitle"></h2><p id="v5-viewSub"></p></div>
+      <button type="button" class="emx" id="v5-viewX" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
+    </div>
+    <div class="v5viewbody">
+      <h3>Policy summary</h3>
+      <div class="sumlist" id="v5-viewBody"></div>
+    </div>
+    <div class="emft"><span class="emcount"></span><button type="button" class="btn" id="v5-viewClose">Close</button><button type="button" class="btn primary" id="v5-viewEdit">Edit</button></div>
   </div>
 </div>
 
@@ -11766,10 +11793,10 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       var row=t.closest('.v5polrow[data-i]'); if(!row) return;
       var p=POLICIES[cat][+row.dataset.i];
       if(t.closest('.v5polassign')){ toast('Assign employees to “'+p.name+'”'); return; }
-      /* anywhere on the row outside its buttons opens the policy, as Edit does */
+      /* anywhere on the row outside its buttons opens the policy's summary; Edit is in its footer */
       if(!t.closest('.act')){
         closeMenu(false);
-        window.__edit5.openEdit(p,cat,row.querySelector('.v5polkebab > button'),function(){ draw(cat); filterCats(); });
+        window.__edit5.view(p,cat,row.querySelector('.v5polkebab > button'),function(){ draw(cat); filterCats(); });
         return;
       }
       var k=t.closest('.v5polkebab > button');
@@ -11925,14 +11952,18 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     drawer.querySelector('.dbody').scrollTop=0;
     window.__drawer5.open(trigger);
   }
-  function openEdit(p,cat,trigger,done){
-    editing=p; onSaved=done;
+  /* the policy's saved answers, or its category's starting setup, in the editor */
+  function fill(p,cat){
     if(p.state) window.__state5.load(p.state);
     else{
       var a=SETUP[cat]||SETUP['Sick Leave'], o={name:p.name,desc:'',cat:cat,tenure:'None'};
       Object.keys(a).forEach(function(k){ o[k]=a[k]; });
       window.__state5.prefill(o);
     }
+  }
+  function openEdit(p,cat,trigger,done){
+    editing=p; onSaved=done;
+    fill(p,cat);
     chrome(true);
     window.__emp5.set(p.codes||empFor(p.emp));
     drawer.querySelector('.dbody').scrollTop=0;
@@ -11966,6 +11997,39 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     setTimeout(function(){ footMsg.className='msg'; footMsg.textContent=''; window.__drawer5.close(); },900);
   },true);
   window.__state5.blank();   /* the editor as the page loads it, before anything is answered */
-  window.__edit5={openNew:openNew,openEdit:openEdit,mode:function(){ return mode; }};
+  /* ---- the policy's summary in a centred dialog: the editor's own Policy summary lines, read-only ---- */
+  var vScrim=document.getElementById('v5-viewScrim'), vBox=vScrim.querySelector('.v5view'),
+      vTitle=document.getElementById('v5-viewTitle'), vSub=document.getElementById('v5-viewSub'),
+      vBody=document.getElementById('v5-viewBody'), vEdit=document.getElementById('v5-viewEdit'), vAt=null;
+  function view(p,cat,trigger,done){
+    fill(p,cat);
+    if(window.__afterSync5) window.__afterSync5(document.getElementById('v5-panel-t1'));
+    vTitle.textContent=p.name;
+    vSub.textContent=cat+' · '+p.emp+(p.emp===1?' employee':' employees');
+    vBody.innerHTML=document.getElementById('v5-sumBody').innerHTML||'<span class="sumline"><span></span><span>Nothing set up yet.</span></span>';
+    vAt={p:p,cat:cat,trigger:trigger,done:done};
+    vScrim.hidden=false; document.body.classList.add('locked');
+    vEdit.focus();
+  }
+  function unview(back){
+    if(vScrim.hidden) return;
+    vScrim.hidden=true; document.body.classList.remove('locked');
+    if(back&&vAt&&vAt.trigger) vAt.trigger.focus();
+  }
+  document.getElementById('v5-viewX').addEventListener('click',function(){ unview(true); });
+  document.getElementById('v5-viewClose').addEventListener('click',function(){ unview(true); });
+  vScrim.addEventListener('click',function(e){ if(e.target===vScrim) unview(true); });
+  vEdit.addEventListener('click',function(){ var a=vAt; unview(false); openEdit(a.p,a.cat,a.trigger,a.done); });
+  /* modal: Escape closes it, Tab stays inside it */
+  document.addEventListener('keydown',function(e){
+    if(vScrim.hidden) return;
+    if(e.key==='Escape'){ e.preventDefault(); e.stopPropagation(); unview(true); return; }
+    if(e.key!=='Tab') return;
+    var f=[].slice.call(vBox.querySelectorAll('button:not([disabled])')), a=f[0], z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){ e.preventDefault(); z.focus(); }
+    else if(!e.shiftKey&&document.activeElement===z){ e.preventDefault(); a.focus(); }
+    else if(!vBox.contains(document.activeElement)){ e.preventDefault(); a.focus(); }
+  },true);
+  window.__edit5={openNew:openNew,openEdit:openEdit,view:view,mode:function(){ return mode; }};
 })();
 </script>
