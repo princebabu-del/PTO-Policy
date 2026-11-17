@@ -9976,7 +9976,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     panel.querySelectorAll('[data-f]').forEach(function(el){
       o.f.push(el.type==='radio'||el.type==='checkbox'?el.checked:el.value);
     });
-    panel.querySelectorAll('.combo').forEach(function(c){
+    /* the native-select dropdowns are left out: their face is redrawn from the <select>, which [data-f] already holds */
+    panel.querySelectorAll('.combo:not(.selcombo)').forEach(function(c){
       var t=c.querySelector('.combo-btn .txt'), ch=c.querySelector('.mschips');
       o.c.push({t:t?t.textContent:null,k:t?t.className:null,ch:ch?ch.innerHTML:null,v:c.getAttribute('data-view'),
         s:[].map.call(c.querySelectorAll('.menu-item'),function(b){return b.getAttribute('aria-selected');})});
@@ -9988,7 +9989,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     panel.querySelectorAll('[data-f]').forEach(function(el,k){
       if(el.type==='radio'||el.type==='checkbox') el.checked=o.f[k]; else el.value=o.f[k];
     });
-    panel.querySelectorAll('.combo').forEach(function(c,k){
+    panel.querySelectorAll('.combo:not(.selcombo)').forEach(function(c,k){
       var x=o.c[k]; if(!x) return;
       var t=c.querySelector('.combo-btn .txt'), ch=c.querySelector('.mschips');
       if(t&&x.t!==null){ t.textContent=x.t; t.className=x.k; }
@@ -10001,6 +10002,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     });
     clearErrors(panel);
     sync(panel);
+    if(window.__selcombo5) window.__selcombo5();
   }
   window.__editor5={
     save:function(){
