@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "rm -rf site && mkdir site && cp leave-policy-prototype.html site/index.html && cp -R assets site/assets",
+  "outputDirectory": "site"
+}
