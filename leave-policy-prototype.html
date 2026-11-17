@@ -11135,7 +11135,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
   /* page title: "New Leave Policy" until a name is typed, then the name itself */
   var nameIn=document.getElementById('v5-policyName'), pageTitle=document.getElementById('v5-drawerTitle');
-  function retitle(){ pageTitle.textContent=nameIn.value.trim()||'New Leave Policy'; }
+  function retitle(){ pageTitle.textContent=nameIn.value.trim()||pageTitle.dataset.empty||'New Leave Policy'; }
   nameIn.addEventListener('input',retitle);
   retitle();
 
@@ -11904,7 +11904,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   }
   function chrome(edit){
     mode=edit?'edit':'new';
-    title.textContent=edit?'Edit Leave Policy':'New Leave Policy';
+    /* the policy's name, like New Leave Policy; the generic title only while the name is empty */
+    title.dataset.empty=edit?'Edit Leave Policy':'New Leave Policy';
+    title.textContent=document.getElementById('v5-policyName').value.trim()||title.dataset.empty;
     save.textContent=edit?'Save Changes':'Create Policy';
     caution.textContent=edit?'Before you edit this policy':'Before you create this policy';
     addWrap.hidden=!edit;
