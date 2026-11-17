@@ -1776,7 +1776,6 @@ body[data-v="5"] #v5-panels .pickcombo .menu-item .label{white-space:normal;over
 body[data-v="5"] #v5-panels .pickcombo .menu-item .label b{display:block;font-size:14px;font-weight:600;color:var(--ink)}
 body[data-v="5"] #v5-panels .pickcombo .menu-item .label .od{display:block;font-size:12.5px;font-weight:500;
   color:var(--muted);margin-top:3px}
-body[data-v="5"] #v5-panels .pickcombo .menu-item[aria-selected="true"] .label b{color:var(--blue)}
 body[data-v="5"] #v5-panels .pickcombo .menu-item{position:relative}
 body[data-v="5"] #v5-panels .pickcombo .menu-item:disabled{cursor:not-allowed}
 body[data-v="5"] #v5-panels .pickcombo .menu-item:disabled .label b,
@@ -1815,7 +1814,7 @@ body[data-v="5"] #v5-panels .msmenu .menu-list{--ms-item-h:37px;
 body[data-v="5"] #v5-panels .mscombo .menu-item .label{display:flex;align-items:center;gap:10px;
   font-size:14px;font-weight:500;white-space:normal}
 body[data-v="5"] #v5-panels .mscombo .menu-item .label b{flex:1;min-width:0;font-weight:500;color:var(--ink)}
-body[data-v="5"] #v5-panels .mscombo .menu-item[aria-selected="true"] .label b{font-weight:600;color:var(--blue)}
+body[data-v="5"] #v5-panels .mscombo .menu-item[aria-selected="true"] .label b{font-weight:600}
 body[data-v="5"] #v5-panels .mscombo .menu-item .tick{flex:none;font-size:15px;color:var(--blue);visibility:hidden}
 body[data-v="5"] #v5-panels .mscombo .menu-item[aria-selected="true"] .tick{visibility:visible}
 body[data-v="5"] #v5-panels .row[data-q] .indent{margin-left:8px;padding-left:17px;
@@ -2129,6 +2128,14 @@ body[data-v="5"] .v5pair{display:grid;grid-template-columns:repeat(2,minmax(0,1f
 body[data-v="5"] #v5-details .pickcombo{display:block;width:100%;position:relative}
 body[data-v="5"] #v5-details .pickcombo .menu{min-width:0}
 body[data-v="5"] #v5-details .pickcombo .menu-item .label b{display:inline;font-size:inherit;font-weight:400}
+/* a dropdown's chosen option sits on gray, in the usual ink, not blue */
+body[data-v="5"] .menu-item[aria-selected="true"] .label{background:#F2F4F7;color:#101828}
+/* the tenure menu's footer: Add Tenure, under a rule, opens the tenure configuration */
+body[data-v="5"] .v5menufoot{padding:8px;border-top:1px solid #EAECF0}
+body[data-v="5"] .v5menufoot button{display:flex;align-items:center;gap:8px;width:100%;padding:8px;border:0;border-radius:8px;background:none;cursor:pointer;
+  font-size:14px;font-weight:600;line-height:20px;color:var(--blue);text-align:left}
+body[data-v="5"] .v5menufoot button:hover{background:var(--blue-soft)}
+body[data-v="5"] .v5menufoot img{display:block;flex:none}
 body[data-v="5"] .v5lbltip{display:flex;align-items:center;gap:4px}
 body[data-v="5"] .v5lbltip .tenuretip{width:16px;height:16px}
 body[data-v="5"] .v5lbltip .tenuretip .ph-fill{font-size:16px;color:#98A2B3}
@@ -2182,6 +2189,8 @@ body[data-v="5"] .v5catact{display:inline-flex;align-items:center;gap:8px;paddin
   font-size:14px;font-weight:600;color:var(--blue)}
 body[data-v="5"] .v5catact:hover{background:var(--blue-soft)}
 body[data-v="5"] .v5catact img{display:block}
+/* Build with AI: the Upload page's sparkle icon and blue-to-pink gradient label */
+body[data-v="5"] .v5aibtn span{background:linear-gradient(90deg,#2970FF,#EE46BC);-webkit-background-clip:text;background-clip:text;color:transparent}
 /* the page fills the window, as the editor does, and sits above it */
 body[data-v="5"] #v5-upload.drawer{left:0;z-index:22;width:auto;max-width:none;transform:none;transition:none;box-shadow:none;background:#F2F4F7}
 body[data-v="5"] .v5upbody{flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) 400px}
@@ -2313,65 +2322,112 @@ body[data-v="5"] .v5upleave p{padding:0 24px 20px;font-size:14px;color:#475467}
 }
 @media (max-width:560px){body[data-v="5"] .v5file{flex-wrap:wrap}}
 
-/* ---- V5 settings page: a category opens into its policies, one 44px row each ---- */
-body[data-v="5"] #v5-app .cat{cursor:pointer}
-body[data-v="5"] #v5-app .cat .acts{cursor:default}
-body[data-v="5"] #v5-app .cat .cv{width:24px;height:24px;padding:0;border:0;border-radius:5px;background:none;cursor:pointer}
-body[data-v="5"] #v5-app .cat .cv:hover{background:var(--sunken)}
+/* ---- V5 settings page: Leave Category (Figma 751:31870) — tabs and search on one row, then the category list ---- */
+body[data-v="5"] .v5cattools{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+/* Enabled / Disabled: a gray track, the chosen tab a raised white button; each carries a count badge */
+body[data-v="5"] .v5segtabs{display:flex;align-items:center;gap:2px;height:44px;padding:4px;box-sizing:border-box;border:1px solid #EAECF0;border-radius:8px;background:#F2F4F7}
+body[data-v="5"] .v5segtabs button{display:flex;align-items:center;gap:8px;height:100%;padding:7px 12px;box-sizing:border-box;border:0;border-radius:6px;background:none;cursor:pointer;
+  font-size:14px;font-weight:600;line-height:normal;color:#344054;white-space:nowrap}
+body[data-v="5"] .v5segtabs button[aria-selected="true"]{background:#fff;box-shadow:0 1px 3px rgba(16,24,40,.1),0 1px 2px rgba(16,24,40,.06)}
+body[data-v="5"] .v5segtabs .badge{padding:2px 8px;border:1px solid #EAECF0;border-radius:16px;background:#F9FAFB;font-size:12px;font-weight:500;color:#344054}
+/* search: a 320px field, 20px icon then 16px text */
+body[data-v="5"] .v5catsearch{display:flex;align-items:center;gap:12px;width:320px;max-width:100%;height:44px;padding:12px;box-sizing:border-box;
+  border:1px solid #D0D5DD;border-radius:8px;background:#fff}
+body[data-v="5"] .v5catsearch:focus-within{border-color:#2970FF;box-shadow:0 0 0 4px rgba(41,112,255,.16)}
+body[data-v="5"] .v5catsearch img{display:block;flex:none}
+body[data-v="5"] .v5catsearch input{flex:1;min-width:0;border:0;outline:none;background:none;font-size:16px;line-height:1.4;letter-spacing:-.32px;color:#101828}
+body[data-v="5"] .v5catsearch input::placeholder{color:#98A2B3}
+/* the list: 12px corners; it lets a row's ⋯ menu hang out past its edge, so the end rows round their own corners */
+body[data-v="5"] #v5-app .catlist{border:1px solid #EAECF0;border-radius:12px;background:#fff;box-shadow:none;overflow:visible}
+body[data-v="5"] #v5-app .catlist > .cat:first-child{border-radius:11px 11px 0 0}
+body[data-v="5"] #v5-app .catlist > .last{border-bottom-left-radius:11px;border-bottom-right-radius:11px}
+/* a category: chevron, name over "N policies • N employees •" and the pay badge, then More Options */
+body[data-v="5"] #v5-app .cat{grid-template-columns:20px minmax(0,1fr) auto;gap:8px;padding:12px;border-top:1px solid #EAECF0;cursor:pointer}
+body[data-v="5"] #v5-app .cat:first-child{border-top:0}
+body[data-v="5"] #v5-app .cat[hidden]{display:none}
+body[data-v="5"] .v5polrow[hidden]{display:none}
+body[data-v="5"] #v5-app .cat:hover{background:#F9FAFB}
+body[data-v="5"] #v5-app .cat .cv{display:grid;place-items:center;width:20px;height:20px;padding:0;border:0;border-radius:4px;background:none;cursor:pointer}
 body[data-v="5"] #v5-app .cat .cv img{display:block;transition:transform .15s ease}
 body[data-v="5"] #v5-app .cat .cv[aria-expanded="true"] img{transform:rotate(90deg)}
-/* Figma 7541:127395 — category row: 12px in, chevron, name over "N policies • N employees •" and the pay badge */
-/* the category search is a fixed 320px, not the list's full width */
-body[data-v="5"] #v5-app .search{width:320px;max-width:100%}
-/* the list lets a row's ⋯ menu hang out past its edge rather than clip or scroll it */
-body[data-v="5"] #v5-app .catlist{border-color:#D0D5DD;box-shadow:none;overflow:visible}
-body[data-v="5"] #v5-app .cat{gap:10px;padding:12px;border-top-color:#D0D5DD}
-body[data-v="5"] #v5-app .v5pols{border-top-color:#D0D5DD}
-body[data-v="5"] #v5-app .cat h4{margin:0;font-size:16px;font-weight:600;line-height:1.2;letter-spacing:-.32px;color:#30374F}
-body[data-v="5"] #v5-app .cat .meta{gap:2px;font-size:12px;font-weight:500;line-height:1.2;letter-spacing:-.24px;color:#7D89B0}
-body[data-v="5"] .v5catbadge{display:inline-flex;align-items:center;gap:4px;margin-left:2px;padding:2px 8px 2px 6px;border:1px solid #ABEFC6;border-radius:16px;
-  background:#ECFDF3;font-size:12px;font-weight:500;line-height:normal;letter-spacing:0;color:#067647}
+body[data-v="5"] #v5-app .cat h4{margin:0;font-size:14px;font-weight:600;line-height:1.4;letter-spacing:-.28px;color:#30374F}
+body[data-v="5"] #v5-app .cat .meta,body[data-v="5"] #v5-app .cat .meta .cnt{display:flex;align-items:center;flex-wrap:wrap;gap:4px;
+  font-size:12px;font-weight:500;line-height:1.2;letter-spacing:-.24px;color:#667085}
+body[data-v="5"] #v5-app .cat .meta .dot{color:#D0D5DD}
+/* Figma 752:32570 — Paid (green) and Unpaid (gray): 12px icon, 4px gap, 2px/8px padding, 12px medium at 1.2 */
+body[data-v="5"] .v5catbadge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border:1px solid #ABEFC6;border-radius:16px;
+  background:#ECFDF3;mix-blend-mode:multiply;font-size:12px;font-weight:500;line-height:1.2;letter-spacing:-.24px;color:#067647;white-space:nowrap}
 body[data-v="5"] .v5catbadge img{display:block}
-body[data-v="5"] .v5catbadge.unpaid{border-color:#D5D9EB;background:#F8F9FC;color:#363F72}
-body[data-v="5"] .v5catbadge.unpaid .ph{font-size:12px}
-body[data-v="5"] #v5-app .cat .acts{gap:4px;padding:4px}
-body[data-v="5"] #v5-app .cat .acts button{padding:10px;border-radius:8px}
-body[data-v="5"] #v5-app .cat .acts button img{display:block}
-body[data-v="5"] #v5-app .cat .acts button:hover:not(:disabled){background:#F9FAFB}
-body[data-v="5"] #v5-app .cat .acts button:disabled{cursor:not-allowed;background:none}
-body[data-v="5"] .v5pols{padding:0 18px 8px;border-top:1px solid var(--line)}
-body[data-v="5"] .v5poltbl{margin-top:16px;border:1px solid #EAECF0;border-radius:8px;box-shadow:0 1px 2px rgba(16,24,40,.05)}
-body[data-v="5"] .v5polrow{display:grid;grid-template-columns:minmax(0,1fr) 120px 132px;align-items:center;height:44px;box-sizing:border-box;
-  border-top:1px solid #EAECF0;font-size:14px;color:#101828}
-body[data-v="5"] .v5polrow > *{min-width:0;padding:0 16px}
-body[data-v="5"] .v5polrow.hd{border-top:0;border-radius:8px 8px 0 0;background:#F2F4F7;font-weight:600;color:#344054}
-body[data-v="5"] .v5polrow.hd > * + *{border-left:1px solid #EAECF0;line-height:24px}
-body[data-v="5"] .v5polrow .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
-body[data-v="5"] .v5polrow .n{font-variant-numeric:tabular-nums;color:#475467}
-body[data-v="5"] .v5polrow .act{display:flex;align-items:center;justify-content:flex-end;gap:4px;padding-right:8px}
-body[data-v="5"] .v5polassign{padding:4px 8px;border:0;border-radius:6px;background:none;cursor:pointer;font-size:14px;font-weight:600;color:#2970FF}
-body[data-v="5"] .v5polassign:hover{background:var(--blue-soft)}
+body[data-v="5"] .v5catbadge.unpaid{border-color:#EAECF0;background:#F9FAFB;color:#344054}
+body[data-v="5"] #v5-app .cat .acts{display:flex;align-items:center;gap:8px;padding:0;cursor:default}
+body[data-v="5"] #v5-app .cat .acts .v5polkebab > button{display:grid;place-items:center;width:36px;height:36px;padding:8px;border:0;border-radius:8px;background:none;cursor:pointer}
+body[data-v="5"] #v5-app .cat .acts .v5polkebab > button:hover,
+body[data-v="5"] #v5-app .cat .acts .v5polkebab > button[aria-expanded="true"]{background:#F2F4F7}
+body[data-v="5"] #v5-app .cat .acts .v5polkebab > button img{display:block}
+body[data-v="5"] #v5-app .cat .acts [data-tip]{position:relative}
+body[data-v="5"] #v5-app .cat .acts [data-tip][aria-expanded="true"]::before,
+body[data-v="5"] #v5-app .cat .acts [data-tip][aria-expanded="true"]::after{display:none}
+/* an open category's policies: a table inset under its name, then Add Leave Policy below it */
+body[data-v="5"] .v5poladd{margin-top:8px}
+body[data-v="5"] .v5pols{padding:12px 12px 12px 24px;background:#fff}
+body[data-v="5"] .v5catnone{padding:16px;font-size:14px;color:#667085}
+/* Figma 749:31687 — the settings table, shared by Tenure and each category's policies: 12px corners, 44px rows,
+   a gray header with dividers between its cells, 14px medium text, and an action column hugging its icon buttons, 8px either side */
+body[data-v="5"] .v5poltbl,body[data-v="5"] .v5tentbl{border:1px solid #EAECF0;border-radius:12px;background:#fff;box-shadow:none}
+body[data-v="5"] .v5polrow{grid-template-columns:minmax(0,1fr) 160px 96px}
+body[data-v="5"] .v5tenrow{grid-template-columns:minmax(0,1fr) 160px 160px 52px}
+body[data-v="5"] .v5polrow,body[data-v="5"] .v5tenrow{display:grid;align-items:stretch;gap:0;height:44px;min-height:0;padding:0;box-sizing:border-box;
+  border-top:1px solid #EAECF0;font-size:14px;font-weight:500;line-height:normal;color:#344054}
+/* cells stay blocks so long names end in an ellipsis; 43px lines fill a row under its 1px rule, 44px in the header */
+body[data-v="5"] .v5polrow > *,body[data-v="5"] .v5tenrow > *{display:block;min-width:0;padding:0 16px;line-height:43px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body[data-v="5"] .v5polrow.hd > *,body[data-v="5"] .v5tenrow.hd > *{line-height:44px}
+/* the action column fits its 36px buttons with 8px either side — 52px for one, 96px for two —
+   set per table, as every row is its own grid, so the header cell matches the cells below */
+body[data-v="5"] .v5polrow.hd > :last-child,body[data-v="5"] .v5tenrow.hd > :last-child{padding:0 8px}
+body[data-v="5"] .v5polrow.hd,body[data-v="5"] .v5tenrow.hd{border-top:0;border-radius:11px 11px 0 0;background:#F9FAFB;font-size:14px;font-weight:500;color:#667085}
+body[data-v="5"] .v5polrow.hd > :not(:last-child),body[data-v="5"] .v5tenrow.hd > :not(:last-child){border-right:1px solid #EAECF0}
+body[data-v="5"] .v5polrow .n,body[data-v="5"] .v5tenrow .n{font-variant-numeric:tabular-nums}
+/* a policy row opens its edit screen */
+body[data-v="5"] .v5polrow[data-i]{cursor:pointer}
+body[data-v="5"] .v5polrow[data-i]:hover{background:#F9FAFB}
+body[data-v="5"] .v5poltbl > .v5polrow:last-child{border-radius:0 0 11px 11px}
+/* Figma 744:28172 — 36px icon buttons (Assign Employees, More Options), centred in the action column */
+body[data-v="5"] .v5polrow .act,body[data-v="5"] .v5tenrow .act{display:flex;align-items:center;justify-content:center;gap:8px;padding:0 8px;overflow:visible}
+body[data-v="5"] :is(.v5polrow,.v5tenrow) .act .v5polassign,
+body[data-v="5"] :is(.v5polrow,.v5tenrow) .act .v5polkebab > button{display:grid;place-items:center;width:36px;height:36px;padding:8px;border:0;border-radius:8px;background:none;cursor:pointer}
+body[data-v="5"] :is(.v5polrow,.v5tenrow) .act .v5polassign:hover,
+body[data-v="5"] :is(.v5polrow,.v5tenrow) .act .v5polkebab > button:hover,
+body[data-v="5"] :is(.v5polrow,.v5tenrow) .act .v5polkebab > button[aria-expanded="true"]{background:var(--sunken)}
+body[data-v="5"] :is(.v5polrow,.v5tenrow) .act > button img,body[data-v="5"] :is(.v5polrow,.v5tenrow) .act .v5polkebab > button img{display:block}
+/* their tooltips sit above, tail at bottom centre; More Options' steps aside while its menu is open */
+body[data-v="5"] :is(.v5polrow,.v5tenrow) .act [data-tip]{position:relative}
+body[data-v="5"] :is(.v5polrow,.v5tenrow) .act [data-tip][aria-expanded="true"]::before,
+body[data-v="5"] :is(.v5polrow,.v5tenrow) .act [data-tip][aria-expanded="true"]::after{display:none}
 body[data-v="5"] .v5polkebab{position:relative}
 body[data-v="5"] .v5polkebab > button{display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:6px;background:none;cursor:pointer;
   font-size:18px;color:#667085}
 body[data-v="5"] .v5polkebab > button:hover,body[data-v="5"] .v5polkebab > button[aria-expanded="true"]{background:var(--sunken);color:#101828}
-body[data-v="5"] .v5polmenu{position:absolute;right:0;top:calc(100% + 4px);z-index:6;min-width:140px;padding:4px;border:1px solid #EAECF0;border-radius:8px;
-  background:#fff;box-shadow:0 12px 16px -4px rgba(16,24,40,.08),0 4px 6px -2px rgba(16,24,40,.03)}
-body[data-v="5"] .v5polmenu button{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;border:0;border-radius:6px;background:none;cursor:pointer;
-  font-size:14px;font-weight:500;color:#344054;text-align:left}
-body[data-v="5"] .v5polmenu button:hover,body[data-v="5"] .v5polmenu button:focus-visible{background:#F9FAFB;outline:none}
-body[data-v="5"] .v5polmenu button.del{color:var(--danger)}
-body[data-v="5"] .v5polmenu button:disabled{opacity:.45;cursor:not-allowed;background:none}
-body[data-v="5"] #v5-app .cat .acts .v5polkebab > button{padding:10px;font-size:20px}
-body[data-v="5"] #v5-app .cat .acts .v5polkebab > button .ph,body[data-v="5"] #v5-app .v5tenrow .v5polkebab > button .ph{font-size:20px}
-body[data-v="5"] #v5-app .cat .acts .v5polmenu button{padding:8px 10px;border-radius:6px}
-body[data-v="5"] #v5-app .cat .acts .v5polmenu .ph{font-size:16px}
-body[data-v="5"] .v5polmenu .ph{font-size:16px}
+/* ⋯ menus (LMS Figma 1076:16479): white, 8px corners, 8px above and below; each item a 20px icon and 14px medium text
+   in an 8px-padded pill, 2px/8px around it */
+body[data-v="5"] .v5polmenu{position:absolute;right:0;top:calc(100% + 4px);z-index:6;min-width:160px;padding:8px 0;border:1px solid #EAECF0;border-radius:8px;
+  background:#fff;box-shadow:0 20px 24px -4px rgba(16,24,40,.08),0 8px 8px -4px rgba(16,24,40,.03)}
+body[data-v="5"] .v5polmenu [role="menuitem"]{display:flex;align-items:center;gap:8px;width:calc(100% - 16px);margin:2px 8px;padding:8px;border:0;border-radius:8px;
+  background:none;cursor:pointer;font-size:14px;font-weight:500;line-height:normal;color:#000;text-align:left;white-space:nowrap}
+body[data-v="5"] .v5polmenu [role="menuitem"] img{display:block;flex:none}
+body[data-v="5"] .v5polmenu [role="menuitem"]:hover,body[data-v="5"] .v5polmenu [role="menuitem"]:focus-visible{background:#F9FAFB;outline:none}
+body[data-v="5"] .v5polmenu [role="menuitem"]:disabled{opacity:.45;cursor:not-allowed;background:none}
+/* Delete stays gray until hovered or focused, then turns red, its trash icon with it */
+body[data-v="5"] .v5polmenu .del{color:#344054}
+body[data-v="5"] .v5polmenu .del img.on{display:none}
+body[data-v="5"] .v5polmenu .del:not(:disabled):is(:hover,:focus-visible){background:#FEF3F2;color:var(--danger)}
+body[data-v="5"] .v5polmenu .del:not(:disabled):is(:hover,:focus-visible) img{display:none}
+body[data-v="5"] .v5polmenu .del:not(:disabled):is(:hover,:focus-visible) img.on{display:block}
 body[data-v="5"] .v5polempty{padding:12px 16px;border-top:1px solid #EAECF0;font-size:14px;color:#667085}
-body[data-v="5"] .v5poladd{display:inline-flex;align-items:center;gap:8px;margin:8px 0 4px;padding:8px 0;border:0;background:none;cursor:pointer;
-  font-size:14px;font-weight:500;color:var(--blue)}
-body[data-v="5"] .v5poladd:hover{text-decoration:underline}
-@media (max-width:560px){body[data-v="5"] .v5polrow{grid-template-columns:minmax(0,1fr) 88px 112px}}
+/* top nav: the Lumber logomark and logotype, at their own sizes */
+body[data-v="5"] .nav .v5logo{gap:8px}
+body[data-v="5"] .nav .v5logo img{display:block;flex:none}
+@media (max-width:560px){body[data-v="5"] .v5polrow{grid-template-columns:minmax(0,1fr) 96px 96px}body[data-v="5"] .v5tenrow{grid-template-columns:minmax(0,1fr) 72px 112px 52px}}
 
 /* ---- V5 settings page: Time Off Policies label column, then Tenure and Leave Category ---- */
 /* ---- V5 settings page: a fixed Settings header and section list; the section's content scrolls ---- */
@@ -2379,9 +2435,10 @@ body[data-v="5"] .v5setpage{padding:0 clamp(16px,6vw,100px)}
 body[data-v="5"] .v5sethd{position:sticky;top:48px;z-index:4;display:flex;align-items:flex-end;height:100px;padding:0 clamp(16px,6vw,100px) 22px;
   margin:0 calc(-1 * clamp(16px,6vw,100px));background:#fff}
 /* the white runs edge to edge so nothing scrolls past beside it; the rule keeps to the page gutters */
-body[data-v="5"] .v5sethd::after{content:"";position:absolute;left:clamp(16px,6vw,100px);right:clamp(16px,6vw,100px);bottom:0;height:1px;background:#F2F4F7}
-body[data-v="5"] .v5sethd h1{font-size:30px;font-weight:600;line-height:1.2;letter-spacing:-.6px;color:#30374F}
-body[data-v="5"] .v5setbody{display:grid;grid-template-columns:240px minmax(0,1fr);align-items:start}
+body[data-v="5"] .v5sethd::after{content:"";position:absolute;left:max(clamp(16px,6vw,100px),(100% - 1446px) / 2);right:max(clamp(16px,6vw,100px),(100% - 1446px) / 2);bottom:0;height:1px;background:#F2F4F7}
+/* settings stop at 1446px wide: the 240px list, a 56px gap, then 1150px of section content; past that the title, section list and content sit centred */
+body[data-v="5"] .v5sethd h1{flex:1;max-width:1446px;margin:0 auto;font-size:30px;font-weight:600;line-height:1.2;letter-spacing:-.6px;color:#30374F}
+body[data-v="5"] .v5setbody{max-width:1446px;margin:0 auto;display:grid;grid-template-columns:240px minmax(0,1fr);align-items:start}
 body[data-v="5"] .v5setnav{position:sticky;top:148px;align-self:start;display:flex;flex-direction:column;gap:6px;min-height:calc(100vh - 148px);
   max-height:calc(100vh - 148px);overflow-y:auto;padding:20px 40px 20px 20px;border-right:1px solid #EAECF0}
 body[data-v="5"] .v5setnavi{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:34px;padding:7px 12px;
@@ -2411,13 +2468,9 @@ body[data-v="5"] .v5tenure{margin-bottom:24px}
 body[data-v="5"] .v5subhd{display:flex;flex-direction:column;gap:4px;padding:16px 16px 16px 0}
 body[data-v="5"] .v5subhd-rule{border-top:1px solid #EAECF0}
 body[data-v="5"] .v5subhd h3{margin:0;font-size:16px;font-weight:600;line-height:1.2;letter-spacing:-.32px;color:#1D2939}
-body[data-v="5"] .v5subhd p{margin:0;font-size:12px;font-weight:500;line-height:1.2;letter-spacing:-.24px;color:#7D89B0}
-body[data-v="5"] .v5tentbl{margin-top:0;border:1px solid #EAECF0;border-radius:12px;background:#fff;box-shadow:0 1px 3px rgba(16,24,40,.08)}
-body[data-v="5"] .v5tenrow.hd{border-radius:12px 12px 0 0}
-/* name | number of tiers | the longest service the tiers reach | actions */
-body[data-v="5"] .v5tenrow{display:grid;grid-template-columns:minmax(0,1fr) 80px 180px 32px;align-items:center;gap:16px;min-height:66px;padding:0 24px;border-top:1px solid #EAECF0;
-  font-size:15px;color:#344054}
-body[data-v="5"] .v5tenrow.hd{min-height:40px;border-top:0;background:#F9FAFB;font-size:13px;font-weight:500}
+body[data-v="5"] .v5subhd p{margin:0;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:-.24px;color:#667085}
+/* tenure: name | number of tiers | the longest service the tiers reach | actions — styled with the policies table above */
+body[data-v="5"] .v5tentbl{margin-top:0}
 body[data-v="5"] .v5tenedit{display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:6px;background:none;cursor:pointer;
   font-size:20px;color:#475467}
 body[data-v="5"] .v5tenedit:hover{background:var(--sunken);color:#101828}
@@ -2992,7 +3045,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 <!-- ===================== V5 — V1 as a full page ===================== -->
 <div id="v5-app">
   <div class="nav">
-    <span class="logo"><i></i>LUMBER</span>
+    <span class="logo v5logo" role="img" aria-label="Lumber"><img src="assets/logomark.svg" width="32.863" height="32" alt=""><img src="assets/logotype.svg" width="82" height="14" alt=""></span>
     <span class="mi">Time <i class="ph ph-caret-down" aria-hidden="true"></i></span>
     <span class="mi">Expenses</span>
     <span class="mi">Pay <i class="ph ph-caret-down" aria-hidden="true"></i></span>
@@ -3006,7 +3059,6 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     <span class="spacer"></span>
     <span class="bell"><i class="ph ph-bell" aria-hidden="true"></i><b>15</b></span>
     <span><i class="ph ph-gear" aria-hidden="true"></i></span>
-    <span class="org"><span class="ic">▤</span>BigCat<span class="cv"><i class="ph ph-caret-down" aria-hidden="true"></i></span></span>
   </div>
 
   <!-- Settings: the page header and the section list stay put; Time Tracking's content scrolls under them -->
@@ -3044,26 +3096,29 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           </div>
           <div class="v5tentbl" role="table" aria-labelledby="v5-tenureHd">
             <div class="v5tenrow hd" role="row"><span role="columnheader">Tenure Configurations</span><span role="columnheader">Tiers</span><span role="columnheader">Maximum Tenure</span><span role="columnheader"><span class="sr">Actions</span></span></div>
-            <div class="v5tenrow" role="row"><span role="cell">Union – WATG Config</span><span role="cell" class="n">3</span><span role="cell" class="n">60 months (5 years)</span><span role="cell"><button type="button" class="v5tenedit" aria-label="Edit Union – WATG Config"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></span></div>
-            <div class="v5tenrow" role="row"><span role="cell">Union – UGS – Config</span><span role="cell" class="n">3</span><span role="cell" class="n">96 months (8 years)</span><span role="cell"><button type="button" class="v5tenedit" aria-label="Edit Union – UGS – Config"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></span></div>
+            <div class="v5tenrow" role="row"><span role="cell">Union – WATG Config</span><span role="cell" class="n">3</span><span role="cell" class="n">60 months</span><span role="cell"><button type="button" class="v5tenedit" aria-label="Edit Union – WATG Config"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></span></div>
+            <div class="v5tenrow" role="row"><span role="cell">Union – UGS – Config</span><span role="cell" class="n">3</span><span role="cell" class="n">96 months</span><span role="cell"><button type="button" class="v5tenedit" aria-label="Edit Union – UGS – Config"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></span></div>
           </div>
           <button type="button" class="v5catact" id="v5-addTenureBtn"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Tenure Configuration</button>
         </section>
 
         <div class="v5subhd v5subhd-rule">
-          <h3>Leave Categories</h3>
-          <p>Create categories for leave types</p>
+          <h3>Leave Category</h3>
+          <p>Create categories to group similar leave policies for easier management.</p>
         </div>
-        <div class="ptabs"><span class="on">Enabled</span><span>Disabled</span></div>
-        <div class="search">
-          <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
-          Search
+        <!-- Enabled / Disabled categories on the left, search on the right -->
+        <div class="v5cattools">
+          <div class="v5segtabs" role="tablist" aria-label="Category status">
+            <button type="button" role="tab" aria-selected="true" data-status="enabled">Enabled<span class="badge" id="v5-catOnN">4</span></button>
+            <button type="button" role="tab" aria-selected="false" data-status="disabled">Disabled<span class="badge" id="v5-catOffN">0</span></button>
+          </div>
+          <label class="v5catsearch"><img src="assets/search-md-20.svg" width="20" height="20" alt=""><input type="search" id="v5-catSearch" placeholder="Search" aria-label="Search leave categories and policies" autocomplete="off"></label>
         </div>
-        <div class="catlist"><div class="cat"><span class="cv"><img src="assets/chevron-right-24.svg" width="24" height="24" alt=""></span><div><h4>Sick Leave</h4><div class="meta">12 policies • 40 employees <span class="v5catbadge"><img src="assets/currency-dollar-12.svg" width="12" height="12" alt="">Paid</span></div></div><div class="acts"><button class="" aria-label="Delete Sick Leave"><img src="assets/trash-01-20.svg" width="20" height="20" alt=""></button><button data-open aria-label="Edit Sick Leave"><img src="assets/edit-01-20.svg" width="20" height="20" alt=""></button></div></div><div class="cat"><span class="cv"><img src="assets/chevron-right-24.svg" width="24" height="24" alt=""></span><div><h4>Bereavement Leave</h4><div class="meta">7 policies • 7 employees <span class="v5catbadge"><img src="assets/currency-dollar-12.svg" width="12" height="12" alt="">Paid</span></div></div><div class="acts"><button class="" aria-label="Delete Bereavement Leave"><img src="assets/trash-01-20.svg" width="20" height="20" alt=""></button><button data-open aria-label="Edit Bereavement Leave"><img src="assets/edit-01-20.svg" width="20" height="20" alt=""></button></div></div><div class="cat"><span class="cv"><img src="assets/chevron-right-24.svg" width="24" height="24" alt=""></span><div><h4>Paid Vacation</h4><div class="meta">35 policies • 79 employees <span class="v5catbadge"><img src="assets/currency-dollar-12.svg" width="12" height="12" alt="">Paid</span></div></div><div class="acts"><button class="" aria-label="Delete Paid Vacation"><img src="assets/trash-01-20.svg" width="20" height="20" alt=""></button><button data-open aria-label="Edit Paid Vacation"><img src="assets/edit-01-20.svg" width="20" height="20" alt=""></button></div></div><div class="cat"><span class="cv"><img src="assets/chevron-right-24.svg" width="24" height="24" alt=""></span><div><h4>Unpaid Leave</h4><div class="meta">0 policies • 0 employees <span class="v5catbadge unpaid"><i class="ph ph-x" aria-hidden="true"></i>Unpaid</span></div></div><div class="acts"><button class="" aria-label="Delete Unpaid Leave"><img src="assets/trash-01-20.svg" width="20" height="20" alt=""></button><button data-open aria-label="Edit Unpaid Leave"><img src="assets/edit-01-20.svg" width="20" height="20" alt=""></button></div></div></div>
+        <div class="catlist" id="v5-catList"><div class="cat"><span class="cv"><img src="assets/chevron-right-gray-20.svg" width="20" height="20" alt=""></span><div><h4>Sick Leave</h4><div class="meta"><span class="cnt"></span><span class="v5catbadge"><img src="assets/currency-dollar-12.svg" width="12" height="12" alt="">Paid</span></div></div><div class="acts"></div></div><div class="cat"><span class="cv"><img src="assets/chevron-right-gray-20.svg" width="20" height="20" alt=""></span><div><h4>Bereavement Leave</h4><div class="meta"><span class="cnt"></span><span class="v5catbadge"><img src="assets/currency-dollar-12.svg" width="12" height="12" alt="">Paid</span></div></div><div class="acts"></div></div><div class="cat"><span class="cv"><img src="assets/chevron-right-gray-20.svg" width="20" height="20" alt=""></span><div><h4>Paid Vacation</h4><div class="meta"><span class="cnt"></span><span class="v5catbadge"><img src="assets/currency-dollar-12.svg" width="12" height="12" alt="">Paid</span></div></div><div class="acts"></div></div><div class="cat"><span class="cv"><img src="assets/chevron-right-gray-20.svg" width="20" height="20" alt=""></span><div><h4>Unpaid Leave</h4><div class="meta"><span class="cnt"></span><span class="v5catbadge unpaid"><img src="assets/currency-no-dollar-12.svg" width="12" height="12" alt="">Unpaid</span></div></div><div class="acts"></div></div><p class="v5catnone" hidden></p></div>
         <!-- below the categories: add one, or Upload policy documents to open them, pre-filled, for review -->
         <div class="v5catacts">
           <button type="button" class="v5catact" id="v5-addCatBtn"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Category</button>
-          <button type="button" class="v5catact" id="v5-uploadBtn"><img src="assets/upload-cloud-02-blue.svg" width="20" height="20" alt="">Upload</button>
+          <button type="button" class="v5catact v5aibtn" id="v5-uploadBtn"><img src="assets/stars-02-gradient-16.svg" width="20" height="20" alt=""><span>Build with AI</span></button>
         </div>
         </div>
       </div>
@@ -3127,7 +3182,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
                   <button type="button" class="menu-item" role="option" data-value="None" aria-selected="true"><span class="label"><b>None</b></span></button>
                   <button type="button" class="menu-item" role="option" data-value="Union – WATG Config" aria-selected="false"><span class="label"><b>Union – WATG Config</b></span></button>
                   <button type="button" class="menu-item" role="option" data-value="Union – UGS – Config" aria-selected="false"><span class="label"><b>Union – UGS – Config</b></span></button>
-                </div></div>
+                </div>
+                <div class="v5menufoot"><button type="button" data-add-tenure><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Tenure</button></div></div>
               </div>
             </div>
           </div>
@@ -10692,6 +10748,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       tMenu.hidden=!tMenu.hidden; tBtn.setAttribute('aria-expanded',String(!tMenu.hidden));
     });
     tMenu.addEventListener('click',function(e){
+      /* Add Tenure opens the tenure configuration, as Add Tenure Configuration does in Settings */
+      if(e.target.closest('[data-add-tenure]')){ tClose(); document.getElementById('v5-addTenureBtn').click(); return; }
       var it=e.target.closest('.menu-item'); if(!it) return;
       tClose(); setTenure(it.dataset.value); tBtn.focus();
     });
@@ -10986,6 +11044,10 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     },true);
 
     renderTable();
+    /* Edit fills the table with the policy's employees; New starts it empty */
+    window.__emp5={get:function(){ return assigned.slice(); },
+      set:function(codes){ assigned=codes.slice(); empSearch.value=''; closeMenu(); renderTable(); },
+      codes:EMPLOYEES.map(function(e){ return e.code; })};
   })();
   document.getElementById('v5-tenureSet').addEventListener('change',function(){render(document.querySelector('#v5-panels [role="tabpanel"]:not([hidden])'));});
 })();
@@ -11268,6 +11330,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     }
     loading=false;
   }
+  /* New and Edit share these: a blank editor, and an existing policy's answers swapped in */
+  window.__state5={save:saveState,load:loadState,prefill:prefill,
+    blank:function(){ if(!base) base=saveState(); return base; }};
   /* the policy's card carries the editor's own Policy summary (a check and a line per answer), as it stands */
   var sumBody=document.getElementById('v5-sumBody');
   function summarize(){
@@ -11611,8 +11676,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   function meta(cat){
     var c=catOf(cat); if(!c) return;
     var list=POLICIES[cat]||[], n=list.length, e=list.reduce(function(s,p){ return s+p.emp; },0);
-    var t=c.querySelector('.meta').firstChild;
-    if(t&&t.nodeType===3) t.textContent=n+(n===1?' policy':' policies')+' • '+e+(e===1?' employee':' employees')+' • ';
+    c.querySelector('.meta .cnt').innerHTML='<span>'+n+(n===1?' policy':' policies')+'</span><span class="dot" aria-hidden="true">•</span>'+
+      '<span>'+e+(e===1?' employee':' employees')+'</span><span class="dot" aria-hidden="true">•</span>';
     /* a category can be deleted only once it has no policies left */
     var del=c.querySelector('.acts [data-act="delete"]');
     del.disabled=n>0;
@@ -11620,16 +11685,17 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   }
   function rows(cat){
     var list=POLICIES[cat]||[];
-    return '<div class="v5polrow hd" role="row"><span role="columnheader">Leave Policy Configuration</span><span role="columnheader">Employees</span>'+
+    return '<div class="v5polrow hd" role="row"><span role="columnheader">Leave Policy</span><span role="columnheader">Employees</span>'+
       '<span role="columnheader"><span class="sr">Actions</span></span></div>'+
       (list.length?list.map(function(p,i){
         return '<div class="v5polrow" role="row" data-i="'+i+'"><span class="nm" role="cell" title="'+esc(p.name)+'">'+esc(p.name)+'</span>'+
           '<span class="n" role="cell">'+p.emp+'</span>'+
-          '<span class="act" role="cell"><button type="button" class="v5polassign">Assign</button>'+
-          '<span class="v5polkebab"><button type="button" aria-haspopup="menu" aria-expanded="false" aria-label="More actions for '+esc(p.name)+'">'+
-          '<i class="ph ph-dots-three-vertical" aria-hidden="true"></i></button>'+
-          '<span class="v5polmenu" role="menu" hidden><button type="button" role="menuitem" data-act="edit"><i class="ph ph-pencil-simple" aria-hidden="true"></i>Edit</button>'+
-          '<button type="button" role="menuitem" class="del" data-act="delete"><i class="ph ph-trash" aria-hidden="true"></i>Delete</button></span></span></span></div>';
+          '<span class="act" role="cell"><button type="button" class="v5polassign" data-tip="Assign Employees" aria-label="Assign employees to '+esc(p.name)+'">'+
+          '<img src="assets/users-plus-20.svg" width="20" height="20" alt=""></button>'+
+          '<span class="v5polkebab"><button type="button" data-tip="More Options" aria-haspopup="menu" aria-expanded="false" aria-label="More options for '+esc(p.name)+'">'+
+          '<img src="assets/dots-vertical-20.svg" width="20" height="20" alt=""></button>'+
+          '<span class="v5polmenu" role="menu" hidden><button type="button" role="menuitem" data-act="edit"><img src="assets/edit-01-20.svg" width="20" height="20" alt="">Edit</button>'+
+          '<button type="button" role="menuitem" class="del" data-act="delete"><img src="assets/trash-01-menu-20.svg" width="20" height="20" alt=""><img class="on" src="assets/trash-01-menu-red-20.svg" width="20" height="20" alt="">Delete</button></span></span></span></div>';
       }).join(''):'<div class="v5polempty">No policies in this category yet.</div>');
   }
   function draw(cat){
@@ -11652,16 +11718,17 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     btn.type='button'; btn.className='cv'; btn.innerHTML=cv.innerHTML;
     btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Show '+cat+' policies');
     cv.replaceWith(btn);
-    /* the row's actions sit behind one ⋯ menu: Edit, and Delete once the category has no policies */
+    /* the row's actions sit behind one ⋯ menu: Add a policy, Edit, and Delete once the category has no policies */
     var acts=c.querySelector('.acts');
-    acts.innerHTML='<span class="v5polkebab"><button type="button" aria-haspopup="menu" aria-expanded="false" aria-label="More actions for '+esc(cat)+'">'+
-      '<i class="ph ph-dots-three-vertical" aria-hidden="true"></i></button>'+
-      '<span class="v5polmenu" role="menu" hidden><button type="button" role="menuitem" data-act="edit"><i class="ph ph-pencil-simple" aria-hidden="true"></i>Edit</button>'+
-      '<button type="button" role="menuitem" class="del" data-act="delete"><i class="ph ph-trash" aria-hidden="true"></i>Delete</button></span></span>';
+    acts.innerHTML='<span class="v5polkebab"><button type="button" data-tip="More Options" aria-haspopup="menu" aria-expanded="false" aria-label="More options for '+esc(cat)+'">'+
+      '<img src="assets/dots-vertical-20.svg" width="20" height="20" alt=""></button>'+
+      '<span class="v5polmenu" role="menu" hidden><button type="button" role="menuitem" data-act="add"><img src="assets/plus-gray-20.svg" width="20" height="20" alt="">Add Leave Policy</button>'+
+      '<button type="button" role="menuitem" data-act="edit"><img src="assets/edit-01-20.svg" width="20" height="20" alt="">Edit</button>'+
+      '<button type="button" role="menuitem" class="del" data-act="delete"><img src="assets/trash-01-menu-20.svg" width="20" height="20" alt=""><img class="on" src="assets/trash-01-menu-red-20.svg" width="20" height="20" alt="">Delete</button></span></span>';
     var box=document.createElement('div');
     box.className='v5pols'; box.dataset.cat=cat; box.hidden=true;
     box.innerHTML='<div class="v5poltbl" role="table" aria-label="'+esc(cat)+' policies"></div>'+
-      '<button type="button" class="v5poladd"><i class="ph ph-plus" aria-hidden="true"></i>Add Leave Policy Configuration</button>';
+      '<button type="button" class="v5catact v5poladd"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Leave Policy</button>';
     c.after(box);
     btn.setAttribute('aria-controls',box.id='v5-pols-'+cat.replace(/\W+/g,'-').toLowerCase());
     draw(cat);
@@ -11669,6 +11736,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       var on=btn.getAttribute('aria-expanded')!=='true';
       btn.setAttribute('aria-expanded',on); box.hidden=!on;
       btn.setAttribute('aria-label',(on?'Hide ':'Show ')+cat+' policies');
+      filterCats();
     }
     btn.addEventListener('click',function(e){ e.stopPropagation(); toggle(); });
     c.addEventListener('click',function(e){ if(!e.target.closest('.acts')) toggle(); });
@@ -11682,17 +11750,26 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       }
       var a=e.target.closest('[data-act]'); if(!a||a.disabled) return;
       closeMenu(false);
-      if(a.dataset.act==='edit'){ if(window.__drawer5) window.__drawer5.open(k||acts.querySelector('.v5polkebab > button')); return; }
+      if(a.dataset.act==='add'){ window.__edit5.openNew(cat,acts.querySelector('.v5polkebab > button')); return; }
+      /* a category's own settings are not part of this prototype; Edit no longer opens the policy editor */
+      if(a.dataset.act==='edit'){ toast('Edit “'+cat+'”'); return; }
       c.remove(); box.remove(); delete POLICIES[cat];
       toast('“'+cat+'” deleted');
+      filterCats();
     });
 
     box.addEventListener('click',function(e){
       var t=e.target;
-      if(t.closest('.v5poladd')){ if(window.__drawer5) window.__drawer5.open(t.closest('.v5poladd')); return; }
+      if(t.closest('.v5poladd')){ window.__edit5.openNew(cat,t.closest('.v5poladd')); return; }
       var row=t.closest('.v5polrow[data-i]'); if(!row) return;
       var p=POLICIES[cat][+row.dataset.i];
       if(t.closest('.v5polassign')){ toast('Assign employees to “'+p.name+'”'); return; }
+      /* anywhere on the row outside its buttons opens the policy, as Edit does */
+      if(!t.closest('.act')){
+        closeMenu(false);
+        window.__edit5.openEdit(p,cat,row.querySelector('.v5polkebab > button'),function(){ draw(cat); filterCats(); });
+        return;
+      }
       var k=t.closest('.v5polkebab > button');
       if(k){
         var m=k.nextElementSibling, was=!m.hidden;
@@ -11702,20 +11779,60 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       }
       var a=t.closest('[data-act]'); if(!a) return;
       closeMenu(false);
-      if(a.dataset.act==='edit'){ if(window.__drawer5) window.__drawer5.open(row.querySelector('.v5polkebab > button')); return; }
+      if(a.dataset.act==='edit'){
+        window.__edit5.openEdit(p,cat,row.querySelector('.v5polkebab > button'),function(){ draw(cat); filterCats(); });
+        return;
+      }
       POLICIES[cat].splice(+row.dataset.i,1);
-      draw(cat);
+      draw(cat); filterCats();
       toast('“'+p.name+'” deleted');
       var next=box.querySelector('.v5polkebab > button')||box.querySelector('.v5poladd'); next.focus();
     });
   });
+  /* Enabled / Disabled and search narrow the category list; every category here is enabled.
+     Search matches category names and policy names: a category found by name shows all its policies,
+     one found only through its policies opens to show just those */
+  function filterCats(){
+    var catList=document.getElementById('v5-catList'), catNone=catList.querySelector('.v5catnone'), q=document.getElementById('v5-catSearch'),
+        off=app.querySelector('.v5segtabs [aria-selected="true"]').dataset.status==='disabled',
+        term=q.value.trim(), t=term.toLowerCase(), all=catList.querySelectorAll('.cat'), last=null;
+    function has(x){ return x.toLowerCase().indexOf(t)>-1; }
+    document.getElementById('v5-catOnN').textContent=all.length;
+    all.forEach(function(c){
+      var cat=c.querySelector('h4').textContent, box=c.nextElementSibling, cv=c.querySelector('.cv'),
+          byName=has(cat), byPol=false;
+      box.querySelectorAll('.v5polrow[data-i]').forEach(function(r){
+        var p=(POLICIES[cat]||[])[+r.dataset.i], m=!!p&&has(p.name);
+        if(m) byPol=true;
+        r.hidden=!!t&&!byName&&!m;
+      });
+      var hit=!off&&(byName||(!!t&&byPol));
+      if(hit&&t&&!byName){ cv.setAttribute('aria-expanded','true'); cv.setAttribute('aria-label','Hide '+cat+' policies'); }
+      var open=cv.getAttribute('aria-expanded')==='true';
+      c.hidden=!hit; box.hidden=!hit||!open;
+      c.classList.remove('last'); box.classList.remove('last');
+      if(hit) last=open?box:c;
+    });
+    if(last) last.classList.add('last');
+    catNone.hidden=!!last;
+    catNone.textContent=off?'No disabled categories.':'No categories or policies match “'+term+'”.';
+  }
+  app.querySelectorAll('.v5segtabs [role="tab"]').forEach(function(b,_,segs){
+    b.addEventListener('click',function(){
+      segs.forEach(function(x){ x.setAttribute('aria-selected',String(x===b)); });
+      filterCats();
+    });
+  });
+  document.getElementById('v5-catSearch').addEventListener('input',filterCats);
+  filterCats();
   /* tenure configurations: the same ⋯ menu, Edit and Delete; a deleted one also leaves New Leave Policy's Tenure list */
   app.querySelectorAll('.v5tenrow:not(.hd)').forEach(function(row){
     var name=row.firstElementChild.textContent, cell=row.lastElementChild;
-    cell.innerHTML='<span class="v5polkebab"><button type="button" aria-haspopup="menu" aria-expanded="false" aria-label="More actions for '+esc(name)+'">'+
-      '<i class="ph ph-dots-three-vertical" aria-hidden="true"></i></button>'+
-      '<span class="v5polmenu" role="menu" hidden><button type="button" role="menuitem" data-act="edit"><i class="ph ph-pencil-simple" aria-hidden="true"></i>Edit</button>'+
-      '<button type="button" role="menuitem" class="del" data-act="delete"><i class="ph ph-trash" aria-hidden="true"></i>Delete</button></span></span>';
+    cell.classList.add('act');
+    cell.innerHTML='<span class="v5polkebab"><button type="button" data-tip="More Options" aria-haspopup="menu" aria-expanded="false" aria-label="More options for '+esc(name)+'">'+
+      '<img src="assets/dots-vertical-20.svg" width="20" height="20" alt=""></button>'+
+      '<span class="v5polmenu" role="menu" hidden><button type="button" role="menuitem" data-act="edit"><img src="assets/edit-01-20.svg" width="20" height="20" alt="">Edit</button>'+
+      '<button type="button" role="menuitem" class="del" data-act="delete"><img src="assets/trash-01-menu-20.svg" width="20" height="20" alt=""><img class="on" src="assets/trash-01-menu-red-20.svg" width="20" height="20" alt="">Delete</button></span></span>';
     cell.addEventListener('click',function(e){
       var k=e.target.closest('.v5polkebab > button');
       if(k){
@@ -11748,7 +11865,103 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   window.__pols5={add:function(cat,name){
     if(!POLICIES[cat]) POLICIES[cat]=[];
     POLICIES[cat].push({name:name,emp:0});
-    draw(cat);
+    draw(cat); filterCats();
   }};
+})();
+</script>
+<script>
+/* V5 (data-v="5") — the editor opens two ways: New (blank, Create Policy) from a category's Add,
+   and Edit (the policy as it was set up, Save Changes) from a policy's ⋯ menu. In Edit the category is fixed,
+   the employees are listed with Add, and Save Changes wakes only once something differs from what was saved */
+(function(){
+  "use strict";
+  var drawer=document.getElementById('v5-drawer'), title=document.getElementById('v5-drawerTitle'),
+      save=document.getElementById('v5-saveBtn'), footMsg=document.getElementById('v5-footMsg'),
+      catBtn=document.getElementById('v5-leaveCategory'), addWrap=document.getElementById('v5-empAdd').parentElement,
+      empty=document.getElementById('v5-empEmpty'), caution=document.getElementById('v5-cautionTitle');
+  var mode='new', editing=null, onSaved=null, clean='';
+  /* a policy that was never opened here: its answers as they were first set up, by category */
+  var SETUP={
+    'Sick Leave':{limited:'1',unit:'hours',earn:'worked',every:'30',maxBal:'48'},
+    'Bereavement Leave':{limited:'1',unit:'days',earn:'fixed',fixedAmount:'3',maxBal:'3'},
+    'Paid Vacation':{limited:'1',unit:'hours',earn:'fixed',fixedAmount:'80'},
+    'Unpaid Leave':{limited:'0'}
+  };
+  function empFor(n){
+    var all=window.__emp5.codes; return all.slice(0,Math.min(n,all.length));
+  }
+  function lockCategory(on){
+    catBtn.disabled=on;
+    if(on){ catBtn.removeAttribute('aria-haspopup'); catBtn.removeAttribute('aria-expanded'); }
+    else{ catBtn.setAttribute('aria-haspopup','listbox'); catBtn.setAttribute('aria-expanded','false'); }
+  }
+  function snapshot(){ return JSON.stringify([window.__state5.save(),window.__emp5.get()]); }
+  function sync(){
+    if(mode!=='edit') return;
+    save.disabled=snapshot()===clean;
+  }
+  function chrome(edit){
+    mode=edit?'edit':'new';
+    title.textContent=edit?'Edit Leave Policy':'New Leave Policy';
+    save.textContent=edit?'Save Changes':'Create Policy';
+    caution.textContent=edit?'Before you edit this policy':'Before you create this policy';
+    addWrap.hidden=!edit;
+    empty.querySelector('p').textContent=edit?'Add employees to apply this policy to them.':'You can assign employees to this policy once it’s created.';
+    lockCategory(edit);
+    drawer.classList.remove('show-req');
+    footMsg.className='msg'; footMsg.textContent='';
+    save.disabled=false;
+  }
+  function openNew(cat,trigger){
+    editing=null; onSaved=null;
+    window.__state5.load(window.__state5.blank());
+    chrome(false);
+    if(cat) document.querySelector('#v5-leaveCategory .txt').textContent=cat;
+    window.__emp5.set([]);
+    drawer.querySelector('.dbody').scrollTop=0;
+    window.__drawer5.open(trigger);
+  }
+  function openEdit(p,cat,trigger,done){
+    editing=p; onSaved=done;
+    if(p.state) window.__state5.load(p.state);
+    else{
+      var a=SETUP[cat]||SETUP['Sick Leave'], o={name:p.name,desc:'',cat:cat,tenure:'None'};
+      Object.keys(a).forEach(function(k){ o[k]=a[k]; });
+      window.__state5.prefill(o);
+    }
+    chrome(true);
+    window.__emp5.set(p.codes||empFor(p.emp));
+    drawer.querySelector('.dbody').scrollTop=0;
+    clean=snapshot(); save.disabled=true;
+    window.__drawer5.open(trigger);
+  }
+  /* any answer, an employee added or removed: compare with what was saved */
+  ['input','change','click'].forEach(function(t){
+    document.addEventListener(t,function(){ if(mode==='edit') setTimeout(sync,0); },true);
+  });
+  /* Save Changes runs ahead of Create Policy's own handler, and keeps it from running */
+  save.parentElement.addEventListener('click',function(e){
+    if(mode!=='edit'||e.target.closest('#v5-saveBtn')!==save) return;
+    e.stopPropagation();
+    if(save.disabled) return;
+    var name=document.getElementById('v5-policyName');
+    if(!name.value.trim()){ name.classList.add('bad'); name.focus(); footMsg.className='msg bad'; footMsg.textContent='Enter a policy name before saving.'; return; }
+    var bad=window.__editor5.validate();
+    if(bad){ footMsg.className='msg bad'; footMsg.textContent='Check the highlighted amounts in '+bad.tier+' before saving.'; return; }
+    editing.state=window.__state5.save();
+    editing.name=name.value.trim();
+    /* the sample has 20 employees, so a larger policy keeps its count and moves by what was added or removed */
+    var codes=window.__emp5.get(), was=editing.codes||empFor(editing.emp);
+    editing.emp+=codes.length-was.length; editing.codes=codes;
+    clean=snapshot(); save.disabled=true;
+    if(onSaved) onSaved();
+    footMsg.className='msg good'; footMsg.textContent='Changes saved.';
+    document.querySelectorAll('.toast').forEach(function(x){ x.remove(); });
+    var t=document.createElement('div'); t.className='toast'; t.textContent='“'+editing.name+'” updated';
+    document.body.appendChild(t); setTimeout(function(){ t.remove(); },3000);
+    setTimeout(function(){ footMsg.className='msg'; footMsg.textContent=''; window.__drawer5.close(); },900);
+  },true);
+  window.__state5.blank();   /* the editor as the page loads it, before anything is answered */
+  window.__edit5={openNew:openNew,openEdit:openEdit,mode:function(){ return mode; }};
 })();
 </script>
