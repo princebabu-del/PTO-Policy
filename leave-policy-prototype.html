@@ -1260,6 +1260,11 @@ body[data-v="4"] #v4-panels .fieldnote,body[data-v="4"] #v4-panels .err{font-siz
 body[data-v="4"] #v4-panels .row[data-q="eolOutcome"] .opts > .err{margin:0;font-size:14px;font-weight:500;line-height:20px}
 body[data-v="4"] #v4-panels .subq{font-size:14px;font-weight:500;color:var(--ink-2)}
 body[data-v="4"] #v4-panels .row[data-add]{position:relative;padding-right:60px}
+/* a note under an added setting sits below its remove button, so it runs on into the space kept for it */
+body[data-v="4"] #v4-panels .row[data-add] .ctl > .notebanner{width:auto;max-width:none;margin-right:-60px}
+/* 12px between a setting and the note under it: the indent's 10px gap and the control's 9px, made up */
+body[data-v="4"] #v4-panels .indent > .notebanner{margin-top:2px}
+body[data-v="4"] #v4-panels .ctl > .notebanner{margin-top:3px}
 /* Figma 688:18854 — a 44px icon button, level with the row's 44px field; its name is a hover tooltip */
 body[data-v="4"] #v4-panels .rmbtn{position:absolute;top:0;right:0;display:grid;place-items:center;width:44px;height:44px;
   border:0;background:none;padding:0;border-radius:8px;cursor:pointer;color:#667085}
@@ -1267,6 +1272,8 @@ body[data-v="4"] #v4-panels .rmbtn:hover{background:var(--danger-bg);color:var(-
 body[data-v="4"] #v4-panels .rmbtn svg{display:block}
 /* every V2 tooltip bubble has 8px corners */
 body[data-v="4"] [data-tip]:hover::after,body[data-v="4"] [data-tip]:focus-visible::after{border-radius:8px}
+/* a cut-short select's full answer, hidden while its menu is open */
+body[data-v="4"] .pickfield[data-tip][aria-expanded="true"]::after,body[data-v="4"] .pickfield[data-tip][aria-expanded="true"]::before{display:none}
 body[data-v="4"] #v4-panels .optline{display:inline-flex;align-items:center;gap:8px;cursor:pointer;flex:none}
 /* every checkbox and radio sits 8px from its label, as the toggle switches do */
 body[data-v="4"] :is(.opt,.cbline){column-gap:8px}
@@ -1274,18 +1281,19 @@ body[data-v="4"] #v4-panels .optline input{margin:0;width:16px;height:16px;accen
 body[data-v="4"] #v4-panels .optline .lbl{font-size:14px;font-weight:500;white-space:nowrap}
 body[data-v="4"] #v4-panels .lbl .hint{margin-left:6px;font-size:15px;color:var(--muted);vertical-align:-2px;cursor:help}
 body[data-v="4"] #v4-panels .pickcombo{display:inline-block;width:200px;max-width:100%}
-body[data-v="4"] #v4-panels .pickcombo[data-pick="tenure"]{width:240px}
+body[data-v="4"] #v4-panels .pickcombo[data-pick="tenure"]{width:280px}
+body[data-v="4"] #v4-panels .pickcombo[data-pick="reqDraw"]{width:280px}
 /* one sentence per tier after the first: "After 12 months, accrue [1] hour per [30] hours worked" */
 body[data-v="4"] #v4-panels .brackets{margin-top:8px;display:flex;flex-direction:column;gap:16px}
 body[data-v="4"] #v4-panels .brackets .brrow{gap:8px;line-height:1.4}
-body[data-v="4"] #v4-panels .pickcombo[data-pick="payout"]{width:240px}
+body[data-v="4"] #v4-panels .pickcombo[data-pick="payout"]{width:280px}
 body[data-v="4"] #v4-panels .pickcombo[data-pick="carryExp"],
 body[data-v="4"] #v4-panels .pickcombo[data-pick="reset"],
 body[data-v="4"] #v4-panels .pickcombo[data-pick="neg"],
 body[data-v="4"] #v4-panels .pickcombo[data-pick="eolReset"],
 body[data-v="4"] #v4-panels .pickcombo[data-pick="eolExp"],
 body[data-v="4"] #v4-panels .pickcombo[data-pick="eolNeg"],
-body[data-v="4"] #v4-panels .pickcombo[data-pick="termAccrual"]{width:240px}
+body[data-v="4"] #v4-panels .pickcombo[data-pick="termAccrual"]{width:280px}
 body[data-v="4"] #v4-panels .mdcombo{display:inline-block;width:168px;max-width:100%}
 body[data-v="4"] #v4-panels .mdmenu{min-width:0;left:0;right:auto;width:252px;padding:10px}
 body[data-v="4"] #v4-panels .mdhead{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:2px 2px 8px}
@@ -1547,8 +1555,8 @@ body[data-v="4"] #v4-panels .row > .lab{font-size:14px;font-weight:600;line-heig
 body[data-v="4"] #v4-panels .row > .lab .desc{margin-top:4px;max-width:66ch;font-size:12px;font-weight:500;line-height:1.4;color:#667085;text-wrap:pretty}
 /* a divider above each section's Add Additional Settings button, 16px above it */
 body[data-v="4"] #v4-panels .card > .addwrap{padding-top:16px;border-top:1px solid #EAECF0}
-/* the last section sits at the foot of the page, so its Add Additional Settings menu opens upward */
-body[data-v="4"] #v4-panels .card[data-sec="requests"] > .addwrap .addmenu{top:auto;bottom:calc(100% + 2px)}
+/* the last section sits at the foot of the page, so its Add Additional Settings menu opens upward, 4px above the button (the wrap has 16px above it) */
+body[data-v="4"] #v4-panels .card[data-sec="requests"] > .addwrap .addmenu{top:auto;bottom:calc(100% - 12px)}
 @media (max-width:560px){body[data-v="4"] #v4-panels .card{padding:20px}}
 /* Employees: a section card as V1's — 32px in, 16px corners, a 20px heading, the table in its own 12px box */
 body[data-v="4"] .dbody > .empcard{display:flex;flex-direction:column;gap:32px;padding:32px;border:1px solid #EAECF0;border-radius:16px;overflow:visible}
@@ -2542,9 +2550,9 @@ body[data-v="4"] .v4create{background:#2970FF;border-color:#2970FF}
 body[data-v="4"] .v4create:hover{background:#155EEF;border-color:#155EEF}
 /* the page fills the window, as the editor does, and sits above it */
 body[data-v="4"] #v4-upload.drawer{left:0;z-index:22;width:auto;max-width:none;transform:none;transition:none;box-shadow:none;background:#F2F4F7}
-body[data-v="4"] .v4upbody{flex:1;min-width:0;display:grid;grid-template-columns:360px minmax(0,1fr)}
-/* left, in place of the editor's section steps: every policy found, pre-filled; the one under review on blue */
-body[data-v="4"] .v4uplist{min-height:0;overflow:auto;padding:24px 16px;background:#fff;border-right:1px solid #EAECF0}
+body[data-v="4"] .v4upbody{flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) 360px}
+/* right: every policy found, pre-filled; the one under review on blue */
+body[data-v="4"] .v4uplist{order:2;min-height:0;overflow:auto;padding:24px 16px;background:#fff;border-left:1px solid #EAECF0}
 body[data-v="4"] .v4uplisthd{display:flex;align-items:center;gap:8px;padding:0 8px 12px}
 body[data-v="4"] .v4uplisthd h2{font-size:16px;font-weight:600;color:#101828}
 /* Figma 277:10227 — the empty sidebar: illustration, then title and caption, centred */
@@ -2598,7 +2606,7 @@ body[data-v="4"] .v4uppill{display:inline-flex;align-items:center;gap:4px;paddin
 body[data-v="4"] .v4uppill.todo{background:#FEF3F2;color:#B42318}
 body[data-v="4"] .v4uppill.ready{background:#F2F4F7;color:#344054}
 body[data-v="4"] .v4uppill.done{background:#ECFDF3;color:#067647}
-/* right: the document, then the policy editor */
+/* left: the document, then the policy editor */
 body[data-v="4"] .v4upcenter{position:relative;min-height:0;overflow:auto;display:flex;flex-direction:column;padding:12px 24px 24px;background:#fff}
 /* Figma 277:10153 — before a document is added: what it should cover, then a grey drop zone filling the rest */
 body[data-v="4"] .v4updocs{flex:1;display:flex;flex-direction:column;gap:16px}
@@ -2651,10 +2659,25 @@ body[data-v="4"] .v4upcenter.review{padding:0;overflow:hidden;background:#F2F4F7
 /* while reviewing, the document card is a bar across the top of the form side, edge to edge; the sidebar keeps its own top */
 body[data-v="4"] .v4upcenter.review > .v4file{flex:none;padding:16px 32px;border:0;border-bottom:1px solid #EAECF0;border-radius:0}
 body[data-v="4"] .v4upcenter.review > #v4-upReview{position:relative;flex:1;min-height:0}
-/* review: V1's New Leave Policy drawer fills the right side as it is; only its close button and footer step aside,
+/* review: V1's New Leave Policy drawer fills the left side as it is; only its close button and footer step aside,
    as the page's header holds Exit and Create */
 body[data-v="4"] #v4-upload #v4-drawer.drawer{position:absolute;inset:0;z-index:auto;width:auto;max-width:none;transform:none;transition:none;box-shadow:none}
 body[data-v="4"] #v4-upload #v4-drawer .dclose,body[data-v="4"] #v4-upload #v4-drawer .dfoot{display:none}
+/* each policy is reviewed before it exists: no Policy Settings / Assigned Employees tabs; Enable sits beside the name */
+body[data-v="4"] #v4-upload #v4-drawer .dmeta,body[data-v="4"] #v4-drawer.is-new .dmeta{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px}
+body[data-v="4"] #v4-upload #v4-drawer .dmeta{padding-bottom:16px}
+body[data-v="4"] #v4-upload #v4-drawer .dmeta > .err,body[data-v="4"] #v4-drawer.is-new .dmeta > .err{grid-column:1}
+body[data-v="4"] #v4-upload #v4-drawer .v4tabrow{grid-column:2;grid-row:1}
+body[data-v="4"] #v4-upload #v4-drawer .dmtabs{display:none}
+/* a new policy keeps its tabs, under the name; the switch moves up beside the name */
+body[data-v="4"] #v4-drawer.is-new .v4tabrow{display:contents}
+body[data-v="4"] #v4-drawer.is-new .v4switch{grid-column:2;grid-row:1;margin-right:8px}
+body[data-v="4"] #v4-drawer.is-new .dmtabs{grid-column:1/-1}
+/* the page's own header names the flow, so the breadcrumb keeps only the category */
+body[data-v="4"] #v4-upload #v4-drawer .dcsep,body[data-v="4"] #v4-upload #v4-drawer #v4-drawerTitle{display:none}
+/* the drawer's 1200px, centred: header and sections keep New Leave Policy's widths however wide the page is */
+body[data-v="4"] #v4-upload #v4-drawer .dhead,body[data-v="4"] #v4-upload #v4-drawer .dmeta{padding-left:max(16px,calc((100% - 1200px)/2 + 16px));padding-right:max(16px,calc((100% - 1200px)/2 + 16px))}
+body[data-v="4"] #v4-upload #v4-drawer .dbody{padding-left:max(24px,calc((100% - 1200px)/2 + 24px));padding-right:max(24px,calc((100% - 1200px)/2 + 24px))}
 /* a setting the document left unsaid: an error under its answers, as the editor's own errors read, until it is answered */
 body[data-v="4"] #v4-panels .v4missnote{margin-top:8px;font-size:13px;font-weight:500;color:var(--danger)}
 body[data-v="4"] .v4danger{background:#D92D20;border-color:#D92D20}
@@ -2666,7 +2689,7 @@ body[data-v="4"] .v4upleave p{padding:0 24px 20px;font-size:14px;color:#475467}
 }
 @media (max-width:900px){
   body[data-v="4"] .v4upbody{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
-  body[data-v="4"] .v4uplist{max-height:220px;border-right:0;border-bottom:1px solid #EAECF0}
+  body[data-v="4"] .v4uplist{order:0;max-height:220px;border-left:0;border-bottom:1px solid #EAECF0}
   body[data-v="4"] .v4upcenter{padding:12px 16px 16px}
 }
 @media (max-width:560px){body[data-v="4"] .v4file{flex-wrap:wrap}}
@@ -2706,9 +2729,9 @@ body[data-v="5"] .v5catact img{display:block}
 body[data-v="5"] .v5aibtn span{background:linear-gradient(90deg,#2970FF,#EE46BC);-webkit-background-clip:text;background-clip:text;color:transparent}
 /* the page fills the window, as the editor does, and sits above it */
 body[data-v="5"] #v5-upload.drawer{left:0;z-index:22;width:auto;max-width:none;transform:none;transition:none;box-shadow:none;background:#F2F4F7}
-body[data-v="5"] .v5upbody{flex:1;min-width:0;display:grid;grid-template-columns:360px minmax(0,1fr)}
-/* left, in place of the editor's section steps: every policy found, pre-filled; the one under review on blue */
-body[data-v="5"] .v5uplist{min-height:0;overflow:auto;padding:24px 16px;background:#fff;border-right:1px solid #EAECF0}
+body[data-v="5"] .v5upbody{flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) 360px}
+/* right: every policy found, pre-filled; the one under review on blue */
+body[data-v="5"] .v5uplist{order:2;min-height:0;overflow:auto;padding:24px 16px;background:#fff;border-left:1px solid #EAECF0}
 body[data-v="5"] .v5uplisthd{display:flex;align-items:center;gap:8px;padding:0 8px 12px}
 body[data-v="5"] .v5uplisthd h2{font-size:16px;font-weight:600;color:#101828}
 /* Figma 277:10227 — the empty sidebar: illustration, then title and caption, centred */
@@ -2762,7 +2785,7 @@ body[data-v="5"] .v5uppill{display:inline-flex;align-items:center;gap:4px;paddin
 body[data-v="5"] .v5uppill.todo{background:#FEF3F2;color:#B42318}
 body[data-v="5"] .v5uppill.ready{background:#F2F4F7;color:#344054}
 body[data-v="5"] .v5uppill.done{background:#ECFDF3;color:#067647}
-/* right: the document, then the policy editor */
+/* left: the document, then the policy editor */
 body[data-v="5"] .v5upcenter{position:relative;min-height:0;overflow:auto;display:flex;flex-direction:column;padding:12px 24px 24px;background:#fff}
 /* Figma 277:10153 — before a document is added: what it should cover, then a grey drop zone filling the rest */
 body[data-v="5"] .v5updocs{flex:1;display:flex;flex-direction:column;gap:16px}
@@ -2811,7 +2834,7 @@ body[data-v="5"] .v5bar2 i{display:block;height:100%;width:0;background:#2970FF;
 body[data-v="5"] .v5file .v5fileremove{flex:none;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid #D0D5DD;border-radius:8px;background:#fff;
   cursor:pointer;font-size:14px;font-weight:600;color:#344054}
 body[data-v="5"] .v5file .v5fileremove:hover{background:#F9FAFB}
-/* review: the New Leave Policy screen fills the right side; only its header and section steps step aside,
+/* review: the New Leave Policy screen fills the left side; only its header and section steps step aside,
    so its Policy summary and caution sit beside the cards as they do when a policy is added by hand */
 body[data-v="5"] .v5upcenter.review{padding:0;overflow:hidden;background:#F2F4F7}
 /* while reviewing, the document card is a bar across the top of the form side, edge to edge; the sidebar keeps its own top */
@@ -2848,7 +2871,7 @@ body[data-v="5"] .v5upleave p{padding:0 24px 20px;font-size:14px;color:#475467}
 }
 @media (max-width:900px){
   body[data-v="5"] .v5upbody{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
-  body[data-v="5"] .v5uplist{max-height:220px;border-right:0;border-bottom:1px solid #EAECF0}
+  body[data-v="5"] .v5uplist{order:0;max-height:220px;border-left:0;border-bottom:1px solid #EAECF0}
   body[data-v="5"] .v5upcenter{padding:12px 16px 16px}
 }
 @media (max-width:560px){body[data-v="5"] .v5file{flex-wrap:wrap}}
@@ -3492,7 +3515,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     <div class="v4tabrow">
     <div class="dmtabs" role="tablist" aria-label="Policy sections">
       <button type="button" role="tab" class="dmtab" id="v4-secSettings" data-sec="settings" aria-selected="true">Policy Settings</button>
-      <button type="button" role="tab" class="dmtab locked" id="v4-secEmployees" data-sec="employees" aria-selected="false" aria-controls="v4-empPanel" tabindex="-1" aria-disabled="true" data-tip="Employees can be assigned once this policy is created.">Assigned Employees<span class="dmcount" aria-label="0 employees">0</span><img class="dmlock" src="assets/lock-03-20.svg" width="16" height="16" alt="Locked"></button>
+      <button type="button" role="tab" class="dmtab locked" id="v4-secEmployees" data-sec="employees" aria-selected="false" aria-controls="v4-empPanel" tabindex="-1" aria-disabled="true" data-tip="Users can be assigned once this policy is created.">Assigned Users<span class="dmcount" aria-label="0 employees">0</span><img class="dmlock" src="assets/lock-03-20.svg" width="16" height="16" alt="Locked"></button>
     </div>
     <!-- whether the policy is in use, beside the tabs; it stands in for the Pay & Tenure card's own field -->
     <label class="v4switch" id="v4-enableHead">Enable<input type="checkbox" role="switch" id="v4-enabled" checked><span class="v4track" aria-hidden="true"></span></label>
@@ -3507,13 +3530,13 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     <!-- the employees this policy applies to; Add opens the picker below -->
     <section class="empcard" id="v4-empPanel" role="tabpanel" aria-labelledby="v4-secEmployees" hidden>
       <div class="emphd">
-        <h2 id="v4-empTitle">Employees</h2>
+        <h2 id="v4-empTitle">Users</h2>
         <!-- employees are assigned only once the policy exists, so Search and Add wait until it is created -->
         <div class="emptools" id="v4-empTools" hidden>
           <!-- Figma 702:18977 — search bar: default, hover, focus; the x clears it once there's text -->
           <label class="empsearch">
             <img src="assets/search-lg.svg" width="20" height="20" alt="">
-            <input type="search" id="v4-empSearch" placeholder="Search" aria-label="Search assigned employees by name or code" autocomplete="off">
+            <input type="search" id="v4-empSearch" placeholder="Search" aria-label="Search assigned users by name or code" autocomplete="off">
             <button type="button" class="empclear" id="v4-empClear" aria-label="Clear search" hidden><img src="assets/x-close.svg" width="20" height="20" alt=""></button>
           </label>
         <button type="button" class="btn primary empadd" id="v4-empAdd"><i class="ph ph-plus" aria-hidden="true"></i>Add</button>
@@ -3521,14 +3544,14 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       </div>
       <div class="v4tablebox">
       <table class="emptable" aria-labelledby="v4-empTitle">
-        <thead><tr><th scope="col">Employee name</th><th scope="col">Employee code</th><th scope="col" class="num">Available balance</th><th scope="col" class="act"><span class="sr">More options</span></th></tr></thead>
+        <thead><tr><th scope="col">User name</th><th scope="col">User code</th><th scope="col" class="num">Available balance</th><th scope="col" class="act"><span class="sr">More options</span></th></tr></thead>
         <tbody id="v4-empRows"></tbody>
       </table>
       <div class="dmempty" id="v4-empEmpty" hidden>
-        <h2>No employees assigned yet</h2>
-        <p id="v4-empEmptyMsg">You can assign employees to this policy once it’s created.</p>
+        <h2>No users assigned yet</h2>
+        <p id="v4-empEmptyMsg">You can assign users to this policy once it’s created.</p>
       </div>
-      <p class="empnomatch" id="v4-empNoMatch" hidden>No assigned employees match your search.</p>
+      <p class="empnomatch" id="v4-empNoMatch" hidden>No assigned users match your search.</p>
       </div>
     </section>
 
@@ -3551,7 +3574,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         <ul>
           <li>Editing later can cause discrepancies in accruals.</li>
           <li>Edits apply only to future accruals. Accruals already posted stay as they are.</li>
-          <li>To change it later, we recommend creating a new policy and reassigning employees to it.</li>
+          <li>To change it later, we recommend creating a new policy and reassigning users to it.</li>
         </ul>
       </div>
     </aside>
@@ -3565,7 +3588,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   </div>
 
   <!-- the row actions menu, moved beside whichever row's ⋯ opened it -->
-  <div class="empmenu" id="v4-empMenu" role="menu" aria-label="Employee actions" hidden>
+  <div class="empmenu" id="v4-empMenu" role="menu" aria-label="User actions" hidden>
     <button type="button" role="menuitem" data-act="profile"><i class="ph ph-user" aria-hidden="true"></i>View Profile</button>
     <button type="button" role="menuitem" data-act="remove" class="danger"><i class="ph ph-trash" aria-hidden="true"></i>Remove</button>
   </div>
@@ -3574,11 +3597,11 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   <div class="empmodal-scrim" id="v4-addScrim" hidden>
     <div class="empmodal" id="v4-addModal" role="dialog" aria-modal="true" aria-labelledby="v4-addTitle">
       <div class="emhd">
-        <h2 id="v4-addTitle">Add Employee</h2>
+        <h2 id="v4-addTitle">Add User</h2>
         <button type="button" class="emx" id="v4-addClose" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
       </div>
       <div class="emfilters">
-        <label class="emsearch"><i class="ph ph-magnifying-glass" aria-hidden="true"></i><input type="search" id="v4-addSearch" placeholder="Search by name or code" aria-label="Search employees"></label>
+        <label class="emsearch"><i class="ph ph-magnifying-glass" aria-hidden="true"></i><input type="search" id="v4-addSearch" placeholder="Search by name or code" aria-label="Search users"></label>
         <select class="sel" id="v4-fDept" aria-label="Department"></select>
         <select class="sel" id="v4-fClass" aria-label="Class"></select>
         <select class="sel" id="v4-fCrew" aria-label="Crew"></select>
@@ -3586,12 +3609,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       <div class="emlist">
         <table class="emptable pick">
           <thead><tr>
-            <th scope="col" class="chk"><input type="checkbox" id="v4-addAll" aria-label="Select all shown employees"></th>
-            <th scope="col">Employee name</th><th scope="col">Employee code</th>
+            <th scope="col" class="chk"><input type="checkbox" id="v4-addAll" aria-label="Select all shown users"></th>
+            <th scope="col">User name</th><th scope="col">User code</th>
           </tr></thead>
           <tbody id="v4-addRows"></tbody>
         </table>
-        <p class="emnone" id="v4-addNone" hidden>No employees match these filters.</p>
+        <p class="emnone" id="v4-addNone" hidden>No users match these filters.</p>
       </div>
       <div class="emft">
         <span class="emcount" id="v4-addCount" aria-live="polite">0 selected</span>
@@ -3605,7 +3628,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   <div class="empmodal-scrim" id="v4-pfScrim" hidden>
     <div class="empmodal pfmodal" id="v4-pfModal" role="dialog" aria-modal="true" aria-labelledby="v4-pfTitle">
       <div class="emhd">
-        <h2 id="v4-pfTitle">Employee Profile</h2>
+        <h2 id="v4-pfTitle">User Profile</h2>
         <button type="button" class="emx" id="v4-pfClose" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
       </div>
       <div class="pfbody" id="v4-pfBody"></div>
@@ -3792,7 +3815,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
               </div>
             </div>
             <div class="v5field">
-              <div class="v5lblwrap"><span class="v5lbl" id="v5-tenureLbl">Tenure</span><span class="v5desc" id="v5-tenureDesc">Set up different leave settings for each tenure tier based on employees’ length of service.</span></div>
+              <div class="v5lblwrap"><span class="v5lbl" id="v5-tenureLbl">Tenure</span><span class="v5desc" id="v5-tenureDesc">Set up different leave settings for each tenure tier based on users’ length of service.</span></div>
               <!-- the policy's tenure for every tier; None keeps one set of settings, anything else gives each tier its own tab -->
               <div class="combo pickcombo" data-pick="tenure">
                 <input type="hidden" id="v5-tenurePick" data-f="tenure" value="None">
@@ -3826,22 +3849,22 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         <!-- the employees this policy applies to, always the last section; they are assigned only once the policy
              exists, so while creating it the section shows its empty state and Add stays hidden -->
         <section class="card v5card empcard" id="v5-empPanel" data-sec="employees" aria-labelledby="v5-empTitle">
-          <div class="grouphead" id="v5-empTitle">Employees <span class="dmcount" aria-label="0 employees">0</span></div>
+          <div class="grouphead" id="v5-empTitle">Users <span class="dmcount" aria-label="0 users">0</span></div>
           <!-- search stays for the table script; Figma shows no search, so it is kept out of view -->
           <label class="empsearch" hidden>
-            <input type="search" id="v5-empSearch" placeholder="Search" aria-label="Search assigned employees by name or code" autocomplete="off">
+            <input type="search" id="v5-empSearch" placeholder="Search" aria-label="Search assigned users by name or code" autocomplete="off">
             <button type="button" class="empclear" id="v5-empClear" aria-label="Clear search" hidden><img src="assets/x-close.svg" width="20" height="20" alt=""></button>
           </label>
         <div class="v5tablebox">
           <table class="emptable" aria-labelledby="v5-empTitle">
-            <thead><tr><th scope="col">Employee name</th><th scope="col">Code</th><th scope="col" class="num">Balance</th><th scope="col" class="act"><span class="sr">More options</span></th></tr></thead>
+            <thead><tr><th scope="col">User name</th><th scope="col">Code</th><th scope="col" class="num">Balance</th><th scope="col" class="act"><span class="sr">More options</span></th></tr></thead>
             <tbody id="v5-empRows"></tbody>
           </table>
           <div class="dmempty" id="v5-empEmpty" hidden>
-            <h2>No employees assigned yet</h2>
-            <p>You can assign employees to this policy once it’s created.</p>
+            <h2>No users assigned yet</h2>
+            <p>You can assign users to this policy once it’s created.</p>
           </div>
-          <p class="empnomatch" id="v5-empNoMatch" hidden>No assigned employees match your search.</p>
+          <p class="empnomatch" id="v5-empNoMatch" hidden>No assigned users match your search.</p>
         </div>
           <div hidden><button type="button" class="btn v5add" id="v5-empAdd"><i class="ph ph-plus" aria-hidden="true"></i>Add</button></div>
         </section>
@@ -3862,7 +3885,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           <ul>
               <li>Editing later can cause discrepancies in accruals.</li>
               <li>Edits apply only to future accruals. Accruals already posted stay as they are.</li>
-              <li>To change it later, we recommend creating a new policy and reassigning employees to it.</li>
+              <li>To change it later, we recommend creating a new policy and reassigning users to it.</li>
           </ul>
         </div>
       </aside>
@@ -3872,7 +3895,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   </div>
 
   <!-- the row actions menu, moved beside whichever row's ⋯ opened it -->
-  <div class="empmenu" id="v5-empMenu" role="menu" aria-label="Employee actions" hidden>
+  <div class="empmenu" id="v5-empMenu" role="menu" aria-label="User actions" hidden>
     <button type="button" role="menuitem" data-act="profile"><i class="ph ph-user" aria-hidden="true"></i>View Profile</button>
     <button type="button" role="menuitem" data-act="remove" class="danger"><i class="ph ph-trash" aria-hidden="true"></i>Remove</button>
   </div>
@@ -3881,11 +3904,11 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   <div class="empmodal-scrim" id="v5-addScrim" hidden>
     <div class="empmodal" id="v5-addModal" role="dialog" aria-modal="true" aria-labelledby="v5-addTitle">
       <div class="emhd">
-        <h2 id="v5-addTitle">Add Employee</h2>
+        <h2 id="v5-addTitle">Add User</h2>
         <button type="button" class="emx" id="v5-addClose" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
       </div>
       <div class="emfilters">
-        <label class="emsearch"><i class="ph ph-magnifying-glass" aria-hidden="true"></i><input type="search" id="v5-addSearch" placeholder="Search by name or code" aria-label="Search employees"></label>
+        <label class="emsearch"><i class="ph ph-magnifying-glass" aria-hidden="true"></i><input type="search" id="v5-addSearch" placeholder="Search by name or code" aria-label="Search users"></label>
         <select class="sel" id="v5-fDept" aria-label="Department"></select>
         <select class="sel" id="v5-fClass" aria-label="Class"></select>
         <select class="sel" id="v5-fCrew" aria-label="Crew"></select>
@@ -3893,12 +3916,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       <div class="emlist">
         <table class="emptable pick">
           <thead><tr>
-            <th scope="col" class="chk"><input type="checkbox" id="v5-addAll" aria-label="Select all shown employees"></th>
-            <th scope="col">Employee name</th><th scope="col">Employee code</th>
+            <th scope="col" class="chk"><input type="checkbox" id="v5-addAll" aria-label="Select all shown users"></th>
+            <th scope="col">User name</th><th scope="col">User code</th>
           </tr></thead>
           <tbody id="v5-addRows"></tbody>
         </table>
-        <p class="emnone" id="v5-addNone" hidden>No employees match these filters.</p>
+        <p class="emnone" id="v5-addNone" hidden>No users match these filters.</p>
       </div>
       <div class="emft">
         <span class="emcount" id="v5-addCount" aria-live="polite">0 selected</span>
@@ -3912,7 +3935,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   <div class="empmodal-scrim" id="v5-pfScrim" hidden>
     <div class="empmodal pfmodal" id="v5-pfModal" role="dialog" aria-modal="true" aria-labelledby="v5-pfTitle">
       <div class="emhd">
-        <h2 id="v5-pfTitle">Employee Profile</h2>
+        <h2 id="v5-pfTitle">User Profile</h2>
         <button type="button" class="emx" id="v5-pfClose" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
       </div>
       <div class="pfbody" id="v5-pfBody"></div>
@@ -3952,7 +3975,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 </aside>
 
 <!-- ===================== V1 — upload policy documents (Build with AI), V2's page around V1's drawer ===================== -->
-<!-- policies read from the documents are listed on the left, pre-filled; the admin reviews and creates each one.
+<!-- policies read from the documents are listed on the right, pre-filled; the admin reviews and creates each one.
      Nothing is kept between visits: Exit discards whatever has not been created. -->
 <aside class="drawer" id="v4-upload" role="dialog" aria-modal="true" aria-labelledby="v4-upTitle" hidden>
   <header class="v4bar">
@@ -4037,7 +4060,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   </div>
 </div>
 <!-- ===================== V5 — upload policy documents (full page) ===================== -->
-<!-- policies read from the documents are listed on the left, pre-filled; the admin reviews and creates each one.
+<!-- policies read from the documents are listed on the right, pre-filled; the admin reviews and creates each one.
      Nothing is kept between visits: Exit discards whatever has not been created. -->
 <aside class="drawer" id="v5-upload" role="dialog" aria-modal="true" aria-labelledby="v5-upTitle" hidden>
   <header class="v5bar">
@@ -7640,19 +7663,19 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         usageOn:0,usage:'',maxBalOn:1,maxBal:80,minBalOn:1,minBal:'',minReqOn:0,minReq:'',reqStepOn:0,reqStep:'',
         reset:'custom',resetMonth:'12',resetDay:'31',carryOn:0,carryMode:'all',carryMax:40,carryMaxUnit:'hours',carryExp:'never',carryExpMonths:6,carryExpMonth:'',carryExpDay:'',
         neg:'reset',payout:'none',payoutRate:'base',payoutCustom:'18.50',maxPayOn:0,maxPay:40,minPayOn:0,minPay:8,payoutEnd:0,
-        eolReset:'custom',eolResetMonth:'12',eolResetDay:'31',eolOutcome:'',eolCarry:'all',eolCarryMax:'',eolCarryMaxUnit:'hours',eolExp:'never',eolExpMonths:6,eolExpMonth:'',eolExpDay:'',eolNeg:'reset',eolReq:0,eolMinPayOn:0,eolMinPay:'',eolMaxPayOn:0,eolMaxPay:''},
+        eolReset:'custom',eolResetMonth:'12',eolResetDay:'31',eolOutcome:'',eolCarry:'all',eolCarryMax:'',eolCarryMaxUnit:'hours',eolExp:'never',eolExpMonths:6,eolExpMonth:'',eolExpDay:'',eolNeg:'reset',eolReq:0,eolMinPayOn:0,eolMinPay:'',eolMaxPayOn:0,eolMaxPay:'',reqDraw:'deduct'},
     t2:{limited:'0',earn:'',unit:'hours',fixedAmount:'',mode:'once',timing:'payperiod',when:'start',prorate:1,prorateBasis:'day',
         per:1,every:'',countHoliday:1,countPto:0,projLimit:0,projects:'',minWorkedOn:1,minWorked:'',
         usageOn:1,usage:60,maxBalOn:1,maxBal:120,minBalOn:1,minBal:'',minReqOn:0,minReq:'',reqStepOn:0,reqStep:'',
         reset:'custom',resetMonth:'12',resetDay:'31',carryOn:1,carryMode:'max',carryMax:40,carryMaxUnit:'hours',carryExp:'months',carryExpMonths:6,carryExpMonth:'',carryExpDay:'',
         neg:'reset',payout:'annual',payoutRate:'base',payoutCustom:'18.50',maxPayOn:0,maxPay:40,minPayOn:0,minPay:8,payoutEnd:0,
-        eolReset:'custom',eolResetMonth:'12',eolResetDay:'31',eolOutcome:'',eolCarry:'max',eolCarryMax:'',eolCarryMaxUnit:'hours',eolExp:'never',eolExpMonths:6,eolExpMonth:'',eolExpDay:'',eolNeg:'reset',eolReq:1,eolMinPayOn:0,eolMinPay:'',eolMaxPayOn:0,eolMaxPay:''},
+        eolReset:'custom',eolResetMonth:'12',eolResetDay:'31',eolOutcome:'',eolCarry:'max',eolCarryMax:'',eolCarryMaxUnit:'hours',eolExp:'never',eolExpMonths:6,eolExpMonth:'',eolExpDay:'',eolNeg:'reset',eolReq:1,eolMinPayOn:0,eolMinPay:'',eolMaxPayOn:0,eolMaxPay:'',reqDraw:'deduct'},
     t3:{limited:'0',earn:'',unit:'hours',fixedAmount:'',mode:'once',timing:'payperiod',when:'start',prorate:1,prorateBasis:'day',
         per:1,every:'',countHoliday:1,countPto:1,projLimit:0,projects:'',minWorkedOn:1,minWorked:'',
         usageOn:0,usage:'',maxBalOn:1,maxBal:160,minBalOn:1,minBal:'',minReqOn:0,minReq:'',reqStepOn:0,reqStep:'',
         reset:'anniversary',resetMonth:'12',resetDay:'31',carryOn:1,carryMode:'all',carryMax:40,carryMaxUnit:'hours',carryExp:'never',carryExpMonths:6,carryExpMonth:'',carryExpDay:'',
         neg:'carry',payout:'request',payoutRate:'base',payoutCustom:'18.50',maxPayOn:0,maxPay:40,minPayOn:0,minPay:8,payoutEnd:0,
-        eolReset:'custom',eolResetMonth:'12',eolResetDay:'31',eolOutcome:'',eolCarry:'all',eolCarryMax:'',eolCarryMaxUnit:'hours',eolExp:'never',eolExpMonths:6,eolExpMonth:'',eolExpDay:'',eolNeg:'reset',eolReq:0,eolMinPayOn:0,eolMinPay:'',eolMaxPayOn:0,eolMaxPay:''}
+        eolReset:'custom',eolResetMonth:'12',eolResetDay:'31',eolOutcome:'',eolCarry:'all',eolCarryMax:'',eolCarryMaxUnit:'hours',eolExp:'never',eolExpMonths:6,eolExpMonth:'',eolExpDay:'',eolNeg:'reset',eolReq:0,eolMinPayOn:0,eolMinPay:'',eolMaxPayOn:0,eolMaxPay:'',reqDraw:'deduct'}
   };
 
   function ck(v){return v?' checked':'';}
@@ -7811,7 +7834,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '<label class="cbline"><input type="checkbox" id="'+i('payStmt')+'" data-f="payStmt" checked>'+
         '<span class="lbl">Show on Pay Statement</span></label>');
     /* tenure starts at None, which means one set of settings and no tiers */
-    H+=row('Tenure','Set up different leave settings for each tenure tier based on employees\u2019 length of service.',
+    H+=row('Tenure','Set up different leave settings for each tenure tier based on users\u2019 length of service.',
       pick('tenure',document.getElementById('v4-tenureSet').value||'None',
         ['None','Union – WATG Config','Union – UGS – Config'].map(function(x){return [x,x];}))
         /* the menu's footer: Add Tenure, under the list */
@@ -7822,7 +7845,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* ---------- accruals: everything about how leave is earned ---------- */
     H+='<div class="grouphead">Accruals</div>';
-    H+=row('How much leave can employees take?','',
+    H+=row('How much leave can users take?','',
       '<div class="opts">'+
         opt('limited','0','Unlimited','')+
         opt('limited','1','Limited','')+
@@ -7837,7 +7860,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* the earnings settings sit under the method they belong to, so the choice and its
        numbers are read as one answer */
-    H+=row('How do employees earn leave?','Choose how leave is earned and added to an employee\u2019s balance.',
+    H+=row('How do users earn leave?','Choose how leave is earned and added to a user\u2019s balance.',
       '<div class="opts">'+
         opt('earn','worked','Based on hours worked','')+
         '<div class="indent" data-when="worked">'+
@@ -7857,9 +7880,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
             '<input class="num" type="number" min="0" step="0.25" id="'+i('fixedAmount')+'" data-f="fixedAmount" data-req value="'+d.fixedAmount+'" aria-label="Annual leave amount">'+
             /* "hours accrued every" is one label, at the option's own color */
             '<span class="unit"><span data-unitword="fixedAmount"></span> added</span>'+
-            '<select class="sel" id="'+i('mode')+'" data-f="mode" aria-label="How the amount is added">'+
-              sel('mode',d.mode,[['once','all at once'],['spread','throughout the year']])+
-            '</select>'+
+            pick('mode',d.mode,[
+              ['once','all at once','Added in full when the policy is assigned.'],
+              ['spread','throughout the year','Added in equal parts at set intervals.']])+
             /* spread across the year needs to know how often */
             '<span class="atwhen" data-when="recurring">'+
               '<span class="unit">in every</span>'+
@@ -7878,6 +7901,14 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       tierNote('Every tier earns leave the way the first tier does. Set this tier\u2019s amount and how often it is added.'),
       ' data-when="limited" data-q="earn"');
 
+    /* added on demand; it sits above which hours count, as both are about hours worked */
+    H+=row('Minimum Hours Worked','Is there a minimum number of hours users must work in a pay period to earn leave for it?',
+      addedAmount('minWorkedOn','minWorked','1','hours per pay period','','Minimum hours worked per pay period')+
+      /* only hourly users log time, so the minimum can only hold them back */
+      '<div class="notebanner" role="note"><i class="ph ph-info" aria-hidden="true"></i>'+
+        '<span>Applies to hourly users only, as salaried users don\u2019t log time.</span></div>',
+      ' data-add="minWorked" hidden');
+
     /* which hours count as worked is its own decision, so it gets its own setting */
     H+=row('Which hours count toward earning leave?','Choose which paid hours count toward the hours worked that drive the accrual.',
       '<div class="opts">'+
@@ -7894,7 +7925,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* proration: only meaningful for a fixed annual amount, so it rides with it.
        only new employees are prorated, and they all start in the first tier */
-    if(first) H+=row('Prorate leave for new hires','Adjust the annual leave allocation based on when an employee starts.',
+    if(first) H+=row('Prorate leave for new hires','Adjust the annual leave allocation based on when a user starts.',
       '<div class="opts">'+
         '<label class="cbline"><input type="checkbox" id="'+i('prorate')+'" data-f="prorate"'+ck(d.prorate)+'>'+
           '<span class="lbl">Prorate leave</span></label>'+
@@ -7917,26 +7948,22 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '</div>',' data-when="fixed" data-q="prorate"');
 
     /* how the last pay period accrues when an employee leaves; only leave added throughout the year accrues by pay period */
-    H+=row('Termination period','How does leave accrue for the pay period in which an employee is terminated?',
+    H+=row('Termination period','How does leave accrue for the pay period in which a user is terminated?',
       '<div class="opts">'+
         pick('termAccrual',d.termAccrual||'prorated',[
-          ['prorated','Prorated','Accrue up to the employee\u2019s last working day.'],
-          ['full','Full pay period','Accrue for the entire pay period in which the employee is terminated.'],
-          ['none','Don\'t accrue','No accrual for the pay period in which the employee is terminated.']])+
+          ['prorated','Prorated','Accrue up to the user\u2019s last working day.'],
+          ['full','Full pay period','Accrue for the entire pay period in which the user is terminated.'],
+          ['none','Don\'t accrue','No accrual for the pay period in which the user is terminated.']])+
       '</div>',' data-when="recurring"');
 
     /* settings most policies never need: nothing is shown until the admin adds it */
-    H+=row('Minimum Hours Worked','Is there a minimum number of hours employees must work before earning leave?',
-      addedAmount('minWorkedOn','minWorked','1','hours worked','','Minimum hours worked'),
-      ' data-add="minWorked" hidden');
-
-    H+=row('Minimum Balance','How much leave must employees keep in their balance? Enter a negative number to let them borrow leave and go below zero.',
+    H+=row('Minimum Balance','The lowest balance allowed. Use a negative number to let users borrow leave.',
       addedAmount('minBalOn','minBal','0.25','#','','Minimum balance'),
       ' data-add="minBal" hidden');
 
     /* nothing here can be added until an earning method is chosen */
-    H+=row('Maximum Balance','How much leave can employees accumulate?',
-      addedAmount('maxBalOn','maxBal','0.25','#','','Maximum balance'),
+    H+=row('Maximum Accrual','The most leave users can accrue. Earning pauses once the balance reaches it.',
+      addedAmount('maxBalOn','maxBal','0.25','#','','Maximum accrual'),
       ' data-add="maxBal" hidden');
 
     H+='<div class="addwrap" data-needs="earn">'+
@@ -7945,7 +7972,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         '<div class="addmenu" role="menu" hidden>'+
           '<button type="button" role="menuitem" data-addopt="minWorked">Minimum Hours Worked</button>'+
           '<button type="button" role="menuitem" data-addopt="minBal">Minimum Balance</button>'+
-          '<button type="button" role="menuitem" data-addopt="maxBal">Maximum Balance</button>'+
+          '<button type="button" role="menuitem" data-addopt="maxBal">Maximum Accrual</button>'+
         '</div></div>';
 
     /* ---------- the leave year: when it renews, and what happens to unused leave at its end ---------- */
@@ -7953,15 +7980,15 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* when the leave year renews comes before what happens to unused leave at its end.
        it is one leave year for the whole policy, so a later tier reads the first tier's answer */
-    if(!first) H+=row('Leave year renews on','Balances reset on a fixed date or each employee\u2019s work anniversary.',
+    if(!first) H+=row('Leave year renews on','Balances reset on a fixed date or each user\u2019s work anniversary.',
       '<div class="readonly" data-resetcopy></div>'+tierNote('The leave year is set in the first tier and applies to every tier.'),
       ' data-when="earning"');
-    else H+=row('Leave year renews on','Balances reset on a fixed date or each employee\u2019s work anniversary.',
+    else H+=row('Leave year renews on','Balances reset on a fixed date or each user\u2019s work anniversary.',
       '<div class="opts">'+
         '<div class="cbrow">'+
           pick('reset',d.reset||'custom',[
             ['custom','A specific date','Set a custom date for annual reset.'],
-            ['anniversary','Employee\u2019s work anniversary','Leave balance is renewed annually on the employee\u2019s work anniversary.']])+
+            ['anniversary','User\u2019s work anniversary','Leave balance is renewed annually on the user\u2019s work anniversary.']])+
           /* only a month and a day: the same date comes round every year */
           '<span class="atwhen" data-when="custom">'+
             monthDay('resetMonth','resetDay','Reset date')+
@@ -8013,36 +8040,45 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     /* ---------- what employees can ask for: leave and payouts, the caps on each added on demand ---------- */
     H+='<div class="grouphead" data-when="earning">Requests</div>';
 
+    /* how payroll pays a request: from the leave balance, or apart from it */
+    H+=row('When leave is requested','How payroll handles the vacation pay balance draw.',
+      '<div class="opts">'+
+        pick('reqDraw',d.reqDraw||'deduct',[
+          ['deduct','Deduct from accrual balance','Dollar draw subtracted from vacation pay balance. Payment blocked if draw exceeds balance.'],
+          ['separate','Pay separately','Time off paid from regular payroll. Vacation pay balance untouched.'],
+          ['negative','Use accrual first, allow balance to go negative','Full draw subtracted from vacation pay balance. Payment is never blocked \u2014 balance may go negative.']])+
+      '</div>',' data-when="limited"');
+
     /* always shown, unlike the caps added below them */
-    H+=row('Restrict to shift hours','Employees can request leave only within their scheduled shift hours.',
+    H+=row('Restrict to shift hours','Users can request leave only within their scheduled shift hours.',
       '<label class="cbline"><input type="checkbox" id="'+i('shiftOnly')+'" data-f="shiftOnly"'+ck(d.shiftOnly)+'>'+
         '<span class="lbl">Restrict</span></label>');
 
+    H+=row('Annual usage cap','Limit how much leave users can use in a leave year, regardless of their available balance.',
+      addedAmount('usageOn','usage','0.25','#','per year','Annual usage limit'),
+      ' data-add="usage" hidden');
+
+    H+=row('Minimum request','Set the smallest amount of leave users can request at a time.',
+      addedAmount('minReqOn','minReq','0.25','#','per request','Minimum request'),
+      ' data-add="minReq" hidden');
+
+    H+=row('Request increments','Users can only request leave in multiples of this amount.',
+      addedAmount('reqStepOn','reqStep','0.25','#','','Request increment'),
+      ' data-add="reqStep" hidden');
+
     /* a payout the employee asks for happens during the year */
-    H+=row('Payout requests','Employees can ask for a cash payout during the leave year.',
+    H+=row('Payout requests','Users can ask for a cash payout during the leave year.',
       '<div class="opts">'+
         '<label class="cbline"><input type="checkbox" id="'+i('eolReq')+'" data-f="eolReq"'+ck(d.eolReq)+'>'+
           '<span class="lbl">Allow</span></label>'+
       '</div>',' data-when="limited"');
 
-    H+=row('Annual usage cap','Limit how much leave employees can use in a leave year, regardless of their available balance.',
-      addedAmount('usageOn','usage','0.25','#','per year','Annual usage limit'),
-      ' data-add="usage" hidden');
-
-    H+=row('Minimum request','Set the smallest amount of leave employees can request at a time.',
-      addedAmount('minReqOn','minReq','0.25','#','per request','Minimum request'),
-      ' data-add="minReq" hidden');
-
-    H+=row('Request increments','Employees can only request leave in multiples of this amount.',
-      addedAmount('reqStepOn','reqStep','0.25','#','','Request increment'),
-      ' data-add="reqStep" hidden');
-
     H+=row('Minimum payout','',
-      addedAmount('eolMinPayOn','eolMinPay','0.25','#','','Minimum payout'),
+      addedAmount('eolMinPayOn','eolMinPay','0.25','#','per request','Minimum payout'),
       ' data-add="eolMinPay" hidden');
 
     H+=row('Maximum payout','',
-      addedAmount('eolMaxPayOn','eolMaxPay','0.25','#','','Maximum payout'),
+      addedAmount('eolMaxPayOn','eolMaxPay','0.25','#','per request','Maximum payout'),
       ' data-add="eolMaxPay" hidden');
 
     H+='<div class="addwrap">'+
@@ -8182,6 +8218,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var hasAmount=String(get(panel,'fixedAmount')||'').trim()!=='';
     panel.querySelectorAll('[data-f="mode"],[data-f="when"],[data-f="timing"]').forEach(function(el){
       el.disabled=!hasAmount;
+      /* a description dropdown answers through a hidden field, so its face is what gets disabled */
+      var face=el.closest('.pickcombo'); if(face) face.querySelector('.combo-btn').disabled=!hasAmount;
     });
     /* a checkbox + amount row keeps its field on screen, disabled while the box is clear */
     panel.querySelectorAll('.cbrow').forEach(function(cb){
@@ -8228,13 +8266,14 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     /* on-demand settings: hidden until added from "Add Setting", and only where they apply */
     /* why a listed setting cannot be added yet */
     var WHY={minWorked:'Available when leave is earned based on hours worked, or added throughout the year.',
+             maxBal:'Available when leave is earned based on hours worked.',
              eolMinPay:'Available once employees are allowed to request a payout.',
              eolMaxPay:'Available once employees are allowed to request a payout.'};
     /* spreading a fixed amount across the year raises the same question as earning by the hour,
        so the setting becomes available to add — it is not switched on for them */
     var spread=fixed&&mode==='spread';
     var payoutOn=limited&&get(panel,'payout')!=='none';
-    var relevant={minWorked:worked||spread,usage:limited,minBal:limited,maxBal:limited,minReq:limited,reqStep:limited,
+    var relevant={minWorked:worked||spread,usage:limited,minBal:limited,maxBal:worked,minReq:limited,reqStep:limited,
                   maxPay:payoutOn,minPay:payoutOn,eolMinPay:eolReq,eolMaxPay:eolReq};
     panel.querySelectorAll('[data-add]').forEach(function(r){
       var key=r.getAttribute('data-add'), ok=!!relevant[key];
@@ -8266,7 +8305,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var rc=panel.querySelector('[data-resetcopy]');
     if(rc){
       var rm=+get(p1,'resetMonth'), rd=get(p1,'resetDay');
-      rc.textContent=get(p1,'reset')==='anniversary'?'Employee\u2019s work anniversary'
+      rc.textContent=get(p1,'reset')==='anniversary'?'User\u2019s work anniversary'
         :(rm&&rd?['January','February','March','April','May','June','July','August','September','October','November','December'][rm-1]+' '+rd:'Not set yet');
     }
 
@@ -9310,7 +9349,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       ? 'When an employee is terminated, <b>nothing accrues</b> for that pay period.'
       : 'When an employee is terminated, leave accrues '+(term==='full'?'for the <b>full pay period</b>':'<b>up to their last working day</b>')+'.');
 
-    amt('accruals','minWorkedOn','minWorked',function(v){return 'Leave starts accruing after <b>'+v+' hours worked</b>.';},
+    amt('accruals','minWorkedOn','minWorked',function(v){return 'Leave accrues only in pay periods with at least <b>'+v+' hours worked</b>.';},
       'Enter the minimum hours worked.');
     /* the minimum balance may be zero or negative */
     if(on(panel,'minBalOn')){
@@ -9320,7 +9359,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         mb===0?'The balance can\u2019t go below zero after a request.':'At least <b>'+qty(mb,u)+'</b> must stay in the balance after a request.');
     }
     amt('accruals','maxBalOn','maxBal',function(v){return 'Balances are capped at <b>'+qty(v,u)+'</b>; earning pauses until some is used.';},
-      'Enter the maximum balance.');
+      'Enter the maximum accrual.');
 
     /* ---- requests ---- */
     amt('requests','usageOn','usage',function(v){return 'Employees can use up to <b>'+qty(v,u)+'</b> per leave year.';},
@@ -9635,7 +9674,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     /* once the policy exists, Search and Add appear and the empty state invites adding */
     drawerEl.addEventListener('policycreated',function(){
       document.getElementById('v4-empTools').hidden=false;
-      document.getElementById('v4-empEmptyMsg').textContent='Add the employees this policy applies to.';
+      document.getElementById('v4-empEmptyMsg').textContent='Add the users this policy applies to.';
     });
 
     var rows=document.getElementById('v4-empRows'), empty=document.getElementById('v4-empEmpty');
@@ -9659,7 +9698,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       empty.hidden=!!all.length;
       noMatch.hidden=!!list.length||!all.length;
       count.textContent=all.length;
-      count.setAttribute('aria-label',all.length+(all.length===1?' employee':' employees'));
+      count.setAttribute('aria-label',all.length+(all.length===1?' user':' users'));
     }
     empSearch.addEventListener('input',function(){ closeMenu(); renderTable(); });
     empClear.addEventListener('click',function(){ empSearch.value=''; renderTable(); empSearch.focus(); });
@@ -9744,7 +9783,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       var n=Object.keys(picked).length;
       countEl.textContent=n+' selected';
       confirmBtn.disabled=!n;
-      confirmBtn.textContent=n?'Add '+n+(n===1?' employee':' employees'):'Add';
+      confirmBtn.textContent=n?'Add '+n+(n===1?' user':' users'):'Add';
     }
     addRows.addEventListener('click',function(e){
       var tr=e.target.closest('tr'); if(!tr||tr.classList.contains('done')) return;
@@ -9779,7 +9818,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       var codes=Object.keys(picked); if(!codes.length) return;
       assigned=assigned.concat(codes);
       closeModal(); renderTable();
-      note(codes.length+(codes.length===1?' employee':' employees')+' added to this policy.');
+      note(codes.length+(codes.length===1?' user':' users')+' added to this policy.');
     });
     /* Employee profile: sample work history by department, newest first — [role, organization, start, end] */
     var JOBS={
@@ -9883,7 +9922,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   /* the table opens sorted by Leave Policy, A–Z, with no sort icon; a header sorts by its column, again to reverse,
      and from then on the sorted column shows its direction */
   var sortBy={k:'name',dir:1}, sortShown=false;
-  var COLS=[['name','Leave Policy'],['group','Group'],['type','Type'],['emp','Employees']];
+  var COLS=[['name','Leave Policy'],['group','Group'],['type','Type'],['emp','Assigned To']];
   function esc(s){ return String(s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function toast(t){
     document.querySelectorAll('.toast').forEach(function(x){ x.remove(); });
@@ -9932,7 +9971,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '<span role="cell">'+paid(p)+'</span><span class="n" role="cell">'+p.emp+'</span>'+
       /* a disabled policy cannot be assigned */
       '<span class="act" role="cell">'+(off(p)?'<span class="noassign" aria-hidden="true"></span>':
-      '<button type="button" class="v4polassign" data-tip="Assign Employees" aria-label="Assign employees to '+esc(p.name)+'">'+
+      '<button type="button" class="v4polassign" data-tip="Assign Users" aria-label="Assign users to '+esc(p.name)+'">'+
       '<img src="assets/users-plus-20.svg" width="20" height="20" alt=""></button>')+
       kebab(p.name,item('edit','Edit',I.edit)+item('delete','Delete',I.del,'del'))+'</span></div>';
   }
@@ -9996,7 +10035,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var row=t.closest('.v4polrow[data-i]'); if(!row) return;
     var i=+row.dataset.i, p=POLS[i];
     function done(){ draw(); }
-    if(t.closest('.v4polassign')){ toast('Assign employees to “'+p.name+'”'); return; }
+    if(t.closest('.v4polassign')){ toast('Assign users to “'+p.name+'”'); return; }
     /* anywhere on the row outside its buttons opens the policy's summary; Edit is in its footer */
     if(!t.closest('.act')){
       closeMenu(false);
@@ -10200,14 +10239,20 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var r=document.querySelector('#v4-details [data-f="paid"][value="'+(/unpaid/i.test(cat)?'unpaid':'paid')+'"]');
     if(r&&!r.checked){ r.checked=true; r.dispatchEvent(new Event('change',{bubbles:true})); }
   }
+  /* a select whose answer is cut short shows it in full on hover; checked each time, as answers and widths change */
+  document.addEventListener('mouseover',function(e){
+    var f=document.body.dataset.v==='4'&&e.target.closest&&e.target.closest('.pickfield'), t=f&&f.querySelector('.txt');
+    if(!t) return;
+    if(t.scrollWidth>t.clientWidth) f.setAttribute('data-tip',t.textContent); else f.removeAttribute('data-tip');
+  });
   /* Assigned Employees stays locked until the policy exists */
   var empTab=document.getElementById('v4-secEmployees');
   function lockEmployees(on){
     empTab.classList.toggle('locked',on);
-    if(on){ empTab.setAttribute('aria-disabled','true'); empTab.setAttribute('data-tip','Employees can be assigned once this policy is created.'); }
+    if(on){ empTab.setAttribute('aria-disabled','true'); empTab.setAttribute('data-tip','Users can be assigned once this policy is created.'); }
     else{ empTab.removeAttribute('aria-disabled'); empTab.removeAttribute('data-tip'); }
   }
-  drawer.addEventListener('policycreated',function(){ lockEmployees(false); });
+  drawer.addEventListener('policycreated',function(){ lockEmployees(false); drawer.classList.remove('is-new'); });
   function chrome(edit){
     title.textContent=edit?'Edit Leave Policy':'New Leave Policy';
     save.textContent=edit?'Save Changes':'Create Policy';
@@ -10215,7 +10260,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     /* employees are assigned only once the policy exists */
     document.getElementById('v4-empTools').hidden=!edit;
     lockEmployees(!edit);
-    document.getElementById('v4-empEmptyMsg').textContent=edit?'Add the employees this policy applies to.':'You can assign employees to this policy once it\u2019s created.';
+    /* a new policy shows Enable beside its name, above the tabs */
+    drawer.classList.toggle('is-new',!edit);
+    document.getElementById('v4-empEmptyMsg').textContent=edit?'Add the users this policy applies to.':'You can assign users to this policy once it\u2019s created.';
     lockCategory(edit);
     drawer.classList.remove('show-req');
     document.getElementById('v4-secSettings').click();
@@ -10268,7 +10315,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     showCat(cat);
     if(window.__afterSync4) window.__afterSync4(document.getElementById('v4-panel-t1'));
     vTitle.textContent=p.name;
-    vSub.textContent=cat+' · '+p.emp+(p.emp===1?' employee':' employees');
+    vSub.textContent=cat+' · '+p.emp+(p.emp===1?' user':' users');
     vBody.innerHTML=document.getElementById('v4-sumBody').innerHTML||'<span class="sumline"><span></span><span>Nothing set up yet.</span></span>';
     vAt={p:p,cat:cat,trigger:trigger,done:done};
     /* a disabled policy cannot be assigned */
@@ -10286,7 +10333,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   vAssign.addEventListener('click',function(){
     var a=vAt; unview(true);
     document.querySelectorAll('.toast').forEach(function(x){ x.remove(); });
-    var t=document.createElement('div'); t.className='toast'; t.textContent='Assign employees to “'+a.p.name+'”';
+    var t=document.createElement('div'); t.className='toast'; t.textContent='Assign users to “'+a.p.name+'”';
     document.body.appendChild(t); setTimeout(function(){ t.remove(); },3000);
   });
   vScrim.addEventListener('click',function(e){ if(e.target===vScrim) unview(true); });
@@ -10878,7 +10925,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* ---------- accruals: whether leave is limited, its unit, then how it is earned ---------- */
     H+='<div class="grouphead">Accruals</div>';
-    H+=row('How much leave can employees take?','',
+    H+=row('How much leave can users take?','',
       '<div class="opts">'+
         opt('limited','0','Unlimited','')+
         opt('limited','1','Limited','')+
@@ -10893,7 +10940,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* the earnings settings sit under the method they belong to, so the choice and its
        numbers are read as one answer */
-    H+=row('How do employees earn leave?','Choose how leave is earned and added to an employee\u2019s balance.',
+    H+=row('How do users earn leave?','Choose how leave is earned and added to a user\u2019s balance.',
       '<div class="opts">'+
         opt('earn','worked','Based on hours worked','')+
         '<div class="indent" data-when="worked">'+
@@ -10913,9 +10960,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
             '<input class="num" type="number" min="0" step="0.25" id="'+i('fixedAmount')+'" data-f="fixedAmount" data-req value="'+d.fixedAmount+'" aria-label="Annual leave amount">'+
             /* "hours accrued every" is one label, at the option's own color */
             '<span class="unit"><span data-unitword="fixedAmount"></span> added</span>'+
-            '<select class="sel" id="'+i('mode')+'" data-f="mode" aria-label="How the amount is added">'+
-              sel('mode',d.mode,[['once','all at once'],['spread','throughout the year']])+
-            '</select>'+
+            pick('mode',d.mode,[
+              ['once','all at once','Added in full when the policy is assigned.'],
+              ['spread','throughout the year','Added in equal parts at set intervals.']])+
             /* spread across the year needs to know how often */
             '<span class="atwhen" data-when="recurring">'+
               '<span class="unit">in every</span>'+
@@ -10932,6 +10979,14 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '</div>'+
       '',' data-when="limited" data-q="earn"');
 
+    /* added on demand; it sits above which hours count, as both are about hours worked */
+    H+=row('Minimum Hours Worked','Is there a minimum number of hours users must work in a pay period to earn leave for it?',
+      addedAmount('minWorkedOn','minWorked','1','hours per pay period','','Minimum hours worked per pay period')+
+      /* only hourly users log time, so the minimum can only hold them back */
+      '<div class="notebanner" role="note"><i class="ph ph-info" aria-hidden="true"></i>'+
+        '<span>Applies to hourly users only, as salaried users don\u2019t log time.</span></div>',
+      ' data-add="minWorked" hidden');
+
     /* which hours count as worked is its own decision, so it gets its own setting */
     H+=row('Which hours count toward earning leave?','Choose which paid hours count toward the hours worked that drive the accrual.',
       '<div class="opts">'+
@@ -10947,7 +11002,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '</div>',' data-when="worked" data-q="countHours"');
 
     /* proration: only meaningful for a fixed annual amount, so it rides with it */
-    H+=row('Prorate leave for new hires','Adjust the annual leave allocation based on when an employee starts.',
+    H+=row('Prorate leave for new hires','Adjust the annual leave allocation based on when a user starts.',
       '<div class="opts">'+
         '<label class="cbline"><input type="checkbox" id="'+i('prorate')+'" data-f="prorate"'+ck(d.prorate)+'>'+
           '<span class="lbl">Prorate leave</span></label>'+
@@ -10970,26 +11025,22 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '</div>',' data-when="fixed" data-q="prorate"');
 
     /* how the last pay period accrues when an employee leaves; only leave added throughout the year accrues by pay period */
-    H+=row('Termination period','How does leave accrue for the pay period in which an employee is terminated?',
+    H+=row('Termination period','How does leave accrue for the pay period in which a user is terminated?',
       '<div class="opts">'+
         pick('termAccrual',d.termAccrual||'prorated',[
-          ['prorated','Prorated','Accrue up to the employee\u2019s last working day.'],
-          ['full','Full pay period','Accrue for the entire pay period in which the employee is terminated.'],
-          ['none','Don\'t accrue','No accrual for the pay period in which the employee is terminated.']])+
+          ['prorated','Prorated','Accrue up to the user\u2019s last working day.'],
+          ['full','Full pay period','Accrue for the entire pay period in which the user is terminated.'],
+          ['none','Don\'t accrue','No accrual for the pay period in which the user is terminated.']])+
       '</div>',' data-when="recurring"');
 
     /* settings most policies never need: nothing is shown until the admin adds it */
-    H+=row('Minimum Hours Worked','Is there a minimum number of hours employees must work before earning leave?',
-      addedAmount('minWorkedOn','minWorked','1','hours worked','','Minimum hours worked'),
-      ' data-add="minWorked" hidden');
-
-    H+=row('Minimum Balance','How much leave must employees keep in their balance? Enter a negative number to let them borrow leave and go below zero.',
+    H+=row('Minimum Balance','The lowest balance allowed. Use a negative number to let users borrow leave.',
       addedAmount('minBalOn','minBal','0.25','#','','Minimum balance'),
       ' data-add="minBal" hidden');
 
     /* nothing here can be added until an earning method is chosen */
-    H+=row('Maximum Balance','How much leave can employees accumulate?',
-      addedAmount('maxBalOn','maxBal','0.25','#','','Maximum balance'),
+    H+=row('Maximum Accrual','The most leave users can accrue. Earning pauses once the balance reaches it.',
+      addedAmount('maxBalOn','maxBal','0.25','#','','Maximum accrual'),
       ' data-add="maxBal" hidden');
 
     H+='<div class="addwrap" data-needs="earn">'+
@@ -10998,19 +11049,19 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         '<div class="addmenu" role="menu" hidden>'+
           '<button type="button" role="menuitem" data-addopt="minWorked">Minimum Hours Worked</button>'+
           '<button type="button" role="menuitem" data-addopt="minBal">Minimum Balance</button>'+
-          '<button type="button" role="menuitem" data-addopt="maxBal">Maximum Balance</button>'+
+          '<button type="button" role="menuitem" data-addopt="maxBal">Maximum Accrual</button>'+
         '</div></div>';
 
     /* ---------- the leave year: when it renews, and what happens to unused leave at its end ---------- */
     H+='<div class="grouphead" data-lock="earning">Leave Year</div>';
 
     /* when the leave year renews comes before what happens to unused leave at its end */
-    H+=row('Leave year renews on','Balances reset on a fixed date or each employee\u2019s work anniversary.',
+    H+=row('Leave year renews on','Balances reset on a fixed date or each user\u2019s work anniversary.',
       '<div class="opts">'+
         '<div class="cbrow">'+
           pick('reset',d.reset||'custom',[
             ['custom','A specific date','Set a custom date for annual reset.'],
-            ['anniversary','Employee\u2019s work anniversary','Leave balance is renewed annually on the employee\u2019s work anniversary.']])+
+            ['anniversary','User\u2019s work anniversary','Leave balance is renewed annually on the user\u2019s work anniversary.']])+
           /* only a month and a day: the same date comes round every year */
           '<span class="atwhen" data-when="custom">'+
             monthDay('resetMonth','resetDay','Reset date')+
@@ -11063,26 +11114,26 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     H+='<div class="grouphead" data-lock="earning">Requests</div>';
 
     /* always shown, unlike the caps added below them */
-    H+=row('Restrict to shift hours','Employees can request leave only within their scheduled shift hours.',
+    H+=row('Restrict to shift hours','Users can request leave only within their scheduled shift hours.',
       '<label class="cbline"><input type="checkbox" id="'+i('shiftOnly')+'" data-f="shiftOnly"'+ck(d.shiftOnly)+'>'+
         '<span class="lbl">Restrict</span></label>');
 
     /* a payout the employee asks for happens during the year */
-    H+=row('Payout requests','Employees can ask for a cash payout during the leave year.',
+    H+=row('Payout requests','Users can ask for a cash payout during the leave year.',
       '<div class="opts">'+
         '<label class="cbline"><input type="checkbox" id="'+i('eolReq')+'" data-f="eolReq"'+ck(d.eolReq)+'>'+
           '<span class="lbl">Allow</span></label>'+
       '</div>',' data-when="limited"');
 
-    H+=row('Annual usage cap','Limit how much leave employees can use in a leave year, regardless of their available balance.',
+    H+=row('Annual usage cap','Limit how much leave users can use in a leave year, regardless of their available balance.',
       addedAmount('usageOn','usage','0.25','#','per year','Annual usage limit'),
       ' data-add="usage" hidden');
 
-    H+=row('Minimum request','Set the smallest amount of leave employees can request at a time.',
+    H+=row('Minimum request','Set the smallest amount of leave users can request at a time.',
       addedAmount('minReqOn','minReq','0.25','#','per request','Minimum request'),
       ' data-add="minReq" hidden');
 
-    H+=row('Request increments','Employees can only request leave in multiples of this amount.',
+    H+=row('Request increments','Users can only request leave in multiples of this amount.',
       addedAmount('reqStepOn','reqStep','0.25','#','','Request increment'),
       ' data-add="reqStep" hidden');
 
@@ -11223,6 +11274,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var hasAmount=String(get(panel,'fixedAmount')||'').trim()!=='';
     panel.querySelectorAll('[data-f="mode"],[data-f="when"],[data-f="timing"]').forEach(function(el){
       el.disabled=!hasAmount;
+      /* a description dropdown answers through a hidden field, so its face is what gets disabled */
+      var face=el.closest('.pickcombo'); if(face) face.querySelector('.combo-btn').disabled=!hasAmount;
     });
     /* a checkbox + amount row keeps its field on screen, disabled while the box is clear */
     panel.querySelectorAll('.cbrow').forEach(function(cb){
@@ -11269,13 +11322,14 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     /* on-demand settings: hidden until added from "Add Setting", and only where they apply */
     /* why a listed setting cannot be added yet */
     var WHY={minWorked:'Available when leave is earned based on hours worked, or added throughout the year.',
+             maxBal:'Available when leave is earned based on hours worked.',
              eolMinPay:'Available once employees are allowed to request a payout.',
              eolMaxPay:'Available once employees are allowed to request a payout.'};
     /* spreading a fixed amount across the year raises the same question as earning by the hour,
        so the setting becomes available to add — it is not switched on for them */
     var spread=fixed&&mode==='spread';
     var payoutOn=limited&&get(panel,'payout')!=='none';
-    var relevant={minWorked:worked||spread,usage:limited,minBal:limited,maxBal:limited,minReq:limited,reqStep:limited,
+    var relevant={minWorked:worked||spread,usage:limited,minBal:limited,maxBal:worked,minReq:limited,reqStep:limited,
                   maxPay:payoutOn,minPay:payoutOn,eolMinPay:eolReq,eolMaxPay:eolReq};
     panel.querySelectorAll('[data-add]').forEach(function(r){
       var key=r.getAttribute('data-add'), ok=!!relevant[key];
@@ -12357,7 +12411,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       ? 'When an employee is terminated, <b>nothing accrues</b> for that pay period.'
       : 'When an employee is terminated, leave accrues '+(term==='full'?'for the <b>full pay period</b>':'<b>up to their last working day</b>')+'.');
 
-    amt('accruals','minWorkedOn','minWorked',function(v){return 'Leave starts accruing after <b>'+v+' hours worked</b>.';},
+    amt('accruals','minWorkedOn','minWorked',function(v){return 'Leave accrues only in pay periods with at least <b>'+v+' hours worked</b>.';},
       'Enter the minimum hours worked.');
     /* the minimum balance may be zero or negative */
     if(on(panel,'minBalOn')){
@@ -12367,7 +12421,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         mb===0?'The balance can\u2019t go below zero after a request.':'At least <b>'+qty(mb,u)+'</b> must stay in the balance after a request.');
     }
     amt('accruals','maxBalOn','maxBal',function(v){return 'Balances are capped at <b>'+qty(v,u)+'</b>; earning pauses until some is used.';},
-      'Enter the maximum balance.');
+      'Enter the maximum accrual.');
 
     /* ---- requests ---- */
     amt('requests','usageOn','usage',function(v){return 'Employees can use up to <b>'+qty(v,u)+'</b> per leave year.';},
@@ -12688,7 +12742,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       empty.hidden=!!all.length;
       noMatch.hidden=!!list.length||!all.length;
       count.textContent=all.length;
-      count.setAttribute('aria-label',all.length+(all.length===1?' employee':' employees'));
+      count.setAttribute('aria-label',all.length+(all.length===1?' user':' users'));
     }
     empSearch.addEventListener('input',function(){ closeMenu(); renderTable(); });
     empClear.addEventListener('click',function(){ empSearch.value=''; renderTable(); empSearch.focus(); });
@@ -12773,7 +12827,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       var n=Object.keys(picked).length;
       countEl.textContent=n+' selected';
       confirmBtn.disabled=!n;
-      confirmBtn.textContent=n?'Add '+n+(n===1?' employee':' employees'):'Add';
+      confirmBtn.textContent=n?'Add '+n+(n===1?' user':' users'):'Add';
     }
     addRows.addEventListener('click',function(e){
       var tr=e.target.closest('tr'); if(!tr||tr.classList.contains('done')) return;
@@ -12808,7 +12862,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       var codes=Object.keys(picked); if(!codes.length) return;
       assigned=assigned.concat(codes);
       closeModal(); renderTable();
-      note(codes.length+(codes.length===1?' employee':' employees')+' added to this policy.');
+      note(codes.length+(codes.length===1?' user':' users')+' added to this policy.');
     });
     /* Employee profile: sample work history by department, newest first — [role, organization, start, end] */
     var JOBS={
@@ -13084,7 +13138,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 </script>
 
 <script>
-/* V5 (data-v="5") — Upload: read one leave policy document, list the policies found (pre-filled) on the left,
+/* V5 (data-v="5") — Upload: read one leave policy document, list the policies found (pre-filled) on the right,
    and review each in the New Leave Policy editor before creating it. No progress is saved: Exit discards anything not created yet. */
 (function(){
   "use strict";
@@ -13545,7 +13599,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var p=POLS[i];
     return '<div class="v5polrow" role="row" data-i="'+i+'"><span class="nm" role="cell" title="'+esc(p.name)+'">'+esc(p.name)+'</span>'+
       '<span role="cell">'+paid(p)+'</span><span class="n" role="cell">'+p.emp+'</span>'+
-      '<span class="act" role="cell"><button type="button" class="v5polassign" data-tip="Assign Employees" aria-label="Assign employees to '+esc(p.name)+'">'+
+      '<span class="act" role="cell"><button type="button" class="v5polassign" data-tip="Assign Users" aria-label="Assign users to '+esc(p.name)+'">'+
       '<img src="assets/users-plus-20.svg" width="20" height="20" alt=""></button>'+
       kebab(p.name,item('edit','Edit',I.edit)+(off(p)?item('enable','Enable',I.on):item('disable','Disable',I.off))+item('delete','Delete',I.del,'del'))+'</span></div>';
   }
@@ -13557,7 +13611,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     function has(x){ return x.toLowerCase().indexOf(t)>-1; }
     /* each open group carries its own column headers */
     var HD='<div class="v5polrow hd" role="row"><span role="columnheader">Leave Policy</span><span role="columnheader">Type</span>'+
-      '<span role="columnheader">Employees</span><span role="columnheader"><span class="sr">Actions</span></span></div>';
+      '<span role="columnheader">Assigned To</span><span role="columnheader"><span class="sr">Actions</span></span></div>';
     groups().forEach(function(g){
       var byName=!t||has(g.key), list=byName?g.list:g.list.filter(function(i){ return has(POLS[i].name); });
       if(!byName&&!list.length) return;
@@ -13615,7 +13669,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var row=t.closest('.v5polrow[data-i]'); if(!row) return;
     var i=+row.dataset.i, p=POLS[i];
     function done(){ draw(); }
-    if(t.closest('.v5polassign')){ toast('Assign employees to “'+p.name+'”'); return; }
+    if(t.closest('.v5polassign')){ toast('Assign users to “'+p.name+'”'); return; }
     /* anywhere on the row outside its buttons opens the policy's summary; Edit is in its footer */
     if(!t.closest('.act')){
       closeMenu(false);
@@ -13784,7 +13838,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     save.textContent=edit?'Save Changes':'Create Policy';
     caution.textContent=edit?'Read this before editing':'Read this before creating';
     addWrap.hidden=!edit;
-    empty.querySelector('p').textContent=edit?'Add employees to apply this policy to them.':'You can assign employees to this policy once it’s created.';
+    empty.querySelector('p').textContent=edit?'Add users to apply this policy to them.':'You can assign users to this policy once it’s created.';
     lockCategory(edit);
     drawer.classList.remove('show-req');
     footMsg.className='msg'; footMsg.textContent='';
@@ -13858,7 +13912,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     fill(p,cat);
     if(window.__afterSync5) window.__afterSync5(document.getElementById('v5-panel-t1'));
     vTitle.textContent=p.name;
-    vSub.textContent=cat+' · '+p.emp+(p.emp===1?' employee':' employees');
+    vSub.textContent=cat+' · '+p.emp+(p.emp===1?' user':' users');
     vBody.innerHTML=document.getElementById('v5-sumBody').innerHTML||'<span class="sumline"><span></span><span>Nothing set up yet.</span></span>';
     vAt={p:p,cat:cat,trigger:trigger,done:done};
     vScrim.hidden=false; document.body.classList.add('locked');
@@ -13874,7 +13928,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   vAssign.addEventListener('click',function(){
     var a=vAt; unview(true);
     document.querySelectorAll('.toast').forEach(function(x){ x.remove(); });
-    var t=document.createElement('div'); t.className='toast'; t.textContent='Assign employees to “'+a.p.name+'”';
+    var t=document.createElement('div'); t.className='toast'; t.textContent='Assign users to “'+a.p.name+'”';
     document.body.appendChild(t); setTimeout(function(){ t.remove(); },3000);
   });
   vScrim.addEventListener('click',function(e){ if(e.target===vScrim) unview(true); });
