@@ -1027,7 +1027,7 @@ body.no-tiers2 #v2-drawer .tabs{display:none}
    Every id is prefixed v4-; every rule is scoped to body[data-v="4"].
    =================================================================== */
 body[data-v="4"] #app,body[data-v="4"] #drawer,body[data-v="4"] #scrim{display:none!important}
-body:not([data-v="4"]) #v4-app,body:not([data-v="4"]) #v4-drawer,body:not([data-v="4"]) #v4-scrim{display:none!important}
+body:not([data-v="4"]) #v4-app,body:not([data-v="4"]) #v4-drawer,body:not([data-v="4"]) #v4-scrim,body:not([data-v="4"]) #v4-viewScrim{display:none!important}
 /* header (Figma 680:18594): breadcrumb, name and section tabs in one white block, no dividers; it stays put while the body scrolls */
 /* the bar keeps the design's 60px height now the close button has moved outside the drawer */
 body[data-v="4"] #v4-drawer .dhead{gap:24px;padding:20px 16px 0;padding-top:calc(20px + env(safe-area-inset-top,0px));border-bottom:0}
@@ -1069,7 +1069,15 @@ body[data-v="4"] .dmname{display:block;width:100%;margin:0;padding:4px 8px;borde
   background:none;font:inherit;font-size:24px;font-weight:600;line-height:1.2;letter-spacing:-.48px;color:#101828}
 body[data-v="4"] .dmname:hover{background:#F6F7F9}
 body[data-v="4"] .dmname:focus{outline:none;border-color:#2970FF;box-shadow:0 0 0 4px rgba(41,112,255,.16)}
-body[data-v="4"] .dmname::placeholder{color:var(--muted)}
+body[data-v="4"] .dmname::placeholder{color:#98A2B3}
+/* a blank name on save: a red border, kept while it is being typed into */
+body[data-v="4"] .dmname.bad,body[data-v="4"] .dmname.bad:hover{border-color:var(--danger)}
+body[data-v="4"] .dmname.bad:focus{border-color:var(--danger);box-shadow:0 0 0 4px rgba(180,35,24,.14)}
+/* its message, on the name's 8px text inset, styled like the footer's */
+body[data-v="4"] #v4-nameErr{margin:0;padding:0 9px;font-size:14px;font-weight:500;line-height:20px;color:var(--danger)}
+/* the footer's "Fill all required fields." leads with an alert circle */
+body[data-v="4"] #v4-footMsg.bad{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;line-height:20px}
+body[data-v="4"] #v4-footMsg.bad .ph{flex:none;font-size:20px;width:20px;height:20px}
 /* the leave category and the tenure are picked in Policy Details, like any other dropdown there */
 body[data-v="4"] #v4-panels .pickcombo[data-pick="category"]{width:240px}
 body[data-v="4"] #v4-panels input.text[data-f="name"]{width:100%;max-width:400px;border:1px solid #D0D5DD;border-radius:8px;
@@ -1078,6 +1086,8 @@ body[data-v="4"] #v4-panels input.text[data-f="name"]::placeholder{color:#98A2B3
 body[data-v="4"] #v4-panels .pickcombo.off .pickfield{cursor:default}
 /* Figma 680:18606 — the tab row sits on a 24px inset (8px past the header's 16px), each tab padded 4px */
 body[data-v="4"] .dmtabs{display:flex;gap:16px;margin:0 8px}
+/* the tabs on the left, the Enable switch on the right */
+body[data-v="4"] .v4tabrow{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-right:8px}
 body[data-v="4"] .dmtab{display:inline-flex;align-items:center;gap:8px;padding:12px 4px;border:0;border-bottom:2px solid transparent;background:none;cursor:pointer;
   font:inherit;font-size:14px;font-weight:600;line-height:1.4;color:#344054;white-space:nowrap}
 body[data-v="4"] .dmtab:hover{color:#101828}
@@ -1218,7 +1228,7 @@ body[data-v="4"] .dbody > #v4-panels{grid-column:1/span 9}
 body[data-v="4"] .dbody > #v4-sumrail{grid-column:10/span 3}
 body[data-v="4"] .dbody > .details{background:var(--card);margin:0 -24px;padding:20px 24px 18px}
 /* tenure tiers: one chip each under Policy Details; the chosen chip's settings follow it */
-body[data-v="4"] #v4-panels > .tabs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 0;padding:0;border:0;overflow:visible}
+body[data-v="4"] #v4-panels > .tabs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:8px;border:0;overflow:visible}
 body[data-v="4"] #v4-panels > .tabs .tierslabel{font-size:14px;font-weight:600;color:#344054;white-space:nowrap;margin-right:4px}
 body[data-v="4"] #v4-panels > .tabs .tab{display:inline-flex;align-items:center;height:36px;padding:0 14px;border:1px solid #D0D5DD;border-radius:99px;
   background:#fff;font-size:14px;font-weight:500;letter-spacing:0;text-transform:none;color:#344054}
@@ -1246,6 +1256,8 @@ body[data-v="4"] #v4-panels .opt .help,body[data-v="4"] #v4-panels .cbline .help
 body[data-v="4"] #v4-panels .grouphead{font-size:17px;padding:0 0 20px;border-bottom:1px solid var(--line)}
 body[data-v="4"] #v4-panels .gdesc{font-size:12px;font-weight:500;line-height:1.45;color:var(--muted);margin-top:4px;max-width:none}
 body[data-v="4"] #v4-panels .fieldnote,body[data-v="4"] #v4-panels .err{font-size:13px}
+/* "Select an option." reads like the footer's "Fill all required fields." */
+body[data-v="4"] #v4-panels .row[data-q="eolOutcome"] .opts > .err{margin:0;font-size:14px;font-weight:500;line-height:20px}
 body[data-v="4"] #v4-panels .subq{font-size:14px;font-weight:500;color:var(--ink-2)}
 body[data-v="4"] #v4-panels .row[data-add]{position:relative;padding-right:60px}
 /* Figma 688:18854 — a 44px icon button, level with the row's 44px field; its name is a hover tooltip */
@@ -1255,7 +1267,9 @@ body[data-v="4"] #v4-panels .rmbtn:hover{background:var(--danger-bg);color:var(-
 body[data-v="4"] #v4-panels .rmbtn svg{display:block}
 /* every V2 tooltip bubble has 8px corners */
 body[data-v="4"] [data-tip]:hover::after,body[data-v="4"] [data-tip]:focus-visible::after{border-radius:8px}
-body[data-v="4"] #v4-panels .optline{display:inline-flex;align-items:center;gap:9px;cursor:pointer;flex:none}
+body[data-v="4"] #v4-panels .optline{display:inline-flex;align-items:center;gap:8px;cursor:pointer;flex:none}
+/* every checkbox and radio sits 8px from its label, as the toggle switches do */
+body[data-v="4"] :is(.opt,.cbline){column-gap:8px}
 body[data-v="4"] #v4-panels .optline input{margin:0;width:16px;height:16px;accent-color:var(--blue);cursor:pointer}
 body[data-v="4"] #v4-panels .optline .lbl{font-size:14px;font-weight:500;white-space:nowrap}
 body[data-v="4"] #v4-panels .lbl .hint{margin-left:6px;font-size:15px;color:var(--muted);vertical-align:-2px;cursor:help}
@@ -1270,7 +1284,8 @@ body[data-v="4"] #v4-panels .pickcombo[data-pick="reset"],
 body[data-v="4"] #v4-panels .pickcombo[data-pick="neg"],
 body[data-v="4"] #v4-panels .pickcombo[data-pick="eolReset"],
 body[data-v="4"] #v4-panels .pickcombo[data-pick="eolExp"],
-body[data-v="4"] #v4-panels .pickcombo[data-pick="eolNeg"]{width:240px}
+body[data-v="4"] #v4-panels .pickcombo[data-pick="eolNeg"],
+body[data-v="4"] #v4-panels .pickcombo[data-pick="termAccrual"]{width:240px}
 body[data-v="4"] #v4-panels .mdcombo{display:inline-block;width:168px;max-width:100%}
 body[data-v="4"] #v4-panels .mdmenu{min-width:0;left:0;right:auto;width:252px;padding:10px}
 body[data-v="4"] #v4-panels .mdhead{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:2px 2px 8px}
@@ -1372,9 +1387,10 @@ body[data-v="4"] .prtrack{left:0;right:0;border:1px solid #EAECF0;background:#F9
 body[data-v="4"] .prdots{left:0;right:0;display:flex;justify-content:space-between;padding:0 4px}
 body[data-v="4"] .prdots img{display:block;flex:none}
 body[data-v="4"] .prfill{right:0;background:#2970FF}
-body[data-v="4"] .prhandle{position:absolute;top:0;width:32px;height:32px;padding:0;border:2px solid #2970FF;border-radius:99px;background:#fff;cursor:grab;z-index:1}
+body[data-v="4"] .prhandle{position:absolute;top:0;width:32px;height:32px;padding:0;border:2px solid #2970FF;border-radius:99px;background:#fff;cursor:grab;z-index:1;
+  box-shadow:0 2px 4px rgba(16,24,40,.16),0 1px 2px rgba(16,24,40,.08)}
 body[data-v="4"] .prhandle:active{cursor:grabbing}
-body[data-v="4"] .prhandle:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(41,112,255,.24)}
+body[data-v="4"] .prhandle:focus-visible{outline:none;box-shadow:0 2px 4px rgba(16,24,40,.16),0 1px 2px rgba(16,24,40,.08),0 0 0 4px rgba(41,112,255,.24)}
 body[data-v="4"] .prmonths{display:flex;justify-content:space-between;font-size:12px;line-height:1.4;letter-spacing:.12px;color:#667085;text-align:center}
 /* 32px each, as in the design, narrowing together when the card is narrower than 558px */
 body[data-v="4"] .prmonths span{flex:0 1 32px;min-width:0}
@@ -1456,6 +1472,8 @@ body[data-v="4"] .menu-search:focus-within{
 body[data-v="4"] input.num.bad:focus,
 body[data-v="4"] input.text.bad:focus{border-color:var(--danger);box-shadow:0 0 0 4px rgba(180,35,24,.14)}
 body[data-v="4"] .numwrap input.num.bad{border-color:var(--danger)}
+/* a field needing an answer shows it with its border only; the fill stays white */
+body[data-v="4"] input.num.bad,body[data-v="4"] input.text.bad{background:#fff}
 body[data-v="4"] .numspin{position:absolute;top:3px;right:3px;bottom:3px;
   display:none;flex-direction:column;gap:2px}
 body[data-v="4"] .numwrap:hover input.num:not(:disabled) ~ .numspin,
@@ -1513,7 +1531,7 @@ body[data-v="4"] #v4-sumBody .sumline{grid-template-columns:16px minmax(0,1fr);g
 body[data-v="4"] #v4-sumBody .sumline b{color:#344054;font-weight:600}
 body[data-v="4"] #v4-sumBody .sline-ic{display:block;width:16px;height:16px;margin-top:2px}
 /* caution under the summary (Figma 725:22935): what editing a policy later does */
-body[data-v="4"] .v4caution{display:flex;flex-direction:column;gap:8px;margin-top:12px;padding:16px;border:1px solid #FEDF89;border-radius:8px;
+body[data-v="4"] .v4caution{display:flex;flex-direction:column;gap:12px;margin-top:12px;padding:16px;border:1px solid #FEDF89;border-radius:8px;
   background:#FFFAEB;color:#344054}
 body[data-v="4"] .v4cautionhd{display:flex;align-items:flex-start;gap:8px}
 body[data-v="4"] .v4cautionhd img{flex:none;display:block;margin-top:2px}
@@ -1527,8 +1545,10 @@ body[data-v="4"] #v4-panels .card{border-radius:16px;padding:32px;gap:32px;scrol
 body[data-v="4"] #v4-panels .grouphead{margin:0;padding:0;border-top:0;border-bottom:0;font-size:20px;font-weight:600;line-height:1.2;color:#101828}
 body[data-v="4"] #v4-panels .row > .lab{font-size:14px;font-weight:600;line-height:1.4;color:#101828;text-wrap:balance}
 body[data-v="4"] #v4-panels .row > .lab .desc{margin-top:4px;max-width:66ch;font-size:12px;font-weight:500;line-height:1.4;color:#667085;text-wrap:pretty}
-/* a divider above each section's Add Additional Settings button */
-body[data-v="4"] #v4-panels .card > .addwrap{padding-top:24px;border-top:1px solid #EAECF0}
+/* a divider above each section's Add Additional Settings button, 16px above it */
+body[data-v="4"] #v4-panels .card > .addwrap{padding-top:16px;border-top:1px solid #EAECF0}
+/* the last section sits at the foot of the page, so its Add Additional Settings menu opens upward */
+body[data-v="4"] #v4-panels .card[data-sec="requests"] > .addwrap .addmenu{top:auto;bottom:calc(100% + 2px)}
 @media (max-width:560px){body[data-v="4"] #v4-panels .card{padding:20px}}
 /* Employees: a section card as V1's — 32px in, 16px corners, a 20px heading, the table in its own 12px box */
 body[data-v="4"] .dbody > .empcard{display:flex;flex-direction:column;gap:32px;padding:32px;border:1px solid #EAECF0;border-radius:16px;overflow:visible}
@@ -1565,6 +1585,19 @@ body[data-v="4"] .v4menufoot img{display:block;flex:none}
 /* under the Leave Category list: Add Category and Upload, as blue text buttons */
 body[data-v="4"] .v4catacts{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px;padding:8px 0}
 /* Add Category dialog (Figma 778:34295): title over caption, the name field, Cancel and Add Category */
+/* a policy's summary, opened from its row: read first, Edit from the footer */
+body[data-v="4"] .v4view{width:min(560px,100%)}
+body[data-v="4"] .v4view .emhd{align-items:flex-start;gap:16px}
+body[data-v="4"] .v4view .emhd h2{overflow-wrap:anywhere}
+body[data-v="4"] .v4view .emhd p{margin-top:4px;font-size:14px;color:#667085}
+body[data-v="4"] .v4viewbody{overflow:auto;padding:0 24px 20px}
+body[data-v="4"] .v4viewbody h3{margin-bottom:12px;font-size:14px;font-weight:600;color:#101828}
+body[data-v="4"] .v4viewbody .sumlist{display:flex;flex-direction:column;gap:10px}
+body[data-v="4"] .v4viewbody .sumline{display:grid;grid-template-columns:16px minmax(0,1fr);gap:8px;margin:0;
+  font-size:14px;line-height:1.4;color:#344054}
+body[data-v="4"] .v4viewbody .sumline b{color:#344054;font-weight:600}
+body[data-v="4"] .v4viewbody .sline-ic{display:block;width:16px;height:16px;margin-top:2px}
+body[data-v="4"] .v4view .emft .emcount{flex:1}
 body[data-v="4"] .v4catdlg{position:relative;width:min(560px,100%);display:flex;flex-direction:column;margin:0;background:#fff;border:1px solid #E3E8EF;
   border-radius:20px;box-shadow:0 20px 24px -4px rgba(16,24,40,.08),0 8px 8px -4px rgba(16,24,40,.03);overflow:hidden}
 body[data-v="4"] .v4catdlghd{display:flex;flex-direction:column;gap:8px;padding:24px 56px 24px 24px}
@@ -1591,6 +1624,8 @@ body[data-v="4"] .v4catact{display:inline-flex;align-items:center;gap:8px;paddin
   font-size:14px;font-weight:600;color:var(--blue)}
 body[data-v="4"] .v4catact:hover{background:var(--blue-soft)}
 body[data-v="4"] .v4catact img{display:block}
+body[data-v="4"] .v4catact .ph{flex:none;font-size:20px}
+body[data-v="4"] .v4catact[hidden]{display:none}
 /* Build with AI: the Upload page's sparkle icon and blue-to-pink gradient label */
 body[data-v="4"] .v4aibtn span{background:linear-gradient(90deg,#2970FF,#EE46BC);-webkit-background-clip:text;background-clip:text;color:transparent}
 /* ---- V4 settings page (as V1): Leave Policies (Figma 757:32731) — search, then one table grouped by category ---- */
@@ -1602,6 +1637,46 @@ body[data-v="4"] .v4catsearch img{display:block;flex:none}
 body[data-v="4"] .v4catsearch input{flex:1;min-width:0;border:0;outline:none;background:none;font-size:16px;line-height:1.4;letter-spacing:-.32px;color:#101828}
 body[data-v="4"] .v4catsearch input::placeholder{color:#98A2B3}
 body[data-v="4"] .v4polrow[hidden]{display:none}
+/* Figma 758:33294 — All Policies (200px) and Search (320px) side by side, 12px apart, 16px above the table */
+body[data-v="4"] .v4poltools{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px;margin-bottom:16px}
+body[data-v="4"] .v4polfilter{position:relative}
+body[data-v="4"] .v4polfbtn{display:flex;align-items:center;gap:8px;width:200px;max-width:100%;height:44px;padding:12px 16px;box-sizing:border-box;
+  border:1px solid #D0D5DD;border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(16,24,40,.05);cursor:pointer;
+  font:inherit;font-size:16px;font-weight:600;line-height:normal;color:#344054;text-align:left}
+body[data-v="4"] .v4polfbtn span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body[data-v="4"] .v4polfbtn img{display:block;flex:none;transition:transform .15s ease}
+body[data-v="4"] .v4polfbtn[aria-expanded="true"] img{transform:rotate(180deg)}
+body[data-v="4"] .v4polfbtn:focus-visible,body[data-v="4"] .v4polfbtn[aria-expanded="true"]{outline:none;border-color:#2970FF;box-shadow:0 0 0 4px rgba(41,112,255,.16)}
+/* its menu: the groups to show, then Add Category under a rule */
+body[data-v="4"] .v4polfmenu{position:absolute;left:0;top:calc(100% + 4px);z-index:6;min-width:100%;width:max-content;max-width:320px;padding:8px 0;
+  border:1px solid #EAECF0;border-radius:8px;background:#fff;box-shadow:0 20px 24px -4px rgba(16,24,40,.08),0 8px 8px -4px rgba(16,24,40,.03)}
+body[data-v="4"] .v4polfmenu[hidden]{display:none}
+body[data-v="4"] .v4polflist [role="option"],body[data-v="4"] .v4polfadd{display:flex;align-items:center;gap:8px;width:calc(100% - 16px);margin:2px 8px;padding:8px;
+  border:0;border-radius:8px;background:none;cursor:pointer;font:inherit;font-size:14px;font-weight:500;line-height:normal;color:#344054;text-align:left;white-space:nowrap}
+body[data-v="4"] .v4polflist [role="option"] span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+body[data-v="4"] .v4polflist [role="option"] .ph{flex:none;font-size:16px;color:#2970FF;visibility:hidden}
+body[data-v="4"] .v4polflist [role="option"][aria-selected="true"]{font-weight:600;color:#101828}
+body[data-v="4"] .v4polflist [role="option"][aria-selected="true"] .ph{visibility:visible}
+body[data-v="4"] .v4polflist [role="option"]:is(:hover,:focus-visible),body[data-v="4"] .v4polfadd:is(:hover,:focus-visible){background:#F9FAFB;outline:none}
+body[data-v="4"] .v4polfft{margin-top:6px;padding-top:6px;border-top:1px solid #EAECF0}
+body[data-v="4"] .v4polfadd{font-weight:600;color:#2970FF}
+body[data-v="4"] .v4polfadd img{display:block;flex:none}
+/* the flat table: Leave Policy, then 160px Group, 120px Type and Employees, and the 96px actions */
+body[data-v="4"] #v4-polTbl > .v4polrow{grid-template-columns:minmax(0,1fr) 160px 120px 120px 96px}
+/* a disabled policy cannot be assigned: its More Options keeps its place, with an empty slot where Assign would be */
+body[data-v="4"] #v4-polTbl .act .noassign{flex:none;width:36px}
+body[data-v="4"] #v4-polTbl > .v4polrow[data-i]{background:#fff}
+body[data-v="4"] #v4-polTbl > .v4polrow[data-i]:hover{background:#F9FAFB}
+body[data-v="4"] #v4-polTbl > .v4polempty:last-child{border-radius:0 0 11px 11px}
+/* each column header sorts by it; once one is clicked, the sorted column shows its direction */
+body[data-v="4"] #v4-polTbl > .v4polrow.hd > [aria-sort]{padding:0}
+body[data-v="4"] .v4sort{display:flex;align-items:center;gap:4px;width:100%;height:44px;padding:0 16px;border:0;background:none;cursor:pointer;
+  font:inherit;font-size:14px;font-weight:500;line-height:normal;color:#667085;text-align:left}
+body[data-v="4"] .v4sort span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body[data-v="4"] .v4sort .ph{flex:none;font-size:14px;color:#344054}
+body[data-v="4"] .v4sort:hover,body[data-v="4"] .v4sort:has(.ph){color:#344054}
+body[data-v="4"] .v4sort:focus-visible{outline:none;box-shadow:inset 0 0 0 2px rgba(41,112,255,.4)}
+@media (max-width:720px){body[data-v="4"] #v4-polTbl > .v4polrow{grid-template-columns:minmax(0,1fr) 112px 80px 96px 96px}}
 body[data-v="4"] .v4polsearch{margin-bottom:16px}
 /* a group's row: chevron, "Name (N)", then More Options */
 body[data-v="4"] .v4grp{display:flex;align-items:center;gap:4px;height:44px;padding:4px 8px;box-sizing:border-box;border-top:1px solid #EAECF0;background:#fff;cursor:pointer}
@@ -1645,6 +1720,9 @@ body[data-v="4"] .v4polrow.hd > :last-child,body[data-v="4"] .v4tenrow.hd > :las
 body[data-v="4"] .v4polrow.hd,body[data-v="4"] .v4tenrow.hd{border-top:0;border-radius:11px 11px 0 0;background:#F9FAFB;font-size:14px;font-weight:500;color:#667085}
 body[data-v="4"] .v4polrow.hd > :not(:last-child),body[data-v="4"] .v4tenrow.hd > :not(:last-child){border-right:1px solid #EAECF0}
 body[data-v="4"] .v4polrow .n,body[data-v="4"] .v4tenrow .n{font-variant-numeric:tabular-nums}
+/* Employees reads right-aligned, its header with it */
+body[data-v="4"] .v4polrow > .n{text-align:right}
+body[data-v="4"] .v4sort[data-k="emp"]{justify-content:flex-end}
 /* a policy row opens its edit screen */
 body[data-v="4"] .v4polrow[data-i]{cursor:pointer}
 body[data-v="4"] .v4polrow[data-i]:hover{background:#F9FAFB}
@@ -1676,10 +1754,10 @@ body[data-v="4"] .v4polmenu [role="menuitem"]:hover,body[data-v="4"] .v4polmenu 
 body[data-v="4"] .v4polmenu [role="menuitem"]:disabled{opacity:.45;cursor:not-allowed;background:none}
 /* Delete stays gray until hovered or focused, then turns red, its trash icon with it */
 body[data-v="4"] .v4polmenu .del{color:#344054}
-body[data-v="4"] .v4polmenu .del img.on{display:none}
+body[data-v="4"] .v4polmenu .del img.red{display:none}
 body[data-v="4"] .v4polmenu .del:not(:disabled):is(:hover,:focus-visible){background:#FEF3F2;color:var(--danger)}
 body[data-v="4"] .v4polmenu .del:not(:disabled):is(:hover,:focus-visible) img{display:none}
-body[data-v="4"] .v4polmenu .del:not(:disabled):is(:hover,:focus-visible) img.on{display:block}
+body[data-v="4"] .v4polmenu .del:not(:disabled):is(:hover,:focus-visible) img.red{display:block}
 body[data-v="4"] .v4polempty{padding:12px 16px;border-top:1px solid #EAECF0;font-size:14px;color:#667085}
 /* top nav: the Lumber logomark and logotype, at their own sizes */
 body[data-v="4"] .nav .v4logo{gap:8px}
@@ -1715,17 +1793,11 @@ body[data-v="4"] .v4setsub p{margin-top:4px;font-size:16px;line-height:1.5;color
   body[data-v="4"] .v4sethd h1{font-size:24px}
 }
 body[data-v="4"] #v4-app .v4set{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);column-gap:40px;align-items:start;padding-top:18px}
-/* the label column starts level with the first subsection's title, below its 16px header padding */
-body[data-v="4"] .v4setintro{padding-top:16px}
+/* the second section sits under a rule */
+body[data-v="4"] #v4-app .v4set + .v4set{margin-top:32px;padding-top:32px;border-top:1px solid #EAECF0}
 body[data-v="4"] .v4setintro h2{font-size:16px;font-weight:600;line-height:1.4;color:#344054}
 body[data-v="4"] .v4setintro p{margin-top:8px;font-size:15px;line-height:1.55;color:#475467}
 body[data-v="4"] .v4setmain{min-width:0}
-body[data-v="4"] .v4tenure{margin-bottom:24px}
-/* Figma 7541:127313 — subsection header (Tenure, Leave Categories): 16px above and below, title over a caption */
-body[data-v="4"] .v4subhd{display:flex;flex-direction:column;gap:4px;padding:16px 16px 16px 0}
-body[data-v="4"] .v4subhd-rule{border-top:1px solid #EAECF0}
-body[data-v="4"] .v4subhd h3{margin:0;font-size:16px;font-weight:600;line-height:1.2;letter-spacing:-.32px;color:#1D2939}
-body[data-v="4"] .v4subhd p{margin:0;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:-.24px;color:#667085}
 /* tenure: name | number of tiers | the longest service the tiers reach | actions — styled with the policies table above */
 body[data-v="4"] .v4tentbl{margin-top:0}
 body[data-v="4"] .v4tenedit{display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:6px;background:none;cursor:pointer;
@@ -1947,6 +2019,8 @@ body[data-v="5"] #v5-panels .opt .help,body[data-v="5"] #v5-panels .cbline .help
 body[data-v="5"] #v5-panels .grouphead{font-size:17px;padding:0;border-bottom:0}
 body[data-v="5"] #v5-panels .gdesc{font-size:12px;font-weight:500;line-height:1.45;color:var(--muted);margin-top:4px;max-width:none}
 body[data-v="5"] #v5-panels .fieldnote,body[data-v="5"] #v5-panels .err{font-size:13px}
+/* "Select an option." reads like the footer's "Fill all required fields." */
+body[data-v="5"] #v5-panels .row[data-q="eolOutcome"] .opts > .err{margin:0;font-size:14px;font-weight:500;line-height:20px}
 body[data-v="5"] #v5-panels .subq{font-size:14px;font-weight:500;color:var(--ink-2)}
 body[data-v="5"] #v5-panels .row[data-add]{position:relative;padding-right:60px}
 /* Figma 688:18854 — a 44px icon button, level with the row's 44px field; its name is a hover tooltip */
@@ -1956,7 +2030,9 @@ body[data-v="5"] #v5-panels .rmbtn:hover{background:var(--danger-bg);color:var(-
 body[data-v="5"] #v5-panels .rmbtn svg{display:block}
 /* every V2 tooltip bubble has 8px corners */
 body[data-v="5"] [data-tip]:hover::after,body[data-v="5"] [data-tip]:focus-visible::after{border-radius:8px}
-body[data-v="5"] #v5-panels .optline{display:inline-flex;align-items:center;gap:9px;cursor:pointer;flex:none}
+body[data-v="5"] #v5-panels .optline{display:inline-flex;align-items:center;gap:8px;cursor:pointer;flex:none}
+/* every checkbox and radio sits 8px from its label, as the toggle switches do */
+body[data-v="5"] :is(.opt,.cbline){column-gap:8px}
 body[data-v="5"] #v5-panels .optline input{margin:0;width:16px;height:16px;accent-color:var(--blue);cursor:pointer}
 body[data-v="5"] #v5-panels .optline .lbl{font-size:14px;font-weight:500;white-space:nowrap}
 body[data-v="5"] #v5-panels .lbl .hint{margin-left:6px;font-size:15px;color:var(--muted);vertical-align:-2px;cursor:help}
@@ -1978,7 +2054,8 @@ body[data-v="5"] #v5-panels .pickcombo[data-pick="reset"],
 body[data-v="5"] #v5-panels .pickcombo[data-pick="neg"],
 body[data-v="5"] #v5-panels .pickcombo[data-pick="eolReset"],
 body[data-v="5"] #v5-panels .pickcombo[data-pick="eolExp"],
-body[data-v="5"] #v5-panels .pickcombo[data-pick="eolNeg"]{width:240px}
+body[data-v="5"] #v5-panels .pickcombo[data-pick="eolNeg"],
+body[data-v="5"] #v5-panels .pickcombo[data-pick="termAccrual"]{width:240px}
 body[data-v="5"] #v5-panels .mdcombo{display:inline-block;width:168px;max-width:100%}
 body[data-v="5"] #v5-panels .mdmenu{min-width:0;left:0;right:auto;width:252px;padding:10px}
 body[data-v="5"] #v5-panels .mdhead{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:2px 2px 8px}
@@ -2079,9 +2156,10 @@ body[data-v="5"] .prtrack{left:0;right:0;border:1px solid #EAECF0;background:#F9
 body[data-v="5"] .prdots{left:0;right:0;display:flex;justify-content:space-between;padding:0 4px}
 body[data-v="5"] .prdots img{display:block;flex:none}
 body[data-v="5"] .prfill{right:0;background:#2970FF}
-body[data-v="5"] .prhandle{position:absolute;top:0;width:32px;height:32px;padding:0;border:2px solid #2970FF;border-radius:99px;background:#fff;cursor:grab;z-index:1}
+body[data-v="5"] .prhandle{position:absolute;top:0;width:32px;height:32px;padding:0;border:2px solid #2970FF;border-radius:99px;background:#fff;cursor:grab;z-index:1;
+  box-shadow:0 2px 4px rgba(16,24,40,.16),0 1px 2px rgba(16,24,40,.08)}
 body[data-v="5"] .prhandle:active{cursor:grabbing}
-body[data-v="5"] .prhandle:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(41,112,255,.24)}
+body[data-v="5"] .prhandle:focus-visible{outline:none;box-shadow:0 2px 4px rgba(16,24,40,.16),0 1px 2px rgba(16,24,40,.08),0 0 0 4px rgba(41,112,255,.24)}
 body[data-v="5"] .prmonths{display:flex;justify-content:space-between;font-size:12px;line-height:1.4;letter-spacing:.12px;color:#667085;text-align:center}
 /* 32px each, as in the design, narrowing together when the card is narrower than 558px */
 body[data-v="5"] .prmonths span{flex:0 1 32px;min-width:0}
@@ -2221,7 +2299,7 @@ body[data-v="5"] #v5-sumrail .sumcard{padding:1px;border:0;border-radius:8px;box
 body[data-v="5"] #v5-sumrail .sumhd{background:none;padding:12px 16px;border-bottom:0}
 body[data-v="5"] #v5-sumrail .sumhd h3{font-size:12px;font-weight:600;line-height:1.35;letter-spacing:.48px;color:#344054}
 /* caution under the summary (Figma 725:22935): what editing a policy later does */
-body[data-v="5"] .v5caution{display:flex;flex-direction:column;gap:8px;margin-top:12px;padding:16px;border:1px solid #FEDF89;border-radius:8px;
+body[data-v="5"] .v5caution{display:flex;flex-direction:column;gap:12px;margin-top:12px;padding:16px;border:1px solid #FEDF89;border-radius:8px;
   background:#FFFAEB;color:#344054}
 body[data-v="5"] .v5cautionhd{display:flex;align-items:flex-start;gap:8px}
 body[data-v="5"] .v5cautionhd img{flex:none;display:block;margin-top:2px}
@@ -2300,11 +2378,13 @@ body[data-v="5"] #v5-panels > [role="tabpanel"]{gap:12px}
 body[data-v="5"] #v5-panels .card{border-radius:16px;padding:32px;scroll-margin-top:24px}
 body[data-v="5"] #v5-panels .card[data-sec]{counter-increment:v5sec}
 body[data-v="5"] #v5-panels .grouphead{font-size:20px;line-height:1.2;color:#101828}
-/* a divider above each section's Add Additional Settings button */
-body[data-v="5"] #v5-panels .card > .addwrap{padding-top:24px;border-top:1px solid #EAECF0}
+/* a divider above each section's Add Additional Settings button, 16px above it */
+body[data-v="5"] #v5-panels .card > .addwrap{padding-top:16px;border-top:1px solid #EAECF0}
+/* the last section sits at the foot of the page, so its Add Additional Settings menu opens upward */
+body[data-v="5"] #v5-panels .card[data-sec="requests"] > .addwrap .addmenu{top:auto;bottom:calc(100% + 2px)}
 @media (max-width:560px){body[data-v="5"] #v5-panels .card{padding:20px}}
 /* tier tabs, when the policy has tenure: V1's chips, one per tier, under Policy Details */
-body[data-v="5"] .v5center > .tabs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:8px 0;border:0;background:none;overflow:visible}
+body[data-v="5"] .v5center > .tabs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:8px;border:0;background:none;overflow:visible}
 body[data-v="5"] .v5center > .tabs .tierslabel{font-size:14px;font-weight:600;color:#344054;white-space:nowrap;margin-right:4px}
 body[data-v="5"] .v5center > .tabs .tab{display:inline-flex;align-items:center;height:36px;padding:0 14px;border:1px solid #D0D5DD;border-radius:99px;
   background:#fff;font-size:14px;font-weight:500;letter-spacing:0;text-transform:none;color:#344054}
@@ -2444,6 +2524,153 @@ body[data-v="5"] .v5add .ph{font-size:20px}
 }
 body.no-tiers4 #v4-drawer .tabs{display:none}
 
+/* ---- V1 Upload (Build with AI): V2's upload page, reviewing each policy in V1's New Leave Policy drawer ---- */
+body:not([data-v="4"]) #v4-upload,body:not([data-v="4"]) #v4-upLeaveScrim{display:none!important}
+body[data-v="4"] .v4bar{flex:none;display:flex;align-items:center;gap:16px;min-height:75px;padding:16px 32px;background:var(--card);border-bottom:1px solid #EAECF0}
+body[data-v="4"] .v4exit{display:inline-flex;align-items:center;gap:8px;padding:0;border:0;background:none;cursor:pointer;
+  font-size:16px;font-weight:500;color:#344054}
+body[data-v="4"] .v4exit:hover{color:#101828}
+body[data-v="4"] .v4rule{flex:none;width:1px;height:28px;background:#EAECF0}
+body[data-v="4"] .v4bar h1{font-size:20px;font-weight:600;line-height:1.2;color:#101828;white-space:nowrap}
+body[data-v="4"] .v4main{flex:1;min-height:0;display:flex}
+body[data-v="4"] .v4bar .msg{flex:1;min-width:0;text-align:right;font-size:14px;color:var(--muted)}
+body[data-v="4"] .v4bar .msg.bad{color:var(--danger)}
+body[data-v="4"] .v4bar .msg.good{color:var(--green)}
+body[data-v="4"] .v4bar .btn{height:43px;padding:0 18px;border-radius:8px;font-size:16px;font-weight:600}
+body[data-v="4"] .v4bar .btn:not(.primary){border-color:#D0D5DD;color:#344054}
+body[data-v="4"] .v4create{background:#2970FF;border-color:#2970FF}
+body[data-v="4"] .v4create:hover{background:#155EEF;border-color:#155EEF}
+/* the page fills the window, as the editor does, and sits above it */
+body[data-v="4"] #v4-upload.drawer{left:0;z-index:22;width:auto;max-width:none;transform:none;transition:none;box-shadow:none;background:#F2F4F7}
+body[data-v="4"] .v4upbody{flex:1;min-width:0;display:grid;grid-template-columns:360px minmax(0,1fr)}
+/* left, in place of the editor's section steps: every policy found, pre-filled; the one under review on blue */
+body[data-v="4"] .v4uplist{min-height:0;overflow:auto;padding:24px 16px;background:#fff;border-right:1px solid #EAECF0}
+body[data-v="4"] .v4uplisthd{display:flex;align-items:center;gap:8px;padding:0 8px 12px}
+body[data-v="4"] .v4uplisthd h2{font-size:16px;font-weight:600;color:#101828}
+/* Figma 277:10227 — the empty sidebar: illustration, then title and caption, centred */
+body[data-v="4"] .v4upnone{display:flex;flex-direction:column;align-items:center;gap:32px;padding:120px 0 16px;text-align:center}
+body[data-v="4"] .v4upill{position:relative;flex:none;width:220px;height:160px}
+body[data-v="4"] .v4upill img{display:block;position:absolute;max-width:none}
+body[data-v="4"] .v4upill .bgc{left:30px;top:0}
+body[data-v="4"] .v4upill .c1{left:18px;top:12px}
+body[data-v="4"] .v4upill .c2{left:192px;top:120px}
+body[data-v="4"] .v4upill .c3{left:15px;top:128px}
+body[data-v="4"] .v4upill .c4{left:200px;top:28px}
+body[data-v="4"] .v4upill .c5{left:184px;top:4px}
+body[data-v="4"] .v4upill .papers{position:absolute;left:11.44px;top:12px;width:196.56px;height:114.437px}
+body[data-v="4"] .v4upill .tilt{position:absolute;top:0;width:101.857px;height:114.406px;display:flex;align-items:center;justify-content:center}
+body[data-v="4"] .v4upill .tl{left:0;top:.03px}
+body[data-v="4"] .v4upill .tr{left:94.7px}
+body[data-v="4"] .v4upill .tl > .paper{transform:rotate(-25deg)}
+body[data-v="4"] .v4upill .tr > .paper{transform:rotate(25deg)}
+body[data-v="4"] .v4upill .paper{position:relative;flex:none;width:68.396px;height:94.339px}
+body[data-v="4"] .v4upill .paper.pm{position:absolute;left:64.45px;top:0}
+body[data-v="4"] .v4upill .paper img{left:-20px;top:0;width:108.396px;height:134.34px}
+body[data-v="4"] .v4upill .fi{position:absolute;left:82px;top:88px;width:56px;height:56px;border-radius:36px;background:#fff;backdrop-filter:blur(4px)}
+body[data-v="4"] .v4upill .fi img{left:14px;top:14px}
+body[data-v="4"] .v4upnonetx{display:flex;flex-direction:column;align-items:center;gap:8px}
+body[data-v="4"] .v4upnonetx h3{font-size:20px;font-weight:600;line-height:normal;color:#101828}
+body[data-v="4"] .v4upnonetx p{max-width:280px;font-size:14px;font-weight:500;line-height:1.4;letter-spacing:-.28px;color:#7D89B0}
+body[data-v="4"] .v4upitems{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+/* every policy is a card of its own; the one under review is outlined in blue */
+body[data-v="4"] .v4upitem{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;padding:16px;border:1px solid #EAECF0;border-radius:12px;
+  background:#fff;box-shadow:0 1px 2px rgba(16,24,40,.05);cursor:pointer;text-align:left}
+body[data-v="4"] .v4upitem:hover{border-color:#D0D5DD;background:#F9FAFB}
+body[data-v="4"] .v4upsel{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;padding:0;border:0;background:none;cursor:pointer;text-align:left}
+body[data-v="4"] .v4upfoot{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;margin-top:4px}
+body[data-v="4"] .v4updrop{padding:4px 8px;margin-right:-8px;border:0;border-radius:6px;background:none;cursor:pointer;font-size:12px;font-weight:600;color:#475467}
+body[data-v="4"] .v4updrop:hover{background:#FEF3F2;color:var(--danger)}
+body[data-v="4"] .v4upitem[aria-current="true"]{background:var(--blue-soft);border-color:#2970FF}
+/* after Create is tried: a policy with anything missing is outlined in red, on screen or not */
+body[data-v="4"] .v4upitem.bad,body[data-v="4"] .v4upitem.bad:hover{border-color:#F97066}
+body[data-v="4"] .v4upitem.bad[aria-current="true"]{border-color:#F04438;box-shadow:0 0 0 1px #F04438}
+body[data-v="4"] .v4upitem b{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:600;color:#101828}
+/* the Policy summary's lines, as the editor's summary card shows them: a check, then the line */
+body[data-v="4"] .v4upitem .sum{display:flex;flex-direction:column;gap:6px;margin:4px 0;text-align:left}
+body[data-v="4"] .v4upitem .sum .sumline{display:grid;grid-template-columns:16px minmax(0,1fr);gap:8px;margin:0;
+  font-size:13px;font-weight:400;line-height:1.4;letter-spacing:.1px;color:#344054}
+body[data-v="4"] .v4upitem .sum .sumline b{display:inline;max-width:none;overflow:visible;white-space:normal;font-size:inherit;font-weight:600;color:#344054}
+body[data-v="4"] .v4upitem .sum .sline-ic{display:block;width:16px;height:16px;margin-top:1px}
+/* the policy under review reads its summary in the editor's own rail, so the cards keep to name, category and status */
+body[data-v="4"] .v4upitem .sum{display:none}
+body[data-v="4"] .v4upitem .sub{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:#667085}
+body[data-v="4"] .v4uppill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:500;line-height:18px}
+body[data-v="4"] .v4uppill.todo{background:#FEF3F2;color:#B42318}
+body[data-v="4"] .v4uppill.ready{background:#F2F4F7;color:#344054}
+body[data-v="4"] .v4uppill.done{background:#ECFDF3;color:#067647}
+/* right: the document, then the policy editor */
+body[data-v="4"] .v4upcenter{position:relative;min-height:0;overflow:auto;display:flex;flex-direction:column;padding:12px 24px 24px;background:#fff}
+/* Figma 277:10153 — before a document is added: what it should cover, then a grey drop zone filling the rest */
+body[data-v="4"] .v4updocs{flex:1;display:flex;flex-direction:column;gap:16px}
+body[data-v="4"] .v4upintro{display:flex;flex-direction:column;gap:8px;padding:12px 8px}
+body[data-v="4"] .v4upintrot{font-size:14px;font-weight:600;line-height:1.4;letter-spacing:-.28px;color:#101828}
+body[data-v="4"] .v4upreq{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+body[data-v="4"] .v4upreq .cap{font-size:14px;font-weight:500;line-height:1.4;letter-spacing:-.28px;color:#7D89B0}
+body[data-v="4"] .v4upbadge{padding:2px 8px;border:1px solid #EAECF0;border-radius:16px;background:#F9FAFB;font-size:12px;font-weight:500;color:#344054}
+body[data-v="4"] .v4drop{flex:1;min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px 24px;
+  border:1px dashed #D0D5DD;border-radius:12px;background:#F9FAFB;cursor:pointer;text-align:center}
+body[data-v="4"] .v4drop:hover,body[data-v="4"] .v4drop.over{border-color:#2970FF;background:var(--blue-soft)}
+body[data-v="4"] .v4drop:focus-within{border-color:#2970FF;box-shadow:0 0 0 4px rgba(41,112,255,.16)}
+body[data-v="4"] .v4dropic{display:grid;place-items:center;width:40px;height:40px;border:1px solid #EAECF0;border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+body[data-v="4"] .v4dropic img{display:block}
+body[data-v="4"] .v4dropbig{display:flex;flex-direction:column;align-items:center;gap:4px;letter-spacing:-.28px}
+body[data-v="4"] .v4dropbig .t{margin-bottom:8px;font-size:18px;font-weight:700;letter-spacing:0;color:#000}
+body[data-v="4"] .v4dropbig .d{font-size:16px;font-weight:600;line-height:1.2;letter-spacing:-.32px;color:#30374F}
+body[data-v="4"] .v4dropbig .f,body[data-v="4"] .v4dropbig .o{font-size:14px;font-weight:500;line-height:1.4;color:#475467}
+body[data-v="4"] .v4dropbig u{text-underline-offset:2px}
+body[data-v="4"] .v4uperr{padding:0 8px;font-size:14px;color:var(--danger)}
+/* the one document: a card with its status and Remove; while it is read it sits alone at the top */
+/* Figma 277:10211 — the document card: type icon, name over size, then Upload and the bin; read, it offers Replace */
+body[data-v="4"] .v4file{display:flex;align-items:center;gap:12px;padding:16px;border:1px solid #EAECF0;border-radius:8px;background:#fff}
+body[data-v="4"] .v4upcenter.ready > .v4file{flex:none;margin:0 8px}
+body[data-v="4"] .v4ftype{position:relative;flex:none;width:32px;height:32px}
+body[data-v="4"] .v4ftype img{position:absolute;left:3.2px;top:0;display:block}
+body[data-v="4"] .v4ftype b{position:absolute;left:3.2px;right:3.2px;top:18.4px;font-size:9px;font-weight:700;line-height:normal;text-align:center;color:#fff}
+body[data-v="4"] .v4finfo{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+body[data-v="4"] .v4finfo b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:500;line-height:normal;color:#344054}
+body[data-v="4"] .v4file .st{font-size:14px;line-height:normal;color:#475467}
+body[data-v="4"] .v4file.ok .st{color:#067647}
+body[data-v="4"] .v4upgo{flex:none;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid #2970FF;border-radius:8px;background:#F5F8FF;
+  box-shadow:0 1px 2px rgba(16,24,40,.05);cursor:pointer}
+body[data-v="4"] .v4upgo:hover{background:#EEF4FF}
+body[data-v="4"] .v4upgo img{display:block}
+body[data-v="4"] .v4upgo span{font-size:16px;font-weight:600;line-height:normal;background:linear-gradient(90deg,#2970FF,#EE46BC);-webkit-background-clip:text;background-clip:text;color:transparent}
+body[data-v="4"] .v4uptrash{flex:none;display:grid;place-items:center;padding:4px;margin:-4px;border:0;border-radius:6px;background:none;cursor:pointer}
+body[data-v="4"] .v4uptrash:hover{background:#F2F4F7}
+body[data-v="4"] .v4uptrash img{display:block}
+/* each stage shows only its own actions: Upload and the bin before reading, nothing while reading, Replace once read */
+body[data-v="4"] .v4file:not([data-stage="ready"]) .v4upgo,body[data-v="4"] .v4file:not([data-stage="ready"]) .v4uptrash,
+body[data-v="4"] .v4file:not([data-stage="done"]) .v4fileremove{display:none}
+body[data-v="4"] .v4upcenter.ready .v4updocs{flex:none}
+body[data-v="4"] .v4bar2{height:4px;margin-top:6px;border-radius:2px;background:#EAECF0;overflow:hidden}
+body[data-v="4"] .v4bar2 i{display:block;height:100%;width:0;background:#2970FF;transition:width 1.1s ease}
+body[data-v="4"] .v4file .v4fileremove{flex:none;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid #D0D5DD;border-radius:8px;background:#fff;
+  cursor:pointer;font-size:14px;font-weight:600;color:#344054}
+body[data-v="4"] .v4file .v4fileremove:hover{background:#F9FAFB}
+body[data-v="4"] .v4upcenter.review{padding:0;overflow:hidden;background:#F2F4F7}
+/* while reviewing, the document card is a bar across the top of the form side, edge to edge; the sidebar keeps its own top */
+body[data-v="4"] .v4upcenter.review > .v4file{flex:none;padding:16px 32px;border:0;border-bottom:1px solid #EAECF0;border-radius:0}
+body[data-v="4"] .v4upcenter.review > #v4-upReview{position:relative;flex:1;min-height:0}
+/* review: V1's New Leave Policy drawer fills the right side as it is; only its close button and footer step aside,
+   as the page's header holds Exit and Create */
+body[data-v="4"] #v4-upload #v4-drawer.drawer{position:absolute;inset:0;z-index:auto;width:auto;max-width:none;transform:none;transition:none;box-shadow:none}
+body[data-v="4"] #v4-upload #v4-drawer .dclose,body[data-v="4"] #v4-upload #v4-drawer .dfoot{display:none}
+/* a setting the document left unsaid: an error under its answers, as the editor's own errors read, until it is answered */
+body[data-v="4"] #v4-panels .v4missnote{margin-top:8px;font-size:13px;font-weight:500;color:var(--danger)}
+body[data-v="4"] .v4danger{background:#D92D20;border-color:#D92D20}
+body[data-v="4"] .v4danger:hover{background:#B42318;border-color:#B42318}
+body[data-v="4"] .v4upleave{width:min(480px,100%)}
+body[data-v="4"] .v4upleave p{padding:0 24px 20px;font-size:14px;color:#475467}
+@media (max-width:960px){
+  body[data-v="4"] .v4upcenter.review > .v4file{padding:12px 16px}
+}
+@media (max-width:900px){
+  body[data-v="4"] .v4upbody{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+  body[data-v="4"] .v4uplist{max-height:220px;border-right:0;border-bottom:1px solid #EAECF0}
+  body[data-v="4"] .v4upcenter{padding:12px 16px 16px}
+}
+@media (max-width:560px){body[data-v="4"] .v4file{flex-wrap:wrap}}
+
 /* ---- V5 Upload: policies read from documents, reviewed and created one by one on a full page ---- */
 body:not([data-v="5"]) #v5-upload,body:not([data-v="5"]) #v5-upLeaveScrim,body:not([data-v="5"]) #v5-viewScrim{display:none!important}
 /* under the Leave Category list: Add Category and Upload, as blue text buttons */
@@ -2479,9 +2706,9 @@ body[data-v="5"] .v5catact img{display:block}
 body[data-v="5"] .v5aibtn span{background:linear-gradient(90deg,#2970FF,#EE46BC);-webkit-background-clip:text;background-clip:text;color:transparent}
 /* the page fills the window, as the editor does, and sits above it */
 body[data-v="5"] #v5-upload.drawer{left:0;z-index:22;width:auto;max-width:none;transform:none;transition:none;box-shadow:none;background:#F2F4F7}
-body[data-v="5"] .v5upbody{flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) 400px}
-/* right: every policy found, pre-filled; the one under review on blue */
-body[data-v="5"] .v5uplist{order:2;min-height:0;overflow:auto;padding:24px 16px;background:#fff;border-left:1px solid #EAECF0}
+body[data-v="5"] .v5upbody{flex:1;min-width:0;display:grid;grid-template-columns:360px minmax(0,1fr)}
+/* left, in place of the editor's section steps: every policy found, pre-filled; the one under review on blue */
+body[data-v="5"] .v5uplist{min-height:0;overflow:auto;padding:24px 16px;background:#fff;border-right:1px solid #EAECF0}
 body[data-v="5"] .v5uplisthd{display:flex;align-items:center;gap:8px;padding:0 8px 12px}
 body[data-v="5"] .v5uplisthd h2{font-size:16px;font-weight:600;color:#101828}
 /* Figma 277:10227 — the empty sidebar: illustration, then title and caption, centred */
@@ -2528,12 +2755,14 @@ body[data-v="5"] .v5upitem .sum .sumline{display:grid;grid-template-columns:16px
   font-size:13px;font-weight:400;line-height:1.4;letter-spacing:.1px;color:#344054}
 body[data-v="5"] .v5upitem .sum .sumline b{display:inline;max-width:none;overflow:visible;white-space:normal;font-size:inherit;font-weight:600;color:#344054}
 body[data-v="5"] .v5upitem .sum .sline-ic{display:block;width:16px;height:16px;margin-top:1px}
+/* the policy under review reads its summary in the editor's own rail, so the cards keep to name, category and status */
+body[data-v="5"] .v5upitem .sum{display:none}
 body[data-v="5"] .v5upitem .sub{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:#667085}
 body[data-v="5"] .v5uppill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:500;line-height:18px}
 body[data-v="5"] .v5uppill.todo{background:#FEF3F2;color:#B42318}
 body[data-v="5"] .v5uppill.ready{background:#F2F4F7;color:#344054}
 body[data-v="5"] .v5uppill.done{background:#ECFDF3;color:#067647}
-/* left: the document, then the policy editor */
+/* right: the document, then the policy editor */
 body[data-v="5"] .v5upcenter{position:relative;min-height:0;overflow:auto;display:flex;flex-direction:column;padding:12px 24px 24px;background:#fff}
 /* Figma 277:10153 — before a document is added: what it should cover, then a grey drop zone filling the rest */
 body[data-v="5"] .v5updocs{flex:1;display:flex;flex-direction:column;gap:16px}
@@ -2582,14 +2811,16 @@ body[data-v="5"] .v5bar2 i{display:block;height:100%;width:0;background:#2970FF;
 body[data-v="5"] .v5file .v5fileremove{flex:none;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid #D0D5DD;border-radius:8px;background:#fff;
   cursor:pointer;font-size:14px;font-weight:600;color:#344054}
 body[data-v="5"] .v5file .v5fileremove:hover{background:#F9FAFB}
-/* review: the New Leave Policy editor fills the left side; its own header and summary rail step aside */
+/* review: the New Leave Policy screen fills the right side; only its header and section steps step aside,
+   so its Policy summary and caution sit beside the cards as they do when a policy is added by hand */
 body[data-v="5"] .v5upcenter.review{padding:0;overflow:hidden;background:#F2F4F7}
 /* while reviewing, the document card is a bar across the top of the form side, edge to edge; the sidebar keeps its own top */
 body[data-v="5"] .v5upcenter.review > .v5file{flex:none;padding:16px 32px;border:0;border-bottom:1px solid #EAECF0;border-radius:0}
 body[data-v="5"] .v5upcenter.review > #v5-upReview{position:relative;flex:1;min-height:0}
 body[data-v="5"] #v5-upload #v5-drawer.drawer{position:absolute;inset:0;z-index:auto;width:auto;max-width:none;transform:none;transition:none;box-shadow:none}
-body[data-v="5"] #v5-upload #v5-drawer .v5bar,body[data-v="5"] #v5-upload #v5-drawer #v5-sumrail{display:none}
-body[data-v="5"] #v5-upload #v5-drawer .dbody{grid-template-columns:200px minmax(0,900px)}
+body[data-v="5"] #v5-upload #v5-drawer .v5bar,body[data-v="5"] #v5-upload #v5-drawer .v5steps{display:none}
+body[data-v="5"] #v5-upload #v5-drawer .dbody{grid-template-columns:minmax(0,900px) 320px}
+body[data-v="5"] #v5-upload #v5-drawer .dbody > #v5-sumrail{grid-column:2;max-height:calc(100vh - 160px)}
 /* a setting the document left unsaid: an error under its answers, as the editor's own errors read, until it is answered */
 body[data-v="5"] #v5-panels .v5missnote{margin-top:8px;font-size:13px;font-weight:500;color:var(--danger)}
 body[data-v="5"] .v5inp.bad{border-color:var(--danger)}
@@ -2612,11 +2843,12 @@ body[data-v="5"] .v5view .emft .emcount{flex:1}
 body[data-v="5"] .v5upleave p{padding:0 24px 20px;font-size:14px;color:#475467}
 @media (max-width:960px){
   body[data-v="5"] #v5-upload #v5-drawer .dbody{grid-template-columns:minmax(0,1fr)}
+  body[data-v="5"] #v5-upload #v5-drawer .dbody > #v5-sumrail{grid-column:1}
   body[data-v="5"] .v5upcenter.review > .v5file{padding:12px 16px}
 }
 @media (max-width:900px){
   body[data-v="5"] .v5upbody{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
-  body[data-v="5"] .v5uplist{order:0;max-height:220px;border-left:0;border-bottom:1px solid #EAECF0}
+  body[data-v="5"] .v5uplist{max-height:220px;border-right:0;border-bottom:1px solid #EAECF0}
   body[data-v="5"] .v5upcenter{padding:12px 16px 16px}
 }
 @media (max-width:560px){body[data-v="5"] .v5file{flex-wrap:wrap}}
@@ -2673,6 +2905,8 @@ body[data-v="5"] .v5polrow.hd > :last-child,body[data-v="5"] .v5tenrow.hd > :las
 body[data-v="5"] .v5polrow.hd,body[data-v="5"] .v5tenrow.hd{border-top:0;border-radius:11px 11px 0 0;background:#F9FAFB;font-size:14px;font-weight:500;color:#667085}
 body[data-v="5"] .v5polrow.hd > :not(:last-child),body[data-v="5"] .v5tenrow.hd > :not(:last-child){border-right:1px solid #EAECF0}
 body[data-v="5"] .v5polrow .n,body[data-v="5"] .v5tenrow .n{font-variant-numeric:tabular-nums}
+/* Employees reads right-aligned, its header (the third) with it */
+body[data-v="5"] .v5polrow > .n,body[data-v="5"] .v5polrow.hd > :nth-child(3){text-align:right}
 /* a policy row opens its edit screen */
 body[data-v="5"] .v5polrow[data-i]{cursor:pointer}
 body[data-v="5"] .v5polrow[data-i]:hover{background:#F9FAFB}
@@ -2743,17 +2977,11 @@ body[data-v="5"] .v5setsub p{margin-top:4px;font-size:16px;line-height:1.5;color
   body[data-v="5"] .v5sethd h1{font-size:24px}
 }
 body[data-v="5"] #v5-app .v5set{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);column-gap:40px;align-items:start;padding-top:18px}
-/* the label column starts level with the first subsection's title, below its 16px header padding */
-body[data-v="5"] .v5setintro{padding-top:16px}
+/* the second section sits under a rule */
+body[data-v="5"] #v5-app .v5set + .v5set{margin-top:32px;padding-top:32px;border-top:1px solid #EAECF0}
 body[data-v="5"] .v5setintro h2{font-size:16px;font-weight:600;line-height:1.4;color:#344054}
 body[data-v="5"] .v5setintro p{margin-top:8px;font-size:15px;line-height:1.55;color:#475467}
 body[data-v="5"] .v5setmain{min-width:0}
-body[data-v="5"] .v5tenure{margin-bottom:24px}
-/* Figma 7541:127313 — subsection header (Tenure, Leave Categories): 16px above and below, title over a caption */
-body[data-v="5"] .v5subhd{display:flex;flex-direction:column;gap:4px;padding:16px 16px 16px 0}
-body[data-v="5"] .v5subhd-rule{border-top:1px solid #EAECF0}
-body[data-v="5"] .v5subhd h3{margin:0;font-size:16px;font-weight:600;line-height:1.2;letter-spacing:-.32px;color:#1D2939}
-body[data-v="5"] .v5subhd p{margin:0;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:-.24px;color:#667085}
 /* tenure: name | number of tiers | the longest service the tiers reach | actions — styled with the policies table above */
 body[data-v="5"] .v5tentbl{margin-top:0}
 body[data-v="5"] .v5tenedit{display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:6px;background:none;cursor:pointer;
@@ -2828,9 +3056,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 </div>
 
 <div class="vswitch" role="group" aria-label="Prototype version">
-  <!-- the label is the version's name; data-v is its internal key (V1 is keyed 5, V2 is keyed 4, V3 is keyed 2, V4 is keyed 1) -->
-  <button type="button" data-v="5" aria-pressed="true">V1 · Full-page editor</button>
-  <button type="button" data-v="4" aria-pressed="false">V2 · Lumber light, tier tabs</button>
+  <!-- the label is the version's name; data-v is its internal key (V1 is keyed 4, V2 is keyed 5, V3 is keyed 2, V4 is keyed 1) -->
+  <button type="button" data-v="4" aria-pressed="true">V1 • Sidedrawer</button>
+  <button type="button" data-v="5" aria-pressed="false">V2 · Full-page editor</button>
   <button type="button" data-v="2" aria-pressed="false">V3 · Lumber light copy</button>
   <button type="button" data-v="1" aria-pressed="false">V4 · Lumber light</button>
   <button type="button" class="vtrigger" aria-expanded="false"></button>
@@ -3148,42 +3376,50 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         <h2>Time Off</h2>
         <p>Manage and control time off settings for your organization</p>
       </div>
-      <!-- Time Off Policies: a label column on the left, its sections (Tenure, then Leave Category) on the right -->
-      <div class="v4set">
+      <!-- Time Off: two sections, each a label column on the left and its content on the right -->
+      <section class="v4set" aria-labelledby="v4-tenureHd">
         <div class="v4setintro">
-          <h2>Time Off Policies</h2>
-          <p>Create customizable configurations for vacation and sick leave and how they are accrued.</p>
-        </div>
-        <div class="v4setmain">
-        <section class="v4tenure" aria-labelledby="v4-tenureHd">
-          <!-- Figma 7541:127313 — subsection header: title over caption -->
-          <div class="v4subhd">
-          <h3 id="v4-tenureHd">Tenure</h3>
+          <h2 id="v4-tenureHd">Tenure</h2>
           <p>Multiple earning rates for tenure allow you to set different accrual rates for PTO based on the employee's length of service, with the ability to define specific tenure brackets.</p>
-          </div>
+        </div>
+        <div class="v4setmain v4tenure">
           <div class="v4tentbl" role="table" aria-labelledby="v4-tenureHd">
             <div class="v4tenrow hd" role="row"><span role="columnheader">Tenure Configurations</span><span role="columnheader">Tiers</span><span role="columnheader">Maximum Tenure</span><span role="columnheader"><span class="sr">Actions</span></span></div>
             <div class="v4tenrow" role="row"><span role="cell">Union – WATG Config</span><span role="cell" class="n">3</span><span role="cell" class="n">60 months</span><span role="cell"><button type="button" class="v4tenedit" aria-label="Edit Union – WATG Config"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></span></div>
             <div class="v4tenrow" role="row"><span role="cell">Union – UGS – Config</span><span role="cell" class="n">3</span><span role="cell" class="n">96 months</span><span role="cell"><button type="button" class="v4tenedit" aria-label="Edit Union – UGS – Config"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></span></div>
           </div>
           <button type="button" class="v4catact" id="v4-addTenureBtn"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Tenure Configuration</button>
-        </section>
+        </div>
+      </section>
 
-        <!-- Figma 757:32731 — one table of every leave policy, grouped by category, then No Group and Disabled -->
-        <div class="v4subhd v4subhd-rule">
-          <h3 id="v4-polHd">Leave Policies</h3>
+      <!-- Figma 758:33294 — one flat table of every leave policy with its Group; the All Policies dropdown filters it by group
+           and holds Add Category -->
+      <section class="v4set" aria-labelledby="v4-polHd">
+        <div class="v4setintro">
+          <h2 id="v4-polHd">Leave Policies</h2>
           <p>Create categories to group similar leave policies for easier management.</p>
         </div>
-        <label class="v4catsearch v4polsearch"><img src="assets/search-md-20.svg" width="20" height="20" alt=""><input type="search" id="v4-catSearch" placeholder="Search" aria-label="Search leave categories and policies" autocomplete="off"></label>
-        <div class="v4poltbl v4grptbl" id="v4-polTbl" role="table" aria-labelledby="v4-polHd"></div>
+        <div class="v4setmain">
+        <div class="v4poltools">
+          <div class="v4polfilter">
+            <button type="button" class="v4polfbtn" id="v4-polFilter" aria-haspopup="listbox" aria-expanded="false" aria-controls="v4-polFilterMenu"><span>All Policies</span><img src="assets/chevron-down-20.svg" width="20" height="20" alt=""></button>
+            <div class="v4polfmenu" id="v4-polFilterMenu" hidden>
+              <div class="v4polflist" role="listbox" aria-label="Show policies"></div>
+              <div class="v4polfft"><button type="button" class="v4polfadd" id="v4-addCatBtn"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Category</button></div>
+            </div>
+          </div>
+          <label class="v4catsearch"><img src="assets/search-md-20.svg" width="20" height="20" alt=""><input type="search" id="v4-catSearch" placeholder="Search" aria-label="Search leave policies" autocomplete="off"></label>
+        </div>
+        <div class="v4poltbl" id="v4-polTbl" role="table" aria-labelledby="v4-polHd"></div>
         <!-- under the table: a new policy, or Upload policy documents to open them, pre-filled, for review -->
         <div class="v4catacts">
           <button type="button" class="v4catact" id="v4-addPolBtn"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Leave Policy</button>
-          <button type="button" class="v4catact" id="v4-addCatBtn"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Category</button>
+          <!-- shown while All Policies is set to a category -->
+          <button type="button" class="v4catact" id="v4-renameCatBtn" hidden><i class="ph ph-pencil-simple" aria-hidden="true"></i>Rename Category</button>
           <button type="button" class="v4catact v4aibtn" id="v4-uploadBtn"><img src="assets/stars-02-gradient-16.svg" width="20" height="20" alt=""><span>Build with AI</span></button>
         </div>
         </div>
-      </div>
+      </section>
       </main>
     </div>
   </div>
@@ -3208,6 +3444,21 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     </div>
     <button type="button" class="v4catdlgx" id="v4-catX" aria-label="Close"><img src="assets/x-close-gray-24.svg" width="24" height="24" alt=""></button>
   </form>
+</div>
+
+<!-- a leave policy's summary: opened from its row in Settings; Assign as the row's Assign Employees does, Edit opens the policy editor -->
+<div class="empmodal-scrim" id="v4-viewScrim" hidden>
+  <div class="empmodal v4view" role="dialog" aria-modal="true" aria-labelledby="v4-viewTitle" aria-describedby="v4-viewSub">
+    <div class="emhd">
+      <div><h2 id="v4-viewTitle"></h2><p id="v4-viewSub"></p></div>
+      <button type="button" class="emx" id="v4-viewX" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
+    </div>
+    <div class="v4viewbody">
+      <h3>Policy summary</h3>
+      <div class="sumlist" id="v4-viewBody"></div>
+    </div>
+    <div class="emft"><span class="emcount"></span><button type="button" class="btn" id="v4-viewEdit">Edit</button><button type="button" class="btn primary" id="v4-viewAssign">Assign</button></div>
+  </div>
 </div>
 
 <!-- ===================== V1 — copy of V2 with tier tabs: modal drawer ===================== -->
@@ -3236,16 +3487,21 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   </div>
   <!-- the policy's name as a title, then the drawer's two sections -->
   <div class="dmeta">
-    <input class="dmname" type="text" id="v4-policyName" value="Sick Leave - Hourly" aria-label="Leave policy name" placeholder="Untitled policy">
+    <input class="dmname" type="text" id="v4-policyName" value="Sick Leave - Hourly" aria-label="Leave policy name" placeholder="Untitled policy" aria-describedby="v4-nameErr">
+    <p class="err" id="v4-nameErr" hidden>Enter a policy name.</p>
+    <div class="v4tabrow">
     <div class="dmtabs" role="tablist" aria-label="Policy sections">
       <button type="button" role="tab" class="dmtab" id="v4-secSettings" data-sec="settings" aria-selected="true">Policy Settings</button>
       <button type="button" role="tab" class="dmtab locked" id="v4-secEmployees" data-sec="employees" aria-selected="false" aria-controls="v4-empPanel" tabindex="-1" aria-disabled="true" data-tip="Employees can be assigned once this policy is created.">Assigned Employees<span class="dmcount" aria-label="0 employees">0</span><img class="dmlock" src="assets/lock-03-20.svg" width="16" height="16" alt="Locked"></button>
+    </div>
+    <!-- whether the policy is in use, beside the tabs; it stands in for the Pay & Tenure card's own field -->
+    <label class="v4switch" id="v4-enableHead">Enable<input type="checkbox" role="switch" id="v4-enabled" checked><span class="v4track" aria-hidden="true"></span></label>
     </div>
   </div>
   </header>
 
   <div class="dbody">
-    <!-- the policy's tenure: chosen in Policy Details; None means one set of settings, no tiers -->
+    <!-- the policy's tenure: chosen in Pay & Tenure; None means one set of settings, no tiers -->
     <input type="hidden" id="v4-tenureSet" value="None">
 
     <!-- the employees this policy applies to; Add opens the picker below -->
@@ -3290,12 +3546,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       <div class="v4caution" role="note" aria-labelledby="v4-cautionTitle">
         <div class="v4cautionhd">
           <img src="assets/alert-triangle-fill-16.svg" width="16" height="16" alt="">
-          <p id="v4-cautionTitle">Before you create this policy</p>
+          <p id="v4-cautionTitle">Read this before creating</p>
         </div>
         <ul>
-          <li>Editing a policy after it’s created can cause discrepancies in accruals.</li>
-          <li>Edits only affect future accruals. Accruals already posted up to the date of the edit stay as they are.</li>
-          <li>If the policy needs to change later, we recommend creating a new policy and reassigning employees to it.</li>
+          <li>Editing later can cause discrepancies in accruals.</li>
+          <li>Edits apply only to future accruals. Accruals already posted stay as they are.</li>
+          <li>To change it later, we recommend creating a new policy and reassigning employees to it.</li>
         </ul>
       </div>
     </aside>
@@ -3429,32 +3685,29 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         <h2>Time Off</h2>
         <p>Manage and control time off settings for your organization</p>
       </div>
-      <!-- Time Off Policies: a label column on the left, its sections (Tenure, then Leave Category) on the right -->
-      <div class="v5set">
+      <!-- Time Off: two sections, each a label column on the left and its content on the right -->
+      <section class="v5set" aria-labelledby="v5-tenureHd">
         <div class="v5setintro">
-          <h2>Time Off Policies</h2>
-          <p>Create customizable configurations for vacation and sick leave and how they are accrued.</p>
-        </div>
-        <div class="v5setmain">
-        <section class="v5tenure" aria-labelledby="v5-tenureHd">
-          <!-- Figma 7541:127313 — subsection header: title over caption -->
-          <div class="v5subhd">
-          <h3 id="v5-tenureHd">Tenure</h3>
+          <h2 id="v5-tenureHd">Tenure</h2>
           <p>Multiple earning rates for tenure allow you to set different accrual rates for PTO based on the employee's length of service, with the ability to define specific tenure brackets.</p>
-          </div>
+        </div>
+        <div class="v5setmain v5tenure">
           <div class="v5tentbl" role="table" aria-labelledby="v5-tenureHd">
             <div class="v5tenrow hd" role="row"><span role="columnheader">Tenure Configurations</span><span role="columnheader">Tiers</span><span role="columnheader">Maximum Tenure</span><span role="columnheader"><span class="sr">Actions</span></span></div>
             <div class="v5tenrow" role="row"><span role="cell">Union – WATG Config</span><span role="cell" class="n">3</span><span role="cell" class="n">60 months</span><span role="cell"><button type="button" class="v5tenedit" aria-label="Edit Union – WATG Config"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></span></div>
             <div class="v5tenrow" role="row"><span role="cell">Union – UGS – Config</span><span role="cell" class="n">3</span><span role="cell" class="n">96 months</span><span role="cell"><button type="button" class="v5tenedit" aria-label="Edit Union – UGS – Config"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button></span></div>
           </div>
           <button type="button" class="v5catact" id="v5-addTenureBtn"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Tenure Configuration</button>
-        </section>
+        </div>
+      </section>
 
-        <!-- Figma 757:32731 — one table of every leave policy, grouped by category, then No Group and Disabled -->
-        <div class="v5subhd v5subhd-rule">
-          <h3 id="v5-polHd">Leave Policies</h3>
+      <!-- Figma 757:32731 — one table of every leave policy, grouped by category, then No Group and Disabled -->
+      <section class="v5set" aria-labelledby="v5-polHd">
+        <div class="v5setintro">
+          <h2 id="v5-polHd">Leave Policies</h2>
           <p>Create categories to group similar leave policies for easier management.</p>
         </div>
+        <div class="v5setmain">
         <label class="v5catsearch v5polsearch"><img src="assets/search-md-20.svg" width="20" height="20" alt=""><input type="search" id="v5-catSearch" placeholder="Search" aria-label="Search leave categories and policies" autocomplete="off"></label>
         <div class="v5poltbl v5grptbl" id="v5-polTbl" role="table" aria-labelledby="v5-polHd"></div>
         <!-- under the table: a new policy, or Upload policy documents to open them, pre-filled, for review -->
@@ -3464,7 +3717,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           <button type="button" class="v5catact v5aibtn" id="v5-uploadBtn"><img src="assets/stars-02-gradient-16.svg" width="20" height="20" alt=""><span>Build with AI</span></button>
         </div>
         </div>
-      </div>
+      </section>
       </main>
     </div>
   </div>
@@ -3604,12 +3857,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         <div class="v5caution" role="note" aria-labelledby="v5-cautionTitle">
           <div class="v5cautionhd">
             <img src="assets/alert-triangle-fill-16.svg" width="16" height="16" alt="">
-            <p id="v5-cautionTitle">Before you create this policy</p>
+            <p id="v5-cautionTitle">Read this before creating</p>
           </div>
           <ul>
-              <li>Editing a policy after it’s created can cause discrepancies in accruals.</li>
-              <li>Edits only affect future accruals. Accruals already posted up to the date of the edit stay as they are.</li>
-              <li>If the policy needs to change later, we recommend creating a new policy and reassigning employees to it.</li>
+              <li>Editing later can cause discrepancies in accruals.</li>
+              <li>Edits apply only to future accruals. Accruals already posted stay as they are.</li>
+              <li>To change it later, we recommend creating a new policy and reassigning employees to it.</li>
           </ul>
         </div>
       </aside>
@@ -3698,6 +3951,91 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   </div>
 </aside>
 
+<!-- ===================== V1 — upload policy documents (Build with AI), V2's page around V1's drawer ===================== -->
+<!-- policies read from the documents are listed on the left, pre-filled; the admin reviews and creates each one.
+     Nothing is kept between visits: Exit discards whatever has not been created. -->
+<aside class="drawer" id="v4-upload" role="dialog" aria-modal="true" aria-labelledby="v4-upTitle" hidden>
+  <header class="v4bar">
+    <button type="button" class="v4exit" id="v4-upCancel">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L10 10M10 10L5 15M10 10L5 5M10 10L15 15" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>Exit
+    </button>
+    <span class="v4rule" aria-hidden="true"></span>
+    <h1 id="v4-upTitle">Upload Policies</h1>
+    <span class="msg" id="v4-upMsg" aria-live="polite"></span>
+    <button type="button" class="btn primary v4create" id="v4-upCreate" disabled>Create Policy</button>
+  </header>
+  <div class="v4main">
+    <div class="v4upbody">
+      <nav class="v4uplist" aria-labelledby="v4-upListTitle">
+        <div class="v4uplisthd" id="v4-upListHd"><h2 id="v4-upListTitle">Policies</h2><span class="dmcount" id="v4-upCount">0</span></div>
+        <!-- Figma 277:10227 — before any policy is found: papers going up, a title and a caption -->
+        <div class="v4upnone" id="v4-upNone">
+          <div class="v4upill" aria-hidden="true">
+            <img class="bgc" src="assets/upempty-bg-circle.svg" width="160" height="160" alt="">
+            <img class="c c1" src="assets/upempty-circle-16.svg" width="16" height="16" alt="">
+            <img class="c c2" src="assets/upempty-circle-12.svg" width="12" height="12" alt="">
+            <img class="c c3" src="assets/upempty-circle-20.svg" width="20" height="20" alt="">
+            <img class="c c4" src="assets/upempty-circle-20.svg" width="20" height="20" alt="">
+            <img class="c c5" src="assets/upempty-circle-14.svg" width="14" height="14" alt="">
+            <div class="papers">
+              <div class="tilt tl"><div class="paper"><img src="assets/upempty-paper-left.svg" width="108" height="134" alt=""></div></div>
+              <div class="paper pm"><img src="assets/upempty-paper-mid.svg" width="108" height="134" alt=""></div>
+              <div class="tilt tr"><div class="paper"><img src="assets/upempty-paper-right.svg" width="108" height="134" alt=""></div></div>
+            </div>
+            <div class="fi"><img src="assets/upload-cloud-02-28.svg" width="28" height="28" alt=""></div>
+          </div>
+          <div class="v4upnonetx">
+            <h3 id="v4-upNoneTitle">Let’s get your policies uploaded</h3>
+            <p id="v4-upNoneText">Upload your leave policy document and we’ll pre-fill each policy we find for you to review.</p>
+          </div>
+        </div>
+        <ul class="v4upitems" id="v4-upItems"></ul>
+      </nav>
+      <div class="v4upcenter" id="v4-upCenter">
+        <!-- Figma 277:10153 — before a document is added: what it should cover, then where to drop it.
+             One document only: once it is added, this steps aside for its card. -->
+        <section class="v4updocs" id="v4-upDocs" aria-label="Upload a document">
+          <div class="v4upintro">
+            <p class="v4upintrot">You can upload any document you already have – just make sure these details are in it</p>
+            <div class="v4upreq"><span class="cap">Required details:</span><span class="v4upbadge">Policy name</span><span class="v4upbadge">Leave category</span><span class="v4upbadge">Accrual rate</span><span class="v4upbadge">Leave year renewal</span><span class="v4upbadge">Carryover</span></div>
+          </div>
+          <label class="v4drop" id="v4-drop">
+            <input type="file" class="sr" id="v4-upFile" accept=".pdf,.doc,.docx,.txt">
+            <span class="v4dropic" aria-hidden="true"><img src="assets/upload-cloud-02.svg" width="20" height="20" alt=""></span>
+            <span class="v4dropbig">
+              <b class="t">Upload your policy document</b>
+              <span class="d">Drag &amp; Drop your file</span>
+              <span class="f">.pdf, .doc, .docx, .txt · up to 10 MB</span>
+              <span class="o">or <u>browse files</u> on your computer</span>
+            </span>
+          </label>
+          <p class="v4uperr" id="v4-upErr" role="alert" hidden></p>
+        </section>
+        <!-- the uploaded document; while policies are reviewed it sits above the editor's cards -->
+        <!-- Figma 277:10211 — the chosen document: Upload starts reading it; once read, Replace starts over with another -->
+        <div class="v4file" id="v4-upDoc" hidden>
+          <span class="v4ftype" aria-hidden="true"><img src="assets/file-page-green.svg" width="25.6" height="32" alt=""><b id="v4-upDocExt"></b></span>
+          <div class="v4finfo"><b id="v4-upDocName"></b><span class="st" id="v4-upDocSt"></span><div class="v4bar2" id="v4-upDocBar" hidden><i></i></div></div>
+          <button type="button" class="v4upgo" id="v4-upGo"><img src="assets/stars-02-gradient-16.svg" width="16" height="16" alt=""><span>Upload</span></button>
+          <button type="button" class="v4uptrash" id="v4-upDocTrash" aria-label="Remove document"><img src="assets/trash-01-24.svg" width="24" height="24" alt=""></button>
+          <button type="button" class="v4fileremove" id="v4-upDocRemove">Replace</button>
+        </div>
+        <!-- V1's New Leave Policy drawer is moved in here while a policy is reviewed -->
+        <div id="v4-upReview"></div>
+      </div>
+    </div>
+  </div>
+</aside>
+<div class="empmodal-scrim" id="v4-upLeaveScrim" hidden>
+  <div class="empmodal v4upleave" role="alertdialog" aria-modal="true" aria-labelledby="v4-upLeaveTitle" aria-describedby="v4-upLeaveBody">
+    <div class="emhd">
+      <h2 id="v4-upLeaveTitle">Leave without creating?</h2>
+      <button type="button" class="emx" id="v4-upLeaveX" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
+    </div>
+    <p id="v4-upLeaveBody"></p>
+    <div class="emft"><span class="emcount"></span><button type="button" class="btn" id="v4-upStay">Keep reviewing</button><button type="button" class="btn primary v4danger" id="v4-upLeave">Discard and leave</button></div>
+  </div>
+</div>
 <!-- ===================== V5 — upload policy documents (full page) ===================== -->
 <!-- policies read from the documents are listed on the left, pre-filled; the admin reviews and creates each one.
      Nothing is kept between visits: Exit discards whatever has not been created. -->
@@ -4704,15 +5042,16 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 </script>
 
 <script>
-/* ---- version switcher: V3 and V4 open on their drawers; V1 (key 5) and V2 open on their settings pages ---- */
+/* ---- version switcher: V3 and V4 open on their drawers; V1 and V2 (key 5) open on their settings pages ---- */
 (function(){
   "use strict";
   var btns=document.querySelectorAll('.vswitch button[data-v]');
   var box=document.querySelector('.vswitch'), trigger=box.querySelector('.vtrigger');
-  /* the page scrolls unless the version on screen has its editor (or V1's Upload) open */
+  /* the page scrolls unless the version on screen has its editor (or its Build with AI page) open */
   function lock(){
-    var v=document.body.dataset.v, ed={'1':window.__drawer,'2':window.__drawer2,'4':window.__drawer4,'5':window.__drawer5}[v];
-    document.body.classList.toggle('locked',!!(ed&&ed.isOpen())||(v==='5'&&!!window.__upload5&&window.__upload5.isOpen()));
+    var v=document.body.dataset.v, ed={'1':window.__drawer,'2':window.__drawer2,'4':window.__drawer4,'5':window.__drawer5}[v],
+        up={'4':window.__upload4,'5':window.__upload5}[v];
+    document.body.classList.toggle('locked',!!(ed&&ed.isOpen())||!!(up&&up.isOpen()));
   }
   /* every version's drawer has opened by the time the page has loaded; only then is the lock settled */
   window.addEventListener('load',lock);
@@ -4725,7 +5064,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       b.setAttribute('aria-pressed',b.dataset.v===v?'true':'false');
       if(b.dataset.v===v) trigger.textContent=b.textContent;
     });
-    if(save){ try{localStorage.setItem('lp-version4',v);}catch(e){} }
+    if(save){ try{localStorage.setItem('lp-version5',v);}catch(e){} }
   }
   function toggle(open){
     box.classList.toggle('open',open);
@@ -4740,11 +5079,11 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   document.addEventListener('click',function(e){ if(!box.contains(e.target)) toggle(false); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&box.classList.contains('open')) toggle(false); });
   /* #v1…#v4 name the versions as labelled; the storage key changes whenever they are renumbered,
-     so old saves are ignored. On 2026-11-18 V4 became V2, V2 became V3 and V3 became V4 */
-  var KEY={'1':'5','2':'4','3':'2','4':'1'}, keys=['1','2','4','5'];
-  var saved=null; try{saved=localStorage.getItem('lp-version4');}catch(e){}
+     so old saves are ignored. On 2026-11-19 V1 and V2 swapped */
+  var KEY={'1':'4','2':'5','3':'2','4':'1'}, keys=['1','2','4','5'];
+  var saved=null; try{saved=localStorage.getItem('lp-version5');}catch(e){}
   var hash=KEY[(location.hash||'').replace('#v','')];
-  var start=hash||(keys.indexOf(saved)>=0?saved:'5');
+  var start=hash||(keys.indexOf(saved)>=0?saved:'4');
   apply(start,false);
 })();
 </script>
@@ -7440,11 +7779,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     function addedAmount(onF,f,step,unit,suffix,fieldLabel){
       return '<div class="cbrow">'+
         '<input type="hidden" id="'+i(onF)+'" data-f="'+onF+'" value="1">'+
-        '<input class="num" type="number" min="0" step="'+step+'" id="'+i(f)+'" data-f="'+f+'" data-req value="'+d[f]+'" aria-label="'+fieldLabel+'">'+
+        /* the minimum balance may be zero or negative: below zero is how far employees can borrow */
+        '<input class="num" type="number"'+(f==='minBal'?' data-neg':' min="0"')+' step="'+step+'" id="'+i(f)+'" data-f="'+f+'" data-req value="'+d[f]+'" aria-label="'+fieldLabel+'">'+
         '<span class="unit dim">'+
           (unit==='#'?'<span data-unitword="'+f+'"></span>':unit)+(suffix?' '+suffix:'')+
         '</span>'+
-      '</div><p class="err" hidden>Enter an amount greater than 0.</p>';
+      '</div><p class="err" hidden>'+(f==='minBal'?'Enter an amount.':'Enter an amount greater than 0.')+'</p>';
     }
     /* a related run of rows, shown inline with the rest of its section */
     function more(key,label,inner,attrs){
@@ -7458,9 +7798,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     /* ---------- what the policy is: shared by every tier, so it is built once, above the tier chips ---------- */
     if(part==='details'){
     /* whether the policy is in use; a disabled policy keeps its settings but stops applying */
-    H+='<div class="grouphead"><span>Policy Details</span>'+
-      '<label class="v4switch">Enable<input type="checkbox" role="switch" id="'+i('enabled')+'" data-f="enabled" checked>'+
-        '<span class="v4track" aria-hidden="true"></span></label></div>';
+    /* the switch itself sits in the drawer header; this field holds its answer with the rest */
+    H+='<div class="grouphead"><span>Pay &amp; Tenure</span>'+
+      '<input type="checkbox" hidden id="'+i('enabled')+'" data-f="enabled" checked></div>';
     /* how the leave is paid, shared by every tier; the leave category sets the defaults */
     H+=row('Is this leave paid?','',
       '<div class="opts">'+
@@ -7554,13 +7894,13 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* proration: only meaningful for a fixed annual amount, so it rides with it.
        only new employees are prorated, and they all start in the first tier */
-    if(first) H+=row('Prorate leave for new hires','Adjust the annual leave allocation based on when an employee joins.',
+    if(first) H+=row('Prorate leave for new hires','Adjust the annual leave allocation based on when an employee starts.',
       '<div class="opts">'+
         '<label class="cbline"><input type="checkbox" id="'+i('prorate')+'" data-f="prorate"'+ck(d.prorate)+'>'+
           '<span class="lbl">Prorate leave</span></label>'+
           /* turned off, a note says what that means; its x hides it until proration is turned back on */
           '<div class="notebanner prnote" data-when="noprorate" role="note"><i class="ph ph-info" aria-hidden="true"></i>'+
-            '<span><b>Proration is off.</b> New hires will get the full annual allocation no matter when they join, even a week before the leave year renews. Are you sure you don\u2019t want to prorate it?</span>'+
+            '<span><b>Proration is off.</b> New hires will get the full annual allocation no matter when they start, even a week before the leave year renews. Are you sure you don\u2019t want to prorate it?</span>'+
             '<button type="button" class="prnotex" aria-label="Dismiss note"><img src="assets/x-close.svg" width="20" height="20" alt=""></button></div>'+
         '<div class="indent" data-when="prorate">'+
           pick('prorateBasis',d.prorateBasis||'day',[
@@ -7576,30 +7916,21 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         '</div>'+
       '</div>',' data-when="fixed" data-q="prorate"');
 
-    /* the leave year the accrual is measured against belongs with the accrual itself.
-       it is one leave year for the whole policy, so a later tier reads the first tier's answer */
-    if(!first) H+=row('Leave year renews on','Balances reset on a fixed date or each employee\u2019s work anniversary.',
-      '<div class="readonly" data-resetcopy></div>'+tierNote('The leave year is set in the first tier and applies to every tier.'),
-      ' data-when="earning"');
-    else H+=row('Leave year renews on','Balances reset on a fixed date or each employee\u2019s work anniversary.',
+    /* how the last pay period accrues when an employee leaves; only leave added throughout the year accrues by pay period */
+    H+=row('Termination period','How does leave accrue for the pay period in which an employee is terminated?',
       '<div class="opts">'+
-        '<div class="cbrow">'+
-          pick('reset',d.reset||'custom',[
-            ['custom','A specific date','Set a custom date for annual reset.'],
-            ['anniversary','Employee\u2019s work anniversary','Leave balance is renewed annually on the employee\u2019s work anniversary.']])+
-          /* only a month and a day: the same date comes round every year */
-          '<span class="atwhen" data-when="custom">'+
-            monthDay('resetMonth','resetDay','Reset date')+
-          '</span>'+
-        '</div>'+
-      '</div>',' data-when="earning"');
+        pick('termAccrual',d.termAccrual||'prorated',[
+          ['prorated','Prorated','Accrue up to the employee\u2019s last working day.'],
+          ['full','Full pay period','Accrue for the entire pay period in which the employee is terminated.'],
+          ['none','Don\'t accrue','No accrual for the pay period in which the employee is terminated.']])+
+      '</div>',' data-when="recurring"');
 
     /* settings most policies never need: nothing is shown until the admin adds it */
     H+=row('Minimum Hours Worked','Is there a minimum number of hours employees must work before earning leave?',
       addedAmount('minWorkedOn','minWorked','1','hours worked','','Minimum hours worked'),
       ' data-add="minWorked" hidden');
 
-    H+=row('Minimum Balance','How much leave must employees keep in their balance?',
+    H+=row('Minimum Balance','How much leave must employees keep in their balance? Enter a negative number to let them borrow leave and go below zero.',
       addedAmount('minBalOn','minBal','0.25','#','','Minimum balance'),
       ' data-add="minBal" hidden');
 
@@ -7617,9 +7948,26 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           '<button type="button" role="menuitem" data-addopt="maxBal">Maximum Balance</button>'+
         '</div></div>';
 
-    /* ---------- one question about the end of the year, in a section of its own.
-       its own fields throughout: the sections above keep theirs untouched ---------- */
-    H+='<div class="grouphead" data-when="earning">End of Leave Year</div>';
+    /* ---------- the leave year: when it renews, and what happens to unused leave at its end ---------- */
+    H+='<div class="grouphead" data-when="earning">Leave Year</div>';
+
+    /* when the leave year renews comes before what happens to unused leave at its end.
+       it is one leave year for the whole policy, so a later tier reads the first tier's answer */
+    if(!first) H+=row('Leave year renews on','Balances reset on a fixed date or each employee\u2019s work anniversary.',
+      '<div class="readonly" data-resetcopy></div>'+tierNote('The leave year is set in the first tier and applies to every tier.'),
+      ' data-when="earning"');
+    else H+=row('Leave year renews on','Balances reset on a fixed date or each employee\u2019s work anniversary.',
+      '<div class="opts">'+
+        '<div class="cbrow">'+
+          pick('reset',d.reset||'custom',[
+            ['custom','A specific date','Set a custom date for annual reset.'],
+            ['anniversary','Employee\u2019s work anniversary','Leave balance is renewed annually on the employee\u2019s work anniversary.']])+
+          /* only a month and a day: the same date comes round every year */
+          '<span class="atwhen" data-when="custom">'+
+            monthDay('resetMonth','resetDay','Reset date')+
+          '</span>'+
+        '</div>'+
+      '</div>',' data-when="earning"');
 
     /* carrying over and paying out are alternatives, so they are one question, not two */
     H+=row('What happens to unused leave at year end?','',
@@ -7636,6 +7984,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
                 '<span class="lbl">Payout remaining balance</span></label></div>')+
         '</div>'+
         opt('eolOutcome','payout','Pay out','')+
+        '<p class="err" hidden>Select an option.</p>'+
       '</div>',' data-when="limited" data-q="eolOutcome"');
 
     H+=row('Carryover expiration','How long carried-over leave stays available. It is always used before newly accrued leave.',
@@ -7661,36 +8010,20 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           ['carry','Carry over negative balance','The balance owed moves into the new leave year and is earned back.']])+
       '</div>',' data-when="eolCarryCfg"');
 
-    /* a payout the employee asks for happens during the year, so it stands on its own */
-    H+=row('Payout upon employee request','Employees can ask for a cash payout during the leave year.',
+    /* ---------- what employees can ask for: leave and payouts, the caps on each added on demand ---------- */
+    H+='<div class="grouphead" data-when="earning">Requests</div>';
+
+    /* always shown, unlike the caps added below them */
+    H+=row('Restrict to shift hours','Employees can request leave only within their scheduled shift hours.',
+      '<label class="cbline"><input type="checkbox" id="'+i('shiftOnly')+'" data-f="shiftOnly"'+ck(d.shiftOnly)+'>'+
+        '<span class="lbl">Restrict</span></label>');
+
+    /* a payout the employee asks for happens during the year */
+    H+=row('Payout requests','Employees can ask for a cash payout during the leave year.',
       '<div class="opts">'+
         '<label class="cbline"><input type="checkbox" id="'+i('eolReq')+'" data-f="eolReq"'+ck(d.eolReq)+'>'+
           '<span class="lbl">Allow</span></label>'+
       '</div>',' data-when="limited"');
-
-    H+=row('Minimum payout','',
-      addedAmount('eolMinPayOn','eolMinPay','0.25','#','','Minimum payout'),
-      ' data-add="eolMinPay" hidden');
-
-    H+=row('Maximum payout','',
-      addedAmount('eolMaxPayOn','eolMaxPay','0.25','#','','Maximum payout'),
-      ' data-add="eolMaxPay" hidden');
-
-    H+='<div class="addwrap">'+
-        '<button type="button" class="addbtn" aria-haspopup="menu" aria-expanded="false">'+
-          '<i class="ph ph-plus" aria-hidden="true"></i>Add Additional Settings</button>'+
-        '<div class="addmenu" role="menu" hidden>'+
-          '<button type="button" role="menuitem" data-addopt="eolMinPay">Minimum Payout</button>'+
-          '<button type="button" role="menuitem" data-addopt="eolMaxPay">Maximum Payout</button>'+
-        '</div></div>';
-
-    /* ---------- the caps, every one of them on demand ---------- */
-    H+='<div class="grouphead" data-when="earning">Usage Limits</div>';
-
-    /* always shown, unlike the caps added below it */
-    H+=row('Restrict to shift hours','Employees can request leave only within their scheduled shift hours.',
-      '<label class="cbline"><input type="checkbox" id="'+i('shiftOnly')+'" data-f="shiftOnly"'+ck(d.shiftOnly)+'>'+
-        '<span class="lbl">Restrict</span></label>');
 
     H+=row('Annual usage cap','Limit how much leave employees can use in a leave year, regardless of their available balance.',
       addedAmount('usageOn','usage','0.25','#','per year','Annual usage limit'),
@@ -7704,6 +8037,14 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       addedAmount('reqStepOn','reqStep','0.25','#','','Request increment'),
       ' data-add="reqStep" hidden');
 
+    H+=row('Minimum payout','',
+      addedAmount('eolMinPayOn','eolMinPay','0.25','#','','Minimum payout'),
+      ' data-add="eolMinPay" hidden');
+
+    H+=row('Maximum payout','',
+      addedAmount('eolMaxPayOn','eolMaxPay','0.25','#','','Maximum payout'),
+      ' data-add="eolMaxPay" hidden');
+
     H+='<div class="addwrap">'+
         '<button type="button" class="addbtn" aria-haspopup="menu" aria-expanded="false">'+
           '<i class="ph ph-plus" aria-hidden="true"></i>Add Additional Settings</button>'+
@@ -7711,6 +8052,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           '<button type="button" role="menuitem" data-addopt="usage">Annual Usage Cap</button>'+
           '<button type="button" role="menuitem" data-addopt="minReq">Minimum Request</button>'+
           '<button type="button" role="menuitem" data-addopt="reqStep">Request Increments</button>'+
+          '<button type="button" role="menuitem" data-addopt="eolMinPay">Minimum Payout</button>'+
+          '<button type="button" role="menuitem" data-addopt="eolMaxPay">Maximum Payout</button>'+
         '</div></div>';
 
     return sectionize(H);
@@ -7966,6 +8309,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     }
     clearErrors(panel);
     refreshForecast(panel);
+    var en=details.querySelector('[data-f="enabled"]');
+    if(en) document.getElementById('v4-enabled').checked=en.checked;
     if(window.__afterSync4) window.__afterSync4(panel);
   }
 
@@ -8024,7 +8369,11 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   /* the slider: a dot at each month's first day, January's at the start and December's at the end,
      so the twelve sit evenly across it; December's later days stay at the end */
   function posOf(dt){ return Math.min(1,xOf(dt)*12/11); }
-  function dateAtPos(p){ return dateAt(Math.max(0,Math.min(1,p))*11/12); }
+  /* by month the amount only changes month to month, so the handle snaps to a month's first day */
+  function dateAtPos(p){
+    p=Math.max(0,Math.min(1,p));
+    return pr.basis==='month'?addMonths(pr.ly.start,Math.round(p*11)):dateAt(p*11/12);
+  }
   function amountOn(dt){ var p=prorate(pr.ly,pr.fa,dt); return pr.basis==='month'?p.month:p.day; }
   function paintForecast(){
     var ly=pr.ly, from=pr.from, u=words(pr.unit);
@@ -8107,9 +8456,16 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     if(dragging) setHire(dateAtPos(posFromEvent(e)));
   });
   ['pointerup','pointercancel'].forEach(function(t){ prPlot.addEventListener(t,function(){ dragging=false; }); });
-  /* arrows step a day, Page keys a month, Home / End jump to the ends of the leave year */
+  /* arrows step a day, Page keys a month, Home / End jump to the ends of the leave year;
+     by month every key moves between months' first days */
   hFrom.addEventListener('keydown',function(e){
     var cur=pr.from, dt=null;
+    if(pr.basis==='month'){
+      var m=monthOf(cur), on=addMonths(pr.ly.start,m).getTime()===cur.getTime(),
+          to={ArrowLeft:on?m-1:m,ArrowDown:on?m-1:m,PageDown:on?m-1:m,ArrowRight:m+1,ArrowUp:m+1,PageUp:m+1,Home:0,End:11}[e.key];
+      if(to===undefined) return;
+      e.preventDefault(); setHire(addMonths(pr.ly.start,Math.max(0,Math.min(11,to)))); return;
+    }
     if(e.key==='ArrowLeft'||e.key==='ArrowDown') dt=plusDays(cur,-1);
     else if(e.key==='ArrowRight'||e.key==='ArrowUp') dt=plusDays(cur,1);
     else if(e.key==='PageDown') dt=addMonths(cur,-1);
@@ -8156,7 +8512,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     return true;
   }
   function clearErrors(panel){
-    panel.querySelectorAll('input.num.bad').forEach(function(i){i.classList.remove('bad');});
+    panel.querySelectorAll('input.num.bad,.row.bad').forEach(function(i){i.classList.remove('bad');});
     panel.querySelectorAll('.err').forEach(function(e){e.hidden=true;});
   }
   function validate(panel){
@@ -8165,12 +8521,19 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     panel.querySelectorAll('input.num[data-req]').forEach(function(inp){
       if(inp.disabled||!visible(inp,panel)) return;
       var v=parseFloat(inp.value);
-      if(inp.value===''||isNaN(v)||v<=0){
+      if(inp.value===''||isNaN(v)||(v<=0&&!inp.hasAttribute('data-neg'))){
         inp.classList.add('bad');
         var r=inp.closest('.indent')||inp.closest('.ctl'), e=r&&r.querySelector('.err');
         if(e) e.hidden=false;
         if(!first) first=inp;
       }
+    });
+    /* a choice that must be made: a message under it until one is picked */
+    panel.querySelectorAll('.row[data-q="eolOutcome"]').forEach(function(r){
+      if(!visible(r,panel)||r.querySelector('[data-f="eolOutcome"]:checked')) return;
+      r.classList.add('bad');
+      r.querySelector('.opts > .err').hidden=false;
+      if(!first) first=r.querySelector('[data-f="eolOutcome"]');
     });
     return first;
   }
@@ -8229,6 +8592,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       if(field&&!field.disabled) field.focus();
     }
   });
+  /* the header's Enable switch answers the Pay & Tenure field, as if it were changed there */
+  document.getElementById('v4-enabled').addEventListener('change',function(){
+    var en=details.querySelector('[data-f="enabled"]');
+    en.checked=this.checked;
+    en.dispatchEvent(new Event('change',{bubbles:true}));
+  });
   panels.addEventListener('change',function(e){
     if(details.contains(e.target)){ syncAll(); return; }
     var panel=e.target.closest('[data-tier]'); if(!panel) return;
@@ -8254,8 +8623,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       if(maxNum) setTimeout(function(){ if(!maxNum.disabled) maxNum.focus(); },0);
     }
     /* choosing the month/day form opens the month list straight away */
-    if(f==='carryExp'&&e.target.value==='date'){
-      var monthBtn=panel.querySelector('.mdcombo[data-md="carryExpMonth"] .mdbtn');
+    if(f==='eolExp'&&e.target.value==='date'){
+      var monthBtn=panel.querySelector('.mdcombo[data-md="eolExpMonth"] .mdbtn');
       if(monthBtn) setTimeout(function(){ if(!monthBtn.disabled) monthBtn.click(); },0);
     }
   });
@@ -8274,15 +8643,32 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     clearTimeout(tt); tt=setTimeout(function(){if(toastEl){toastEl.remove();toastEl=null;}},3000);
   }
 
+  /* typing a name clears its highlight */
+  document.getElementById('v4-policyName').addEventListener('input',function(){
+    if(this.value.trim()){
+      this.classList.remove('bad'); this.removeAttribute('aria-invalid');
+      document.getElementById('v4-nameErr').hidden=true;
+    }
+  });
   document.getElementById('v4-saveBtn').addEventListener('click',function(){
     var bad=null,badTier=null;
-    TIERS.forEach(function(t){var f=validate(panelOf(t.id)); if(f&&!bad){bad=f;badTier=t;}});
+    /* with no tenure the policy is the first tier alone; the others are not in the form */
+    var ten=document.getElementById('v4-tenureSet').value, tiered=!!ten&&ten!=='None';
+    TIERS.forEach(function(t,k){
+      if(!tiered&&k>0) return;
+      var f=validate(panelOf(t.id)); if(f&&!bad){bad=f;badTier=t;}
+    });
     /* the summary flags blank required answers only once a save has been refused */
     document.getElementById('v4-drawer').classList.toggle('show-req',!!bad);
+    /* a policy needs a name; it sits above everything, so it is the first thing pointed to */
+    var nameEl=document.getElementById('v4-policyName'), noName=!nameEl.value.trim();
+    nameEl.classList.toggle('bad',noName);
+    document.getElementById('v4-nameErr').hidden=!noName;
+    if(noName){ nameEl.setAttribute('aria-invalid','true'); bad=nameEl; }
     if(bad){
-      if(badTier.id!==active) select(badTier.id);
+      if(badTier&&badTier.id!==active) select(badTier.id);
       footMsg.className='msg bad';
-      footMsg.textContent='Check the highlighted amounts in '+document.getElementById('v4-tab-'+badTier.id).textContent+' before saving.';
+      footMsg.innerHTML='<i class="ph ph-warning-circle" aria-hidden="true"></i>Fill all required fields.';
       setTimeout(function(){bad.focus();bad.scrollIntoView({block:'center',behavior:'smooth'});},60);
       return;
     }
@@ -8299,6 +8685,80 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   document.getElementById('v4-helpFab').addEventListener('click',function(){
     toast('Help: How leave policies earn, cap and carry over');
   });
+
+  /* Build with AI reuses this editor for every policy it finds: each one's answers are saved, swapped in and filled from here */
+  function snapPanel(panel){
+    var o={f:[],c:[],a:[]};
+    panel.querySelectorAll('[data-f]').forEach(function(el){
+      o.f.push(el.type==='radio'||el.type==='checkbox'?el.checked:el.value);
+    });
+    panel.querySelectorAll('.combo').forEach(function(c){
+      var t=c.querySelector('.combo-btn .txt, .mdbtn .txt'), ch=c.querySelector('.mschips');
+      o.c.push({t:t?t.textContent:null,k:t?t.className:null,ch:ch?ch.innerHTML:null,v:c.getAttribute('data-view'),
+        s:[].map.call(c.querySelectorAll('.menu-item'),function(b){return b.getAttribute('aria-selected');})});
+    });
+    panel.querySelectorAll('.row[data-add]').forEach(function(r){ o.a.push(r.hasAttribute('data-added')); });
+    return o;
+  }
+  function restorePanel(panel,o){
+    panel.querySelectorAll('[data-f]').forEach(function(el,k){
+      if(el.type==='radio'||el.type==='checkbox') el.checked=o.f[k]; else el.value=o.f[k];
+    });
+    panel.querySelectorAll('.combo').forEach(function(c,k){
+      var x=o.c[k]; if(!x) return;
+      var t=c.querySelector('.combo-btn .txt, .mdbtn .txt'), ch=c.querySelector('.mschips');
+      if(t&&x.t!==null){ t.textContent=x.t; t.className=x.k; }
+      if(ch&&x.ch!==null) ch.innerHTML=x.ch;
+      if(x.v!==null) c.setAttribute('data-view',x.v);
+      c.querySelectorAll('.menu-item').forEach(function(b,n){ if(x.s[n]!==undefined) b.setAttribute('aria-selected',x.s[n]); });
+    });
+    panel.querySelectorAll('.row[data-add]').forEach(function(r,k){
+      if(o.a[k]) r.setAttribute('data-added','1'); else r.removeAttribute('data-added');
+    });
+    clearErrors(panel);
+  }
+  window.__editor4={
+    save:function(){
+      return {d:snapPanel(details),p:TIERS.map(function(t){ return snapPanel(panelOf(t.id)); }),active:active};
+    },
+    load:function(st){
+      restorePanel(details,st.d);
+      TIERS.forEach(function(t,k){ restorePanel(panelOf(t.id),st.p[k]); });
+      document.getElementById('v4-drawer').classList.remove('show-req');
+      footMsg.className='msg'; footMsg.textContent='';
+      syncAll();
+      select(st.active||'t1');
+    },
+    /* answer one question in the first tier, as the admin would */
+    set:function(f,val){
+      var panel=panelOf('t1'), el=panel.querySelector('[data-f="'+f+'"]'); if(!el) return;
+      if(el.type==='radio'){ var r=panel.querySelector('[data-f="'+f+'"][value="'+val+'"]'); if(r) r.checked=true; }
+      else if(panel.querySelector('.pickcombo[data-pick="'+f+'"]')) setPick(panel,f,String(val));
+      else el.value=val;
+      syncAll();
+    },
+    /* an on-demand setting, added as if picked from Add Setting */
+    addRow:function(key){
+      var r=panelOf('t1').querySelector('.row[data-add="'+key+'"]'); if(!r) return;
+      r.setAttribute('data-added','1'); syncAll();
+    },
+    /* the same check Create Policy runs, on the tiers the policy has: the first amount still needed, or null.
+       quiet: flag the fields but leave the tier and focus where they are */
+    validate:function(quiet){
+      var bad=null,badTier=null;
+      var ten=document.getElementById('v4-tenureSet').value, tiered=!!ten&&ten!=='None';
+      TIERS.forEach(function(t,k){
+        if(!tiered&&k>0){ clearErrors(panelOf(t.id)); return; }
+        var f=validate(panelOf(t.id)); if(f&&!bad){bad=f;badTier=t;}
+      });
+      document.getElementById('v4-drawer').classList.toggle('show-req',!!bad);
+      if(bad&&!quiet){
+        if(badTier.id!==active) select(badTier.id);
+        setTimeout(function(){bad.focus();bad.scrollIntoView({block:'center',behavior:'smooth'});},60);
+      }
+      return bad?{el:bad,tier:badTier.label}:null;
+    }
+  };
 
   syncAll();
   select('t1');
@@ -8317,7 +8777,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       drawer.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea,[tabindex]:not([tabindex="-1"])'),
       function(el){return el.offsetParent!==null;});
   }
-  function open(trigger){
+  /* focusEl, when given, is focused in place of the drawer's first control */
+  function open(trigger,focusEl){
     if(openState) return;
     openState=true;
     lastFocus=trigger||document.activeElement;
@@ -8325,7 +8786,10 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     document.body.classList.add('locked');
     document.getElementById('v4-app').setAttribute('inert','');
     requestAnimationFrame(function(){ drawer.classList.add('open'); scrim.classList.add('show'); });
-    setTimeout(function(){ var f=focusables(); if(f.length) f[0].focus(); },240);
+    setTimeout(function(){
+      if(focusEl){ focusEl.focus(); return; }
+      var f=focusables(); if(f.length) f[0].focus();
+    },240);
   }
   function close(){
     if(document.body.dataset.v!=='4') return;   /* another version is on screen, not this drawer */
@@ -8409,18 +8873,21 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     input.dispatchEvent(new Event('change',{bubbles:true}));
   }
 
-  /* type=number still accepts e/E/+/- for exponents, so digits and a point are enforced here */
+  /* type=number still accepts e/E/+/- for exponents, so digits and a point are enforced here;
+     a field marked data-neg (the minimum balance) also takes a leading minus */
   function digitsOnly(input){
+    var ok=input.hasAttribute('data-neg')?/[0-9.\-]/:/[0-9.]/, bad=input.hasAttribute('data-neg')?/[^0-9.\-]/:/[^0-9.]/;
     input.addEventListener('keydown',function(e){
       if(e.ctrlKey||e.metaKey||e.altKey) return;
-      if(e.key&&e.key.length===1&&!/[0-9.]/.test(e.key)) e.preventDefault();
+      if(e.key&&e.key.length===1&&!ok.test(e.key)) e.preventDefault();
     });
     input.addEventListener('beforeinput',function(e){
-      if(e.data!=null&&/[^0-9.]/.test(e.data)) e.preventDefault();
+      if(e.data!=null&&bad.test(e.data)) e.preventDefault();
     });
     /* a paste the browser lets through is cleaned up after the fact */
     input.addEventListener('input',function(){
-      var clean=input.value.replace(/[^0-9.]/g,'');
+      var neg=input.hasAttribute('data-neg')&&/^\s*-/.test(input.value),
+          clean=(neg?'-':'')+input.value.replace(/[^0-9.]/g,'');
       if(clean!==input.value) input.value=clean;
     });
   }
@@ -8735,8 +9202,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   /* the sections whose answers are listed, in card order */
   var SECTIONS=[
     {key:'accruals',       label:'Accruals'},
-    {key:'end-of-leave-year', label:'End of Leave Year'},
-    {key:'usage-limits',   label:'Usage Limits'}
+    {key:'leave-year',     label:'Leave Year'},
+    {key:'requests',       label:'Requests'}
   ];
 
   /* a tier's own answer; failing that the shared Policy Details, then the first tier's */
@@ -8786,8 +9253,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       add('accruals','Time off is <b>unlimited</b> — nothing is earned, capped, carried over or paid out.');
       return g;
     }
-    add('accruals','Time off is <b>limited</b> — employees earn leave and use it from a balance.');
-    add('accruals','Leave is tracked in <b>'+(u==='days'?'days':'hours')+'</b>.');
+    /* the limit and the unit it is tracked in read as one line */
+    add('accruals','Time off is <b>limited</b> — employees earn leave in <b>'+(u==='days'?'days':'hours')+'</b> and use it from a balance.');
 
     /* ---- accruals ---- */
     var earn=get(panel,'earn');
@@ -8796,12 +9263,11 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       return g;
     }
     if(earn==='fixed'){
-      if(set(panel,'fixedAmount'))
-        add('accruals','Employees get <b>'+qty(get(panel,'fixedAmount'),u)+'</b> a year, added '+
-          (get(panel,'mode')==='once'
-            ? '<b>all at once</b>'
-            : '<b>every '+(EVERY[get(panel,'timing')]||'pay period')+'</b>')+'.');
-      else todo('accruals','Enter how much leave employees get each year.');
+      /* the earning method shows as soon as it is chosen; the amount joins it once entered */
+      add('accruals','Employees get '+(set(panel,'fixedAmount')?'<b>'+qty(get(panel,'fixedAmount'),u)+'</b> a year':'a <b>fixed amount</b> each year')+', added '+
+        (get(panel,'mode')==='once'
+          ? '<b>all at once</b>'
+          : '<b>every '+(EVERY[get(panel,'timing')]||'pay period')+'</b>')+'.');
       /* only the first tier is prorated: new employees all start there */
       if(panel.id==='v4-panel-t1') add('accruals',on(panel,'prorate')
         ? 'New employees get a prorated amount in their first year, counted <b>by '+(get(panel,'prorateBasis')==='month'?'month':'day')+'</b>.'
@@ -8809,7 +9275,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     }else{
       if(set(panel,'every'))
         add('accruals','Employees earn <b>'+qty(1,u)+'</b> for every <b>'+get(panel,'every')+' hours worked</b>.');
-      else todo('accruals','Enter how many hours worked earn '+qty(1,u)+'.');
+      else add('accruals','Employees earn leave based on <b>hours worked</b>.');
       var extra=[get(panel,'countHoliday')?'paid holiday':'',get(panel,'countPto')?'paid time off':''].filter(Boolean);
       add('accruals','<b>Clock-in hours</b>'+(extra.length?' and <b>'+extra.join('</b> and <b>')+'</b>':'')+' count as hours worked.');
       if(on(panel,'projLimit')){
@@ -8834,73 +9300,85 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     });
 
     if(get(panel,'reset')==='anniversary')
-      add('accruals','The leave year resets on <b>each employee’s work anniversary</b>.');
+      add('leave-year','The leave year resets on <b>each employee’s work anniversary</b>.');
     else if(md('resetMonth','resetDay'))
-      add('accruals','The leave year resets on <b>'+md('resetMonth','resetDay')+'</b>.');
-    else todo('accruals','Pick the date the leave year resets.');
+      add('leave-year','The leave year resets on <b>'+md('resetMonth','resetDay')+'</b>.');
+    else todo('leave-year','Pick the date the leave year resets.');
+    /* the termination period: how the last pay period accrues */
+    var term=get(panel,'termAccrual')||'prorated';
+    if(earn==='fixed'&&get(panel,'mode')==='spread') add('accruals',term==='none'
+      ? 'When an employee is terminated, <b>nothing accrues</b> for that pay period.'
+      : 'When an employee is terminated, leave accrues '+(term==='full'?'for the <b>full pay period</b>':'<b>up to their last working day</b>')+'.');
 
     amt('accruals','minWorkedOn','minWorked',function(v){return 'Leave starts accruing after <b>'+v+' hours worked</b>.';},
       'Enter the minimum hours worked.');
-    amt('accruals','minBalOn','minBal',function(v){return 'At least <b>'+qty(v,u)+'</b> must stay in the balance after a request.';},
-      'Enter the minimum balance.');
+    /* the minimum balance may be zero or negative */
+    if(on(panel,'minBalOn')){
+      var mb=parseFloat(get(panel,'minBal'));
+      if(isNaN(mb)) todo('accruals','Enter the minimum balance.');
+      else add('accruals',mb<0?'Employees can borrow up to <b>'+qty(-mb,u)+'</b>, going below zero.':
+        mb===0?'The balance can\u2019t go below zero after a request.':'At least <b>'+qty(mb,u)+'</b> must stay in the balance after a request.');
+    }
     amt('accruals','maxBalOn','maxBal',function(v){return 'Balances are capped at <b>'+qty(v,u)+'</b>; earning pauses until some is used.';},
       'Enter the maximum balance.');
 
-    /* ---- usage limits ---- */
-    amt('usage-limits','usageOn','usage',function(v){return 'Employees can use up to <b>'+qty(v,u)+'</b> per leave year.';},
+    /* ---- requests ---- */
+    amt('requests','usageOn','usage',function(v){return 'Employees can use up to <b>'+qty(v,u)+'</b> per leave year.';},
       'Enter the annual usage cap.');
-    amt('usage-limits','minReqOn','minReq',function(v){return 'Each request must be at least <b>'+qty(v,u)+'</b>.';},
+    amt('requests','minReqOn','minReq',function(v){return 'Each request must be at least <b>'+qty(v,u)+'</b>.';},
       'Enter the minimum request.');
-    amt('usage-limits','reqStepOn','reqStep',function(v){return 'Requests must be in multiples of <b>'+qty(v,u)+'</b>.';},
+    amt('requests','reqStepOn','reqStep',function(v){return 'Requests must be in multiples of <b>'+qty(v,u)+'</b>.';},
       'Enter the request increment.');
-    if(!g['usage-limits'].length)
-      add('usage-limits','No usage limits — employees can use any amount of their balance.');
+    if(!g['requests'].length)
+      add('requests','No leave request limits — employees can use any amount of their balance.');
     if(on(panel,'shiftOnly'))
-      add('usage-limits','Leave can be requested only <b>within shift hours</b>.');
+      add('requests','Leave can be requested only <b>within shift hours</b>.');
 
-    /* ---- end of leave year ---- */
+    /* ---- leave year ---- */
     var eolOut=get(panel,'eolOutcome');
-    if(!eolOut) todo('end-of-leave-year','Choose what happens to unused leave at year end.');
-    else if(eolOut==='payout') add('end-of-leave-year','Unused leave is <b>paid out</b> when the leave year ends.');
+    if(!eolOut) todo('leave-year','Choose what happens to unused leave at year end.');
+    else if(eolOut==='payout') add('leave-year','Unused leave is <b>paid out</b> when the leave year ends.');
     else{
+      /* when carried-over leave expires is folded into the carry-over sentence */
+      var exp=get(panel,'eolExp'),expTail=' and <b>never expires</b>.',expTodo='';
+      if(exp==='months'){
+        var n=parseFloat(get(panel,'eolExpMonths'));
+        if(n>0) expTail=' and expires after <b>'+n+(n===1?' month':' months')+'</b>.';
+        else{expTail='.';expTodo='Enter when carried-over leave expires.';}
+      }else if(exp==='date'){
+        if(md('eolExpMonth','eolExpDay')) expTail=' and expires on <b>'+md('eolExpMonth','eolExpDay')+'</b>.';
+        else{expTail='.';expTodo='Pick the date carried-over leave expires.';}
+      }
+
       if(get(panel,'eolCarry')==='max'){
         var mu=get(panel,'eolCarryMaxUnit')||u;
         if(set(panel,'eolCarryMax'))
-          add('end-of-leave-year','Up to <b>'+(mu==='pct'?get(panel,'eolCarryMax')+'%':qty(get(panel,'eolCarryMax'),mu))+
-            '</b> of unused leave carries over.');
-        else todo('end-of-leave-year','Enter the maximum amount that carries over.');
-        add('end-of-leave-year',get(panel,'eolPayRest')
+          add('leave-year','Up to <b>'+(mu==='pct'?get(panel,'eolCarryMax')+'%':qty(get(panel,'eolCarryMax'),mu))+
+            '</b> of unused leave carries over'+expTail);
+        else todo('leave-year','Enter the maximum amount that carries over.');
+        add('leave-year',get(panel,'eolPayRest')
           ? 'Anything above that is <b>paid out</b>.'
           : 'Anything above that is <b>forfeited</b>.');
-      }else add('end-of-leave-year','<b>All unused leave</b> carries over to the next leave year.');
+      }else add('leave-year','<b>All unused leave</b> carries over to the next leave year'+expTail);
+      if(expTodo) todo('leave-year',expTodo);
 
-      var exp=get(panel,'eolExp');
-      if(exp==='months'){
-        var n=parseFloat(get(panel,'eolExpMonths'));
-        if(n>0) add('end-of-leave-year','Carried-over leave expires <b>'+n+(n===1?' month':' months')+'</b> into the new leave year.');
-        else todo('end-of-leave-year','Enter when carried-over leave expires.');
-      }else if(exp==='date'){
-        if(md('eolExpMonth','eolExpDay')) add('end-of-leave-year','Carried-over leave expires on <b>'+md('eolExpMonth','eolExpDay')+'</b>.');
-        else todo('end-of-leave-year','Pick the date carried-over leave expires.');
-      }else add('end-of-leave-year','Carried-over leave <b>never expires</b>.');
-
-      add('end-of-leave-year',get(panel,'eolNeg')==='carry'
+      add('leave-year',get(panel,'eolNeg')==='carry'
         ? 'Negative balances <b>carry over</b> into the new leave year.'
         : 'Negative balances are <b>reset to zero</b>.');
     }
 
-    /* asking for a payout is opt-in, so it is only described once it is allowed */
+    /* asking for a payout is opt-in: its limits are only described once it is allowed */
     if(on(panel,'eolReq')){
-      add('end-of-leave-year','Employees can also <b>request a payout</b> during the leave year.');
-      amt('end-of-leave-year','eolMinPayOn','eolMinPay',function(v){return 'Each payout request must be at least <b>'+qty(v,u)+'</b>.';},
+      add('requests','Employees can <b>request a payout</b> during the leave year.');
+      amt('requests','eolMinPayOn','eolMinPay',function(v){return 'Each payout request must be at least <b>'+qty(v,u)+'</b>.';},
         'Enter the minimum payout.');
-      amt('end-of-leave-year','eolMaxPayOn','eolMaxPay',function(v){return 'Each payout request can be at most <b>'+qty(v,u)+'</b>.';},
+      amt('requests','eolMaxPayOn','eolMaxPay',function(v){return 'Each payout request can be at most <b>'+qty(v,u)+'</b>.';},
         'Enter the maximum payout.');
-    }
+    }else add('requests','Payout requests are <b>not allowed</b>.');
     return g;
   }
 
-  var LATER={'end-of-leave-year':1,'usage-limits':1};
+  var LATER={'leave-year':1,'requests':1};
 
   function render(panel){
     if(!panel) return;
@@ -8923,9 +9401,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   /* pay and whether the policy is enabled, from Policy Details */
   function payLines(panel){
     var L=[];
-    L.push(get(panel,'paid')==='unpaid'?'Leave is <b>unpaid</b>.':'Leave is <b>paid</b>.');
-    L.push(get(panel,'payStmt')!==false
-      ? 'It <b>shows on pay statements</b>.' : 'It is <b>left off pay statements</b>.');
+    /* pay and pay statements read as one line */
+    L.push('Leave is <b>'+(get(panel,'paid')==='unpaid'?'unpaid':'paid')+'</b> and '+
+      (get(panel,'payStmt')!==false?'<b>shows on pay statements</b>.':'is <b>left off pay statements</b>.'));
     if(get(panel,'enabled')===false) L.push('The policy is <b>disabled</b>.');
     return L;
   }
@@ -9076,7 +9554,13 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       });
     });
     function add(name){ if(CATS.indexOf(name)<0) CATS.push(name); }
-    window.__catPick4={cats:function(){ return CATS; },add:add};
+    /* a category renamed or deleted in Settings changes here too */
+    function rename(was,name){
+      var i=CATS.indexOf(was); if(i>-1) CATS[i]=name; else add(name);
+      if(txt.textContent===was){ txt.textContent=name; label(); }
+    }
+    function remove(name){ var i=CATS.indexOf(name); if(i>-1) CATS.splice(i,1); }
+    window.__catPick4={cats:function(){ return CATS; },add:add,rename:rename,remove:remove};
     var tCombo=document.querySelector('#v4-details .pickcombo[data-pick="tenure"]');
     tCombo.querySelector('[data-add-tenure]').addEventListener('click',function(){
       tCombo.querySelector('.menu').hidden=true;
@@ -9379,11 +9863,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 })();
 </script>
 <script>
-/* V5 (data-v="4") — settings page (Figma 757:32731): one table of leave policies, grouped by category, then
-   No Group (no category) and Disabled; each group folds, each policy has Assign and a ⋯ menu */
+/* V5 (data-v="4") — settings page (Figma 758:33294): one flat table of leave policies with their Group; the All Policies
+   dropdown shows one group (a category, No Group or Disabled) and holds Add Category; each policy has Assign and a ⋯ menu */
 (function(){
   "use strict";
-  var app=document.getElementById('v4-app'), tbl=document.getElementById('v4-polTbl'), q=document.getElementById('v4-catSearch');
+  var app=document.getElementById('v4-app'), tbl=document.getElementById('v4-polTbl'), q=document.getElementById('v4-catSearch'),
+      fBtn=document.getElementById('v4-polFilter'), fMenu=document.getElementById('v4-polFilterMenu'), fList=fMenu.querySelector('.v4polflist');
   var CATS=['Sick Leave','Bereavement Leave','Paid Vacation','Unpaid Leave'];
   /* cat '' is No Group; off puts a policy in Disabled, whatever its category; paid overrides the category's pay */
   var POLS=[
@@ -9394,7 +9879,11 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     {name:'Jury Duty',emp:12,cat:''},{name:'Voting Leave',emp:9,cat:''},{name:'Military Leave',emp:3,cat:'',paid:'unpaid'},
     {name:'Vacation – Seasonal 2025',emp:0,cat:'Paid Vacation',off:true},{name:'Sick Leave – Legacy Hourly',emp:0,cat:'Sick Leave',off:true}
   ];
-  var NOGROUP='No Group', DISABLED='Disabled', opened={}, openMenu=null;
+  var NOGROUP='No Group', DISABLED='Disabled', filter='', openMenu=null;
+  /* the table opens sorted by Leave Policy, A–Z, with no sort icon; a header sorts by its column, again to reverse,
+     and from then on the sorted column shows its direction */
+  var sortBy={k:'name',dir:1}, sortShown=false;
+  var COLS=[['name','Leave Policy'],['group','Group'],['type','Type'],['emp','Employees']];
   function esc(s){ return String(s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function toast(t){
     document.querySelectorAll('.toast').forEach(function(x){ x.remove(); });
@@ -9410,67 +9899,75 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var v=p.state&&p.state.pay?p.state.pay.paid:p.paid||(/unpaid/i.test(p.cat)?'unpaid':'paid');
     return v==='unpaid'?'Unpaid':'Paid';
   }
+  /* the groups the dropdown offers: every category, then No Group and Disabled while they hold a policy */
   function groups(){
-    var g=CATS.map(function(c){ return {key:c,cat:c,list:[]}; }), none={key:NOGROUP,list:[]}, dis={key:DISABLED,list:[]};
-    POLS.forEach(function(p,i){
-      var to=off(p)?dis:p.cat?g.filter(function(x){ return x.cat===p.cat; })[0]:none;
-      if(to) to.list.push(i);
-    });
-    /* No Group and Disabled show only while they hold a policy */
-    return g.concat([none,dis].filter(function(x){ return x.list.length; }));
+    var g=CATS.slice();
+    if(POLS.some(function(p){ return !off(p)&&!p.cat; })) g.push(NOGROUP);
+    if(POLS.some(off)) g.push(DISABLED);
+    return g;
+  }
+  /* All Policies lists every policy; a category or No Group all of its policies, disabled ones too;
+     Disabled the disabled ones */
+  function shown(p){
+    if(!filter) return true;
+    if(filter===DISABLED) return off(p);
+    return catName(p)===filter;
   }
   var KEBAB='<img src="assets/dots-vertical-20.svg" width="20" height="20" alt="">';
   function item(act,label,icon,cls,dis){
     return '<button type="button" role="menuitem" data-act="'+act+'"'+(cls?' class="'+cls+'"':'')+(dis?' disabled title="'+dis+'"':'')+'>'+icon+label+'</button>';
   }
   var I={add:'<img src="assets/plus-gray-20.svg" width="20" height="20" alt="">',edit:'<img src="assets/edit-01-20.svg" width="20" height="20" alt="">',
-    del:'<img src="assets/trash-01-menu-20.svg" width="20" height="20" alt=""><img class="on" src="assets/trash-01-menu-red-20.svg" width="20" height="20" alt="">',
+    del:'<img src="assets/trash-01-menu-20.svg" width="20" height="20" alt=""><img class="red" src="assets/trash-01-menu-red-20.svg" width="20" height="20" alt="">',
     off:'<i class="ph ph-prohibit" aria-hidden="true"></i>',on:'<i class="ph ph-check-circle" aria-hidden="true"></i>'};
   function kebab(label,items){
     return '<span class="v4polkebab"><button type="button" data-tip="More Options" aria-haspopup="menu" aria-expanded="false" aria-label="More options for '+esc(label)+'">'+KEBAB+'</button>'+
       '<span class="v4polmenu" role="menu" hidden>'+items+'</span></span>';
   }
-  function groupMenu(g){
-    if(g.key===DISABLED) return item('enableAll','Enable All',I.on);
-    if(g.key===NOGROUP) return item('add','Add Leave Policy',I.add);
-    var n=POLS.filter(function(p){ return p.cat===g.cat; }).length;
-    return item('add','Add Leave Policy',I.add)+item('edit','Edit',I.edit)+
-      item('delete','Delete',I.del,'del',n?'Delete its policies before deleting this category':'');
-  }
   function polRow(i){
     var p=POLS[i];
-    return '<div class="v4polrow" role="row" data-i="'+i+'"><span class="nm" role="cell" title="'+esc(p.name)+'">'+esc(p.name)+'</span>'+
+    return '<div class="v4polrow" role="row" data-i="'+i+'">'+
+      '<span class="nm" role="cell" title="'+esc(p.name)+'">'+esc(p.name)+'</span>'+
+      '<span role="cell"'+(p.cat?' title="'+esc(p.cat)+'"':'')+'>'+(p.cat?esc(p.cat):'\u2013')+'</span>'+
       '<span role="cell">'+paid(p)+'</span><span class="n" role="cell">'+p.emp+'</span>'+
-      '<span class="act" role="cell"><button type="button" class="v4polassign" data-tip="Assign Employees" aria-label="Assign employees to '+esc(p.name)+'">'+
-      '<img src="assets/users-plus-20.svg" width="20" height="20" alt=""></button>'+
-      kebab(p.name,item('edit','Edit',I.edit)+(off(p)?item('enable','Enable',I.on):item('disable','Disable',I.off))+item('delete','Delete',I.del,'del'))+'</span></div>';
+      /* a disabled policy cannot be assigned */
+      '<span class="act" role="cell">'+(off(p)?'<span class="noassign" aria-hidden="true"></span>':
+      '<button type="button" class="v4polassign" data-tip="Assign Employees" aria-label="Assign employees to '+esc(p.name)+'">'+
+      '<img src="assets/users-plus-20.svg" width="20" height="20" alt=""></button>')+
+      kebab(p.name,item('edit','Edit',I.edit)+item('delete','Delete',I.del,'del'))+'</span></div>';
   }
-  /* search matches group and policy names: a group found by name lists all its policies,
-     one found only through its policies opens to list just those */
+  /* a column's value for sorting; No Group (–) sorts after every category */
+  function sortVal(p,k){
+    if(k==='group') return p.cat?p.cat.toLowerCase():'\uffff';
+    if(k==='type') return paid(p);
+    if(k==='emp') return p.emp;
+    return p.name.toLowerCase();
+  }
+  function byCol(a,b){
+    /* disabled policies always come last, whichever way the table is sorted */
+    var d=off(POLS[a])-off(POLS[b]); if(d) return d;
+    var x=sortVal(POLS[a],sortBy.k), y=sortVal(POLS[b],sortBy.k);
+    var c=typeof x==='number'?x-y:x<y?-1:x>y?1:0;
+    /* ties fall back to the policy name, A–Z */
+    return c*sortBy.dir||POLS[a].name.localeCompare(POLS[b].name);
+  }
+  /* search matches policy and group names, within the group the dropdown shows */
   function draw(){
     closeMenu(false);
-    var t=q.value.trim().toLowerCase(), html='', any=false;
+    var t=q.value.trim().toLowerCase(), html='', n=0;
     function has(x){ return x.toLowerCase().indexOf(t)>-1; }
-    /* each open group carries its own column headers */
-    var HD='<div class="v4polrow hd" role="row"><span role="columnheader">Leave Policy</span><span role="columnheader">Type</span>'+
-      '<span role="columnheader">Employees</span><span role="columnheader"><span class="sr">Actions</span></span></div>';
-    groups().forEach(function(g){
-      var byName=!t||has(g.key), list=byName?g.list:g.list.filter(function(i){ return has(POLS[i].name); });
-      if(!byName&&!list.length) return;
-      any=true;
-      /* groups start closed; a search that finds a group only through its policies opens it */
-      var open=t&&!byName?true:!!opened[g.key];
-      html+='<div class="v4grp" role="row" data-g="'+esc(g.key)+'">'+
-        '<button type="button" class="cv" aria-expanded="'+open+'" aria-label="'+(open?'Hide ':'Show ')+esc(g.key)+' policies">'+
-        '<img src="assets/chevron-right-gray-20.svg" width="20" height="20" alt=""></button>'+
-        '<span class="gname" role="rowheader">'+esc(g.key)+' ('+g.list.length+')</span>'+kebab(g.key,groupMenu(g))+'</div>';
-      if(!open) return;
-      if(!list.length){ html+='<div class="v4polempty" role="row"><span role="cell">No policies in this category yet.</span></div>'; return; }
-      html+=HD;
-      list.forEach(function(i){ html+=polRow(i); });
-    });
-    if(!any) html+='<div class="v4polempty" role="row"><span role="cell">No categories or policies match “'+esc(q.value.trim())+'”.</span></div>';
-    tbl.innerHTML=html;
+    var list=[];
+    POLS.forEach(function(p,i){ if(shown(p)&&(!t||has(p.name)||has(p.cat||''))) list.push(i); });
+    list.sort(byCol).forEach(function(i){ html+=polRow(i); n++; });
+    if(!n) html='<div class="v4polempty" role="row"><span role="cell">'+(t?'No policies match \u201c'+esc(q.value.trim())+'\u201d.':
+      filter===DISABLED?'No disabled policies.':filter?'No policies in this group yet.':'No leave policies yet.')+'</span></div>';
+    tbl.innerHTML='<div class="v4polrow hd" role="row">'+COLS.map(function(c){
+        var on=sortBy.k===c[0], up=sortBy.dir>0;
+        return '<span role="columnheader" aria-sort="'+(on?(up?'ascending':'descending'):'none')+'">'+
+          '<button type="button" class="v4sort" data-k="'+c[0]+'" aria-label="Sort by '+c[1]+'"><span>'+c[1]+'</span>'+
+          /* A–Z points down, Z–A up */
+          (on&&sortShown?'<i class="ph '+(up?'ph-arrow-down':'ph-arrow-up')+'" aria-hidden="true"></i>':'')+'</button></span>';
+      }).join('')+'<span role="columnheader"><span class="sr">Actions</span></span></div>'+html;
   }
   function closeMenu(focusBtn){
     if(!openMenu) return;
@@ -9483,30 +9980,18 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   function refocus(sel){ var el=tbl.querySelector(sel); if(el) el.focus(); }
 
   tbl.addEventListener('click',function(e){
-    var t=e.target, k=t.closest('.v4polkebab > button');
+    var t=e.target, srt=t.closest('.v4sort');
+    if(srt){
+      var key=srt.dataset.k;
+      sortBy=sortBy.k===key?{k:key,dir:-sortBy.dir}:{k:key,dir:1}; sortShown=true;
+      draw(); refocus('.v4sort[data-k="'+key+'"]'); return;
+    }
+    var k=t.closest('.v4polkebab > button');
     if(k){
       var m=k.nextElementSibling, was=!m.hidden;
       closeMenu(false);
       if(!was){ m.hidden=false; k.setAttribute('aria-expanded','true'); openMenu=m; m.querySelector('button:not(:disabled)').focus(); }
       e.stopPropagation(); return;
-    }
-    var grp=t.closest('.v4grp');
-    if(grp){
-      var key=grp.dataset.g, a=t.closest('[data-act]');
-      if(!a){
-        if(t.closest('.v4polkebab')) return;
-        opened[key]=!opened[key]; draw(); refocus('.v4grp[data-g="'+key+'"] .cv'); return;
-      }
-      if(a.disabled) return;
-      closeMenu(false);
-      if(a.dataset.act==='add'){ window.__edit4.openNew(key===NOGROUP?null:key,grp.querySelector('.v4polkebab > button')); return; }
-      if(a.dataset.act==='edit'){ toast('Edit “'+key+'”'); return; }
-      if(a.dataset.act==='enableAll'){
-        POLS.forEach(function(p){ if(off(p)) setOff(p,false); });
-        draw(); toast('All disabled policies enabled'); return;
-      }
-      CATS.splice(CATS.indexOf(key),1); draw();
-      toast('“'+key+'” deleted'); return;
     }
     var row=t.closest('.v4polrow[data-i]'); if(!row) return;
     var i=+row.dataset.i, p=POLS[i];
@@ -9515,33 +10000,77 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     /* anywhere on the row outside its buttons opens the policy's summary; Edit is in its footer */
     if(!t.closest('.act')){
       closeMenu(false);
-      window.__edit4.openEdit(p,catName(p),row.querySelector('.v4polkebab > button'),done);
+      window.__edit4.view(p,catName(p),row.querySelector('.v4polkebab > button'),done);
       return;
     }
     var a2=t.closest('[data-act]'); if(!a2) return;
     closeMenu(false);
     if(a2.dataset.act==='edit'){ window.__edit4.openEdit(p,catName(p),row.querySelector('.v4polkebab > button'),done); return; }
-    if(a2.dataset.act==='disable'||a2.dataset.act==='enable'){
-      setOff(p,a2.dataset.act==='disable'); draw();
-      toast('“'+p.name+'” '+(off(p)?'disabled':'enabled'));
-      refocus('.v4polrow[data-i="'+i+'"] .v4polkebab > button'); return;
-    }
     POLS.splice(i,1); draw();
     toast('“'+p.name+'” deleted');
     refocus('.v4polkebab > button');
   });
   q.addEventListener('input',draw);
-  document.getElementById('v4-addPolBtn').addEventListener('click',function(e){ window.__edit4.openNew(null,e.currentTarget); });
-  /* a new category shows open (and empty) in the table; the editor's Leave Category list gets it too */
-  function addCat(name){ if(CATS.indexOf(name)<0) CATS.push(name); opened[name]=true; draw(); }
-  document.getElementById('v4-addCatBtn').addEventListener('click',function(e){
-    window.__catDlg4.open(e.currentTarget,function(name){
+  /* a new policy starts in the category the dropdown shows, if it shows one */
+  document.getElementById('v4-addPolBtn').addEventListener('click',function(e){
+    window.__edit4.openNew(CATS.indexOf(filter)>-1?filter:null,e.currentTarget);
+  });
+  function addCat(name){ if(CATS.indexOf(name)<0) CATS.push(name); draw(); }
+  /* a renamed category keeps its place and its policies; the editor's list follows */
+  function renameCat(was,name){
+    CATS[CATS.indexOf(was)]=name;
+    POLS.forEach(function(p){ if(p.cat===was) p.cat=name; });
+    if(window.__catPick4) window.__catPick4.rename(was,name);
+    if(filter===was) setFilter(name); else draw();
+  }
+  /* ---- All Policies: pick a group to show; Add Category at its foot ---- */
+  var renameBtn=document.getElementById('v4-renameCatBtn');
+  function setFilter(v){
+    filter=v; fBtn.firstElementChild.textContent=v||'All Policies';
+    renameBtn.hidden=CATS.indexOf(v)<0;
+    draw();
+  }
+  /* Rename Category: the category All Policies is set to */
+  renameBtn.addEventListener('click',function(){
+    var g=filter;
+    window.__catDlg4.open(renameBtn,function(name){ renameCat(g,name); },g);
+  });
+  function openFilter(){
+    closeMenu(false);
+    fList.innerHTML=[''].concat(groups()).map(function(g){
+      return '<button type="button" role="option" data-g="'+esc(g)+'" aria-selected="'+(g===filter)+'"><span>'+esc(g||'All Policies')+'</span>'+
+        '<i class="ph ph-check" aria-hidden="true"></i></button>';
+    }).join('');
+    fMenu.hidden=false; fBtn.setAttribute('aria-expanded','true');
+    (fList.querySelector('[aria-selected="true"]')||fList.firstElementChild).focus();
+  }
+  function closeFilter(focusBtn){
+    if(fMenu.hidden) return;
+    fMenu.hidden=true; fBtn.setAttribute('aria-expanded','false');
+    if(focusBtn) fBtn.focus();
+  }
+  fBtn.addEventListener('click',function(e){ e.stopPropagation(); if(fMenu.hidden) openFilter(); else closeFilter(false); });
+  fList.addEventListener('click',function(e){
+    var o=e.target.closest('[role="option"]'); if(!o) return;
+    closeFilter(true); setFilter(o.dataset.g);
+  });
+  /* a new category is shown on its own (and empty) in the table; the editor's Leave Category list gets it too */
+  document.getElementById('v4-addCatBtn').addEventListener('click',function(){
+    closeFilter(false);
+    window.__catDlg4.open(fBtn,function(name){
       if(window.__catPick4) window.__catPick4.add(name);
-      q.value=''; addCat(name);
+      q.value=''; addCat(name); setFilter(name);
     });
   });
-  /* Build with AI: V1's Upload is not part of V4, so it only says so */
-  document.getElementById('v4-uploadBtn').addEventListener('click',function(){ toast('Build with AI'); });
+  document.addEventListener('click',function(e){ if(!fMenu.hidden&&!fMenu.parentElement.contains(e.target)) closeFilter(false); });
+  fMenu.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){ e.preventDefault(); e.stopPropagation(); closeFilter(true); return; }
+    if(e.key==='Tab'){ closeFilter(false); return; }
+    if(e.key!=='ArrowDown'&&e.key!=='ArrowUp') return;
+    e.preventDefault();
+    var items=[].slice.call(fMenu.querySelectorAll('button')), i=items.indexOf(document.activeElement);
+    items[(i+(e.key==='ArrowDown'?1:items.length-1))%items.length].focus();
+  });
   document.getElementById('v4-addTenureBtn').addEventListener('click',function(){ toast('Add Tenure Configuration'); });
   draw();
   /* tenure configurations: the same ⋯ menu, Edit and Delete; a deleted one also leaves New Leave Policy's Tenure list */
@@ -9551,7 +10080,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     cell.innerHTML='<span class="v4polkebab"><button type="button" data-tip="More Options" aria-haspopup="menu" aria-expanded="false" aria-label="More options for '+esc(name)+'">'+
       '<img src="assets/dots-vertical-20.svg" width="20" height="20" alt=""></button>'+
       '<span class="v4polmenu" role="menu" hidden><button type="button" role="menuitem" data-act="edit"><img src="assets/edit-01-20.svg" width="20" height="20" alt="">Edit</button>'+
-      '<button type="button" role="menuitem" class="del" data-act="delete"><img src="assets/trash-01-menu-20.svg" width="20" height="20" alt=""><img class="on" src="assets/trash-01-menu-red-20.svg" width="20" height="20" alt="">Delete</button></span></span>';
+      '<button type="button" role="menuitem" class="del" data-act="delete"><img src="assets/trash-01-menu-20.svg" width="20" height="20" alt=""><img class="red" src="assets/trash-01-menu-red-20.svg" width="20" height="20" alt="">Delete</button></span></span>';
     cell.addEventListener('click',function(e){
       var k=e.target.closest('.v4polkebab > button');
       if(k){
@@ -9580,7 +10109,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       items[(i+(e.key==='ArrowDown'?1:items.length-1))%items.length].focus();
     }
   });
-  window.__pols4={cats:function(){ return CATS; },addCat:addCat};
+  /* policies created from Build with AI join the table */
+  window.__pols4={cats:function(){ return CATS; },addCat:addCat,add:function(cat,name){
+    if(cat&&CATS.indexOf(cat)<0) CATS.push(cat);
+    POLS.push({name:name,emp:0,cat:cat});
+    draw();
+  }};
 })();
 </script>
 <script>
@@ -9589,21 +10123,28 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 (function(){
   "use strict";
   var scrim=document.getElementById('v4-catScrim'), box=scrim.querySelector('.v4catdlg'),
-      inp=document.getElementById('v4-catName'), err=document.getElementById('v4-catErr'), at=null;
+      inp=document.getElementById('v4-catName'), err=document.getElementById('v4-catErr'), at=null,
+      hd=document.getElementById('v4-catDlgTitle'), sub=document.getElementById('v4-catDlgSub'), go=box.querySelector('.pri');
   function say(msg){
     err.textContent=msg; err.hidden=!msg;
     if(msg) inp.setAttribute('aria-invalid','true'); else inp.removeAttribute('aria-invalid');
   }
   function taken(name){
+    /* renaming may keep the name, or change only its case */
+    if(at&&at.was&&name.toLowerCase()===at.was.toLowerCase()) return false;
     var all=(window.__pols4?window.__pols4.cats():[]).concat(window.__catPick4?window.__catPick4.cats():[]);
     return all.some(function(c){ return c.toLowerCase()===name.toLowerCase(); });
   }
-  function open(trigger,onAdd){
+  /* was: the category being renamed; without it the dialog adds one */
+  function open(trigger,onAdd,was){
     /* the editor may already hold the page's scroll lock; closing gives back only what this took */
-    at={trigger:trigger,onAdd:onAdd,locked:document.body.classList.contains('locked')};
-    inp.value=''; say('');
+    at={trigger:trigger,onAdd:onAdd,was:was||'',locked:document.body.classList.contains('locked')};
+    hd.textContent=was?'Rename Category':'Add Category';
+    sub.textContent=was?'Give this category a new name':'Add category to group similar policies';
+    go.textContent=was?'Save':'Add Category';
+    inp.value=was||''; say('');
     scrim.hidden=false; document.body.classList.add('locked');
-    inp.focus();
+    inp.focus(); if(was) inp.select();
   }
   function close(){
     if(scrim.hidden) return;
@@ -9618,7 +10159,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     if(taken(name)){ say('“'+name+'” already exists'); inp.focus(); return; }
     var a=at; close(); a.onAdd(name);
     document.querySelectorAll('.toast').forEach(function(x){ x.remove(); });
-    var t=document.createElement('div'); t.className='toast'; t.textContent='“'+name+'” added';
+    var t=document.createElement('div'); t.className='toast'; t.textContent=a.was?'“'+a.was+'” renamed to “'+name+'”':'“'+name+'” added';
     document.body.appendChild(t); setTimeout(function(){ t.remove(); },3000);
   });
   inp.addEventListener('input',function(){ if(!err.hidden) say(''); });
@@ -9670,7 +10211,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   function chrome(edit){
     title.textContent=edit?'Edit Leave Policy':'New Leave Policy';
     save.textContent=edit?'Save Changes':'Create Policy';
-    caution.textContent=edit?'Before you edit this policy':'Before you create this policy';
+    caution.textContent=edit?'Read this before editing':'Read this before creating';
     /* employees are assigned only once the policy exists */
     document.getElementById('v4-empTools').hidden=!edit;
     lockEmployees(!edit);
@@ -9685,13 +10226,21 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     chrome(false);
     setCat(cat||'Sick Leave');
     drawer.querySelector('.dbody').scrollTop=0;
-    window.__drawer4.open(trigger);
+    /* a new policy starts with its name */
+    window.__drawer4.open(trigger,name);
+  }
+  /* a policy in No Group shows that in place of a category */
+  function showCat(cat){
+    if(cat&&cat!=='No Group') setCat(cat);
+    else catBtn.querySelector('.txt').textContent='No Group';
   }
   function openEdit(p,cat,trigger,done){
     editing=p; onSaved=done;
     name.value=p.name; name.dispatchEvent(new Event('input',{bubbles:true}));
-    if(cat&&cat!=='No Group') setCat(cat);
+    showCat(cat);
     chrome(true);
+    /* a policy with no category can still be given one; one that has a category keeps it */
+    lockCategory(!!p.cat);
     drawer.querySelector('.dbody').scrollTop=0;
     window.__drawer4.open(trigger);
   }
@@ -9699,9 +10248,465 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   drawer.addEventListener('policycreated',function(){
     if(!editing||!name.value.trim()) return;
     editing.name=name.value.trim();
+    /* a category picked for a No Group policy is saved with it, and Settings lists the category */
+    var c=catBtn.querySelector('.txt').textContent;
+    if(!editing.cat&&c&&c!=='No Group'){
+      editing.cat=c;
+      if(window.__pols4) window.__pols4.addCat(c);
+      lockCategory(true);
+    }
     if(onSaved) onSaved();
   });
-  window.__edit4={openNew:openNew,openEdit:openEdit};
+  /* ---- the policy's summary in a centred dialog: the editor's own Policy summary lines, read-only ---- */
+  var vScrim=document.getElementById('v4-viewScrim'), vBox=vScrim.querySelector('.v4view'),
+      vTitle=document.getElementById('v4-viewTitle'), vSub=document.getElementById('v4-viewSub'),
+      vBody=document.getElementById('v4-viewBody'), vEdit=document.getElementById('v4-viewEdit'),
+      vAssign=document.getElementById('v4-viewAssign'), vAt=null;
+  function view(p,cat,trigger,done){
+    /* the editor's answers as Edit would open them, so the summary reads the same */
+    name.value=p.name; name.dispatchEvent(new Event('input',{bubbles:true}));
+    showCat(cat);
+    if(window.__afterSync4) window.__afterSync4(document.getElementById('v4-panel-t1'));
+    vTitle.textContent=p.name;
+    vSub.textContent=cat+' · '+p.emp+(p.emp===1?' employee':' employees');
+    vBody.innerHTML=document.getElementById('v4-sumBody').innerHTML||'<span class="sumline"><span></span><span>Nothing set up yet.</span></span>';
+    vAt={p:p,cat:cat,trigger:trigger,done:done};
+    /* a disabled policy cannot be assigned */
+    vAssign.hidden=!!p.off;
+    vScrim.hidden=false; document.body.classList.add('locked');
+    (p.off?vEdit:vAssign).focus();
+  }
+  function unview(back){
+    if(vScrim.hidden) return;
+    vScrim.hidden=true; document.body.classList.remove('locked');
+    if(back&&vAt&&vAt.trigger) vAt.trigger.focus();
+  }
+  document.getElementById('v4-viewX').addEventListener('click',function(){ unview(true); });
+  /* Assign does what the row's Assign Employees button does */
+  vAssign.addEventListener('click',function(){
+    var a=vAt; unview(true);
+    document.querySelectorAll('.toast').forEach(function(x){ x.remove(); });
+    var t=document.createElement('div'); t.className='toast'; t.textContent='Assign employees to “'+a.p.name+'”';
+    document.body.appendChild(t); setTimeout(function(){ t.remove(); },3000);
+  });
+  vScrim.addEventListener('click',function(e){ if(e.target===vScrim) unview(true); });
+  vEdit.addEventListener('click',function(){ var a=vAt; unview(false); openEdit(a.p,a.cat,a.trigger,a.done); });
+  /* modal: Escape closes it, Tab stays inside it */
+  document.addEventListener('keydown',function(e){
+    if(vScrim.hidden) return;
+    if(e.key==='Escape'){ e.preventDefault(); e.stopPropagation(); unview(true); return; }
+    if(e.key!=='Tab') return;
+    var f=[].slice.call(vBox.querySelectorAll('button:not([disabled])')), a=f[0], z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){ e.preventDefault(); z.focus(); }
+    else if(!e.shiftKey&&document.activeElement===z){ e.preventDefault(); a.focus(); }
+    else if(!vBox.contains(document.activeElement)){ e.preventDefault(); a.focus(); }
+  },true);
+  /* Build with AI reviews each policy it finds in this drawer, as a new policy */
+  function blank(){ editing=null; onSaved=null; chrome(false); }
+  window.__edit4={openNew:openNew,openEdit:openEdit,view:view,blank:blank};
+})();
+</script>
+<script>
+/* V1 (data-v="4") — Build with AI: V2's Upload, reviewing each policy in V1's New Leave Policy drawer before creating it. No progress is saved: Exit discards anything not created yet. */
+(function(){
+  "use strict";
+  var page=document.getElementById('v4-upload'), app=document.getElementById('v4-app');
+  var openBtn=document.getElementById('v4-uploadBtn');
+  var center=document.getElementById('v4-upCenter'), docs=document.getElementById('v4-upDocs');
+  var fileIn=document.getElementById('v4-upFile'), drop=document.getElementById('v4-drop'), errEl=document.getElementById('v4-upErr');
+  var docEl=document.getElementById('v4-upDoc'), docName=document.getElementById('v4-upDocName'),
+      docSt=document.getElementById('v4-upDocSt'), docBar=document.getElementById('v4-upDocBar');
+  var host=document.getElementById('v4-upReview');
+  var itemsEl=document.getElementById('v4-upItems'), noneEl=document.getElementById('v4-upNone'), countEl=document.getElementById('v4-upCount');
+  var msg=document.getElementById('v4-upMsg'), createBtn=document.getElementById('v4-upCreate');
+  var leaveScrim=document.getElementById('v4-upLeaveScrim'), leaveGo=document.getElementById('v4-upLeave');
+  var editor=document.getElementById('v4-drawer'), nameIn=document.getElementById('v4-policyName'),
+      catTxt=document.querySelector('#v4-leaveCategory .txt');
+  var openState=false, lastFocus=null, policies=[], active=null, seq=0, timer=null, doc=null, onLeave=null;
+  /* base: the drawer as it was before Build with AI opened, put back on Exit; blank: the drawer as the page loaded it */
+  var home={parent:editor.parentNode,next:editor.nextSibling}, base=null, blank=null, embedded=false;
+
+  var EXT=/\.(pdf|docx?|txt)$/i, MAX=10*1024*1024;
+  /* what the reader "finds" in the document, in the editor's own answers; check lists the settings the document left unsaid */
+  var FOUND=[
+    {name:'Sick Leave – Hourly Staff',cat:'Sick Leave',tenure:'None',page:4,
+     limited:'1',unit:'hours',earn:'worked',every:'30',maxBal:'48',check:['carry']},
+    {name:'Paid Vacation – Full-time',cat:'Paid Vacation',tenure:'Union – WATG Config',page:7,
+     limited:'1',unit:'hours',earn:'fixed',fixedAmount:'80',maxBal:'',check:[]},
+    {name:'Bereavement Leave',cat:'Bereavement Leave',tenure:'None',page:11,
+     limited:'1',unit:'days',earn:'fixed',fixedAmount:'3',maxBal:'3',check:['reset']}
+  ];
+
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function toast(t){
+    document.querySelectorAll('.toast').forEach(function(x){ x.remove(); });
+    var el=document.createElement('div'); el.className='toast'; el.textContent=t;
+    document.body.appendChild(el); setTimeout(function(){ el.remove(); },3000);
+  }
+  function byId(id){ for(var i=0;i<policies.length;i++) if(policies[i].id===id) return policies[i]; return null; }
+  /* every policy is created at once from the header; until then, problems are counted per policy */
+  var attempted=false;
+  function issues(p){ return p.check.length+(p.errs||0); }
+  function flagged(){ return policies.filter(function(p){ return issues(p)>0; }); }
+
+  /* ---- the name and category sit in the drawer's header, outside the panels, so they are saved alongside them ---- */
+  /* pay and Enable are answered in Pay & Tenure; the header's Enable switch stands in for its field */
+  function setPaid(cat){
+    var r=document.querySelector('#v4-details [data-f="paid"][value="'+(/unpaid/i.test(cat)?'unpaid':'paid')+'"]');
+    if(r) r.checked=true;
+  }
+  function showEnabled(){
+    var en=document.querySelector('#v4-details [data-f="enabled"]');
+    if(en) document.getElementById('v4-enabled').checked=en.checked;
+  }
+  function setTenure(v){
+    var it=document.querySelector('#v4-details .pickcombo[data-pick="tenure"] .menu-item[data-value="'+v+'"]');
+    if(it) it.click();
+  }
+  function saveState(){
+    return {panels:window.__editor4.save(),name:nameIn.value,cat:catTxt.textContent,
+      tenure:document.getElementById('v4-tenureSet').value};
+  }
+  var loading=false;
+  function loadState(st){
+    loading=true;
+    /* tenure first: it shapes the tiers, and the answers are restored field by field into that shape */
+    setTenure(st.tenure);
+    window.__editor4.load(st.panels);
+    nameIn.value=st.name; nameIn.classList.remove('bad'); document.getElementById('v4-nameErr').hidden=true;
+    catTxt.textContent=st.cat;
+    showEnabled();
+    loading=false;
+  }
+  /* a policy seen for the first time: a blank editor, then the document's answers */
+  function prefill(p){
+    loadState(blank);
+    loading=true;
+    nameIn.value=p.name;
+    catTxt.textContent=p.cat;
+    setPaid(p.cat);
+    setTenure(p.tenure);
+    var ed=window.__editor4;
+    ed.set('limited',p.limited);
+    if(p.limited==='1'){
+      ed.set('unit',p.unit); ed.set('earn',p.earn);
+      if(p.every) ed.set('every',p.every);
+      if(p.fixedAmount) ed.set('fixedAmount',p.fixedAmount);
+      /* Additional Settings are optional: one is added only when the document states it */
+      if(p.maxBal){ ed.addRow('maxBal'); ed.set('maxBal',p.maxBal); }
+    }
+    loading=false;
+  }
+  window.addEventListener('load',function(){ blank=saveState(); });
+  /* the policy's card carries the editor's own Policy summary (a check and a line per answer), as it stands */
+  var sumBody=document.getElementById('v4-sumBody');
+  function summarize(){
+    if(window.__afterSync4) window.__afterSync4(document.getElementById('v4-panel-t1'));
+    return sumBody.innerHTML;
+  }
+  function refreshCard(p){
+    var b=itemsEl.querySelector('[data-id="'+p.id+'"]'); if(!b) return;
+    b.querySelector('.sub').textContent=p.cat+(p.tenure&&p.tenure!=='None'?' · '+p.tenure+' tenure':'');
+    b.querySelector('.sum').innerHTML=p.sum;
+  }
+  /* the active policy's card follows its answers as they change */
+  ['input','change','click'].forEach(function(t){
+    editor.addEventListener(t,function(){
+      if(!embedded) return;
+      /* only the admin's own edits count: answers swapped in for another policy are not edits */
+      if(loading||!byId(active)) return;
+      setTimeout(function(){
+        var p=byId(active); if(!p||loading) return;
+        p.cat=catTxt.textContent; p.tenure=document.getElementById('v4-tenureSet').value; p.sum=summarize(); refreshCard(p);
+        if(attempted){ var n=p.errs; flagErrors(p); if(n!==p.errs) render(); }
+      },0);
+    });
+  });
+  /* the settings the document left unsaid carry an error under their answers until the admin answers them */
+  /* only required questions can be missing; Additional Settings left out of the document are simply not added */
+  var MISSING={carry:{label:'Carryover',f:'eolOutcome'},reset:{label:'Leave year renewal',f:'reset'}};
+  function missingRow(key){
+    var t1=document.getElementById('v4-panel-t1'), m=MISSING[key]; if(!m) return null;
+    var el=t1.querySelector('[data-f="'+m.f+'"]'); return el&&el.closest('.row');
+  }
+  function clearMissing(){
+    editor.querySelectorAll('.row.v4miss').forEach(function(r){
+      r.classList.remove('v4miss'); r.removeAttribute('data-miss');
+      var n=r.querySelector('.v4missnote'); if(n) n.remove();
+    });
+  }
+  function markMissing(p){
+    clearMissing();
+    p.check.forEach(function(key){
+      var r=missingRow(key); if(!r) return;
+      r.classList.add('v4miss'); r.setAttribute('data-miss',key);
+      var n=document.createElement('p'); n.className='v4missnote'; n.setAttribute('role','alert');
+      n.textContent='Not stated in the document. Choose an answer before creating.';
+      r.querySelector('.ctl').appendChild(n);
+    });
+  }
+  function resolveMissing(e){
+    if(!embedded||loading) return;
+    var r=e.target.closest&&e.target.closest('.row.v4miss'); if(!r) return;
+    if(e.type==='click'&&!e.target.closest('.menu-item')) return;
+    var p=byId(active); if(!p) return;
+    var key=r.getAttribute('data-miss'), i=p.check.indexOf(key);
+    if(i>-1) p.check.splice(i,1);
+    r.classList.remove('v4miss'); r.removeAttribute('data-miss');
+    var n=r.querySelector('.v4missnote'); if(n) n.remove();
+    render();
+  }
+  ['input','change','click'].forEach(function(t){ editor.addEventListener(t,resolveMissing); });
+  function embed(){
+    if(embedded) return;
+    embedded=true;
+    host.appendChild(editor);
+    /* the drawer as New Leave Policy has it: its title, Create's caution, Policy Settings on screen */
+    if(window.__edit4) window.__edit4.blank();
+    editor.hidden=false; editor.classList.add('open');
+    center.classList.add('review');
+  }
+  function unembed(){
+    if(!embedded) return;
+    embedded=false;
+    clearMissing();
+    editor.classList.remove('open');
+    editor.hidden=true;
+    home.parent.insertBefore(editor,home.next);
+    loadState(base);
+    center.classList.remove('review');
+  }
+  /* switch the editor to another policy, keeping the one being left as the admin left it */
+  function show(id){
+    var cur=byId(active);
+    if(cur&&embedded) cur.state=saveState();
+    active=id;
+    var p=byId(id);
+    if(!p){ render(); return; }
+    embed();
+    if(p.state) loadState(p.state); else prefill(p);
+    markMissing(p);
+    if(attempted) flagErrors(p);
+    editor.querySelector('.dbody').scrollTop=0;
+    render();
+    var card=itemsEl.querySelector('[data-id="'+id+'"]'); if(card) card.scrollIntoView({block:'nearest'});
+  }
+  /* once Create has been tried, the policy on screen shows its problems as the editor's own errors */
+  function flagErrors(p){
+    var noName=!nameIn.value.trim();
+    nameIn.classList.toggle('bad',noName);
+    document.getElementById('v4-nameErr').hidden=!noName;
+    window.__editor4.validate(true);
+    p.errs=(noName?1:0)+badCount();
+  }
+  /* empty amounts, leaving out a setting already counted as missing from the document */
+  function badCount(){
+    return [].filter.call(editor.querySelectorAll('#v4-panels input.num.bad'),function(i){ return !i.closest('.row.v4miss'); }).length;
+  }
+  /* check every policy, each in turn in the editor, then come back to the one on screen */
+  function checkAll(){
+    var cur=byId(active);
+    if(cur) cur.state=saveState();
+    policies.forEach(function(p){
+      if(p===cur) return;
+      loadState(p.state);
+      markMissing(p);
+      var noName=!p.state.name.trim();
+      window.__editor4.validate(true);
+      p.errs=(noName?1:0)+badCount();
+    });
+    if(cur){ loadState(cur.state); markMissing(cur); flagErrors(cur); }
+  }
+
+  function open(){
+    if(openState) return;
+    openState=true; lastFocus=document.activeElement;
+    base=saveState();
+    page.hidden=false;
+    app.setAttribute('inert','');
+    document.body.classList.add('locked');
+    render();
+    setTimeout(function(){ document.getElementById('v4-upCancel').focus(); },0);
+  }
+  function reset(){
+    clearTimeout(timer);
+    unembed();
+    policies=[]; active=null; doc=null; attempted=false; fileIn.value='';
+    errEl.hidden=true;
+    msg.className='msg'; msg.textContent='';
+    render();
+  }
+  function close(){
+    if(!openState) return;
+    openState=false;
+    leaveScrim.hidden=true;
+    reset();
+    page.hidden=true;
+    app.removeAttribute('inert');
+    document.body.classList.remove('locked');
+    if(lastFocus&&lastFocus.focus) lastFocus.focus();
+  }
+
+  /* ---- the document: one only; it is read, then its policies join the list ---- */
+  function size(b){ return b<1024*1024?Math.max(1,Math.round(b/1024))+' KB':(b/1024/1024).toFixed(1)+' MB'; }
+  /* a document is first only chosen: its card waits for Upload before anything is read */
+  function addFile(f){
+    if(!f||doc) return;
+    var bad=!EXT.test(f.name)?'“'+f.name+'” isn’t a supported file type. Upload a PDF, DOC, DOCX or TXT file.':
+      (f.size>MAX?'“'+f.name+'” is larger than 10 MB.':'');
+    errEl.hidden=!bad; errEl.textContent=bad;
+    if(bad) return;
+    doc={name:f.name,size:f.size,stage:'ready'};
+    docName.textContent=f.name;
+    document.getElementById('v4-upDocExt').textContent=(f.name.split('.').pop()||'').toUpperCase();
+    docSt.textContent=size(f.size); docEl.classList.remove('ok');
+    docBar.hidden=true;
+    render();
+    document.getElementById('v4-upGo').focus();
+  }
+  /* Upload: read the document, then review its policies */
+  function read(){
+    if(!doc||doc.stage!=='ready') return;
+    doc.stage='reading';
+    docSt.textContent='Reading document…';
+    docBar.hidden=false; docBar.firstChild.style.width='0';
+    render();
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ docBar.firstChild.style.width='100%'; }); });
+    timer=setTimeout(function(){
+      FOUND.forEach(function(src){
+        var p=JSON.parse(JSON.stringify(src)); p.id='u'+(++seq); p.file=doc.name; p.errs=0; policies.push(p);
+        prefill(p); p.sum=summarize(); p.state=saveState();
+      });
+      doc.stage='done';
+      docEl.classList.add('ok'); docBar.hidden=true;
+      docSt.textContent=policies.length+' policies found';
+      show(policies[0].id);
+    },1200);
+  }
+  document.getElementById('v4-upGo').addEventListener('click',read);
+  document.getElementById('v4-upDocTrash').addEventListener('click',reset);
+  fileIn.addEventListener('change',function(){ addFile(fileIn.files[0]); fileIn.value=''; });
+  ['dragenter','dragover'].forEach(function(t){ drop.addEventListener(t,function(e){ e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave','drop'].forEach(function(t){ drop.addEventListener(t,function(){ drop.classList.remove('over'); }); });
+  drop.addEventListener('drop',function(e){ e.preventDefault(); if(e.dataTransfer) addFile(e.dataTransfer.files[0]); });
+  /* a prototype: the drop zone skips the file picker and takes the sample document straight away */
+  function sample(){ addFile({name:'Sample_Employee_Handbook.pdf',size:2.4*1024*1024}); }
+  drop.addEventListener('click',function(e){ e.preventDefault(); sample(); });
+  document.getElementById('v4-upDocRemove').addEventListener('click',function(){
+    confirmLeave('Replace this document?','Replace document',reset);
+  });
+
+  /* ---- right-hand list and header ---- */
+  function render(){
+    /* chosen or being read: the intro stays, the card takes the drop zone's place; once read, the review takes over */
+    var stage=doc?doc.stage:'';
+    docs.hidden=stage==='done';
+    drop.hidden=!!doc;
+    center.classList.toggle('ready',stage==='ready'||stage==='reading');
+    docEl.hidden=!doc;
+    docEl.setAttribute('data-stage',stage);
+    noneEl.hidden=policies.length>0;
+    /* the list's heading waits for the first policy; until then the empty state speaks for the sidebar */
+    document.getElementById('v4-upListHd').hidden=!policies.length;
+    document.getElementById('v4-upNoneTitle').textContent=stage==='reading'?'Reading your document…':stage==='ready'?'Your document is ready':'Let’s get your policies uploaded';
+    document.getElementById('v4-upNoneText').textContent=stage==='reading'?'Each policy we find will appear here, pre-filled for you to review.':
+      stage==='ready'?'Click Upload on the document to find its policies and pre-fill them for you to review.':
+      'Upload your leave policy document and we’ll pre-fill each policy we find for you to review.';
+    countEl.textContent=policies.length;
+    itemsEl.innerHTML=policies.map(function(p){
+      var n=issues(p), miss=p.check.map(function(k){ return MISSING[k]?MISSING[k].label:k; });
+      if(p.errs) miss.push(p.errs+(p.errs===1?' required field':' required fields'));
+      var pill=n?'<span class="v4uppill todo" title="'+esc(miss.join(', '))+'">'+n+' missing</span>':'<span class="v4uppill ready">Ready to create</span>';
+      /* the card selects its policy; Remove Policy sits apart from it in the card's footer */
+      return '<li class="v4upitem'+(attempted&&n?' bad':'')+'" data-id="'+p.id+'" aria-current="'+(p.id===active)+'">'+
+        '<button type="button" class="v4upsel"><b>'+esc(p.name||'Untitled policy')+'</b>'+
+        '<span class="sub">'+esc(p.cat)+(p.tenure&&p.tenure!=='None'?' · '+esc(p.tenure)+' tenure':'')+'</span>'+
+        '<span class="sum">'+(p.sum||'')+'</span></button>'+
+        '<div class="v4upfoot">'+pill+'<button type="button" class="v4updrop">Remove Policy</button></div></li>';
+    }).join('');
+    var k=policies.length, f=flagged().length;
+    createBtn.textContent=k?'Create Policy ('+k+')':'Create Policy';
+    createBtn.disabled=!k;
+    msg.className='msg'+(attempted&&f?' bad':'');
+    msg.textContent=attempted&&f?(f===1?'1 policy has':f+' policies have')+' missing details.':'';
+  }
+  itemsEl.addEventListener('click',function(e){
+    var card=e.target.closest('.v4upitem'); if(!card) return;
+    if(e.target.closest('.v4updrop')){ drop1(card.dataset.id); return; }
+    if(card.dataset.id!==active) show(card.dataset.id);
+  });
+  /* the list follows the name as it is typed */
+  nameIn.addEventListener('input',function(){
+    if(!embedded) return;
+    var p=byId(active); if(!p) return;
+    p.name=nameIn.value;
+    var b=itemsEl.querySelector('[data-id="'+p.id+'"] b'); if(b) b.textContent=p.name||'Untitled policy';
+  });
+  /* Remove Policy: the policy leaves the list; if it was on screen, the next one takes its place */
+  function drop1(id){
+    var p=byId(id), at=policies.indexOf(p);
+    policies.splice(at,1);
+    toast('“'+(p.name||'Untitled policy')+'” won’t be created');
+    if(id!==active){ render(); return; }
+    var next=policies[Math.min(at,policies.length-1)];
+    active=null;
+    if(next) show(next.id); else reset();
+  }
+
+  /* ---- one button creates every policy; anything missing anywhere is flagged on every policy first ---- */
+  createBtn.addEventListener('click',function(){
+    if(!policies.length) return;
+    checkAll();
+    attempted=true;
+    var bad=flagged();
+    if(bad.length){
+      /* the editor turns to the first policy with problems, unless the one on screen has some */
+      if(issues(byId(active))===0) show(bad[0].id); else render();
+      var first=editor.querySelector('.v4missnote, #v4-panels input.num.bad, #v4-policyName.bad');
+      if(first) first.scrollIntoView({block:'center',behavior:'smooth'});
+      return;
+    }
+    var cur=byId(active); if(cur) cur.state=saveState();
+    policies.forEach(function(p){ if(window.__pols4) window.__pols4.add(p.state.cat,p.state.name.trim()); });
+    var n=policies.length;
+    policies=[];
+    close();
+    toast(n+(n===1?' leave policy':' leave policies')+' created');
+  });
+
+  /* ---- nothing is saved, so leaving or removing the document with policies still to create asks first ---- */
+  function confirmLeave(title,go,then){
+    var n=policies.length;
+    if(!n){ then(); return; }
+    document.getElementById('v4-upLeaveTitle').textContent=title;
+    leaveGo.textContent=go;
+    document.getElementById('v4-upLeaveBody').textContent=
+      (n===1?'The policy':'The '+n+' policies')+' found in this document will be discarded. Progress isn’t saved, so you’ll need to upload the document again.';
+    onLeave=then;
+    leaveScrim.hidden=false;
+    document.getElementById('v4-upStay').focus();
+  }
+  function stay(){ leaveScrim.hidden=true; onLeave=null; document.getElementById('v4-upCancel').focus(); }
+  document.getElementById('v4-upCancel').addEventListener('click',function(){ confirmLeave('Leave without creating?','Discard and leave',close); });
+  document.getElementById('v4-upStay').addEventListener('click',stay);
+  document.getElementById('v4-upLeaveX').addEventListener('click',stay);
+  leaveGo.addEventListener('click',function(){ var f=onLeave; leaveScrim.hidden=true; onLeave=null; if(f) f(); });
+  leaveScrim.addEventListener('click',function(e){ if(e.target===leaveScrim) stay(); });
+
+  openBtn.addEventListener('click',open);
+  document.addEventListener('keydown',function(e){
+    if(!openState||document.body.dataset.v!=='4') return;
+    if(e.key==='Escape'&&!leaveScrim.hidden){ e.preventDefault(); stay(); return; }
+    if(e.key!=='Tab') return;
+    var box=leaveScrim.hidden?page:leaveScrim;
+    var f=Array.prototype.filter.call(box.querySelectorAll('button:not([disabled]),input:not([disabled]):not([type="hidden"]),select:not([disabled]),textarea:not([disabled])'),
+      function(el){ return el.offsetParent!==null||el===fileIn; });
+    if(!f.length) return;
+    var first=f[0], last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey&&document.activeElement===last){ e.preventDefault(); first.focus(); }
+  });
+  window.__upload4={open:open,close:close,isOpen:function(){ return openState; }};
 })();
 </script>
 <script>
@@ -9857,11 +10862,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     function addedAmount(onF,f,step,unit,suffix,fieldLabel){
       return '<div class="cbrow">'+
         '<input type="hidden" id="'+i(onF)+'" data-f="'+onF+'" value="1">'+
-        '<input class="num" type="number" min="0" step="'+step+'" id="'+i(f)+'" data-f="'+f+'" data-req value="'+d[f]+'" aria-label="'+fieldLabel+'">'+
+        /* the minimum balance may be zero or negative: below zero is how far employees can borrow */
+        '<input class="num" type="number"'+(f==='minBal'?' data-neg':' min="0"')+' step="'+step+'" id="'+i(f)+'" data-f="'+f+'" data-req value="'+d[f]+'" aria-label="'+fieldLabel+'">'+
         '<span class="unit dim">'+
           (unit==='#'?'<span data-unitword="'+f+'"></span>':unit)+(suffix?' '+suffix:'')+
         '</span>'+
-      '</div><p class="err" hidden>Enter an amount greater than 0.</p>';
+      '</div><p class="err" hidden>'+(f==='minBal'?'Enter an amount.':'Enter an amount greater than 0.')+'</p>';
     }
     /* a related run of rows, shown inline with the rest of its section */
     function more(key,label,inner,attrs){
@@ -9941,13 +10947,13 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '</div>',' data-when="worked" data-q="countHours"');
 
     /* proration: only meaningful for a fixed annual amount, so it rides with it */
-    H+=row('Prorate leave for new hires','Adjust the annual leave allocation based on when an employee joins.',
+    H+=row('Prorate leave for new hires','Adjust the annual leave allocation based on when an employee starts.',
       '<div class="opts">'+
         '<label class="cbline"><input type="checkbox" id="'+i('prorate')+'" data-f="prorate"'+ck(d.prorate)+'>'+
           '<span class="lbl">Prorate leave</span></label>'+
           /* turned off, a note says what that means; its x hides it until proration is turned back on */
           '<div class="notebanner prnote" data-when="noprorate" role="note"><i class="ph ph-info" aria-hidden="true"></i>'+
-            '<span><b>Proration is off.</b> New hires will get the full annual allocation no matter when they join, even a week before the leave year renews. Are you sure you don\u2019t want to prorate it?</span>'+
+            '<span><b>Proration is off.</b> New hires will get the full annual allocation no matter when they start, even a week before the leave year renews. Are you sure you don\u2019t want to prorate it?</span>'+
             '<button type="button" class="prnotex" aria-label="Dismiss note"><img src="assets/x-close.svg" width="20" height="20" alt=""></button></div>'+
         '<div class="indent" data-when="prorate">'+
           pick('prorateBasis',d.prorateBasis||'day',[
@@ -9963,26 +10969,21 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         '</div>'+
       '</div>',' data-when="fixed" data-q="prorate"');
 
-    /* the leave year the accrual is measured against belongs with the accrual itself */
-    H+=row('Leave year renews on','Balances reset on a fixed date or each employee\u2019s work anniversary.',
+    /* how the last pay period accrues when an employee leaves; only leave added throughout the year accrues by pay period */
+    H+=row('Termination period','How does leave accrue for the pay period in which an employee is terminated?',
       '<div class="opts">'+
-        '<div class="cbrow">'+
-          pick('reset',d.reset||'custom',[
-            ['custom','A specific date','Set a custom date for annual reset.'],
-            ['anniversary','Employee\u2019s work anniversary','Leave balance is renewed annually on the employee\u2019s work anniversary.']])+
-          /* only a month and a day: the same date comes round every year */
-          '<span class="atwhen" data-when="custom">'+
-            monthDay('resetMonth','resetDay','Reset date')+
-          '</span>'+
-        '</div>'+
-      '</div>',' data-when="earning"');
+        pick('termAccrual',d.termAccrual||'prorated',[
+          ['prorated','Prorated','Accrue up to the employee\u2019s last working day.'],
+          ['full','Full pay period','Accrue for the entire pay period in which the employee is terminated.'],
+          ['none','Don\'t accrue','No accrual for the pay period in which the employee is terminated.']])+
+      '</div>',' data-when="recurring"');
 
     /* settings most policies never need: nothing is shown until the admin adds it */
     H+=row('Minimum Hours Worked','Is there a minimum number of hours employees must work before earning leave?',
       addedAmount('minWorkedOn','minWorked','1','hours worked','','Minimum hours worked'),
       ' data-add="minWorked" hidden');
 
-    H+=row('Minimum Balance','How much leave must employees keep in their balance?',
+    H+=row('Minimum Balance','How much leave must employees keep in their balance? Enter a negative number to let them borrow leave and go below zero.',
       addedAmount('minBalOn','minBal','0.25','#','','Minimum balance'),
       ' data-add="minBal" hidden');
 
@@ -10000,9 +11001,22 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           '<button type="button" role="menuitem" data-addopt="maxBal">Maximum Balance</button>'+
         '</div></div>';
 
-    /* ---------- one question about the end of the year, in a section of its own.
-       its own fields throughout: the sections above keep theirs untouched ---------- */
-    H+='<div class="grouphead" data-lock="earning">End of Leave Year</div>';
+    /* ---------- the leave year: when it renews, and what happens to unused leave at its end ---------- */
+    H+='<div class="grouphead" data-lock="earning">Leave Year</div>';
+
+    /* when the leave year renews comes before what happens to unused leave at its end */
+    H+=row('Leave year renews on','Balances reset on a fixed date or each employee\u2019s work anniversary.',
+      '<div class="opts">'+
+        '<div class="cbrow">'+
+          pick('reset',d.reset||'custom',[
+            ['custom','A specific date','Set a custom date for annual reset.'],
+            ['anniversary','Employee\u2019s work anniversary','Leave balance is renewed annually on the employee\u2019s work anniversary.']])+
+          /* only a month and a day: the same date comes round every year */
+          '<span class="atwhen" data-when="custom">'+
+            monthDay('resetMonth','resetDay','Reset date')+
+          '</span>'+
+        '</div>'+
+      '</div>',' data-when="earning"');
 
     /* carrying over and paying out are alternatives, so they are one question, not two */
     H+=row('What happens to unused leave at year end?','',
@@ -10019,6 +11033,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
                 '<span class="lbl">Payout remaining balance</span></label></div>')+
         '</div>'+
         opt('eolOutcome','payout','Pay out','')+
+        '<p class="err" hidden>Select an option.</p>'+
       '</div>',' data-when="limited" data-q="eolOutcome"');
 
     H+=row('Carryover expiration','How long carried-over leave stays available. It is always used before newly accrued leave.',
@@ -10044,36 +11059,20 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           ['carry','Carry over negative balance','The balance owed moves into the new leave year and is earned back.']])+
       '</div>',' data-when="eolCarryCfg"');
 
-    /* a payout the employee asks for happens during the year, so it stands on its own */
-    H+=row('Payout upon employee request','Employees can ask for a cash payout during the leave year.',
+    /* ---------- what employees can ask for: leave and payouts, the caps on each added on demand ---------- */
+    H+='<div class="grouphead" data-lock="earning">Requests</div>';
+
+    /* always shown, unlike the caps added below them */
+    H+=row('Restrict to shift hours','Employees can request leave only within their scheduled shift hours.',
+      '<label class="cbline"><input type="checkbox" id="'+i('shiftOnly')+'" data-f="shiftOnly"'+ck(d.shiftOnly)+'>'+
+        '<span class="lbl">Restrict</span></label>');
+
+    /* a payout the employee asks for happens during the year */
+    H+=row('Payout requests','Employees can ask for a cash payout during the leave year.',
       '<div class="opts">'+
         '<label class="cbline"><input type="checkbox" id="'+i('eolReq')+'" data-f="eolReq"'+ck(d.eolReq)+'>'+
           '<span class="lbl">Allow</span></label>'+
       '</div>',' data-when="limited"');
-
-    H+=row('Minimum payout','',
-      addedAmount('eolMinPayOn','eolMinPay','0.25','#','','Minimum payout'),
-      ' data-add="eolMinPay" hidden');
-
-    H+=row('Maximum payout','',
-      addedAmount('eolMaxPayOn','eolMaxPay','0.25','#','','Maximum payout'),
-      ' data-add="eolMaxPay" hidden');
-
-    H+='<div class="addwrap">'+
-        '<button type="button" class="addbtn" aria-haspopup="menu" aria-expanded="false">'+
-          '<i class="ph ph-plus" aria-hidden="true"></i>Add Additional Settings</button>'+
-        '<div class="addmenu" role="menu" hidden>'+
-          '<button type="button" role="menuitem" data-addopt="eolMinPay">Minimum Payout</button>'+
-          '<button type="button" role="menuitem" data-addopt="eolMaxPay">Maximum Payout</button>'+
-        '</div></div>';
-
-    /* ---------- the caps, every one of them on demand ---------- */
-    H+='<div class="grouphead" data-lock="earning">Usage Limits</div>';
-
-    /* always shown, unlike the caps added below it */
-    H+=row('Restrict to shift hours','Employees can request leave only within their scheduled shift hours.',
-      '<label class="cbline"><input type="checkbox" id="'+i('shiftOnly')+'" data-f="shiftOnly"'+ck(d.shiftOnly)+'>'+
-        '<span class="lbl">Restrict</span></label>');
 
     H+=row('Annual usage cap','Limit how much leave employees can use in a leave year, regardless of their available balance.',
       addedAmount('usageOn','usage','0.25','#','per year','Annual usage limit'),
@@ -10087,6 +11086,14 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       addedAmount('reqStepOn','reqStep','0.25','#','','Request increment'),
       ' data-add="reqStep" hidden');
 
+    H+=row('Minimum payout','',
+      addedAmount('eolMinPayOn','eolMinPay','0.25','#','','Minimum payout'),
+      ' data-add="eolMinPay" hidden');
+
+    H+=row('Maximum payout','',
+      addedAmount('eolMaxPayOn','eolMaxPay','0.25','#','','Maximum payout'),
+      ' data-add="eolMaxPay" hidden');
+
     H+='<div class="addwrap">'+
         '<button type="button" class="addbtn" aria-haspopup="menu" aria-expanded="false">'+
           '<i class="ph ph-plus" aria-hidden="true"></i>Add Additional Settings</button>'+
@@ -10094,6 +11101,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           '<button type="button" role="menuitem" data-addopt="usage">Annual Usage Cap</button>'+
           '<button type="button" role="menuitem" data-addopt="minReq">Minimum Request</button>'+
           '<button type="button" role="menuitem" data-addopt="reqStep">Request Increments</button>'+
+          '<button type="button" role="menuitem" data-addopt="eolMinPay">Minimum Payout</button>'+
+          '<button type="button" role="menuitem" data-addopt="eolMaxPay">Maximum Payout</button>'+
         '</div></div>';
 
     return sectionize(H);
@@ -10392,7 +11401,11 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   /* the slider: a dot at each month's first day, January's at the start and December's at the end,
      so the twelve sit evenly across it; December's later days stay at the end */
   function posOf(dt){ return Math.min(1,xOf(dt)*12/11); }
-  function dateAtPos(p){ return dateAt(Math.max(0,Math.min(1,p))*11/12); }
+  /* by month the amount only changes month to month, so the handle snaps to a month's first day */
+  function dateAtPos(p){
+    p=Math.max(0,Math.min(1,p));
+    return pr.basis==='month'?addMonths(pr.ly.start,Math.round(p*11)):dateAt(p*11/12);
+  }
   function amountOn(dt){ var p=prorate(pr.ly,pr.fa,dt); return pr.basis==='month'?p.month:p.day; }
   function paintForecast(){
     var ly=pr.ly, from=pr.from, u=words(pr.unit);
@@ -10475,9 +11488,16 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     if(dragging) setHire(dateAtPos(posFromEvent(e)));
   });
   ['pointerup','pointercancel'].forEach(function(t){ prPlot.addEventListener(t,function(){ dragging=false; }); });
-  /* arrows step a day, Page keys a month, Home / End jump to the ends of the leave year */
+  /* arrows step a day, Page keys a month, Home / End jump to the ends of the leave year;
+     by month every key moves between months' first days */
   hFrom.addEventListener('keydown',function(e){
     var cur=pr.from, dt=null;
+    if(pr.basis==='month'){
+      var m=monthOf(cur), on=addMonths(pr.ly.start,m).getTime()===cur.getTime(),
+          to={ArrowLeft:on?m-1:m,ArrowDown:on?m-1:m,PageDown:on?m-1:m,ArrowRight:m+1,ArrowUp:m+1,PageUp:m+1,Home:0,End:11}[e.key];
+      if(to===undefined) return;
+      e.preventDefault(); setHire(addMonths(pr.ly.start,Math.max(0,Math.min(11,to)))); return;
+    }
     if(e.key==='ArrowLeft'||e.key==='ArrowDown') dt=plusDays(cur,-1);
     else if(e.key==='ArrowRight'||e.key==='ArrowUp') dt=plusDays(cur,1);
     else if(e.key==='PageDown') dt=addMonths(cur,-1);
@@ -10524,7 +11544,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     return true;
   }
   function clearErrors(panel){
-    panel.querySelectorAll('input.num.bad').forEach(function(i){i.classList.remove('bad');});
+    panel.querySelectorAll('input.num.bad,.row.bad').forEach(function(i){i.classList.remove('bad');});
     panel.querySelectorAll('.err').forEach(function(e){e.hidden=true;});
   }
   function validate(panel){
@@ -10533,12 +11553,19 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     panel.querySelectorAll('input.num[data-req]').forEach(function(inp){
       if(inp.disabled||!visible(inp,panel)) return;
       var v=parseFloat(inp.value);
-      if(inp.value===''||isNaN(v)||v<=0){
+      if(inp.value===''||isNaN(v)||(v<=0&&!inp.hasAttribute('data-neg'))){
         inp.classList.add('bad');
         var r=inp.closest('.indent')||inp.closest('.ctl'), e=r&&r.querySelector('.err');
         if(e) e.hidden=false;
         if(!first) first=inp;
       }
+    });
+    /* a choice that must be made: a message under it until one is picked */
+    panel.querySelectorAll('.row[data-q="eolOutcome"]').forEach(function(r){
+      if(!visible(r,panel)||r.querySelector('[data-f="eolOutcome"]:checked')) return;
+      r.classList.add('bad');
+      r.querySelector('.opts > .err').hidden=false;
+      if(!first) first=r.querySelector('[data-f="eolOutcome"]');
     });
     return first;
   }
@@ -10663,8 +11690,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       if(maxNum) setTimeout(function(){ if(!maxNum.disabled) maxNum.focus(); },0);
     }
     /* choosing the month/day form opens the month list straight away */
-    if(f==='carryExp'&&e.target.value==='date'){
-      var monthBtn=panel.querySelector('.mdcombo[data-md="carryExpMonth"] .mdbtn');
+    if(f==='eolExp'&&e.target.value==='date'){
+      var monthBtn=panel.querySelector('.mdcombo[data-md="eolExpMonth"] .mdbtn');
       if(monthBtn) setTimeout(function(){ if(!monthBtn.disabled) monthBtn.click(); },0);
     }
   });
@@ -10692,7 +11719,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     if(bad){
       if(badTier.id!==active) select(badTier.id);
       footMsg.className='msg bad';
-      footMsg.textContent='Check the highlighted amounts in '+badTier.label+' before saving.';
+      footMsg.textContent='Fill all required fields.';
       setTimeout(function(){bad.focus();bad.scrollIntoView({block:'center',behavior:'smooth'});},60);
       return;
     }
@@ -10899,18 +11926,21 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     input.dispatchEvent(new Event('change',{bubbles:true}));
   }
 
-  /* type=number still accepts e/E/+/- for exponents, so digits and a point are enforced here */
+  /* type=number still accepts e/E/+/- for exponents, so digits and a point are enforced here;
+     a field marked data-neg (the minimum balance) also takes a leading minus */
   function digitsOnly(input){
+    var ok=input.hasAttribute('data-neg')?/[0-9.\-]/:/[0-9.]/, bad=input.hasAttribute('data-neg')?/[^0-9.\-]/:/[^0-9.]/;
     input.addEventListener('keydown',function(e){
       if(e.ctrlKey||e.metaKey||e.altKey) return;
-      if(e.key&&e.key.length===1&&!/[0-9.]/.test(e.key)) e.preventDefault();
+      if(e.key&&e.key.length===1&&!ok.test(e.key)) e.preventDefault();
     });
     input.addEventListener('beforeinput',function(e){
-      if(e.data!=null&&/[^0-9.]/.test(e.data)) e.preventDefault();
+      if(e.data!=null&&bad.test(e.data)) e.preventDefault();
     });
     /* a paste the browser lets through is cleaned up after the fact */
     input.addEventListener('input',function(){
-      var clean=input.value.replace(/[^0-9.]/g,'');
+      var neg=input.hasAttribute('data-neg')&&/^\s*-/.test(input.value),
+          clean=(neg?'-':'')+input.value.replace(/[^0-9.]/g,'');
       if(clean!==input.value) input.value=clean;
     });
   }
@@ -11225,8 +12255,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   /* the sections whose answers are listed, in card order */
   var SECTIONS=[
     {key:'accruals',       label:'Accruals'},
-    {key:'end-of-leave-year', label:'End of Leave Year'},
-    {key:'usage-limits',   label:'Usage Limits'}
+    {key:'leave-year',     label:'Leave Year'},
+    {key:'requests',       label:'Requests'}
   ];
 
   function get(panel,f){
@@ -11271,8 +12301,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       add('accruals','Time off is <b>unlimited</b> — nothing is earned, capped, carried over or paid out.');
       return g;
     }
-    add('accruals','Time off is <b>limited</b> — employees earn leave and use it from a balance.');
-    add('accruals','Leave is tracked in <b>'+(u==='days'?'days':'hours')+'</b>.');
+    /* the limit and the unit it is tracked in read as one line */
+    add('accruals','Time off is <b>limited</b> — employees earn leave in <b>'+(u==='days'?'days':'hours')+'</b> and use it from a balance.');
 
     /* ---- accruals ---- */
     var earn=get(panel,'earn');
@@ -11281,19 +12311,18 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       return g;
     }
     if(earn==='fixed'){
-      if(set(panel,'fixedAmount'))
-        add('accruals','Employees get <b>'+qty(get(panel,'fixedAmount'),u)+'</b> a year, added '+
-          (get(panel,'mode')==='once'
-            ? '<b>all at once</b>'
-            : '<b>every '+(EVERY[get(panel,'timing')]||'pay period')+'</b>')+'.');
-      else todo('accruals','Enter how much leave employees get each year.');
+      /* the earning method shows as soon as it is chosen; the amount joins it once entered */
+      add('accruals','Employees get '+(set(panel,'fixedAmount')?'<b>'+qty(get(panel,'fixedAmount'),u)+'</b> a year':'a <b>fixed amount</b> each year')+', added '+
+        (get(panel,'mode')==='once'
+          ? '<b>all at once</b>'
+          : '<b>every '+(EVERY[get(panel,'timing')]||'pay period')+'</b>')+'.');
       add('accruals',on(panel,'prorate')
         ? 'New employees get a prorated amount in their first year, counted <b>by '+(get(panel,'prorateBasis')==='month'?'month':'day')+'</b>.'
         : 'New employees get the <b>full amount</b> in their first year.');
     }else{
       if(set(panel,'every'))
         add('accruals','Employees earn <b>'+qty(1,u)+'</b> for every <b>'+get(panel,'every')+' hours worked</b>.');
-      else todo('accruals','Enter how many hours worked earn '+qty(1,u)+'.');
+      else add('accruals','Employees earn leave based on <b>hours worked</b>.');
       var extra=[get(panel,'countHoliday')?'paid holiday':'',get(panel,'countPto')?'paid time off':''].filter(Boolean);
       add('accruals','<b>Clock-in hours</b>'+(extra.length?' and <b>'+extra.join('</b> and <b>')+'</b>':'')+' count as hours worked.');
       if(on(panel,'projLimit')){
@@ -11318,73 +12347,85 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     });
 
     if(get(panel,'reset')==='anniversary')
-      add('accruals','The leave year resets on <b>each employee’s work anniversary</b>.');
+      add('leave-year','The leave year resets on <b>each employee’s work anniversary</b>.');
     else if(md('resetMonth','resetDay'))
-      add('accruals','The leave year resets on <b>'+md('resetMonth','resetDay')+'</b>.');
-    else todo('accruals','Pick the date the leave year resets.');
+      add('leave-year','The leave year resets on <b>'+md('resetMonth','resetDay')+'</b>.');
+    else todo('leave-year','Pick the date the leave year resets.');
+    /* the termination period: how the last pay period accrues */
+    var term=get(panel,'termAccrual')||'prorated';
+    if(earn==='fixed'&&get(panel,'mode')==='spread') add('accruals',term==='none'
+      ? 'When an employee is terminated, <b>nothing accrues</b> for that pay period.'
+      : 'When an employee is terminated, leave accrues '+(term==='full'?'for the <b>full pay period</b>':'<b>up to their last working day</b>')+'.');
 
     amt('accruals','minWorkedOn','minWorked',function(v){return 'Leave starts accruing after <b>'+v+' hours worked</b>.';},
       'Enter the minimum hours worked.');
-    amt('accruals','minBalOn','minBal',function(v){return 'At least <b>'+qty(v,u)+'</b> must stay in the balance after a request.';},
-      'Enter the minimum balance.');
+    /* the minimum balance may be zero or negative */
+    if(on(panel,'minBalOn')){
+      var mb=parseFloat(get(panel,'minBal'));
+      if(isNaN(mb)) todo('accruals','Enter the minimum balance.');
+      else add('accruals',mb<0?'Employees can borrow up to <b>'+qty(-mb,u)+'</b>, going below zero.':
+        mb===0?'The balance can\u2019t go below zero after a request.':'At least <b>'+qty(mb,u)+'</b> must stay in the balance after a request.');
+    }
     amt('accruals','maxBalOn','maxBal',function(v){return 'Balances are capped at <b>'+qty(v,u)+'</b>; earning pauses until some is used.';},
       'Enter the maximum balance.');
 
-    /* ---- usage limits ---- */
-    amt('usage-limits','usageOn','usage',function(v){return 'Employees can use up to <b>'+qty(v,u)+'</b> per leave year.';},
+    /* ---- requests ---- */
+    amt('requests','usageOn','usage',function(v){return 'Employees can use up to <b>'+qty(v,u)+'</b> per leave year.';},
       'Enter the annual usage cap.');
-    amt('usage-limits','minReqOn','minReq',function(v){return 'Each request must be at least <b>'+qty(v,u)+'</b>.';},
+    amt('requests','minReqOn','minReq',function(v){return 'Each request must be at least <b>'+qty(v,u)+'</b>.';},
       'Enter the minimum request.');
-    amt('usage-limits','reqStepOn','reqStep',function(v){return 'Requests must be in multiples of <b>'+qty(v,u)+'</b>.';},
+    amt('requests','reqStepOn','reqStep',function(v){return 'Requests must be in multiples of <b>'+qty(v,u)+'</b>.';},
       'Enter the request increment.');
-    if(!g['usage-limits'].length)
-      add('usage-limits','No usage limits — employees can use any amount of their balance.');
+    if(!g['requests'].length)
+      add('requests','No leave request limits — employees can use any amount of their balance.');
     if(on(panel,'shiftOnly'))
-      add('usage-limits','Leave can be requested only <b>within shift hours</b>.');
+      add('requests','Leave can be requested only <b>within shift hours</b>.');
 
-    /* ---- end of leave year ---- */
+    /* ---- leave year ---- */
     var eolOut=get(panel,'eolOutcome');
-    if(!eolOut) todo('end-of-leave-year','Choose what happens to unused leave at year end.');
-    else if(eolOut==='payout') add('end-of-leave-year','Unused leave is <b>paid out</b> when the leave year ends.');
+    if(!eolOut) todo('leave-year','Choose what happens to unused leave at year end.');
+    else if(eolOut==='payout') add('leave-year','Unused leave is <b>paid out</b> when the leave year ends.');
     else{
+      /* when carried-over leave expires is folded into the carry-over sentence */
+      var exp=get(panel,'eolExp'),expTail=' and <b>never expires</b>.',expTodo='';
+      if(exp==='months'){
+        var n=parseFloat(get(panel,'eolExpMonths'));
+        if(n>0) expTail=' and expires after <b>'+n+(n===1?' month':' months')+'</b>.';
+        else{expTail='.';expTodo='Enter when carried-over leave expires.';}
+      }else if(exp==='date'){
+        if(md('eolExpMonth','eolExpDay')) expTail=' and expires on <b>'+md('eolExpMonth','eolExpDay')+'</b>.';
+        else{expTail='.';expTodo='Pick the date carried-over leave expires.';}
+      }
+
       if(get(panel,'eolCarry')==='max'){
         var mu=get(panel,'eolCarryMaxUnit')||u;
         if(set(panel,'eolCarryMax'))
-          add('end-of-leave-year','Up to <b>'+(mu==='pct'?get(panel,'eolCarryMax')+'%':qty(get(panel,'eolCarryMax'),mu))+
-            '</b> of unused leave carries over.');
-        else todo('end-of-leave-year','Enter the maximum amount that carries over.');
-        add('end-of-leave-year',get(panel,'eolPayRest')
+          add('leave-year','Up to <b>'+(mu==='pct'?get(panel,'eolCarryMax')+'%':qty(get(panel,'eolCarryMax'),mu))+
+            '</b> of unused leave carries over'+expTail);
+        else todo('leave-year','Enter the maximum amount that carries over.');
+        add('leave-year',get(panel,'eolPayRest')
           ? 'Anything above that is <b>paid out</b>.'
           : 'Anything above that is <b>forfeited</b>.');
-      }else add('end-of-leave-year','<b>All unused leave</b> carries over to the next leave year.');
+      }else add('leave-year','<b>All unused leave</b> carries over to the next leave year'+expTail);
+      if(expTodo) todo('leave-year',expTodo);
 
-      var exp=get(panel,'eolExp');
-      if(exp==='months'){
-        var n=parseFloat(get(panel,'eolExpMonths'));
-        if(n>0) add('end-of-leave-year','Carried-over leave expires <b>'+n+(n===1?' month':' months')+'</b> into the new leave year.');
-        else todo('end-of-leave-year','Enter when carried-over leave expires.');
-      }else if(exp==='date'){
-        if(md('eolExpMonth','eolExpDay')) add('end-of-leave-year','Carried-over leave expires on <b>'+md('eolExpMonth','eolExpDay')+'</b>.');
-        else todo('end-of-leave-year','Pick the date carried-over leave expires.');
-      }else add('end-of-leave-year','Carried-over leave <b>never expires</b>.');
-
-      add('end-of-leave-year',get(panel,'eolNeg')==='carry'
+      add('leave-year',get(panel,'eolNeg')==='carry'
         ? 'Negative balances <b>carry over</b> into the new leave year.'
         : 'Negative balances are <b>reset to zero</b>.');
     }
 
-    /* asking for a payout is opt-in, so it is only described once it is allowed */
+    /* asking for a payout is opt-in: its limits are only described once it is allowed */
     if(on(panel,'eolReq')){
-      add('end-of-leave-year','Employees can also <b>request a payout</b> during the leave year.');
-      amt('end-of-leave-year','eolMinPayOn','eolMinPay',function(v){return 'Each payout request must be at least <b>'+qty(v,u)+'</b>.';},
+      add('requests','Employees can <b>request a payout</b> during the leave year.');
+      amt('requests','eolMinPayOn','eolMinPay',function(v){return 'Each payout request must be at least <b>'+qty(v,u)+'</b>.';},
         'Enter the minimum payout.');
-      amt('end-of-leave-year','eolMaxPayOn','eolMaxPay',function(v){return 'Each payout request can be at most <b>'+qty(v,u)+'</b>.';},
+      amt('requests','eolMaxPayOn','eolMaxPay',function(v){return 'Each payout request can be at most <b>'+qty(v,u)+'</b>.';},
         'Enter the maximum payout.');
-    }
+    }else add('requests','Payout requests are <b>not allowed</b>.');
     return g;
   }
 
-  var LATER={'end-of-leave-year':1,'usage-limits':1};
+  var LATER={'leave-year':1,'requests':1};
 
   function render(panel){
     if(!panel) return;
@@ -11409,9 +12450,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   var payBox=document.getElementById('v5-details');
   function payLines(){
     var L=[], paid=payBox.querySelector('[name="v5pay_paid"]:checked').value==='paid';
-    L.push(paid?'Leave is <b>paid</b>.':'Leave is <b>unpaid</b>.');
-    L.push(document.getElementById('v5-payStmt').checked
-      ? 'It <b>shows on pay statements</b>.' : 'It is <b>left off pay statements</b>.');
+    /* pay and pay statements read as one line */
+    L.push('Leave is <b>'+(paid?'paid':'unpaid')+'</b> and '+
+      (document.getElementById('v5-payStmt').checked?'<b>shows on pay statements</b>.':'is <b>left off pay statements</b>.'));
     if(!document.getElementById('v5-enabled').checked) L.push('The policy is <b>disabled</b>.');
     return L;
   }
@@ -12043,7 +13084,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 </script>
 
 <script>
-/* V5 (data-v="5") — Upload: read one leave policy document, list the policies found (pre-filled) on the right,
+/* V5 (data-v="5") — Upload: read one leave policy document, list the policies found (pre-filled) on the left,
    and review each in the New Leave Policy editor before creating it. No progress is saved: Exit discards anything not created yet. */
 (function(){
   "use strict";
@@ -12741,7 +13782,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     title.dataset.empty=edit?'Edit Leave Policy':'New Leave Policy';
     title.textContent=document.getElementById('v5-policyName').value.trim()||title.dataset.empty;
     save.textContent=edit?'Save Changes':'Create Policy';
-    caution.textContent=edit?'Before you edit this policy':'Before you create this policy';
+    caution.textContent=edit?'Read this before editing':'Read this before creating';
     addWrap.hidden=!edit;
     empty.querySelector('p').textContent=edit?'Add employees to apply this policy to them.':'You can assign employees to this policy once it’s created.';
     lockCategory(edit);
@@ -12793,7 +13834,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var name=document.getElementById('v5-policyName');
     if(!name.value.trim()){ name.classList.add('bad'); name.focus(); footMsg.className='msg bad'; footMsg.textContent='Enter a policy name before saving.'; return; }
     var bad=window.__editor5.validate();
-    if(bad){ footMsg.className='msg bad'; footMsg.textContent='Check the highlighted amounts in '+bad.tier+' before saving.'; return; }
+    if(bad){ footMsg.className='msg bad'; footMsg.textContent='Fill all required fields.'; return; }
     editing.state=window.__state5.save();
     editing.name=name.value.trim();
     /* the sample has 20 employees, so a larger policy keeps its count and moves by what was added or removed */
