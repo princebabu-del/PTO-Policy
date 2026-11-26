@@ -1884,7 +1884,6 @@ body[data-v="5"] #v5-drawer.emp-view #v5-sumrail{display:none}
 /* the employees card: header with Add, then the table */
 /* New Leave Policy (and Upload, which reuses it) has no Employees card: they are assigned from the category's table.
    Its markup stays for the scripts that use it; hidden, it also drops out of the section steps */
-body[data-v="5"] #v5-empPanel{display:none!important}
 body[data-v="5"] .dbody > .empcard{grid-column:1/-1;margin-top:24px;background:var(--card);border:1px solid #EAECF0;border-radius:8px;overflow:hidden}
 body[data-v="5"] .emphd{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px}
 body[data-v="5"] .emphd h2{font-size:16px;font-weight:600;color:#101828}
@@ -2033,7 +2032,7 @@ body[data-v="5"] #v5-panels .subq{font-size:14px;font-weight:500;color:var(--ink
 body[data-v="5"] #v5-panels .row[data-add]{position:relative;padding-right:60px}
 /* Figma 688:18854 — a 44px icon button, level with the row's 44px field; its name is a hover tooltip */
 body[data-v="5"] #v5-panels .rmbtn{position:absolute;top:0;right:0;display:grid;place-items:center;width:44px;height:44px;
-  border:0;background:none;padding:0;border-radius:8px;cursor:pointer;color:#667085}
+  border:0;background:none;padding:0;border-radius:8px;cursor:pointer;color:#344054}
 body[data-v="5"] #v5-panels .rmbtn:hover{background:var(--danger-bg);color:var(--danger)}
 body[data-v="5"] #v5-panels .rmbtn svg{display:block}
 /* every V2 tooltip bubble has 8px corners */
@@ -2108,7 +2107,7 @@ body[data-v="5"] #v5-panels .cbline[data-tip]:focus-visible::before{left:8px;tra
 body[data-v="5"] #v5-panels .cbline input:disabled{cursor:not-allowed}
 body[data-v="5"] #v5-panels .cbline:has(input:disabled) .lbl{color:var(--muted)}
 /* nested under clock-in hours with the same vertical rule as the accrual method's indent */
-body[data-v="5"] #v5-panels .nestopt{margin-left:8px;padding-left:17px;display:grid;gap:10px;
+body[data-v="5"] #v5-panels .nestopt,body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig) .nestopt{margin-left:8px;padding-left:17px;display:grid;gap:10px;
   border-left:2px solid var(--line)}
 /* Figma 689:18881 — one 44px line of grey chips; the ones that do not fit are counted in a "+N" chip */
 body[data-v="5"] #v5-panels .mscombo{display:block;width:100%}
@@ -2142,6 +2141,10 @@ body[data-v="5"] #v5-panels .row[data-q] .indent{margin-left:8px;padding-left:17
 /* Prorate leave: 12px between the checkbox, the basis picker and View Proration Forecasting */
 body[data-v="5"] #v5-panels .row[data-q="prorate"] .opts,
 body[data-v="5"] #v5-panels .row[data-q="prorate"] .indent[data-when="prorate"]{gap:12px}
+/* radio groups: 12px between options; a group nested under an option sits 4px below it (the 12px gap pulled up 8px)
+   and opens with 12px of its own, with 12px between its rows */
+body[data-v="5"] #v5-drawer .opts{gap:12px}
+body[data-v="5"] #v5-drawer .opts > :is(.nestopt,.indent){margin-top:-8px;padding-top:12px;gap:12px}
 body[data-v="5"] #v5-panels .prcard{display:flex;flex-direction:column;align-items:flex-start;gap:12px;width:100%;max-width:558px}
 body[data-v="5"] #v5-panels .prview{display:inline-flex;align-items:center;gap:8px;padding:0;border:0;background:none;cursor:pointer;
   font-size:14px;font-weight:600;line-height:1.4;letter-spacing:-.28px;color:#2970FF}
@@ -2281,8 +2284,8 @@ body[data-v="5"] .menu-search .ph{font-size:20px;width:auto;height:auto}
 body[data-v="5"] .details .lab,body[data-v="5"] #v5-panels .lab{font-size:14px;font-weight:600}
 body[data-v="5"] #v5-panels .grouphead,body[data-v="5"] #v5-panels .row{margin:0}
 body[data-v="5"] #v5-panels .row{
-  grid-template-columns:280px minmax(0,1fr);
-  gap:0 36px;
+  grid-template-columns:240px minmax(0,1fr);
+  gap:0 32px;
   padding:0;
 }
 body[data-v="5"] #v5-panels .row + .row{border-top:0;padding-top:0}
@@ -2326,7 +2329,7 @@ body[data-v="5"] #v5-drawer.drawer{left:0;width:auto;max-width:none;transform:no
 /* sub header (Figma 7757:21023): Exit | title on the left, Create on the right */
 body[data-v="5"] .v5bar{flex:none;display:flex;align-items:center;gap:16px;min-height:75px;padding:16px 32px;background:var(--card);border-bottom:1px solid #EAECF0}
 body[data-v="5"] .v5exit{display:inline-flex;align-items:center;gap:8px;padding:0;border:0;background:none;cursor:pointer;
-  font-size:16px;font-weight:500;color:#344054}
+  font-size:16px;font-weight:600;color:#344054}
 body[data-v="5"] .v5exit:hover{color:#101828}
 body[data-v="5"] .v5rule{flex:none;width:1px;height:28px;background:#EAECF0}
 body[data-v="5"] .v5bar h1{font-size:20px;font-weight:600;line-height:1.2;color:#101828;white-space:nowrap}
@@ -2341,8 +2344,8 @@ body[data-v="5"] .v5create:hover{background:#155EEF;border-color:#155EEF}
 /* body (Figma 7757:21031): the setup area scrolls */
 body[data-v="5"] .v5main{flex:1;min-height:0;display:flex}
 /* steps | cards | summary: the cards grow to 900px; the three are centred as one group */
-body[data-v="5"] #v5-drawer .dbody{flex:1;min-width:0;display:grid;grid-template-columns:240px minmax(0,900px) 320px;justify-content:center;
-  column-gap:24px;row-gap:0;align-items:start;padding:0 32px 48px;background:#F2F4F7}
+body[data-v="5"] #v5-drawer .dbody{flex:1;min-width:0;display:grid;grid-template-columns:240px minmax(0,1200px) 320px;justify-content:center;
+  column-gap:16px;row-gap:0;align-items:start;padding:0 32px 48px;background:#F2F4F7}
 
 /* section steps (Figma 7757:21033): 48px rows, the current one on white */
 /* the 24px top inset is padding on both columns, not on the body, so steps and the first card share a top edge
@@ -2414,7 +2417,7 @@ body[data-v="5"] .v5inp::placeholder{color:#98A2B3}
 body[data-v="5"] input::placeholder,body[data-v="5"] textarea::placeholder{color:#98A2B3}
 body[data-v="5"] .v5inp:focus{outline:none;border-color:#2970FF;box-shadow:0 0 0 4px rgba(41,112,255,.16)}
 /* leave category: the shared picker, drawn as a full-width select */
-body[data-v="5"] .v5fields .dccat{display:block}
+body[data-v="5"] .v5fields .dccat{display:block;width:320px;max-width:100%}
 body[data-v="5"] .v5fields .dmpick{display:flex;justify-content:space-between;gap:8px;width:100%;max-width:none;height:44px;padding:0 14px;
   border:1px solid #D0D5DD;border-radius:8px;background:var(--field);font-size:16px;font-weight:400;color:#101828}
 body[data-v="5"] .v5fields .dmpick:hover{background:var(--field)}
@@ -2452,18 +2455,18 @@ body[data-v="5"] .v5fields .dcmenu{right:0;width:auto}
 body[data-v="5"] .v5pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 @media (max-width:640px){body[data-v="5"] .v5pair{grid-template-columns:minmax(0,1fr)}}
 /* Policy Details reads as the other cards do: the label left, its field right, one row each */
-body[data-v="5"] #v5-details{gap:24px}
+body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig){gap:32px}
 body[data-v="5"] #v5-details .v5pair{display:contents}
-body[data-v="5"] #v5-details .v5field{display:grid;grid-template-columns:280px minmax(0,1fr);gap:0 36px;align-items:start}
-body[data-v="5"] #v5-details .v5field > .v5lbl{padding-top:12px}
+body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig) .v5field{display:grid;grid-template-columns:240px minmax(0,1fr);gap:0 32px;align-items:start}
+body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig) .v5field > .v5lbl{padding-top:12px}
 /* a label with a description starts level with the top of its field */
-body[data-v="5"] #v5-details .v5field > .v5lblwrap{padding-top:0}
+body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig) .v5field > .v5lblwrap{padding-top:0}
 @media (max-width:1279px){
-  body[data-v="5"] #v5-details .v5field{grid-template-columns:minmax(0,1fr);gap:8px}
-  body[data-v="5"] #v5-details .v5field > .v5lbl,body[data-v="5"] #v5-details .v5field > .v5lblwrap{padding-top:0}
+  body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig) .v5field{grid-template-columns:minmax(0,1fr);gap:8px}
+  body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig) .v5field > .v5lbl,body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig) .v5field > .v5lblwrap{padding-top:0}
 }
 /* the tier dropdowns' fixed widths and two-line options do not apply here: tenure fills its column like category */
-body[data-v="5"] #v5-details .pickcombo{display:block;width:100%;position:relative}
+body[data-v="5"] #v5-details .pickcombo{display:block;width:320px;max-width:100%;position:relative}
 body[data-v="5"] #v5-details .pickcombo .menu{min-width:0}
 body[data-v="5"] #v5-details .pickcombo .menu-item .label b{display:inline;font-size:inherit;font-weight:400}
 /* a dropdown's chosen option sits on gray, in the usual ink, not blue */
@@ -2500,8 +2503,46 @@ body[data-v="5"] .v5switch input:checked + .v5track{background:#2970FF}
 body[data-v="5"] .v5switch input:checked + .v5track::after{transform:translateX(16px)}
 body[data-v="5"] .v5switch input:focus-visible + .v5track{box-shadow:0 0 0 4px rgba(41,112,255,.16)}
 /* Policy Details' pay answers: radios and a checkbox, their labels level with the first option */
-body[data-v="5"] #v5-details .v5fieldopt > .v5lbl{padding-top:0}
-body[data-v="5"] #v5-details .opt .lbl,body[data-v="5"] #v5-details .cbline .lbl{font-size:14px;font-weight:500}
+body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig) .v5fieldopt > .v5lbl{padding-top:0}
+body[data-v="5"] #v5-prob .cbline .help{margin-top:2px;font-size:12px;font-weight:500;line-height:1.4;color:#667085}
+body[data-v="5"] #v5-prob .cbline[hidden]{display:none}
+/* Probation Period sits among the open tier's cards (after Leave Year); it keeps the 32px under its heading */
+body[data-v="5"] #v5-panels #v5-probCard{display:flex;flex-direction:column;gap:32px}
+/* ---- Users › Who is eligible?: rules on crew, department, branch and employment type ---- */
+body[data-v="5"] #v5-elig .v5rules[hidden],body[data-v="5"] #v5-elig .v5rulecount:empty{display:none}
+body[data-v="5"] #v5-elig .v5rules{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+body[data-v="5"] .v5rulematch{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;font-weight:500;color:#344054}
+body[data-v="5"] .v5rulelist{display:flex;flex-direction:column;gap:8px;width:100%}
+body[data-v="5"] .v5elrule{display:grid;grid-template-columns:180px 112px minmax(0,1fr) 44px;gap:8px;align-items:start;width:100%}
+body[data-v="5"] .v5rulesel{position:relative;min-width:0}
+body[data-v="5"] .v5rulesel--sm{width:96px}
+body[data-v="5"] .v5rulesel .dmpick{height:44px}
+body[data-v="5"] .v5rulesel .dmpick .txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+body[data-v="5"] .v5rulesel .dmpick .txt.phold{color:#667085}
+body[data-v="5"] .v5rulesel .dmpick.bad{border-color:#FDA29B}
+body[data-v="5"] .v5rulesel .menu{left:0;right:auto;min-width:100%;width:max-content;max-width:320px}
+body[data-v="5"] .v5rulesel .menu-list{max-height:260px;overflow-y:auto}
+body[data-v="5"] .v5rulechk{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:6px;cursor:pointer;font-size:14px;font-weight:500;color:#101828}
+body[data-v="5"] .v5rulechk:hover{background:#F9FAFB}
+body[data-v="5"] .v5rulechk input{width:16px;height:16px;margin:0;accent-color:var(--blue)}
+body[data-v="5"] .v5ruledel{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:8px;background:none;cursor:pointer;color:#667085}
+body[data-v="5"] .v5ruledel:hover{background:#FEF3F2;color:#D92D20}
+body[data-v="5"] .v5ruleadd{display:inline-flex;align-items:center;gap:8px;padding:8px 0;border:0;background:none;cursor:pointer;font-size:14px;font-weight:600;color:var(--blue)}
+body[data-v="5"] .v5ruleadd img{display:block}
+body[data-v="5"] .v5ruleerr{margin:0;font-size:14px;font-weight:500;color:var(--danger)}
+body[data-v="5"] .v5ruleerr[hidden]{display:none}
+body[data-v="5"] .v5rulecount{margin:0;font-size:14px;font-weight:500;line-height:1.4;color:#475467}
+body[data-v="5"] .v5rulecount b{font-weight:600;color:#101828}
+/* Assigned users: the table, or (while creating) a locked note */
+body[data-v="5"] .v5assignedctl{min-width:0}
+body[data-v="5"] .v5assignlock{display:none;margin-left:6px;vertical-align:-2px}
+body[data-v="5"] #v5-drawer.v5creating .v5assignlock{display:inline-block}
+body[data-v="5"] #v5-drawer.v5creating .v5assigned .v5tablebox .dmempty{align-items:flex-start;padding:12px 16px;border:1px dashed #D0D5DD;border-radius:8px;background:#F9FAFB;text-align:left}
+@media (max-width:820px){
+  body[data-v="5"] .v5elrule{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px}
+  body[data-v="5"] .v5elrule > .v5rulesel[data-k="v"]{grid-column:1/3}
+}
+body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig) .opt .lbl,body[data-v="5"] :is(#v5-details,#v5-prob,#v5-elig) .cbline .lbl{font-size:14px;font-weight:500}
 /* summary: V1's rail in the third column, pinned beside the cards as the steps are */
 body[data-v="5"] #v5-drawer .dbody > #v5-sumrail{grid-column:3;position:sticky;top:0;margin:0;padding-top:24px;
   max-height:calc(100vh - 80px);overflow-y:auto}
@@ -2536,7 +2577,7 @@ body.no-tiers4 #v4-drawer .tabs{display:none}
 body:not([data-v="4"]) #v4-upload,body:not([data-v="4"]) #v4-upLeaveScrim{display:none!important}
 body[data-v="4"] .v4bar{flex:none;display:flex;align-items:center;gap:16px;min-height:75px;padding:16px 32px;background:var(--card);border-bottom:1px solid #EAECF0}
 body[data-v="4"] .v4exit{display:inline-flex;align-items:center;gap:8px;padding:0;border:0;background:none;cursor:pointer;
-  font-size:16px;font-weight:500;color:#344054}
+  font-size:16px;font-weight:600;color:#344054}
 body[data-v="4"] .v4exit:hover{color:#101828}
 body[data-v="4"] .v4rule{flex:none;width:1px;height:28px;background:#EAECF0}
 body[data-v="4"] .v4bar h1{font-size:20px;font-weight:600;line-height:1.2;color:#101828;white-space:nowrap}
@@ -2842,7 +2883,7 @@ body[data-v="5"] .v5upcenter.review > .v5file{flex:none;padding:16px 32px;border
 body[data-v="5"] .v5upcenter.review > #v5-upReview{position:relative;flex:1;min-height:0}
 body[data-v="5"] #v5-upload #v5-drawer.drawer{position:absolute;inset:0;z-index:auto;width:auto;max-width:none;transform:none;transition:none;box-shadow:none}
 body[data-v="5"] #v5-upload #v5-drawer .v5bar,body[data-v="5"] #v5-upload #v5-drawer .v5steps{display:none}
-body[data-v="5"] #v5-upload #v5-drawer .dbody{grid-template-columns:minmax(0,900px) 320px}
+body[data-v="5"] #v5-upload #v5-drawer .dbody{grid-template-columns:minmax(0,1200px) 320px}
 body[data-v="5"] #v5-upload #v5-drawer .dbody > #v5-sumrail{grid-column:2;max-height:calc(100vh - 160px)}
 /* a setting the document left unsaid: an error under its answers, as the editor's own errors read, until it is answered */
 body[data-v="5"] #v5-panels .v5missnote{margin-top:8px;font-size:13px;font-weight:500;color:var(--danger)}
@@ -2873,6 +2914,48 @@ body[data-v="5"] .v5upleave p{padding:0 24px 20px;font-size:14px;color:#475467}
   body[data-v="5"] .v5upbody{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
   body[data-v="5"] .v5uplist{order:0;max-height:220px;border-left:0;border-bottom:1px solid #EAECF0}
   body[data-v="5"] .v5upcenter{padding:12px 16px 16px}
+}
+/* ---- New Leave Policy › Build with AI: a right-side drawer over the editor. One document is read and the policies it holds
+   are listed; Use this policy pre-fills the editor, and what the document leaves unsaid is flagged for the admin to answer ---- */
+/* a tertiary button (no border or fill, like Settings' Build with AI) with the gradient icon and label */
+body[data-v="5"] .v5aiopen{flex:none;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:0;border-radius:8px;background:none;
+  cursor:pointer;font-size:14px;font-weight:600;line-height:20px}
+body[data-v="5"] .v5aiopen:hover{background:var(--blue-soft)}
+body[data-v="5"] .v5aiopen:focus-visible{outline:2px solid #2970FF;outline-offset:2px}
+body[data-v="5"] .v5aiopen img{display:block}
+body[data-v="5"] .v5aiopen[hidden]{display:none}
+body[data-v="5"] .v5aiscrim{position:absolute;inset:0;z-index:30;background:rgba(17,24,39,.32);opacity:0;transition:opacity .22s ease}
+body[data-v="5"] .v5aiscrim.show{opacity:1}
+body[data-v="5"] .v5aiscrim[hidden],body[data-v="5"] .v5ai[hidden]{display:none}
+body[data-v="5"] .v5ai{position:absolute;top:0;right:0;bottom:0;z-index:31;width:480px;max-width:100%;display:flex;flex-direction:column;background:#fff;
+  box-shadow:-14px 0 40px -20px rgba(15,23,42,.55);transform:translateX(100%);transition:transform .24s cubic-bezier(.32,.72,0,1)}
+body[data-v="5"] .v5ai.open{transform:none}
+body[data-v="5"] .v5aihd{flex:none;display:flex;align-items:center;gap:8px;padding:20px 16px 20px 24px;border-bottom:1px solid #EAECF0}
+body[data-v="5"] .v5aihd img{display:block}
+body[data-v="5"] .v5aihd h2{flex:1;font-size:18px;font-weight:600;line-height:28px}
+body[data-v="5"] .v5aihd h2 span{background:linear-gradient(90deg,#2970FF,#EE46BC);-webkit-background-clip:text;background-clip:text;color:transparent}
+body[data-v="5"] .v5aix{display:flex;padding:8px;border:0;border-radius:8px;background:none;cursor:pointer}
+body[data-v="5"] .v5aix:hover{background:#F2F4F7}
+body[data-v="5"] .v5aix img{display:block}
+body[data-v="5"] .v5aibody{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:16px;padding:24px}
+body[data-v="5"] .v5aidocs{display:flex;flex-direction:column;gap:16px}
+body[data-v="5"] .v5aidocs .v5upintro{padding:0}
+body[data-v="5"] .v5aidocs .v5drop{flex:none;min-height:260px}
+body[data-v="5"] .v5aidocs .v5uperr{padding:0}
+body[data-v="5"] .v5aifound{display:flex;flex-direction:column;gap:12px}
+body[data-v="5"] .v5aifound[hidden]{display:none}
+body[data-v="5"] .v5aifoundhd{display:flex;align-items:center;gap:8px}
+body[data-v="5"] .v5aifoundhd h3{font-size:16px;font-weight:600;color:#101828}
+body[data-v="5"] .v5aifound > p{font-size:14px;line-height:1.4;color:#475467}
+body[data-v="5"] .v5aifound .v5upitem{cursor:default}
+body[data-v="5"] .v5aifound .v5upitem:hover{border-color:#EAECF0;background:#fff}
+body[data-v="5"] .v5aifound .v5upitem[aria-current="true"]{background:var(--blue-soft);border-color:#2970FF}
+body[data-v="5"] .v5aiuse{padding:6px 12px;border:1px solid #D0D5DD;border-radius:8px;background:#fff;cursor:pointer;font-size:14px;font-weight:600;color:#344054}
+body[data-v="5"] .v5aiuse:hover{background:#F9FAFB}
+body[data-v="5"] .v5aifound .v5upitem[aria-current="true"] .v5aiuse{border-color:#2970FF;color:#155EEF}
+@media (max-width:640px){
+  body[data-v="5"] .v5aiopen span{display:none}
+  body[data-v="5"] .v5aibody{padding:16px}
 }
 @media (max-width:560px){body[data-v="5"] .v5file{flex-wrap:wrap}}
 
@@ -3383,8 +3466,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     <header class="v4sethd"><h1>Settings</h1></header>
     <div class="v4setbody">
       <nav class="v4setnav" aria-label="Settings sections">
-        <button type="button" class="v4setnavi">Time Tracking</button>
-        <button type="button" class="v4setnavi" aria-current="page">Time Off</button>
+        <button type="button" class="v4setnavi" data-setnav="tracking">Time Tracking</button>
+        <button type="button" class="v4setnavi" data-setnav="timeoff" aria-current="page">Time Off</button>
         <button type="button" class="v4setnavi">Expenses</button>
         <button type="button" class="v4setnavi" aria-expanded="false">Payroll<img src="assets/chevron-down-20.svg" width="20" height="20" alt=""></button>
         <button type="button" class="v4setnavi" aria-expanded="false">Onboarding<img src="assets/chevron-down-20.svg" width="20" height="20" alt=""></button>
@@ -3395,11 +3478,13 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         <button type="button" class="v4setnavi">Org Chart</button>
       </nav>
       <main class="v4setcontent">
+      <!-- each section of the settings list is a pane: Time Tracking holds Tenure, Time Off the leave policies.
+           Every section is a label column on the left and its content on the right -->
+      <div data-setpane="tracking" hidden>
       <div class="v4setsub">
-        <h2>Time Off</h2>
-        <p>Manage and control time off settings for your organization</p>
+        <h2>Time Tracking</h2>
+        <p>Manage and control time tracking settings for your organization</p>
       </div>
-      <!-- Time Off: two sections, each a label column on the left and its content on the right -->
       <section class="v4set" aria-labelledby="v4-tenureHd">
         <div class="v4setintro">
           <h2 id="v4-tenureHd">Tenure</h2>
@@ -3414,6 +3499,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           <button type="button" class="v4catact" id="v4-addTenureBtn"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Tenure Configuration</button>
         </div>
       </section>
+      </div>
+      <div data-setpane="timeoff">
+      <div class="v4setsub">
+        <h2>Time Off</h2>
+        <p>Manage and control time off settings for your organization</p>
+      </div>
 
       <!-- Figma 758:33294 — one flat table of every leave policy with its Group; the All Policies dropdown filters it by group
            and holds Add Category -->
@@ -3443,6 +3534,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         </div>
         </div>
       </section>
+      </div>
       </main>
     </div>
   </div>
@@ -3692,8 +3784,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     <header class="v5sethd"><h1>Settings</h1></header>
     <div class="v5setbody">
       <nav class="v5setnav" aria-label="Settings sections">
-        <button type="button" class="v5setnavi">Time Tracking</button>
-        <button type="button" class="v5setnavi" aria-current="page">Time Off</button>
+        <button type="button" class="v5setnavi" data-setnav="tracking">Time Tracking</button>
+        <button type="button" class="v5setnavi" data-setnav="timeoff" aria-current="page">Time Off</button>
         <button type="button" class="v5setnavi">Expenses</button>
         <button type="button" class="v5setnavi" aria-expanded="false">Payroll<img src="assets/chevron-down-20.svg" width="20" height="20" alt=""></button>
         <button type="button" class="v5setnavi" aria-expanded="false">Onboarding<img src="assets/chevron-down-20.svg" width="20" height="20" alt=""></button>
@@ -3704,11 +3796,13 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         <button type="button" class="v5setnavi">Org Chart</button>
       </nav>
       <main class="v5setcontent">
+      <!-- each section of the settings list is a pane: Time Tracking holds Tenure, Time Off the leave policies.
+           Every section is a label column on the left and its content on the right -->
+      <div data-setpane="tracking" hidden>
       <div class="v5setsub">
-        <h2>Time Off</h2>
-        <p>Manage and control time off settings for your organization</p>
+        <h2>Time Tracking</h2>
+        <p>Manage and control time tracking settings for your organization</p>
       </div>
-      <!-- Time Off: two sections, each a label column on the left and its content on the right -->
       <section class="v5set" aria-labelledby="v5-tenureHd">
         <div class="v5setintro">
           <h2 id="v5-tenureHd">Tenure</h2>
@@ -3723,6 +3817,12 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           <button type="button" class="v5catact" id="v5-addTenureBtn"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Tenure Configuration</button>
         </div>
       </section>
+      </div>
+      <div data-setpane="timeoff">
+      <div class="v5setsub">
+        <h2>Time Off</h2>
+        <p>Manage and control time off settings for your organization</p>
+      </div>
 
       <!-- Figma 757:32731 — one table of every leave policy, grouped by category, then No Group and Disabled -->
       <section class="v5set" aria-labelledby="v5-polHd">
@@ -3741,6 +3841,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         </div>
         </div>
       </section>
+      </div>
       </main>
     </div>
   </div>
@@ -3779,6 +3880,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     <span class="v5rule" aria-hidden="true"></span>
     <h1 id="v5-drawerTitle">New Leave Policy</h1>
     <span class="msg" id="v5-footMsg" aria-live="polite"></span>
+    <button type="button" class="v5aiopen" id="v5-aiBtn" aria-haspopup="dialog"><img src="assets/stars-02-gradient-16.svg" width="20" height="20" alt=""><span class="v5aibtn"><span>Build with AI</span></span></button>
     <button type="button" class="btn primary v5create" id="v5-saveBtn">Create Policy</button>
   </header>
 
@@ -3804,7 +3906,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
           </div>
           <div class="v5pair">
             <div class="v5field">
-              <span class="v5lbl" id="v5-catLbl">Leave Category</span>
+              <span class="v5lbl" id="v5-catLbl">Category <span class="req" aria-hidden="true">*</span></span>
               <!-- the category can be changed only while the policy is new; creating it locks the category -->
               <div class="combo dccat" id="v5-catCombo">
                 <button type="button" class="dmpick" id="v5-leaveCategory" aria-haspopup="listbox" aria-expanded="false" aria-controls="v5-catMenu"><span class="txt">Sick Leave</span><svg class="chev" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" stroke="#667085"/></svg></button>
@@ -3815,7 +3917,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
               </div>
             </div>
             <div class="v5field">
-              <div class="v5lblwrap"><span class="v5lbl" id="v5-tenureLbl">Tenure</span><span class="v5desc" id="v5-tenureDesc">Set up different leave settings for each tenure tier based on users’ length of service.</span></div>
+              <div class="v5lblwrap"><span class="v5lbl" id="v5-tenureLbl">Tenure</span><span class="v5desc" id="v5-tenureDesc">Set different leave settings for each tier based on length of service.</span></div>
               <!-- the policy's tenure for every tier; None keeps one set of settings, anything else gives each tier its own tab -->
               <div class="combo pickcombo" data-pick="tenure">
                 <input type="hidden" id="v5-tenurePick" data-f="tenure" value="None">
@@ -3829,44 +3931,103 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
               </div>
             </div>
           </div>
+          <!-- whether the leave is limited, shared by every tier; each tier's Accruals card waits on Limited -->
+          <div class="v5field v5fieldopt" role="radiogroup" aria-labelledby="v5-limitLbl" aria-describedby="v5-limitDesc">
+            <div class="v5lblwrap"><span class="v5lbl" id="v5-limitLbl">How much leave can users take? <span class="req" aria-hidden="true">*</span></span><span class="v5desc" id="v5-limitDesc">When an employee is terminated, limited PTO is paid out on their final paycheck, but unlimited PTO is not.</span></div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="v5limited" value="0" checked><span class="lbl">Unlimited</span></label>
+              <label class="opt"><input type="radio" name="v5limited" value="1"><span class="lbl">Limited</span></label>
+            </div>
+          </div>
           <!-- how the leave is paid, shared by every tier; the leave category sets the defaults -->
           <div class="v5field v5fieldopt" role="radiogroup" aria-labelledby="v5-paidLbl">
-            <span class="v5lbl" id="v5-paidLbl">Is this leave paid?</span>
+            <span class="v5lbl" id="v5-paidLbl">Is this leave paid? <span class="req" aria-hidden="true">*</span></span>
             <div class="opts">
               <label class="opt"><input type="radio" name="v5pay_paid" value="paid" checked><span class="lbl">Paid</span></label>
+              <!-- what kind of paid leave it is; asked only while the leave is paid -->
+              <div class="nestopt" data-paidtype>
+                <div class="combo dccat" id="v5-payTypeCombo">
+                  <input type="hidden" id="v5-payType" value="sick">
+                  <button type="button" class="dmpick" aria-haspopup="listbox" aria-expanded="false" aria-label="Type of paid leave: Sick Leave"><span class="txt">Sick Leave</span><svg class="chev" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" stroke="#667085"/></svg></button>
+                  <div class="menu dcmenu" hidden><div class="menu-list" role="listbox" aria-label="Type of paid leave">
+                    <button type="button" class="menu-item" role="option" data-value="sick" aria-selected="true"><span class="label">Sick Leave</span></button>
+                    <button type="button" class="menu-item" role="option" data-value="loa" aria-selected="false"><span class="label">LOA</span></button>
+                    <button type="button" class="menu-item" role="option" data-value="fmla" aria-selected="false"><span class="label">FMLA</span></button>
+                    <button type="button" class="menu-item" role="option" data-value="other" aria-selected="false"><span class="label">Other</span></button>
+                  </div></div>
+                </div>
+              </div>
               <label class="opt"><input type="radio" name="v5pay_paid" value="unpaid"><span class="lbl">Unpaid</span></label>
             </div>
           </div>
           <div class="v5field v5fieldopt">
-            <span class="v5lbl">Pay Statement</span>
-            <label class="cbline"><input type="checkbox" id="v5-payStmt" checked><span class="lbl">Show on Pay Statement</span></label>
+            <div class="v5lblwrap"><span class="v5lbl">Pay Statement</span><span class="v5desc" id="v5-payStmtDesc">Show this leave’s hours and balance on users’ pay statements.</span></div>
+            <label class="cbline"><input type="checkbox" id="v5-payStmt" aria-describedby="v5-payStmtDesc" checked><span class="lbl">Show on Pay Statement</span></label>
+          </div>
+          </div>
+        </section>
+        <!-- Probation Period: what applies while a user is on probation, shared by every tier -->
+        <section class="card v5card" id="v5-probCard" data-sec="probation-period" aria-labelledby="v5-probTitle">
+          <div class="grouphead" id="v5-probTitle">Probation Period</div>
+          <div class="v5fields" id="v5-prob">
+          <div class="v5field v5fieldopt" role="group" aria-labelledby="v5-probLbl">
+            <span class="v5lbl" id="v5-probLbl">During probation</span>
+            <div class="opts">
+              <!-- unlimited leave earns nothing, so there is no accrual to pause -->
+              <label class="cbline" id="v5-probPauseLine"><input type="checkbox" id="v5-probPause"><span class="lbl">Pause Accrual</span><span class="help">PTO will not accrue during probation.</span></label>
+              <label class="cbline"><input type="checkbox" id="v5-probRestrict"><span class="lbl">Restrict Usage</span><span class="help">Employees cannot use PTO during probation.</span></label>
+            </div>
           </div>
           </div>
         </section>
         <div class="tabs" role="tablist" aria-label="Length of service tiers"><span class="tierslabel" id="v5-tiersLabel" role="presentation">Tiers:</span></div>
         <div id="v5-panels"></div>
 
-        <!-- the employees this policy applies to, always the last section; they are assigned only once the policy
-             exists, so while creating it the section shows its empty state and Add stays hidden -->
+        <!-- the users this policy applies to, always the last section: who is eligible (everyone, or rules on crew, department,
+             branch and employment type), then who is assigned. Users are assigned only once the policy exists,
+             so while creating it the assigned list is locked; the rules can be set either way -->
         <section class="card v5card empcard" id="v5-empPanel" data-sec="employees" aria-labelledby="v5-empTitle">
-          <div class="grouphead" id="v5-empTitle">Users <span class="dmcount" aria-label="0 users">0</span></div>
+          <div class="grouphead" id="v5-empTitle">Eligibility <span class="dmcount" aria-label="0 users">0</span></div>
+          <div class="v5fields" id="v5-elig">
+            <div class="v5field v5fieldopt" role="radiogroup" aria-labelledby="v5-eligLbl" aria-describedby="v5-eligDesc">
+              <div class="v5lblwrap"><span class="v5lbl" id="v5-eligLbl">Who is eligible?</span><span class="v5desc" id="v5-eligDesc">Eligible users are assigned this policy automatically, including new users who match later.</span></div>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="v5elig" value="all" checked><span class="lbl">All users</span></label>
+                <label class="opt"><input type="radio" name="v5elig" value="rules"><span class="lbl">Users who match rules</span></label>
+                <div class="nestopt v5rules" id="v5-rules" hidden>
+                  <div class="v5rulematch">Users must match
+                    <div class="combo v5rulesel v5rulesel--sm" data-k="match"></div>
+                    of these rules</div>
+                  <div class="v5rulelist" id="v5-ruleList"></div>
+                  <p class="v5ruleerr" id="v5-ruleErr" role="alert" hidden>Choose at least one value for each rule.</p>
+                  <button type="button" class="v5ruleadd" id="v5-ruleAdd"><img src="assets/plus-blue-20.svg" width="20" height="20" alt="">Add Rule</button>
+                </div>
+                <p class="v5rulecount" id="v5-ruleCount" aria-live="polite"></p>
+              </div>
+            </div>
+            <div class="v5field v5assigned">
+              <div class="v5lblwrap"><span class="v5lbl" id="v5-assignedLbl">Assigned users<img class="v5assignlock" src="assets/lock-03-20.svg" width="16" height="16" alt="Locked"></span><span class="v5desc">Users who have this policy today.</span></div>
+              <div class="v5assignedctl">
           <!-- search stays for the table script; Figma shows no search, so it is kept out of view -->
           <label class="empsearch" hidden>
             <input type="search" id="v5-empSearch" placeholder="Search" aria-label="Search assigned users by name or code" autocomplete="off">
             <button type="button" class="empclear" id="v5-empClear" aria-label="Clear search" hidden><img src="assets/x-close.svg" width="20" height="20" alt=""></button>
           </label>
         <div class="v5tablebox">
-          <table class="emptable" aria-labelledby="v5-empTitle">
+          <table class="emptable" aria-labelledby="v5-assignedLbl">
             <thead><tr><th scope="col">User name</th><th scope="col">Code</th><th scope="col" class="num">Balance</th><th scope="col" class="act"><span class="sr">More options</span></th></tr></thead>
             <tbody id="v5-empRows"></tbody>
           </table>
           <div class="dmempty" id="v5-empEmpty" hidden>
             <h2>No users assigned yet</h2>
-            <p>You can assign users to this policy once it’s created.</p>
+            <p>Users are assigned once the policy is created.</p>
           </div>
           <p class="empnomatch" id="v5-empNoMatch" hidden>No assigned users match your search.</p>
         </div>
           <div hidden><button type="button" class="btn v5add" id="v5-empAdd"><i class="ph ph-plus" aria-hidden="true"></i>Add</button></div>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
 
@@ -3972,6 +4133,47 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         </div>
       </div>
   </div>
+  <!-- Build with AI (New Leave Policy only): a right-side drawer over the editor. One document is read; each policy it holds
+       is listed, and Use this policy pre-fills the editor with it. The document is kept until the editor closes. -->
+  <div class="v5aiscrim" id="v5-aiScrim" hidden></div>
+  <aside class="v5ai" id="v5-ai" role="dialog" aria-modal="true" aria-labelledby="v5-aiTitle" hidden>
+    <header class="v5aihd">
+      <img src="assets/stars-02-gradient-16.svg" width="20" height="20" alt="">
+      <h2 id="v5-aiTitle"><span>Build with AI</span></h2>
+      <button type="button" class="v5aix" id="v5-aiX" aria-label="Close"><img src="assets/x-close-gray-24.svg" width="24" height="24" alt=""></button>
+    </header>
+    <div class="v5aibody">
+      <section class="v5aidocs" id="v5-aiDocs" aria-label="Upload a document">
+        <div class="v5upintro">
+          <p class="v5upintrot">Upload your leave policy document and we’ll pre-fill this policy for you to review</p>
+          <div class="v5upreq"><span class="cap">Required details:</span><span class="v5upbadge">Policy name</span><span class="v5upbadge">Category</span><span class="v5upbadge">Accrual rate</span><span class="v5upbadge">Leave year renewal</span><span class="v5upbadge">Carryover</span></div>
+        </div>
+        <label class="v5drop" id="v5-aiDrop">
+          <input type="file" class="sr" id="v5-aiFile" accept=".pdf,.doc,.docx,.txt">
+          <span class="v5dropic" aria-hidden="true"><img src="assets/upload-cloud-02.svg" width="20" height="20" alt=""></span>
+          <span class="v5dropbig">
+            <b class="t">Upload your policy document</b>
+            <span class="d">Drag &amp; Drop your file</span>
+            <span class="f">.pdf, .doc, .docx, .txt · up to 10 MB</span>
+            <span class="o">or <u>browse files</u> on your computer</span>
+          </span>
+        </label>
+        <p class="v5uperr" id="v5-aiErr" role="alert" hidden></p>
+      </section>
+      <div class="v5file" id="v5-aiDoc" hidden>
+        <span class="v5ftype" aria-hidden="true"><img src="assets/file-page-green.svg" width="25.6" height="32" alt=""><b id="v5-aiDocExt"></b></span>
+        <div class="v5finfo"><b id="v5-aiDocName"></b><span class="st" id="v5-aiDocSt"></span><div class="v5bar2" id="v5-aiDocBar" hidden><i></i></div></div>
+        <button type="button" class="v5upgo" id="v5-aiGo"><img src="assets/stars-02-gradient-16.svg" width="16" height="16" alt=""><span>Upload</span></button>
+        <button type="button" class="v5uptrash" id="v5-aiDocTrash" aria-label="Remove document"><img src="assets/trash-01-24.svg" width="24" height="24" alt=""></button>
+        <button type="button" class="v5fileremove" id="v5-aiDocRemove">Replace</button>
+      </div>
+      <section class="v5aifound" id="v5-aiFound" aria-labelledby="v5-aiFoundTitle" hidden>
+        <div class="v5aifoundhd"><h3 id="v5-aiFoundTitle">Policies found</h3><span class="dmcount" id="v5-aiCount">0</span></div>
+        <p>Choose the policy to pre-fill. Anything the document doesn’t state is flagged in the form for you to answer.</p>
+        <ul class="v5upitems" id="v5-aiItems"></ul>
+      </section>
+    </div>
+  </aside>
 </aside>
 
 <!-- ===================== V1 — upload policy documents (Build with AI), V2's page around V1's drawer ===================== -->
@@ -4105,7 +4307,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         <section class="v5updocs" id="v5-upDocs" aria-label="Upload a document">
           <div class="v5upintro">
             <p class="v5upintrot">You can upload any document you already have – just make sure these details are in it</p>
-            <div class="v5upreq"><span class="cap">Required details:</span><span class="v5upbadge">Policy name</span><span class="v5upbadge">Leave category</span><span class="v5upbadge">Accrual rate</span><span class="v5upbadge">Leave year renewal</span><span class="v5upbadge">Carryover</span></div>
+            <div class="v5upreq"><span class="cap">Required details:</span><span class="v5upbadge">Policy name</span><span class="v5upbadge">Category</span><span class="v5upbadge">Accrual rate</span><span class="v5upbadge">Leave year renewal</span><span class="v5upbadge">Carryover</span></div>
           </div>
           <label class="v5drop" id="v5-drop">
             <input type="file" class="sr" id="v5-upFile" accept=".pdf,.doc,.docx,.txt">
@@ -7825,9 +8027,16 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     H+='<div class="grouphead"><span>Pay &amp; Tenure</span>'+
       '<input type="checkbox" hidden id="'+i('enabled')+'" data-f="enabled" checked></div>';
     /* how the leave is paid, shared by every tier; the leave category sets the defaults */
-    H+=row('Is this leave paid?','',
+    H+=row('Is this leave paid?<span class="req" aria-hidden="true">*</span>','',
       '<div class="opts">'+
         opt('paid','paid','Paid','')+
+        /* what kind of paid leave it is; asked only while the leave is paid */
+        '<div class="nestopt" data-paidtype>'+
+          opt('paidType','sick','Sick Leave','')+
+          opt('paidType','loa','LOA','')+
+          opt('paidType','fmla','FMLA','')+
+          opt('paidType','other','Other','')+
+        '</div>'+
         opt('paid','unpaid','Unpaid','')+
       '</div>');
     H+=row('Pay Statement','',
@@ -7845,14 +8054,14 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* ---------- accruals: everything about how leave is earned ---------- */
     H+='<div class="grouphead">Accruals</div>';
-    H+=row('How much leave can users take?','',
+    H+=row('How much leave can users take?<span class="req" aria-hidden="true">*</span>','',
       '<div class="opts">'+
         opt('limited','0','Unlimited','')+
         opt('limited','1','Limited','')+
       '</div>');
 
     /* the unit is a foundation for everything below it, so it is settled first */
-    H+=row('Track leave in','',
+    H+=row('Track leave in<span class="req" aria-hidden="true">*</span>','',
       '<div class="opts">'+
         opt('unit','hours','Hours','')+
         opt('unit','days','Days','')+
@@ -7860,7 +8069,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* the earnings settings sit under the method they belong to, so the choice and its
        numbers are read as one answer */
-    H+=row('How do users earn leave?','Choose how leave is earned and added to a user\u2019s balance.',
+    H+=row('How do users earn leave?<span class="req" aria-hidden="true">*</span>','Choose how leave is earned and added to a user\u2019s balance.',
       '<div class="opts">'+
         opt('earn','worked','Based on hours worked','')+
         '<div class="indent" data-when="worked">'+
@@ -7948,7 +8157,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '</div>',' data-when="fixed" data-q="prorate"');
 
     /* how the last pay period accrues when an employee leaves; only leave added throughout the year accrues by pay period */
-    H+=row('Termination period','How does leave accrue for the pay period in which a user is terminated?',
+    H+=row('Termination period<span class="req" aria-hidden="true">*</span>','How does leave accrue for the pay period in which a user is terminated?',
       '<div class="opts">'+
         pick('termAccrual',d.termAccrual||'prorated',[
           ['prorated','Prorated','Accrue up to the user\u2019s last working day.'],
@@ -7980,10 +8189,10 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* when the leave year renews comes before what happens to unused leave at its end.
        it is one leave year for the whole policy, so a later tier reads the first tier's answer */
-    if(!first) H+=row('Leave year renews on','Balances reset on a fixed date or each user\u2019s work anniversary.',
+    if(!first) H+=row('Leave year renews on<span class="req" aria-hidden="true">*</span>','Balances reset on a fixed date or each user\u2019s work anniversary.',
       '<div class="readonly" data-resetcopy></div>'+tierNote('The leave year is set in the first tier and applies to every tier.'),
       ' data-when="earning"');
-    else H+=row('Leave year renews on','Balances reset on a fixed date or each user\u2019s work anniversary.',
+    else H+=row('Leave year renews on<span class="req" aria-hidden="true">*</span>','Balances reset on a fixed date or each user\u2019s work anniversary.',
       '<div class="opts">'+
         '<div class="cbrow">'+
           pick('reset',d.reset||'custom',[
@@ -7997,7 +8206,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '</div>',' data-when="earning"');
 
     /* carrying over and paying out are alternatives, so they are one question, not two */
-    H+=row('What happens to unused leave at year end?','',
+    H+=row('What happens to unused leave at year end?<span class="req" aria-hidden="true">*</span>','',
       '<div class="opts">'+
         opt('eolOutcome','carry','Carry over','')+
         '<div class="indent" data-when="eolCarryCfg">'+
@@ -8014,7 +8223,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         '<p class="err" hidden>Select an option.</p>'+
       '</div>',' data-when="limited" data-q="eolOutcome"');
 
-    H+=row('Carryover expiration','How long carried-over leave stays available. It is always used before newly accrued leave.',
+    H+=row('Carryover expiration<span class="req" aria-hidden="true">*</span>','How long carried-over leave stays available. It is always used before newly accrued leave.',
       '<div class="opts">'+
         '<div class="cbrow">'+
           pick('eolExp',d.eolExp||'never',[
@@ -8030,7 +8239,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         '</div>'+
       '</div>',' data-when="eolCarryCfg"');
 
-    H+=row('Negative balance','What happens to a negative leave balance when the leave year ends?',
+    H+=row('Negative balance<span class="req" aria-hidden="true">*</span>','What happens to a negative leave balance when the leave year ends?',
       '<div class="opts">'+
         pick('eolNeg',d.eolNeg||'reset',[
           ['reset','Reset to zero','The balance owed is forgiven and the new leave year starts at zero.'],
@@ -8116,7 +8325,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   var active='t1';
 
   /* a new policy starts as paid leave */
-  tabs.insertAdjacentHTML('beforebegin','<div id="v4-details">'+panelHTML({id:'pd'},Object.assign({paid:'paid'},DEFAULTS.t1),'details')+'</div>');
+  tabs.insertAdjacentHTML('beforebegin','<div id="v4-details">'+panelHTML({id:'pd'},Object.assign({paid:'paid',paidType:'sick'},DEFAULTS.t1),'details')+'</div>');
   var details=document.getElementById('v4-details');
 
   TIERS.forEach(function(t,idx){
@@ -8169,6 +8378,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   function unitWord(u,n){var w=u==='days'?'day':'hour';return n===1?w:w+'s';}
 
   function sync(panel){
+    /* the kind of paid leave is asked only while the leave is paid */
+    var pt=details&&details.querySelector('[data-paidtype]'); if(pt) pt.hidden=get(panel,'paid')==='unpaid';
     /* a later tier earns the way the first tier does: its method follows and cannot be changed */
     var p1=panelOf('t1');
     if(panel!==p1){
@@ -10925,14 +11136,15 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* ---------- accruals: whether leave is limited, its unit, then how it is earned ---------- */
     H+='<div class="grouphead">Accruals</div>';
-    H+=row('How much leave can users take?','',
+    /* asked once in Policy Details for every tier; each tier keeps the answer here, out of view */
+    H+=row('How much leave can users take?<span class="req" aria-hidden="true">*</span>','',
       '<div class="opts">'+
         opt('limited','0','Unlimited','')+
         opt('limited','1','Limited','')+
-      '</div>');
+      '</div>',' data-shared="limited" hidden');
 
     /* the unit is a foundation for everything below it, so it is settled with the limit */
-    H+=row('Track leave in','',
+    H+=row('Track leave in<span class="req" aria-hidden="true">*</span>','',
       '<div class="opts">'+
         opt('unit','hours','Hours','')+
         opt('unit','days','Days','')+
@@ -10940,7 +11152,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     /* the earnings settings sit under the method they belong to, so the choice and its
        numbers are read as one answer */
-    H+=row('How do users earn leave?','Choose how leave is earned and added to a user\u2019s balance.',
+    H+=row('How do users earn leave?<span class="req" aria-hidden="true">*</span>','Choose how leave is earned and added to a user\u2019s balance.',
       '<div class="opts">'+
         opt('earn','worked','Based on hours worked','')+
         '<div class="indent" data-when="worked">'+
@@ -11025,7 +11237,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '</div>',' data-when="fixed" data-q="prorate"');
 
     /* how the last pay period accrues when an employee leaves; only leave added throughout the year accrues by pay period */
-    H+=row('Termination period','How does leave accrue for the pay period in which a user is terminated?',
+    H+=row('Termination period<span class="req" aria-hidden="true">*</span>','How does leave accrue for the pay period in which a user is terminated?',
       '<div class="opts">'+
         pick('termAccrual',d.termAccrual||'prorated',[
           ['prorated','Prorated','Accrue up to the user\u2019s last working day.'],
@@ -11056,7 +11268,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     H+='<div class="grouphead" data-lock="earning">Leave Year</div>';
 
     /* when the leave year renews comes before what happens to unused leave at its end */
-    H+=row('Leave year renews on','Balances reset on a fixed date or each user\u2019s work anniversary.',
+    H+=row('Leave year renews on<span class="req" aria-hidden="true">*</span>','',
       '<div class="opts">'+
         '<div class="cbrow">'+
           pick('reset',d.reset||'custom',[
@@ -11070,7 +11282,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '</div>',' data-when="earning"');
 
     /* carrying over and paying out are alternatives, so they are one question, not two */
-    H+=row('What happens to unused leave at year end?','',
+    H+=row('What happens to unused leave at year end?<span class="req" aria-hidden="true">*</span>','',
       '<div class="opts">'+
         opt('eolOutcome','carry','Carry over','')+
         '<div class="indent" data-when="eolCarryCfg">'+
@@ -11087,7 +11299,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         '<p class="err" hidden>Select an option.</p>'+
       '</div>',' data-when="limited" data-q="eolOutcome"');
 
-    H+=row('Carryover expiration','How long carried-over leave stays available. It is always used before newly accrued leave.',
+    H+=row('Carryover expiration<span class="req" aria-hidden="true">*</span>','How long carried-over leave stays available. It is always used before newly accrued leave.',
       '<div class="opts">'+
         '<div class="cbrow">'+
           pick('eolExp',d.eolExp||'never',[
@@ -11103,7 +11315,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         '</div>'+
       '</div>',' data-when="eolCarryCfg"');
 
-    H+=row('Negative balance','What happens to a negative leave balance when the leave year ends?',
+    H+=row('Negative balance<span class="req" aria-hidden="true">*</span>','What happens to a negative leave balance when the leave year ends?',
       '<div class="opts">'+
         pick('eolNeg',d.eolNeg||'reset',[
           ['reset','Reset to zero','The balance owed is forgiven and the new leave year starts at zero.'],
@@ -11118,13 +11330,6 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       '<label class="cbline"><input type="checkbox" id="'+i('shiftOnly')+'" data-f="shiftOnly"'+ck(d.shiftOnly)+'>'+
         '<span class="lbl">Restrict</span></label>');
 
-    /* a payout the employee asks for happens during the year */
-    H+=row('Payout requests','Users can ask for a cash payout during the leave year.',
-      '<div class="opts">'+
-        '<label class="cbline"><input type="checkbox" id="'+i('eolReq')+'" data-f="eolReq"'+ck(d.eolReq)+'>'+
-          '<span class="lbl">Allow</span></label>'+
-      '</div>',' data-when="limited"');
-
     H+=row('Annual usage cap','Limit how much leave users can use in a leave year, regardless of their available balance.',
       addedAmount('usageOn','usage','0.25','#','per year','Annual usage limit'),
       ' data-add="usage" hidden');
@@ -11136,6 +11341,13 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     H+=row('Request increments','Users can only request leave in multiples of this amount.',
       addedAmount('reqStepOn','reqStep','0.25','#','','Request increment'),
       ' data-add="reqStep" hidden');
+
+    /* a payout the employee asks for happens during the year */
+    H+=row('Payout requests','Users can ask for a cash payout during the leave year.',
+      '<div class="opts">'+
+        '<label class="cbline"><input type="checkbox" id="'+i('eolReq')+'" data-f="eolReq"'+ck(d.eolReq)+'>'+
+          '<span class="lbl">Allow</span></label>'+
+      '</div>',' data-when="limited"');
 
     H+=row('Minimum payout','',
       addedAmount('eolMinPayOn','eolMinPay','0.25','#','','Minimum payout'),
@@ -11251,7 +11463,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
     var fixed=limited&&earn==='fixed', worked=limited&&earn==='worked';
     show(panel,'limited',limited);
-    /* Accruals stays on show for its first two questions; settings added to it wait on a limit */
+    /* the limit is asked in Policy Details, so with no limit Accruals has nothing to ask */
+    var acc=panel.querySelector('.card[data-sec="accruals"]'); if(acc) acc.hidden=!limited;
+    /* settings added to Accruals wait on a limit */
     panel.querySelectorAll('.card[data-sec="accruals"] > .row[data-add], .card[data-sec="accruals"] > .addwrap').forEach(function(el){
       el.classList.toggle('unlhide',!limited);
     });
@@ -11842,9 +12056,11 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       document.getElementById('v5-drawer').classList.remove('show-req');
       footMsg.className='msg'; footMsg.textContent='';
       select(st.active||'t1');
+      limitedShow();
     },
     /* answer one question in the first tier, as the admin would */
     set:function(f,val){
+      if(f==='limited'){ setLimited(String(val)); return; }
       var panel=panelOf('t1'), el=panel.querySelector('[data-f="'+f+'"]'); if(!el) return;
       if(el.type==='radio'){ var r=panel.querySelector('[data-f="'+f+'"][value="'+val+'"]'); if(r) r.checked=true; }
       else if(panel.querySelector('.pickcombo[data-pick="'+f+'"]')) setPick(panel,f,String(val));
@@ -11871,8 +12087,25 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     }
   };
 
+  /* Policy Details › How much leave can users take?: one answer for every tier, stored in each tier's hidden row */
+  var limRadios=document.querySelectorAll('#v5-details input[name="v5limited"]');
+  function limitedShow(){
+    var v=get(panelOf('t1'),'limited');
+    limRadios.forEach(function(r){ r.checked=r.value===v; });
+  }
+  function setLimited(v){
+    TIERS.forEach(function(t){
+      var panel=panelOf(t.id), r=panel.querySelector('[data-f="limited"][value="'+v+'"]'); if(!r) return;
+      r.checked=true;
+      r.dispatchEvent(new Event('change',{bubbles:true}));
+    });
+    limitedShow();
+  }
+  limRadios.forEach(function(r){ r.addEventListener('change',function(){ if(r.checked) setLimited(r.value); }); });
+
   TIERS.forEach(function(t){sync(panelOf(t.id));});
   select('t1');
+  limitedShow();
 })();
 </script>
 <script>
@@ -12032,9 +12265,10 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var name=row.querySelector('.lab');
     b.setAttribute('aria-label','Remove '+(name?name.firstChild.textContent.trim():'setting'));
     b.setAttribute('data-tip','Remove');
-    /* x-close, as exported from Figma (688:18851) */
-    b.innerHTML='<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">'+
-      '<path d="M15 5L10 10M10 10L5 15M10 10L5 5M10 10L15 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    /* trash-04, as exported from Figma (822:781): a 16.25px glyph centred in its 20px frame */
+    b.innerHTML='<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path transform="translate(1.875 1.875)" '+
+      'd="M5.625 0.625H10.625M0.625 3.125H15.625M13.9583 3.125L13.3739 11.8911C13.2862 13.2063 13.2424 13.8639 12.9583 14.3625C12.7083 14.8015 12.331 15.1544 11.8764 15.3747C11.36 15.625 10.7009 15.625 9.38279 15.625H6.86721C5.54909 15.625 4.89003 15.625 4.37361 15.3747C3.91896 15.1544 3.54174 14.8015 3.29165 14.3625C3.00759 13.8639 2.96375 13.2063 2.87607 11.8911L2.29167 3.125" '+
+      'stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     row.appendChild(b);
   });
 })();
@@ -12497,6 +12731,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
         if(!x.todo) html+='<span class="sumline">'+TICK+'<span>'+x.t+'</span></span>';
       });
     });
+    probLines(limited).forEach(function(t){ html+='<span class="sumline">'+TICK+'<span>'+t+'</span></span>'; });
+    if(window.__elig5) window.__elig5.lines().forEach(function(t){ html+='<span class="sumline">'+TICK+'<span>'+t+'</span></span>'; });
     sumBody.innerHTML=html;
   }
 
@@ -12510,18 +12746,75 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     if(!document.getElementById('v5-enabled').checked) L.push('The policy is <b>disabled</b>.');
     return L;
   }
-  function rerender(){ render(document.querySelector('#v5-panels [role="tabpanel"]:not([hidden])')); }
-  /* set every answer at once: {enabled,paid,stmt} */
+  /* Probation Period: pausing accruals means nothing while leave is unlimited, so that option waits on a limit */
+  function probLines(limited){
+    var L=[], pause=limited&&document.getElementById('v5-probPause').checked, use=document.getElementById('v5-probRestrict').checked;
+    document.getElementById('v5-probPauseLine').hidden=!limited;
+    if(pause) L.push('Leave <b>doesn’t accrue</b> during probation.');
+    if(use) L.push('Users <b>can’t use leave</b> during probation.');
+    return L;
+  }
+  document.getElementById('v5-prob').addEventListener('change',function(){ rerender(); });
+  /* the card is one for the whole policy, shown after the open tier's Leave Year card (before Requests): it moves with the tier tabs */
+  var probCard=document.getElementById('v5-probCard'), tierBox=document.getElementById('v5-panels');
+  function placeProb(){
+    var tier=tierBox.querySelector(':scope > [role="tabpanel"]:not([hidden])'); if(!tier) return;
+    var req=tier.querySelector(':scope > .card[data-sec="requests"]');
+    if(req){ if(req.previousElementSibling!==probCard) tier.insertBefore(probCard,req); }
+    else if(probCard.parentNode!==tier) tier.appendChild(probCard);
+  }
+  new MutationObserver(placeProb).observe(tierBox,{subtree:true,attributes:true,attributeFilter:['hidden']});
+  placeProb();
+  function rerender(){
+    /* the kind of paid leave is asked only while the leave is paid */
+    payBox.querySelector('[data-paidtype]').hidden=payBox.querySelector('[name="v5pay_paid"]:checked').value!=='paid';
+    render(document.querySelector('#v5-panels [role="tabpanel"]:not([hidden])'));
+  }
+  /* set every answer at once: {enabled,paid,type,stmt} */
+  /* the kind of paid leave: a dropdown under Paid, its answer kept in a hidden field */
+  var ptCombo=document.getElementById('v5-payTypeCombo'), ptBtn=ptCombo.querySelector('.dmpick'), ptMenu=ptCombo.querySelector('.menu');
+  function setPayType(v){
+    document.getElementById('v5-payType').value=v;
+    ptMenu.querySelectorAll('.menu-item').forEach(function(b){
+      var on=b.dataset.value===v; b.setAttribute('aria-selected',String(on));
+      if(on){ ptBtn.querySelector('.txt').textContent=b.textContent; ptBtn.setAttribute('aria-label','Type of paid leave: '+b.textContent); }
+    });
+  }
+  function ptClose(focus){ ptMenu.hidden=true; ptBtn.setAttribute('aria-expanded','false'); if(focus) ptBtn.focus(); }
+  ptBtn.addEventListener('click',function(){
+    if(!ptMenu.hidden){ ptClose(); return; }
+    ptMenu.hidden=false; ptBtn.setAttribute('aria-expanded','true');
+    (ptMenu.querySelector('[aria-selected="true"]')||ptMenu.querySelector('.menu-item')).focus();
+  });
+  ptMenu.addEventListener('click',function(e){
+    var it=e.target.closest('.menu-item'); if(!it) return;
+    setPayType(it.dataset.value); ptClose(true);
+    /* as a radio pick did: the summary and anything comparing answers hear a change */
+    document.getElementById('v5-payType').dispatchEvent(new Event('change',{bubbles:true}));
+  });
+  ptMenu.addEventListener('keydown',function(e){
+    if(e.key!=='ArrowDown'&&e.key!=='ArrowUp') return;
+    e.preventDefault();
+    var all=[].slice.call(ptMenu.querySelectorAll('.menu-item')), i=all.indexOf(document.activeElement);
+    all[(i+(e.key==='ArrowDown'?1:-1)+all.length)%all.length].focus();
+  });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!ptMenu.hidden){ e.stopPropagation(); ptClose(true); } },true);
+  document.addEventListener('click',function(e){ if(!ptMenu.hidden&&!ptCombo.contains(e.target)) ptClose(); });
   function setPay(s){
     document.getElementById('v5-enabled').checked=s.enabled!==false;
+    document.getElementById('v5-probPause').checked=!!s.probPause;
+    document.getElementById('v5-probRestrict').checked=!!s.probRestrict;
     payBox.querySelector('[name="v5pay_paid"][value="'+(s.paid||'paid')+'"]').checked=true;
+    setPayType(s.type||'sick');
     document.getElementById('v5-payStmt').checked=s.stmt!==false;
     rerender();
   }
   function getPay(){
     return {enabled:document.getElementById('v5-enabled').checked,
       paid:payBox.querySelector('[name="v5pay_paid"]:checked').value,
-      stmt:document.getElementById('v5-payStmt').checked};
+      type:document.getElementById('v5-payType').value,
+      stmt:document.getElementById('v5-payStmt').checked,
+      probPause:document.getElementById('v5-probPause').checked,probRestrict:document.getElementById('v5-probRestrict').checked};
   }
   /* what a category means for pay, as its Paid/Unpaid badge in Settings says */
   function payFor(cat){
@@ -12649,7 +12942,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     var CATS=['Sick Leave','Bereavement Leave','Paid Vacation','Unpaid Leave'];
     var combo=document.getElementById('v5-catCombo'), btn=document.getElementById('v5-leaveCategory'),
         menu=document.getElementById('v5-catMenu'), list=menu.querySelector('.menu-list'), txt=btn.querySelector('.txt');
-    function label(){ btn.setAttribute('aria-label','Leave category: '+txt.textContent+(btn.disabled?'':'. Change category')); }
+    function label(){ btn.setAttribute('aria-label','Category: '+txt.textContent+(btn.disabled?'':'. Change category')); }
     function items(){ return [].slice.call(list.querySelectorAll('.menu-item')); }
     function paint(){
       list.innerHTML=CATS.map(function(c){
@@ -12717,8 +13010,9 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
       ['E1018','Chloe Davis','Estimating','Part-time','Crew C',9],
       ['E1019','Andre Wilson','Equipment','Seasonal','Crew A',3.5],
       ['E1020','Emily Clark','Safety','Salaried','Crew B',36]
-    ].map(function(r){ return {code:r[0],name:r[1],dept:r[2],cls:r[3],crew:r[4],bal:r[5]}; });
+    ].map(function(r,i){ return {code:r[0],name:r[1],dept:r[2],cls:r[3],crew:r[4],bal:r[5],branch:['Austin','Dallas','Houston'][i%3]}; });
     var byCode={}; EMPLOYEES.forEach(function(e){ byCode[e.code]=e; });
+    window.__people5=EMPLOYEES;   /* read by Users › Who is eligible? */
     var assigned=[];   /* a new policy: employees are assigned after it is created */
 
     var rows=document.getElementById('v5-empRows'), empty=document.getElementById('v5-empEmpty');
@@ -13187,7 +13481,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
   }
   function saveState(){
     return {panels:window.__editor5.save(),name:nameIn.value,cat:catTxt.textContent,
-      tenure:document.getElementById('v5-tenurePick').value,pay:window.__pay5.get()};
+      tenure:document.getElementById('v5-tenurePick').value,pay:window.__pay5.get(),
+      elig:window.__elig5?window.__elig5.get():null};
   }
   var loading=false;
   function loadState(st){
@@ -13198,6 +13493,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     nameIn.value=st.name; nameIn.classList.remove('bad');
     catTxt.textContent=st.cat;
     window.__pay5.set(st.pay||window.__pay5.forCat(st.cat));
+    if(window.__elig5) window.__elig5.set(st.elig);
     loading=false;
   }
   /* a policy seen for the first time: a blank editor, then the document's answers */
@@ -13516,7 +13812,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
 
   openBtn.addEventListener('click',open);
   /* the other settings sections are not part of this prototype */
-  app.querySelectorAll('.v5setnavi:not([aria-current])').forEach(function(b){
+  app.querySelectorAll('.v5setnavi:not([data-setnav])').forEach(function(b){
     b.addEventListener('click',function(){ toast(b.textContent.trim()+' settings aren’t part of this prototype'); });
   });
   document.getElementById('v5-addTenureBtn').addEventListener('click',function(){ toast('Add Tenure Configuration'); });
@@ -13532,7 +13828,7 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     if(e.shiftKey&&document.activeElement===first){ e.preventDefault(); last.focus(); }
     else if(!e.shiftKey&&document.activeElement===last){ e.preventDefault(); first.focus(); }
   });
-  window.__upload5={open:open,close:close,isOpen:function(){ return openState; }};
+  window.__upload5={open:open,close:close,isOpen:function(){ return openState; },found:FOUND,missing:MISSING};
 })();
 </script>
 
@@ -13740,7 +14036,17 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     if(cat&&CATS.indexOf(cat)<0) CATS.push(cat);
     POLS.push({name:name,emp:0,cat:cat});
     draw();
-  }};
+  },
+    /* a page reload keeps the table as it was left (see "V5 — reload" at the end of the page) */
+    save:function(){ return {cats:CATS,pols:POLS,opened:opened,q:q.value}; },
+    load:function(d){
+      CATS.splice.apply(CATS,[0,CATS.length].concat(d.cats));
+      POLS.splice.apply(POLS,[0,POLS.length].concat(d.pols));
+      opened=d.opened||{}; q.value=d.q||''; draw();
+    },
+    indexOf:function(p){ return POLS.indexOf(p); },
+    find:function(name){ for(var i=0;i<POLS.length;i++) if(POLS[i].name===name) return i; return -1; },
+    edit:function(i){ var p=POLS[i]; if(p) window.__edit5.openEdit(p,catName(p),null,draw); }};
 })();
 </script>
 <script>
@@ -13838,7 +14144,8 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     save.textContent=edit?'Save Changes':'Create Policy';
     caution.textContent=edit?'Read this before editing':'Read this before creating';
     addWrap.hidden=!edit;
-    empty.querySelector('p').textContent=edit?'Add users to apply this policy to them.':'You can assign users to this policy once it’s created.';
+    empty.querySelector('p').textContent=edit?'Add users to apply this policy to them.':'Users are assigned once the policy is created.';
+    drawer.classList.toggle('v5creating',!edit);
     lockCategory(edit);
     drawer.classList.remove('show-req');
     footMsg.className='msg'; footMsg.textContent='';
@@ -13943,6 +14250,437 @@ body[data-v="5"] .v5tenure .v5catact{margin-top:8px}
     else if(!e.shiftKey&&document.activeElement===z){ e.preventDefault(); a.focus(); }
     else if(!vBox.contains(document.activeElement)){ e.preventDefault(); a.focus(); }
   },true);
-  window.__edit5={openNew:openNew,openEdit:openEdit,view:view,mode:function(){ return mode; }};
+  window.__edit5={openNew:openNew,openEdit:openEdit,view:view,mode:function(){ return mode; },editing:function(){ return editing; }};
+})();
+</script>
+<script>
+/* V5 (data-v="5") — New Leave Policy › Build with AI: a right-side drawer over the editor. The admin adds one document and Upload
+   reads it (the same sample reader as the settings page's Build with AI); each policy found is listed, and Use this policy
+   pre-fills the editor with it. Settings the document leaves unsaid are flagged under their answers, and Create Policy waits
+   for them. Only on New: Edit has its own saved answers. The document is forgotten when the editor closes. */
+(function(){
+  "use strict";
+  var editor=document.getElementById('v5-drawer'), btn=document.getElementById('v5-aiBtn'),
+      panel=document.getElementById('v5-ai'), scrim=document.getElementById('v5-aiScrim'),
+      docs=document.getElementById('v5-aiDocs'), drop=document.getElementById('v5-aiDrop'), fileIn=document.getElementById('v5-aiFile'),
+      errEl=document.getElementById('v5-aiErr'), docEl=document.getElementById('v5-aiDoc'), docName=document.getElementById('v5-aiDocName'),
+      docSt=document.getElementById('v5-aiDocSt'), docBar=document.getElementById('v5-aiDocBar'),
+      found=document.getElementById('v5-aiFound'), itemsEl=document.getElementById('v5-aiItems'),
+      save=document.getElementById('v5-saveBtn'), footMsg=document.getElementById('v5-footMsg'),
+      nameIn=document.getElementById('v5-policyName');
+  var behind=[editor.querySelector('.v5bar'),editor.querySelector('.v5main')];
+  var EXT=/\.(pdf|docx?|txt)$/i, MAX=10*1024*1024;
+  var openState=false, doc=null, policies=[], applied=null, check=[], timer=null;
+
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function toast(t){
+    document.querySelectorAll('.toast').forEach(function(x){ x.remove(); });
+    var el=document.createElement('div'); el.className='toast'; el.textContent=t;
+    document.body.appendChild(el); setTimeout(function(){ el.remove(); },3000);
+  }
+  function size(b){ return b<1024*1024?Math.max(1,Math.round(b/1024))+' KB':(b/1024/1024).toFixed(1)+' MB'; }
+  function missing(){ return window.__upload5.missing; }
+
+  /* ---- the drawer ---- */
+  function open(){
+    if(openState) return;
+    openState=true;
+    behind.forEach(function(el){ el.setAttribute('inert',''); });
+    panel.hidden=false; scrim.hidden=false;
+    render();
+    requestAnimationFrame(function(){ panel.classList.add('open'); scrim.classList.add('show'); });
+    setTimeout(function(){ var f=focusables(); if(f.length) f[f.length>1?1:0].focus(); },240);
+  }
+  function close(after){
+    if(!openState) return;
+    openState=false;
+    panel.classList.remove('open'); scrim.classList.remove('show');
+    behind.forEach(function(el){ el.removeAttribute('inert'); });
+    setTimeout(function(){ panel.hidden=true; scrim.hidden=true; (after||btn).focus(); },240);
+  }
+  function focusables(){
+    return [].filter.call(panel.querySelectorAll('button:not([disabled]),input:not([disabled])'),
+      function(el){ return el.offsetParent!==null||el===fileIn; });
+  }
+  btn.addEventListener('click',open);
+  document.getElementById('v5-aiX').addEventListener('click',function(){ close(); });
+  scrim.addEventListener('click',function(){ close(); });
+  /* the editor ignores Escape (a full page), so this runs first: Escape closes the drawer, Tab stays inside it */
+  document.addEventListener('keydown',function(e){
+    if(!openState) return;
+    if(e.key==='Escape'){ e.preventDefault(); e.stopPropagation(); close(); return; }
+    if(e.key!=='Tab') return;
+    e.stopPropagation();
+    var f=focusables(); if(!f.length) return;
+    var a=f[0], z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){ e.preventDefault(); z.focus(); }
+    else if(!e.shiftKey&&document.activeElement===z){ e.preventDefault(); a.focus(); }
+    else if(!panel.contains(document.activeElement)){ e.preventDefault(); a.focus(); }
+  },true);
+
+  /* ---- the document: one only; Upload reads it and lists what it holds ---- */
+  function addFile(f){
+    if(!f||doc) return;
+    var bad=!EXT.test(f.name)?'“'+f.name+'” isn’t a supported file type. Upload a PDF, DOC, DOCX or TXT file.':
+      (f.size>MAX?'“'+f.name+'” is larger than 10 MB.':'');
+    errEl.hidden=!bad; errEl.textContent=bad;
+    if(bad) return;
+    doc={name:f.name,size:f.size,stage:'ready'};
+    docName.textContent=f.name;
+    document.getElementById('v5-aiDocExt').textContent=(f.name.split('.').pop()||'').toUpperCase();
+    docSt.textContent=size(f.size); docEl.classList.remove('ok');
+    docBar.hidden=true;
+    render();
+    document.getElementById('v5-aiGo').focus();
+  }
+  function read(){
+    if(!doc||doc.stage!=='ready') return;
+    doc.stage='reading';
+    docSt.textContent='Reading document…';
+    docBar.hidden=false; docBar.firstChild.style.width='0';
+    render();
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ docBar.firstChild.style.width='100%'; }); });
+    timer=setTimeout(function(){
+      policies=JSON.parse(JSON.stringify(window.__upload5.found));
+      policies.forEach(function(p,i){ p.id='a'+i; });
+      doc.stage='done';
+      docEl.classList.add('ok'); docBar.hidden=true;
+      docSt.textContent=policies.length+(policies.length===1?' policy found':' policies found');
+      render();
+      var first=itemsEl.querySelector('.v5aiuse'); if(first) first.focus();
+    },1200);
+  }
+  function reset(){
+    clearTimeout(timer);
+    doc=null; policies=[]; applied=null; fileIn.value='';
+    errEl.hidden=true;
+    render();
+  }
+  document.getElementById('v5-aiGo').addEventListener('click',read);
+  document.getElementById('v5-aiDocTrash').addEventListener('click',reset);
+  document.getElementById('v5-aiDocRemove').addEventListener('click',function(){ reset(); drop.focus(); });
+  fileIn.addEventListener('change',function(){ addFile(fileIn.files[0]); fileIn.value=''; });
+  ['dragenter','dragover'].forEach(function(t){ drop.addEventListener(t,function(e){ e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave','drop'].forEach(function(t){ drop.addEventListener(t,function(){ drop.classList.remove('over'); }); });
+  drop.addEventListener('drop',function(e){ e.preventDefault(); if(e.dataTransfer) addFile(e.dataTransfer.files[0]); });
+  /* a prototype, as on the settings page: the drop zone skips the file picker and takes the sample document */
+  drop.addEventListener('click',function(e){ e.preventDefault(); addFile({name:'Sample_Employee_Handbook.pdf',size:2.4*1024*1024}); });
+
+  function render(){
+    var stage=doc?doc.stage:'';
+    docs.hidden=stage==='done';
+    drop.hidden=!!doc;
+    docEl.hidden=!doc;
+    docEl.setAttribute('data-stage',stage);
+    found.hidden=stage!=='done';
+    document.getElementById('v5-aiCount').textContent=policies.length;
+    itemsEl.innerHTML=policies.map(function(p){
+      var on=p.id===applied, n=p.check.length,
+          miss=p.check.map(function(k){ return missing()[k]?missing()[k].label:k; });
+      var pill=n?'<span class="v5uppill todo" title="'+esc(miss.join(', '))+'">'+n+' missing</span>':'<span class="v5uppill ready">Complete</span>';
+      return '<li class="v5upitem" data-id="'+p.id+'" aria-current="'+on+'">'+
+        '<b>'+esc(p.name)+'</b><span class="sub">'+esc(p.cat)+(p.tenure&&p.tenure!=='None'?' · '+esc(p.tenure)+' tenure':'')+'</span>'+
+        '<div class="v5upfoot">'+pill+'<button type="button" class="v5aiuse" aria-label="'+(on?'Pre-filled':'Use this policy')+': '+esc(p.name)+'">'+(on?'Pre-filled':'Use this policy')+'</button></div></li>';
+    }).join('');
+  }
+
+  /* ---- Use this policy: the editor takes the document's answers, and what it leaves unsaid is flagged ---- */
+  function missingRow(key){
+    var m=missing()[key], t1=document.getElementById('v5-panel-t1'); if(!m||!t1) return null;
+    var el=t1.querySelector('[data-f="'+m.f+'"]'); return el&&el.closest('.row');
+  }
+  function clearMissing(){
+    check=[];
+    editor.querySelectorAll('#v5-panels .row.v5miss').forEach(function(r){
+      r.classList.remove('v5miss'); r.removeAttribute('data-miss');
+      var n=r.querySelector('.v5missnote'); if(n) n.remove();
+    });
+  }
+  function markMissing(keys){
+    clearMissing();
+    keys.forEach(function(key){
+      var r=missingRow(key); if(!r) return;
+      check.push(key);
+      r.classList.add('v5miss'); r.setAttribute('data-miss',key);
+      var n=document.createElement('p'); n.className='v5missnote'; n.setAttribute('role','alert');
+      n.textContent='Not stated in the document. Choose an answer before creating.';
+      r.querySelector('.ctl').appendChild(n);
+    });
+  }
+  itemsEl.addEventListener('click',function(e){
+    var b=e.target.closest('.v5aiuse'); if(!b) return;
+    var p=policies.filter(function(x){ return x.id===b.closest('.v5upitem').dataset.id; })[0]; if(!p) return;
+    window.__state5.prefill(p);
+    applied=p.id;
+    markMissing(p.check);
+    /* the page title, the section steps and the summary rail follow the name and answers as if they were typed */
+    nameIn.classList.remove('bad');
+    nameIn.dispatchEvent(new Event('input',{bubbles:true}));
+    if(window.__afterSync5) window.__afterSync5(document.getElementById('v5-panel-t1'));
+    editor.classList.remove('show-req');
+    footMsg.className='msg'; footMsg.textContent='';
+    editor.querySelector('.dbody').scrollTop=0;
+    render();
+    close(nameIn);
+    toast('“'+p.name+'” pre-filled from '+doc.name+(check.length?'. Answer what’s flagged before creating.':'. Review it before creating.'));
+  });
+  /* answering a flagged question clears its flag (a pick from its menu, or any change to its field) */
+  ['input','change','click'].forEach(function(t){
+    editor.addEventListener(t,function(e){
+      if(!check.length||(window.__upload5&&window.__upload5.isOpen())) return;
+      var r=e.target.closest&&e.target.closest('#v5-panels .row.v5miss'); if(!r) return;
+      if(e.type==='click'&&!e.target.closest('.menu-item')) return;
+      var key=r.getAttribute('data-miss'), i=check.indexOf(key);
+      if(i>-1) check.splice(i,1);
+      r.classList.remove('v5miss'); r.removeAttribute('data-miss');
+      var n=r.querySelector('.v5missnote'); if(n) n.remove();
+      if(!check.length&&/flagged/.test(footMsg.textContent)){ footMsg.className='msg'; footMsg.textContent=''; }
+    });
+  });
+  /* Create Policy waits for the flagged answers (runs ahead of its own handler, like Save Changes does in Edit) */
+  save.parentElement.addEventListener('click',function(e){
+    if(!check.length||e.target.closest('#v5-saveBtn')!==save) return;
+    if(window.__edit5&&window.__edit5.mode()==='edit') return;
+    e.stopPropagation();
+    footMsg.className='msg bad';
+    footMsg.textContent=check.length===1?'Answer the flagged question before creating.':'Answer the '+check.length+' flagged questions before creating.';
+    var first=editor.querySelector('#v5-panels .v5missnote'); if(first) first.scrollIntoView({block:'center',behavior:'smooth'});
+  },true);
+
+  /* ---- New only; a closed editor forgets the document and its flags (Exit, Create and Save all close it, so its class is watched) ---- */
+  new MutationObserver(function(){
+    var on=editor.classList.contains('open');
+    if(on===editorOpen) return;
+    editorOpen=on;
+    if(on){ btn.hidden=!!(window.__edit5&&window.__edit5.mode()==='edit'); return; }
+    if(openState){
+      openState=false; panel.classList.remove('open'); scrim.classList.remove('show'); panel.hidden=true; scrim.hidden=true;
+      behind.forEach(function(el){ el.removeAttribute('inert'); });
+    }
+    reset(); clearMissing();
+  }).observe(editor,{attributes:true,attributeFilter:['class']});
+  var editorOpen=editor.classList.contains('open');
+  window.__ai5={open:open,close:close,isOpen:function(){ return openState; }};
+})();
+</script>
+<script>
+/* V1 and V2 settings: Time Tracking and Time Off switch the page's pane; the list keeps the one on screen marked */
+(function(){
+  "use strict";
+  ['v4','v5'].forEach(function(v){
+    var app=document.getElementById(v+'-app');
+    var navs=app.querySelectorAll('.'+v+'setnavi[data-setnav]'), panes=app.querySelectorAll('[data-setpane]');
+    navs.forEach(function(b){
+      b.addEventListener('click',function(){
+        var to=b.getAttribute('data-setnav');
+        navs.forEach(function(n){ if(n===b) n.setAttribute('aria-current','page'); else n.removeAttribute('aria-current'); });
+        panes.forEach(function(p){ p.hidden=p.getAttribute('data-setpane')!==to; });
+      });
+    });
+  });
+})();
+</script>
+<script>
+/* V5 (data-v="5") — Users › Who is eligible?: All users, or users who match rules on department, crew, branch and employment type.
+   Each rule is a field, is / is not, and one or more values; users match all of the rules, or any one. The count under them is
+   taken from the sample users. The rules save with the policy (window.__state5), and Create / Save Changes wait while a rule has no value. */
+(function(){
+  "use strict";
+  var FIELDS=[['dept','Department'],['crew','Crew'],['branch','Branch'],['cls','Employment Type']],
+      OPS=[['is','is'],['not','is not']], MATCH=[['all','all'],['any','any']];
+  var people=window.__people5||[];
+  var box=document.getElementById('v5-rules'), list=document.getElementById('v5-ruleList'), countEl=document.getElementById('v5-ruleCount'),
+      errEl=document.getElementById('v5-ruleErr'), matchBox=box.querySelector('.v5rulesel[data-k="match"]'),
+      radios=[].slice.call(document.querySelectorAll('#v5-elig input[name="v5elig"]')),
+      save=document.getElementById('v5-saveBtn'), footMsg=document.getElementById('v5-footMsg');
+  var CHEV='<svg class="chev" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" stroke="#667085"/></svg>',
+      X='<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L10 10M10 10L5 15M10 10L5 5M10 10L15 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  function blank(){ return {mode:'all',match:'all',rules:[]}; }
+  var st=blank(), open=null, tried=false;
+
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function name(pairs,v){ for(var i=0;i<pairs.length;i++) if(pairs[i][0]===v) return pairs[i][1]; return v; }
+  function values(f){
+    var seen={}; people.forEach(function(e){ seen[e[f]]=1; });
+    return Object.keys(seen).sort();
+  }
+  function done(){ return st.rules.filter(function(r){ return r.v.length; }); }
+  function unfinished(){ return st.mode==='rules'&&(!st.rules.length||st.rules.some(function(r){ return !r.v.length; })); }
+  function hit(e,r){ var on=r.v.indexOf(e[r.f])>-1; return r.op==='not'?!on:on; }
+  function eligible(){
+    if(st.mode==='all') return people.slice();
+    var rs=done(); if(!rs.length) return [];
+    return people.filter(function(e){ return st.match==='all'?rs.every(function(r){ return hit(e,r); }):rs.some(function(r){ return hit(e,r); }); });
+  }
+
+  /* ---- a single-choice dropdown (field, is / is not, all / any) and the values' multi-choice one ---- */
+  function single(k,i,pairs,val,lbl){
+    return '<button type="button" class="dmpick" aria-haspopup="listbox" aria-expanded="false" aria-label="'+esc(lbl)+': '+esc(name(pairs,val))+'">'+
+      '<span class="txt">'+esc(name(pairs,val))+'</span>'+CHEV+'</button>'+
+      '<div class="menu" hidden><div class="menu-list" role="listbox" aria-label="'+esc(lbl)+'">'+pairs.map(function(o){
+        return '<button type="button" class="menu-item" role="option" data-value="'+esc(o[0])+'" aria-selected="'+(o[0]===val)+'"><span class="label">'+esc(o[1])+'</span></button>';
+      }).join('')+'</div></div>';
+  }
+  function multi(i,r){
+    var bad=tried&&!r.v.length, lbl='Rule '+(i+1)+' values';
+    return '<div class="combo v5rulesel" data-k="v" data-i="'+i+'">'+
+      '<button type="button" class="dmpick'+(bad?' bad':'')+'" aria-haspopup="true" aria-expanded="false" aria-label="'+esc(lbl)+(r.v.length?': '+esc(r.v.join(', ')):', none chosen')+'">'+
+      '<span class="txt'+(r.v.length?'':' phold')+'">'+(r.v.length?esc(r.v.join(', ')):'Select '+esc(name(FIELDS,r.f).toLowerCase()))+'</span>'+CHEV+'</button>'+
+      '<div class="menu" hidden><div class="menu-list" role="group" aria-label="'+esc(lbl)+'">'+values(r.f).map(function(v){
+        return '<label class="v5rulechk"><input type="checkbox" value="'+esc(v)+'"'+(r.v.indexOf(v)>-1?' checked':'')+'><span>'+esc(v)+'</span></label>';
+      }).join('')+'</div></div></div>';
+  }
+  function wrap(k,i,pairs,val,lbl){ return '<div class="combo v5rulesel" data-k="'+k+'" data-i="'+i+'">'+single(k,i,pairs,val,lbl)+'</div>'; }
+
+  function draw(){
+    radios.forEach(function(r){ r.checked=r.value===st.mode; });
+    box.hidden=st.mode!=='rules';
+    matchBox.innerHTML=single('match',-1,MATCH,st.match,'Users must match');
+    list.innerHTML=st.rules.map(function(r,i){
+      var n='Rule '+(i+1);
+      return '<div class="v5elrule" role="group" aria-label="'+n+'">'+wrap('f',i,FIELDS,r.f,n+' field')+wrap('op',i,OPS,r.op,n+' condition')+multi(i,r)+
+        (st.rules.length>1?'<button type="button" class="v5ruledel" data-i="'+i+'" aria-label="Remove '+n+'" data-tip="Remove">'+X+'</button>':'<span></span>')+'</div>';
+    }).join('');
+    errEl.hidden=!(tried&&unfinished());
+    var all=people.length, m=eligible(), names=m.slice(0,3).map(function(e){ return esc(e.name); });
+    countEl.innerHTML=st.mode==='all'?'All <b>'+all+' users</b> are eligible.':
+      !done().length?'Choose values to see who is eligible.':
+      '<b>'+m.length+' of '+all+' users</b> are eligible'+(m.length?': '+names.join(', ')+(m.length>3?' and '+(m.length-3)+' more':'')+'.':'.');
+    if(open){
+      var w=box.querySelector('.v5rulesel[data-k="'+open.k+'"]'+(open.k==='match'?'':'[data-i="'+open.i+'"]'));
+      if(w){ w.querySelector('.menu').hidden=false; w.querySelector('.dmpick').setAttribute('aria-expanded','true'); } else open=null;
+    }
+    if(window.__afterSync5) window.__afterSync5(document.querySelector('#v5-panels [role="tabpanel"]:not([hidden])'));
+  }
+  function wrapOf(el){ return el.closest('.v5rulesel'); }
+  function keyOf(w){ return {k:w.dataset.k,i:w.dataset.k==='match'?-1:+w.dataset.i}; }
+  function btnFor(o){ var w=box.querySelector('.v5rulesel[data-k="'+o.k+'"]'+(o.k==='match'?'':'[data-i="'+o.i+'"]')); return w&&w.querySelector('.dmpick'); }
+  function close(focus){ var o=open; open=null; draw(); if(focus&&o){ var b=btnFor(o); if(b) b.focus(); } }
+
+  radios.forEach(function(r){ r.addEventListener('change',function(){
+    if(!r.checked) return;
+    st.mode=r.value;
+    if(st.mode==='rules'&&!st.rules.length) st.rules.push({f:'dept',op:'is',v:[]});
+    open=null; draw();
+  }); });
+  box.addEventListener('click',function(e){
+    var t=e.target;
+    var del=t.closest('.v5ruledel');
+    if(del){ st.rules.splice(+del.dataset.i,1); open=null; draw(); var a=document.getElementById('v5-ruleAdd'); a.focus(); return; }
+    if(t.closest('#v5-ruleAdd')){
+      var used=st.rules.map(function(r){ return r.f; }), f=(FIELDS.filter(function(x){ return used.indexOf(x[0])<0; })[0]||FIELDS[0])[0];
+      st.rules.push({f:f,op:'is',v:[]}); open=null; draw();
+      var b=btnFor({k:'f',i:st.rules.length-1}); if(b) b.focus(); return;
+    }
+    var w=wrapOf(t); if(!w) return;
+    var o=keyOf(w);
+    if(t.closest('.dmpick')){
+      var same=open&&open.k===o.k&&open.i===o.i;
+      open=same?null:o; draw();
+      if(!same){ var first=w.parentNode&&btnFor(o); var m=first&&first.parentNode.querySelector('.menu [aria-selected="true"], .menu input'); if(m) m.focus(); }
+      return;
+    }
+    var it=t.closest('.menu-item'); if(!it) return;
+    var v=it.dataset.value;
+    if(o.k==='match') st.match=v;
+    else if(o.k==='f'){ if(st.rules[o.i].f!==v){ st.rules[o.i].f=v; st.rules[o.i].v=[]; } }
+    else if(o.k==='op') st.rules[o.i].op=v;
+    close(true);
+  });
+  box.addEventListener('change',function(e){
+    var c=e.target; if(c.type!=='checkbox') return;
+    var w=wrapOf(c), o=keyOf(w), r=st.rules[o.i], v=c.value, at=r.v.indexOf(v);
+    if(c.checked&&at<0) r.v.push(v); else if(!c.checked&&at>-1) r.v.splice(at,1);
+    r.v.sort();
+    open=o; draw();
+    var again=btnFor(o).parentNode.querySelector('.menu input[value="'+v.replace(/"/g,'\\"')+'"]'); if(again) again.focus();
+  });
+  /* a click inside redraws the rules, so the element clicked may already be gone: only a click on the page outside closes */
+  document.addEventListener('click',function(e){ if(open&&e.target.isConnected&&!box.contains(e.target)) close(false); });
+  document.addEventListener('keydown',function(e){ if(open&&e.key==='Escape'){ e.preventDefault(); e.stopPropagation(); close(true); } },true);
+
+  /* Create Policy and Save Changes wait while a rule has no value (this runs before both of their handlers) */
+  document.addEventListener('click',function(e){
+    if(!e.target.closest||e.target.closest('#v5-saveBtn')!==save||save.disabled||!unfinished()) return;
+    e.stopPropagation(); e.preventDefault();
+    tried=true; draw();
+    footMsg.className='msg bad'; footMsg.textContent='Choose at least one value for each rule.';
+    box.scrollIntoView({block:'center',behavior:'smooth'});
+  },true);
+
+  /* the Policy summary's line */
+  function lines(){
+    if(st.mode==='all') return ['<b>All users</b> are eligible.'];
+    var rs=done(); if(!rs.length) return [];
+    var parts=rs.map(function(r){ return '<b>'+esc(name(FIELDS,r.f))+' '+(r.op==='not'?'is not':'is')+' '+esc(r.v.join(' or '))+'</b>'; });
+    var n=eligible().length;
+    return ['Eligible: users whose '+parts.join(st.match==='all'?' and ':' or ')+' ('+n+(n===1?' user':' users')+').'];
+  }
+  window.__elig5={
+    get:function(){ return JSON.parse(JSON.stringify(st)); },
+    set:function(x){ st=x?JSON.parse(JSON.stringify(x)):blank(); open=null; tried=false; errEl.hidden=true; draw(); },
+    lines:lines
+  };
+  draw();
+})();
+</script>
+<script>
+/* V5 (data-v="5") — reload. Cmd+R comes back to the same page (Settings, New / Edit Leave Policy, or Upload) with everything
+   as it was left: the policies table and its categories, and the editor's unsaved answers, users and scroll.
+   Cmd+Shift+R comes back to the same page as the prototype first loads it: the sample policies, a blank New Leave Policy,
+   an Edit opened on the policy as it was set up. Kept in sessionStorage, so a new tab starts fresh. The browser doesn't say
+   which reload it was, so the shortcut is noted as it is pressed. Upload and Build with AI start over either way: nothing in them is saved. */
+(function(){
+  "use strict";
+  var KEY='lp-v5-reload', HARD='lp-v5-hard';
+  var editor=document.getElementById('v5-drawer'), scroller=editor.querySelector('.dbody');
+  function store(){ try{ return window.sessionStorage; }catch(e){ return null; } }
+  var ss=store(); if(!ss) return;
+
+  window.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.shiftKey&&(e.key==='r'||e.key==='R')){ try{ ss.setItem(HARD,'1'); }catch(x){} }
+  },true);
+
+  function page(){
+    if(window.__upload5&&window.__upload5.isOpen()) return {page:'upload'};
+    if(!window.__drawer5.isOpen()) return {page:'settings'};
+    var p=window.__edit5.editing();
+    return window.__edit5.mode()==='edit'&&p?{page:'edit',i:window.__pols5.indexOf(p),name:p.name}:{page:'new'};
+  }
+  window.addEventListener('pagehide',function(){
+    if(document.body.dataset.v!=='5') return;
+    var d=page();
+    d.data={pols:window.__pols5.save(),cats:window.__catPick5.cats()};
+    if(d.page==='new'||d.page==='edit'){ d.state=window.__state5.save(); d.emp=window.__emp5.get(); d.top=scroller.scrollTop; }
+    try{ ss.setItem(KEY,JSON.stringify(d)); }catch(x){}
+  });
+
+  var hard=false, d=null;
+  try{ hard=ss.getItem(HARD)==='1'; ss.removeItem(HARD); d=JSON.parse(ss.getItem(KEY)||'null'); }catch(x){}
+  if(!d||document.body.dataset.v!=='5') return;
+  if(!hard){
+    window.__pols5.load(d.data.pols);
+    (d.data.cats||[]).forEach(window.__catPick5.add);
+  }
+  if(d.page==='upload'){ window.__upload5.open(); return; }
+  if(d.page==='new'){
+    window.__edit5.openNew(null,null);
+    if(!hard){ window.__state5.load(d.state); window.__emp5.set(d.emp||[]); }
+  }else if(d.page==='edit'){
+    /* a hard reload has only the sample policies: the one being edited is found by its name, else Settings stays */
+    var i=hard?window.__pols5.find(d.name):d.i;
+    if(i<0) return;
+    window.__pols5.edit(i);
+    if(!hard){
+      window.__state5.load(d.state); window.__emp5.set(d.emp||[]);
+      /* Save Changes compares with what was saved, as it does after any answer */
+      document.dispatchEvent(new Event('change'));
+    }
+  }else return;
+  /* the page title follows the restored name; the summary rail the restored answers */
+  var name=document.getElementById('v5-policyName');
+  name.dispatchEvent(new Event('input',{bubbles:true}));
+  if(window.__afterSync5) window.__afterSync5(document.getElementById('v5-panel-t1'));
+  if(!hard) setTimeout(function(){ scroller.scrollTop=d.top||0; },260);
 })();
 </script>
