@@ -2993,7 +2993,7 @@ body[data-v="5"].v5flat #v5-vacDrawer .dbody{gap:40px}
 body[data-v="5"].v5flat :is(#v5-vacDrawer,#v5-tenDrawer) .v5tencard{padding:0;border:0;border-radius:0;background:none}
 body[data-v="5"].v5flat #v5-vacDrawer .v5tencard + .v5tencard{padding-top:40px;border-top:2px solid #EAECF0}
 body[data-v="5"].v5flat #v5-vacDrawer .v5tencard > h2{padding-bottom:0;border-bottom:0}
-body[data-v="5"] #v5-vacDrawer .v5tencard > h2{margin:0;padding-bottom:16px;border-bottom:1px solid #EAECF0;font-size:20px;font-weight:600;line-height:1.2;color:#101828}
+body[data-v="5"] #v5-vacDrawer .v5tencard > h2{margin:0;padding-bottom:0;border-bottom:0;font-size:20px;font-weight:600;line-height:1.2;color:#101828}
 body[data-v="5"] #v5-vacDrawer .v5catact{align-self:flex-start;margin-left:-12px}
 body[data-v="5"] #v5-vacDrawer .v5catact:disabled img{filter:grayscale(1);opacity:.4}
 body[data-v="5"] #v5-vacDrawer .v5lbl{display:inline-flex;align-items:center;gap:4px}
@@ -3040,7 +3040,7 @@ body[data-v="5"] #v5-catScrim .v5catdlg{position:fixed;z-index:41;width:640px;ma
 body[data-v="5"] #v5-catScrim .dhead{padding:20px 24px}
 body[data-v="5"] #v5-catScrim .dhead h1{margin:0;font-size:24px;font-weight:600;line-height:1.2;color:#101828}
 body[data-v="5"] #v5-catScrim .v5catdlgx{position:static}
-body[data-v="5"] #v5-catScrim .dbody{display:flex;flex-direction:column;gap:48px;max-width:none;margin:0;padding:24px;background:#fff}
+body[data-v="5"] #v5-catScrim .dbody{display:flex;flex-direction:column;gap:40px;max-width:none;margin:0;padding:24px;background:#fff}
 /* on white, as the White layout: no cards, the settings sit straight on the drawer */
 body[data-v="5"] #v5-catScrim .v5catdlgbd{align-self:stretch;width:auto;gap:32px;padding:0;border:0;background:none}
 body[data-v="5"] #v5-catScrim .v5catfld{display:grid;grid-template-columns:160px minmax(0,1fr);align-items:start;gap:24px}
@@ -3053,9 +3053,9 @@ body[data-v="5"] #v5-catScrim .v5catfld[hidden],body[data-v="5"] #v5-catScrim .v
 body[data-v="5"] #v5-catScrim .nestopt select.sel{width:296px;max-width:100%}
 body[data-v="5"] #v5-catScrim .v5catdlgft{padding:16px 24px;border-top:1px solid #EAECF0;background:#fff}
 /* probation, read-only: its heading and why it can't be changed, then the settings in their usual colours, only the boxes disabled */
-body[data-v="5"] #v5-catScrim .v5catprobhd{display:flex;flex-direction:column;gap:4px;padding-bottom:16px;border-bottom:2px solid #EAECF0}
-body[data-v="5"] #v5-catScrim .v5catprobhd h2{margin:0;font-size:16px;font-weight:600;line-height:24px;color:#101828}
-body[data-v="5"] #v5-catScrim .v5catprobhd p{margin:0;font-size:12px;font-weight:500;line-height:18px;color:#667085}
+/* drawer sections: a 20px heading over its settings; a 2px rule between sections, none under a heading */
+body[data-v="5"] .v5catsechd{margin:0;font-size:20px;font-weight:600;line-height:1.2;color:#101828}
+body[data-v="5"] #v5-catScrim .v5catdlgbd + .v5catdlgbd:not([hidden]){padding-top:40px;border-top:2px solid #EAECF0}
 body[data-v="5"] #v5-catScrim .cbline .help{font-size:12px;font-weight:500;line-height:18px;color:#667085}
 body[data-v="5"] #v5-catScrim .v5catprob .cbline{cursor:not-allowed}
 body[data-v="5"] #v5-tenDrawer .v5tendel{width:44px;height:44px}
@@ -4640,8 +4640,9 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
       </div>
     </header>
     <div class="dbody">
-      <!-- each setting: its label on the left, its answer on the right -->
-      <div class="v5catdlgbd">
+      <!-- sections, each under its heading, a 2px rule between them; each setting: its label left, its answer right -->
+      <section class="v5catdlgbd" aria-labelledby="v5-catDetHd">
+        <h2 class="v5catsechd" id="v5-catDetHd">Category Details</h2>
         <div class="v5catfld">
           <span class="v5catlbl">Status</span>
           <label class="v5switch"><input type="checkbox" role="switch" id="v5-catEnabled" checked><span class="v5track" aria-hidden="true"></span>Enable</label>
@@ -4688,25 +4689,19 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
           <span class="v5catlbl">Leave request hours</span>
           <label class="cbline"><input type="checkbox" id="v5-catShift"><span class="lbl">Restrict leave to shift hours</span></label>
         </div>
-      </div>
-      <!-- probation: shown for reference, read-only; the probation configuration sets these, not the category -->
-      <div class="v5catdlgbd v5catprob" data-nostate aria-labelledby="v5-catProbHd" role="group">
-        <div class="v5catprobhd">
-          <h2 id="v5-catProbHd">Probation Period</h2>
-          <p>These settings come from the probation configuration and can’t be changed here.</p>
-        </div>
+      </section>
+      <!-- probation, read-only: the probation configuration sets these, not the category -->
+      <section class="v5catdlgbd v5catprob" data-nostate aria-labelledby="v5-catProbHd">
+        <h2 class="v5catsechd" id="v5-catProbHd">Probation Period</h2>
         <div class="v5catfld">
-          <span class="v5catlbl">During probation</span>
+          <span class="v5catlbl">Probation period</span>
           <div class="v5catopts">
             <label class="cbline"><input type="checkbox" disabled><span class="lbl">Pause Accrual</span><span class="help">PTO will not accrue during probation.</span></label>
             <label class="cbline"><input type="checkbox" disabled><span class="lbl">Restrict Usage</span><span class="help">Employees cannot use PTO during probation.</span></label>
+            <label class="cbline"><input type="checkbox" disabled><span class="lbl">Start accruing after probation</span><span class="help">Hold accruals until a user’s probation ends.</span></label>
           </div>
         </div>
-        <div class="v5catfld">
-          <span class="v5catlbl">Accruals</span>
-          <label class="cbline"><input type="checkbox" disabled><span class="lbl">Start accruing after probation</span><span class="help">Hold accruals until a user’s probation ends.</span></label>
-        </div>
-      </div>
+      </section>
     </div>
     <div class="dfoot v5catdlgft">
       <button type="button" id="v5-catCancel">Cancel</button>
@@ -4727,6 +4722,7 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
   </header>
   <div class="dbody">
     <div class="v5tencard">
+      <h2 class="v5catsechd">Tenure Details</h2>
       <div class="v5tenname">
         <label class="v5catlbl" for="v5-tenName">Tenure Name</label>
         <input class="v5inp" type="text" id="v5-tenName" placeholder="Type Here" autocomplete="off" maxlength="60">
