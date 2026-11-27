@@ -1931,8 +1931,14 @@ body[data-v="5"] .empmenu button{display:flex;align-items:center;gap:8px;width:1
 body[data-v="5"] .empmenu button .ph{font-size:16px;color:#667085}
 body[data-v="5"] .empmenu button:hover,body[data-v="5"] .empmenu button:focus-visible{background:#F4F6FA;outline:none}
 body[data-v="5"] .empmenu button.danger,body[data-v="5"] .empmenu button.danger .ph{color:var(--danger)}
-/* the assigned users' ⋯ menu, as the policies table's: 8px corners and padding, 20px icons, 14px medium labels, rules between groups */
-body[data-v="5"] #v5-empMenu{min-width:200px;padding:8px 0}
+/* the assigned users' ⋯ menu (reference/action-menu): 4px in, 200px at least, 36px items with 8px 12px padding and 8px corners,
+   20px #344054 icons 8px before 14/20 medium labels, no dividers */
+body[data-v="5"] #v5-empMenu{display:flex;flex-direction:column;min-width:200px;width:max-content;padding:4px}
+body[data-v="5"] #v5-empMenu[hidden]{display:none}
+body[data-v="5"] #v5-empMenu button{gap:8px;padding:8px 12px;border-radius:8px;font-family:inherit;font-size:14px;font-weight:500;line-height:20px;color:#101828;white-space:nowrap}
+body[data-v="5"] #v5-empMenu button .ph{flex:none;width:20px;font-size:20px;color:#344054;text-align:center}
+body[data-v="5"] #v5-empMenu button:hover{background:#F9FAFB}
+body[data-v="5"] #v5-empMenu button:focus-visible{background:#F9FAFB;box-shadow:inset 0 0 0 2px rgba(41,112,255,.4)}
 body[data-v="5"] #v5-empMenu button{width:calc(100% - 16px);margin:2px 8px;padding:8px;border-radius:8px;color:#344054}
 body[data-v="5"] #v5-empMenu button .ph{flex:none;width:20px;font-size:20px;color:#344054;text-align:center}
 body[data-v="5"] #v5-empMenu button:hover,body[data-v="5"] #v5-empMenu button:focus-visible{background:#F9FAFB}
@@ -2523,6 +2529,8 @@ body[data-v="5"] #v5-panels .accstart[hidden]{display:none}
 body[data-v="5"] #v5-panels .cbrow[data-when="dated"]{display:none}
 /* Probation Period is shown only when ticked in Scenarios */
 body[data-v="5"]:not(.v5prob) #v5-probCard{display:none!important}
+/* so is Who is eligible?; Assigned users stays */
+body[data-v="5"]:not(.v5elig) #v5-elig > .v5fieldopt{display:none!important}
 /* ---- Tenure › Table: its own section with a table of the per-tier settings, and no tier tabs ---- */
 body[data-v="5"]:not(.v5tiertbl) #v5-tenureCard,body[data-v="5"] #v5-tenureCard.v5wait{display:none}
 body[data-v="5"].v5tiertbl .v5center > .tabs{display:none}
@@ -2649,6 +2657,12 @@ body[data-v="5"] .v5rulecount{margin:0;font-size:14px;font-weight:500;line-heigh
 body[data-v="5"] .v5rulecount b{font-weight:600;color:#101828}
 /* Assigned users: the table, or (while creating) a locked note */
 body[data-v="5"] .v5assignedctl{min-width:0}
+/* search (320px, as Settings' search) at the left, Add at the right end, 16px above the table */
+body[data-v="5"] .v5emptools{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+body[data-v="5"] .v5emptools[hidden]{display:none}
+body[data-v="5"] .v5emptools .empsearch{width:320px;max-width:100%;box-sizing:border-box}
+body[data-v="5"] .v5emptools .empsearch input{font-size:16px;line-height:24px;color:#101828}
+body[data-v="5"] .v5emptools .v5add{flex:none}
 body[data-v="5"] .v5assignlock{display:none;margin-left:6px;vertical-align:-2px}
 body[data-v="5"] #v5-drawer.v5creating .v5assignlock{display:inline-block}
 body[data-v="5"] #v5-drawer.v5creating .v5assigned .v5tablebox .dmempty{align-items:flex-start;padding:12px 16px;border:1px dashed #D0D5DD;border-radius:8px;background:#F9FAFB;text-align:left}
@@ -2677,6 +2691,16 @@ body[data-v="5"] .v5tablebox .emptable th.act,body[data-v="5"] .v5tablebox .empt
 body[data-v="5"] .v5tablebox .emptable .empmore{display:grid;place-items:center;width:36px;height:36px;padding:8px;border-radius:8px}
 body[data-v="5"] .v5tablebox .emptable .empmore img{display:block}
 body[data-v="5"] .v5tablebox .emptable .empmore:hover,body[data-v="5"] .v5tablebox .emptable .empmore[aria-expanded="true"]{background:var(--sunken)}
+/* the user: name over code, beside the avatar */
+body[data-v="5"] .v5tablebox .emptable td.nm{padding-top:10px;padding-bottom:10px}
+body[data-v="5"] .v5empwho{display:flex;align-items:center}
+body[data-v="5"] .v5tablebox .emptable td.nm .v5empav{flex:none}
+body[data-v="5"] .v5empid{display:flex;flex-direction:column;min-width:0}
+body[data-v="5"] .v5empname{font-size:14px;font-weight:500;line-height:20px;color:#101828}
+body[data-v="5"] .v5empcode{font-size:12px;font-weight:400;line-height:18px;color:#667085}
+/* More Options as the policies table's: a borderless 36px icon button, #F2F4F7 on hover and while open */
+body[data-v="5"] .v5tablebox .emptable .empmore{margin:0 auto;border:0;background:none;cursor:pointer}
+body[data-v="5"] .v5tablebox .emptable .empmore:focus-visible{outline:2px solid #2970FF;outline-offset:2px}
 /* a grey 32px avatar with the user's initials, before their name */
 body[data-v="5"] .v5tablebox .emptable td.nm .v5empav{display:inline-grid;place-items:center;width:32px;height:32px;margin-right:12px;border-radius:50%;
   background:#F2F4F7;color:#344054;font-size:12px;font-weight:600;line-height:1;vertical-align:middle}
@@ -2696,6 +2720,15 @@ body[data-v="5"] .v5emppg .pgstep{padding:0;color:#667085}
 body[data-v="5"] .v5emppg .pgstep:disabled{color:#D0D5DD;cursor:not-allowed}
 body[data-v="5"] .v5emppg .pgnum[aria-current="page"]{background:#F2F4F7;color:#101828}
 body[data-v="5"] .v5emppg .pgdots{display:grid;place-items:center;min-width:36px;height:36px;font-size:14px;color:#667085}
+/* rows per page: a secondary gray sm button (reference/button) — white, #D0D5DD border, 36px, 14px semibold #344054, its chevron in the label's colour */
+body[data-v="5"] .v5emppg .selcombo{min-width:0;width:auto}
+body[data-v="5"] #v5-drawer .v5emppg .combo > .pickfield{width:auto;height:36px;padding:0 38px 0 14px;border-color:#D0D5DD;background-color:#fff;
+  box-shadow:0 1px 2px rgba(16,24,40,.05);font-size:14px;font-weight:600;line-height:20px;color:#344054;
+  background-position:right 12px center;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%23344054' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+body[data-v="5"] #v5-drawer .v5emppg .combo > .pickfield[aria-expanded="true"]{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M15 12.5L10 7.5L5 12.5' stroke='%23101828' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+body[data-v="5"] #v5-drawer .v5emppg .combo > .pickfield:not(:disabled):is(:hover,[aria-expanded="true"]){border-color:#D0D5DD;background-color:#F9FAFB;color:#101828}
+body[data-v="5"] #v5-drawer .v5emppg .combo > .pickfield:not(:disabled):is(:focus,:focus-visible){outline:none;border-color:#D0D5DD;box-shadow:0 1px 2px rgba(16,24,40,.05),0 0 0 4px rgba(152,162,179,.14)}
+body[data-v="5"] #v5-drawer .v5emppg .combo > .pickfield:not(:disabled):focus:not(:focus-visible):not([aria-expanded="true"]){box-shadow:0 1px 2px rgba(16,24,40,.05)}
 body[data-v="5"] .v5tablebox .dmempty{display:flex;flex-direction:column;align-items:center;gap:4px;padding:40px 24px;border-top:0;background:none;text-align:center}
 /* the empty state sits straight on the card, without the table's frame */
 body[data-v="5"] .v5tablebox:has(> .dmempty:not([hidden])){border:0;border-radius:0;background:none}
@@ -3821,6 +3854,7 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
     <div class="scsec" role="group" aria-labelledby="scSecs">
       <h3 id="scSecs">Sections <small>· V1 only</small></h3>
       <button type="button" class="scopt sccheck" role="checkbox" id="v5-probOpt" aria-checked="false"><b>Probation Period</b></button>
+      <button type="button" class="scopt sccheck" role="checkbox" id="v5-eligOpt" aria-checked="false"><b>Who is eligible?</b></button>
     </div>
   </div>
   <div class="scfoot"><button type="button" class="screset">Reset demo</button></div>
@@ -3866,6 +3900,27 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
   opt.addEventListener('click',function(){ if(document.body.dataset.v==='5') apply(opt.getAttribute('aria-checked')!=='true'); });
   var saved=null; try{saved=localStorage.getItem('lp-v5prob');}catch(e){}
   apply(saved==='1');
+})();
+/* V2's Who is eligible? is off unless ticked; without it the users section is Assignment, not Eligibility Criteria */
+(function(){
+  "use strict";
+  var opt=document.getElementById('v5-eligOpt');
+  function title(on){
+    var h=document.getElementById('v5-empTitle');
+    if(h&&h.firstChild) h.firstChild.nodeValue=(on?'Eligibility Criteria':'Assignment')+' ';
+  }
+  function apply(on){
+    document.body.classList.toggle('v5elig',on);
+    opt.setAttribute('aria-checked',on?'true':'false');
+    title(on);
+    try{localStorage.setItem('lp-v5elig',on?'1':'0');}catch(e){}
+    document.dispatchEvent(new Event('v5look'));
+  }
+  opt.addEventListener('click',function(){ if(document.body.dataset.v==='5') apply(opt.getAttribute('aria-checked')!=='true'); });
+  var saved=null; try{saved=localStorage.getItem('lp-v5elig');}catch(e){}
+  apply(saved==='1');
+  /* the section's heading is further down the page than this script */
+  document.addEventListener('DOMContentLoaded',function(){ title(document.body.classList.contains('v5elig')); });
 })();
 </script>
 
@@ -4937,7 +4992,7 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
              branch and employment type), then who is assigned. Users are assigned only once the policy exists,
              so while creating it the assigned list is locked; the rules can be set either way -->
         <section class="card v5card empcard" id="v5-empPanel" data-sec="employees" aria-labelledby="v5-empTitle">
-          <div class="grouphead" id="v5-empTitle">Eligibility Criteria <span class="dmcount" aria-label="0 users">0</span></div>
+          <div class="grouphead" id="v5-empTitle">Assignment <span class="dmcount" aria-label="0 users">0</span></div>
           <div class="v5fields" id="v5-elig">
             <div class="v5field v5fieldopt" role="radiogroup" aria-labelledby="v5-eligLbl" aria-describedby="v5-eligDesc">
               <div class="v5lblwrap"><span class="v5lbl" id="v5-eligLbl">Who is eligible?</span><span class="v5desc" id="v5-eligDesc">Eligible users are assigned this policy automatically, including new users who match later.</span></div>
@@ -4958,14 +5013,18 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
             <div class="v5field v5assigned">
               <div class="v5lblwrap"><span class="v5lbl" id="v5-assignedLbl">Assigned users<img class="v5assignlock" src="assets/lock-03-20.svg" width="16" height="16" alt="Locked"></span><span class="v5desc">Users who have this policy today.</span></div>
               <div class="v5assignedctl">
-          <!-- search stays for the table script; Figma shows no search, so it is kept out of view -->
-          <label class="empsearch" hidden>
-            <input type="search" id="v5-empSearch" placeholder="Search" aria-label="Search assigned users by name or code" autocomplete="off">
-            <button type="button" class="empclear" id="v5-empClear" aria-label="Clear search" hidden><img src="assets/x-close.svg" width="20" height="20" alt=""></button>
-          </label>
+          <!-- above the table: search on the left, Add on the right; hidden while creating, as users are assigned once the policy exists -->
+          <div class="v5emptools" hidden>
+            <label class="empsearch">
+              <img src="assets/search-md-20.svg" width="20" height="20" alt="">
+              <input type="search" id="v5-empSearch" placeholder="Search" aria-label="Search assigned users by name or code" autocomplete="off">
+              <button type="button" class="empclear" id="v5-empClear" aria-label="Clear search" hidden><img src="assets/x-close.svg" width="20" height="20" alt=""></button>
+            </label>
+            <button type="button" class="btn v5add" id="v5-empAdd"><i class="ph ph-plus" aria-hidden="true"></i>Add</button>
+          </div>
         <div class="v5tablebox">
           <table class="emptable" aria-labelledby="v5-assignedLbl">
-            <thead><tr><th scope="col">User name</th><th scope="col">Code</th><th scope="col" class="num">Balance</th><th scope="col" class="act"><span class="sr">More options</span></th></tr></thead>
+            <thead><tr><th scope="col">Name</th><th scope="col">Accrual Date</th><th scope="col" class="num">Balance (hrs)</th><th scope="col" class="act"><span class="sr">More options</span></th></tr></thead>
             <tbody id="v5-empRows"></tbody>
           </table>
           <div class="dmempty" id="v5-empEmpty" hidden>
@@ -4979,7 +5038,6 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
             <span class="pgright"><span class="pginfo" id="v5-empPgInfo"></span><nav class="pgbtns" id="v5-empPgNav" aria-label="Assigned users pages"></nav></span>
           </div>
         </div>
-          <div hidden><button type="button" class="btn v5add" id="v5-empAdd"><i class="ph ph-plus" aria-hidden="true"></i>Add</button></div>
               </div>
             </div>
           </div>
@@ -5015,9 +5073,7 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
   <div class="empmenu" id="v5-empMenu" role="menu" aria-label="User actions" hidden>
     <button type="button" role="menuitem" data-act="reset"><i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i>Reset</button>
     <button type="button" role="menuitem" data-act="reassign"><i class="ph ph-repeat" aria-hidden="true"></i>Reassign</button>
-    <hr role="separator">
     <button type="button" role="menuitem" data-act="history"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>View History</button>
-    <hr role="separator">
     <button type="button" role="menuitem" data-act="adjust"><i class="ph ph-plus-minus" aria-hidden="true"></i>Adjust Leaves</button>
   </div>
 
@@ -14135,6 +14191,10 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
       ['E1020','Emily Clark','Safety','Salaried','Crew B',36]
     ].map(function(r,i){ return {code:r[0],name:r[1],dept:r[2],cls:r[3],crew:r[4],bal:r[5],branch:['Austin','Dallas','Houston'][i%3]}; });
     var byCode={}; EMPLOYEES.forEach(function(e){ byCode[e.code]=e; });
+    /* the date each user last accrued: a sample spread over the leave year */
+    EMPLOYEES.forEach(function(e,i){
+      e.acc=new Date(2026,i%12,[1,15][i%2]).toLocaleDateString('en-US',{month:'2-digit',day:'2-digit',year:'numeric'});   /* MM/DD/YYYY */
+    });
     window.__people5=EMPLOYEES;   /* read by Users › Who is eligible? */
     var assigned=[];   /* a new policy: employees are assigned after it is created */
 
@@ -14187,7 +14247,9 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
       renderPager(list.length);
       /* a grey avatar with initials before each name; More Options is the policy table's kebab */
       rows.innerHTML=list.slice((page-1)*PER,page*PER).map(function(e){
-        return '<tr data-code="'+e.code+'"><td class="nm"><span class="v5empav" aria-hidden="true">'+esc(initials(e.name))+'</span>'+esc(e.name)+'</td><td>'+e.code+'</td><td class="num">'+hrs(e.bal)+'</td>'+
+        return '<tr data-code="'+e.code+'"><td class="nm"><span class="v5empwho"><span class="v5empav" aria-hidden="true">'+esc(initials(e.name))+'</span>'+
+          '<span class="v5empid"><span class="v5empname">'+esc(e.name)+'</span><span class="v5empcode">'+e.code+'</span></span></span></td>'+
+          '<td>'+e.acc+'</td><td class="num">'+(Math.round(e.bal*100)/100)+'</td>'+
           '<td class="act"><button type="button" class="empmore" data-tip="More Options" aria-label="More options for '+esc(e.name)+'" aria-haspopup="menu" aria-expanded="false"><img src="assets/dots-vertical-20.svg" width="20" height="20" alt=""></button></td></tr>';
       }).join('');
       rows.closest('table').hidden=!list.length;
@@ -16674,7 +16736,7 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
 
   /* Create Policy and Save Changes wait while a rule has no value (this runs before both of their handlers) */
   document.addEventListener('click',function(e){
-    if(!e.target.closest||e.target.closest('#v5-saveBtn')!==save||save.disabled||!unfinished()) return;
+    if(!e.target.closest||e.target.closest('#v5-saveBtn')!==save||save.disabled||!unfinished()||!document.body.classList.contains('v5elig')) return;
     e.stopPropagation(); e.preventDefault();
     tried=true; draw();
     footMsg.className='msg bad'; footMsg.textContent='Choose at least one value for each rule.';
@@ -16683,6 +16745,8 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
 
   /* the Policy summary's line */
   function lines(){
+    /* the question is switched off in Scenarios, so nothing of it is said */
+    if(!document.body.classList.contains('v5elig')) return [];
     if(st.mode==='all') return ['<b>All users</b> are eligible.'];
     var rs=done(); if(!rs.length) return [];
     var parts=rs.map(function(r){ return '<b>'+esc(name(FIELDS,r.f))+' '+(r.op==='not'?'is not':'is')+' '+esc(r.v.join(' or '))+'</b>'; });
