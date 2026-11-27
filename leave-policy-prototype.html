@@ -3505,8 +3505,11 @@ body[data-v="5"] .v5vacbal .v5vacnote{margin-top:16px;font-size:14px;color:#6670
 .scclose{margin-left:auto;display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:8px;background:none;color:var(--muted);font-size:18px;cursor:pointer}
 .scclose:hover{background:var(--sunken);color:var(--ink)}
 .scbody{overflow:auto;padding:4px 10px}
-.scsec{padding:12px 0;border-bottom:1px solid var(--line)}
-.scsec:last-child{border-bottom:0}
+.scsec{padding:12px 0}
+/* a rule above each section after the first one on show */
+.scsec ~ .scsec{border-top:1px solid var(--line)}
+/* a section that belongs to one version shows only while that version is on screen */
+body:not([data-v="5"]) .scsec[data-for="5"]{display:none}
 .scsec h3{margin:0 0 6px;padding:0 12px;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .scsec h3 small{font-size:inherit;font-weight:500;letter-spacing:0;text-transform:none}
 /* a single-select list, as the dropdown options are: gray when picked, with a blue tick on the right */
@@ -3519,7 +3522,6 @@ body[data-v="5"] .v5vacbal .v5vacnote{margin-top:16px;font-size:14px;color:#6670
 .scopt[role="radio"][aria-checked="true"]::after{content:"";flex:none;width:16px;height:16px;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M13.3333 4L6 11.3333L2.66667 8' stroke='%232970FF' stroke-width='1.33333' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center}
 .scopt.sccheck::before{content:"";flex:none;box-sizing:border-box;width:16px;height:16px;border:1px solid #D0D5DD;border-radius:4px;background:#fff}
-/* the layout applies to V1 only; with another version on screen it shows but cannot be picked */
 .scsec.off .scopt{opacity:.5;cursor:not-allowed}
 /* an on/off option: a square box, ticked when on */
 .scopt.sccheck[aria-checked="true"]::before{border:0;background:#2970FF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M10 3L4.5 8.5L2 6' stroke='white' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center no-repeat}
@@ -3836,23 +3838,23 @@ body[data-v="5"].v5flat :is(#v5-panels .lab .desc,#v5-panels .gdesc,.v5desc,#v5-
       <button type="button" class="scopt" role="radio" data-v="2" aria-checked="false"><b>V3 – Tenure based rule</b></button>
       <button type="button" class="scopt" role="radio" data-v="1" aria-checked="false"><b>V4 – Initial setup</b></button>
     </div>
-    <div class="scsec" id="v5-look" role="radiogroup" aria-labelledby="scLook">
-      <h3 id="scLook">Layout <small>· V1 only</small></h3>
+    <div class="scsec" id="v5-look" data-for="5" role="radiogroup" aria-labelledby="scLook">
+      <h3 id="scLook">Layout</h3>
       <button type="button" class="scopt" role="radio" data-look="cards" aria-checked="false"><b>Cards</b></button>
       <button type="button" class="scopt" role="radio" data-look="flat" aria-checked="true"><b>White</b></button>
     </div>
-    <div class="scsec" id="v5-vacMode" role="radiogroup" aria-labelledby="scVac">
-      <h3 id="scVac">Vacation Payout <small>· V1 only</small></h3>
+    <div class="scsec" id="v5-vacMode" data-for="5" role="radiogroup" aria-labelledby="scVac">
+      <h3 id="scVac">Vacation Payout</h3>
       <button type="button" class="scopt" role="radio" data-vac="page" aria-checked="true"><b>Full page</b></button>
       <button type="button" class="scopt" role="radio" data-vac="drawer" aria-checked="false"><b>Drawer</b></button>
     </div>
-    <div class="scsec" id="v5-tenMode" role="radiogroup" aria-labelledby="scTen">
-      <h3 id="scTen">Tenure <small>· V1 only</small></h3>
+    <div class="scsec" id="v5-tenMode" data-for="5" role="radiogroup" aria-labelledby="scTen">
+      <h3 id="scTen">Tenure</h3>
       <button type="button" class="scopt" role="radio" data-ten="tabs" aria-checked="false"><b>Tabs</b></button>
       <button type="button" class="scopt" role="radio" data-ten="table" aria-checked="true"><b>Table</b></button>
     </div>
-    <div class="scsec" role="group" aria-labelledby="scSecs">
-      <h3 id="scSecs">Sections <small>· V1 only</small></h3>
+    <div class="scsec" data-for="5" role="group" aria-labelledby="scSecs">
+      <h3 id="scSecs">Sections</h3>
       <button type="button" class="scopt sccheck" role="checkbox" id="v5-probOpt" aria-checked="false"><b>Probation Period</b></button>
       <button type="button" class="scopt sccheck" role="checkbox" id="v5-eligOpt" aria-checked="false"><b>Who is eligible?</b></button>
     </div>
